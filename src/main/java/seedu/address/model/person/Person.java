@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.room.Room;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +25,9 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    //additional field
+    private final Room room;
+
     /**
      * Every field must be present and not null.
      */
@@ -33,6 +37,17 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.room = null;
+        this.tags.addAll(tags);
+    }
+
+    public Person(Name name, Phone phone, Email email, Address address, Room room, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.room = room;
         this.tags.addAll(tags);
     }
 
@@ -61,7 +76,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -70,7 +85,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -105,18 +121,14 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append(" Phone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append(" Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
+                .append(" Address: ")
+                .append(getAddress())
+                .append(" Tags: ");
+        getTags().forEach(builder::append);
         return builder.toString();
     }
 

@@ -2,7 +2,9 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
@@ -21,6 +23,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.*;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomList;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -36,7 +42,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(0, 6, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -45,6 +51,7 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
+    protected RoomList rooms;
 
     @Override
     public void init() throws Exception {
@@ -66,6 +73,46 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+
+
+
+        //TODO: TESTING DATA
+        Set<Tag> sampleTags1 = new HashSet<Tag>();
+        Set<Tag> sampleTags2 = new HashSet<Tag>();
+
+        sampleTags1.add(new Tag("room1Tag1"));
+        sampleTags1.add(new Tag("room1Tag2"));
+        sampleTags1.add(new Tag("room1Tag1")); //should not be there since it is account for already
+
+        sampleTags2.add(new Tag("room2Tag3"));
+        sampleTags2.add(new Tag("room2Tag4"));
+        sampleTags2.add(new Tag("room2Tag1")); //should not be there since it is account for already
+
+        rooms = new RoomList();
+        Room room1 = new Room(1);
+        Room room2 = new Room(2);
+        Person person1 = new Person(
+                new Name("Alan"),
+                new Phone("12345678"),
+                new Email("hello@world.com"),
+                new Address("COMPUTING DRIVE, SINGAPORE 123456"),
+                room1,
+                sampleTags1);
+        Person person2 = new Person(
+                new Name("Blan"),
+                new Phone("87654321"),
+                new Email("goodbye@world.com"),
+                new Address("FASS DRIVE, SINGAPORE 852456"),
+                room1,
+                sampleTags2);
+
+        room1.addPerson(person1);
+        room1.addPerson(person2);
+
+        rooms.add(room1);
+        rooms.add(room2);
+
     }
 
     /**
