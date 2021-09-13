@@ -1,14 +1,14 @@
 package seedu.address.model.room;
 
-import seedu.address.model.person.Person;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.person.Person;
+
 public class Room {
     public final Integer roomNumber;
-    public List<Person> guests;
-    boolean isVacant;
+    private List<Person> guests;
+    private boolean isVacant;
 
     /**
      * Constructs a {@code RoomNumber}.
