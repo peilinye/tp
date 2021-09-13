@@ -41,6 +41,15 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param room
+     * @param tags
+     */
     public Person(Name name, Phone phone, Email email, Address address, Room room, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
