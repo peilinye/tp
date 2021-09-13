@@ -101,14 +101,12 @@ public class MainApp extends Application {
                 new Phone("12345678"),
                 new Email("hello@world.com"),
                 new Address("COMPUTING DRIVE, SINGAPORE 123456"),
-                room1,
                 sampleTags1);
         Person person2 = new Person(
                 new Name("Blan"),
                 new Phone("87654321"),
                 new Email("goodbye@world.com"),
                 new Address("FASS DRIVE, SINGAPORE 852456"),
-                room1,
                 sampleTags2);
 
         room1.addPerson(person1);
@@ -116,7 +114,6 @@ public class MainApp extends Application {
 
         rooms.add(room1);
         rooms.add(room2);
-
     }
 
     /**
