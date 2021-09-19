@@ -122,8 +122,11 @@ public class MainWindow extends UiPart<Stage> {
         RoomList rooms = new RoomList();
         rooms.add(new Room(1));
         rooms.add(new Room(2));
+        rooms.add(new Room(3));
+        rooms.add(new Room(4));
+        rooms.add(new Room(5));
         roomListPanel = new RoomListPanel(rooms.getInternalList());
-        roomListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
