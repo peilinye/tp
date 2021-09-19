@@ -21,8 +21,22 @@ public class Room {
         this.isVacant = false;
     }
 
+    public Room(int roomNumber, boolean isVacant, List<Person> guests) {
+        this.roomNumber = roomNumber;
+        this.isVacant = isVacant;
+        this.guests = guests;
+    }
+
     public void addPerson(Person person) {
         guests.add(person);
+    }
+
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
+
+    public boolean getIsVacant() {
+        return this.isVacant;
     }
 
     public List<Person> getGuests() {

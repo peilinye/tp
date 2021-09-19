@@ -1,12 +1,15 @@
 package seedu.address.model.room;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 public class RoomList implements Iterable<Room> {
 
@@ -55,6 +58,19 @@ public class RoomList implements Iterable<Room> {
         */
     }
 
+    /**
+     * Replaces the contents of this list with {@code rooms}.
+     * {@code rooms} must not contain duplicate persons.
+     */
+    public void setRooms(List<Room> rooms) {
+        requireAllNonNull(rooms);
+//        implement the check below
+//        if (!roomsAreUnique(rooms)) {
+//            throw new DuplicatePersonException();
+//        }
+
+        internalList.setAll(rooms);
+    }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.

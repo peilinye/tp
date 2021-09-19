@@ -26,6 +26,13 @@ public class ListType {
      * Returns true if the ListType is a GUESTS type.
      */
     public boolean isGuestsType() {
-        return this.type.equals("guests");
+        return this.type.equals(GUESTS);
+    }
+
+    /**
+     * Returns true if the ListType is a ROOMS type.
+     */
+    public boolean isRoomsType() {
+        return this.type.equals(ROOMS);
     }
 }
