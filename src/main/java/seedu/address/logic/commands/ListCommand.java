@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.List;
+
+import seedu.address.commons.core.listtype.ListType;
 import seedu.address.model.Model;
 
 /**
@@ -12,13 +15,34 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS_GUESTS = "Listed all guests";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Lists all guests or rooms based on given argument.\n"
+            + "Parameters: LISTTYPE ('guests' or 'rooms')\n"
+            + "Example: " + COMMAND_WORD + " guests";
+
+    private ListType listType;
+
+    public ListCommand(ListType listType) {
+        this.listType = listType;
+    }
+
+    /**
+     * Returns true if the ListCommand lists guests.
+     */
+    public boolean isGuests() {
+        return this.listType.isGuestsType();
+    }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (this.isGuests()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(MESSAGE_SUCCESS_GUESTS);
+        } else {
+            return new CommandResult("placeholder");
+        }
     }
 }
