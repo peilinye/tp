@@ -71,6 +71,13 @@ public class RoomList implements Iterable<Room> {
         internalList.setAll(rooms);
     }
 
+    /*
+     * Gets the internal list of rooms.
+     */
+    public ObservableList<Room> getInternalList() {
+        return this.internalList;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
