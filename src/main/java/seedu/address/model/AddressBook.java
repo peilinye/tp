@@ -136,7 +136,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Room> getRoomList() { return rooms.asUnmodifiableObservableList(); }
+    public ObservableList<Room> getRoomList() {
+        return rooms.asUnmodifiableObservableList();
+    }
 
     @Override
     public boolean equals(Object other) {

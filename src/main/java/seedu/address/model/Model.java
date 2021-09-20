@@ -96,5 +96,9 @@ public interface Model {
      */
     void updateFilteredRoomList(Predicate<Room> predicate);
 
-
+    /**
+     * Adds the given room.
+     * {@code room} must not already exist in the address book.
+     */
+    void addRoom(Room room);
 }

@@ -4,11 +4,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class ListType {
+    public static final String MESSAGE_CONSTRAINTS = "List types should be 'rooms' or 'guests'.";
     private static final String ROOMS = "rooms";
     private static final String GUESTS = "guests";
-    public static final String MESSAGE_CONSTRAINTS = "List types should be 'rooms' or 'guests'.";
+
     private String type;
 
+    /**
+     * Constructs a ListType object with given type.
+     *
+     * @param type
+     */
     public ListType(String type) {
         requireNonNull(type);
         checkArgument(isValidListType(type), MESSAGE_CONSTRAINTS);

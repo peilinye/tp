@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ROOMS;
 
-import java.util.List;
-
 import seedu.address.commons.core.listtype.ListType;
 import seedu.address.model.Model;
 
@@ -51,7 +49,7 @@ public class ListCommand extends Command {
         if (this.isGuests()) {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(MESSAGE_SUCCESS_GUESTS);
-        } else if (this.isRooms()){
+        } else if (this.isRooms()) {
             model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
             return new CommandResult(MESSAGE_SUCCESS_ROOMS);
         } else {

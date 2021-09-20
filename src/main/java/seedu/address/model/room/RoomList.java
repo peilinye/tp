@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 public class RoomList implements Iterable<Room> {
 
@@ -64,10 +63,10 @@ public class RoomList implements Iterable<Room> {
      */
     public void setRooms(List<Room> rooms) {
         requireAllNonNull(rooms);
-//        implement the check below
-//        if (!roomsAreUnique(rooms)) {
-//            throw new DuplicatePersonException();
-//        }
+        //        implement the check below
+        //        if (!roomsAreUnique(rooms)) {
+        //            throw new DuplicateRoomException();
+        //        }
 
         internalList.setAll(rooms);
     }

@@ -24,7 +24,7 @@ class JsonAdaptedRoom {
      */
     @JsonCreator
     public JsonAdaptedRoom(@JsonProperty("roomNumber") Integer roomNumber, @JsonProperty("isVacant") boolean isVacant,
-    @JsonProperty("guests") List<JsonAdaptedPerson> guests) {
+        @JsonProperty("guests") List<JsonAdaptedPerson> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
         if (guests != null) {

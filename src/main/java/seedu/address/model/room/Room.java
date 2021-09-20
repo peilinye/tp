@@ -21,6 +21,13 @@ public class Room {
         this.isVacant = false;
     }
 
+    /**
+     * Constructs a Room given its roomNumber, isVacant status and list of guests.
+     *
+     * @param roomNumber Integer roomNumber
+     * @param isVacant Boolean true if room has no guests.
+     * @param guests List of guests in the room.
+     */
     public Room(int roomNumber, boolean isVacant, List<Person> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;

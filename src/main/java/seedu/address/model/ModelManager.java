@@ -115,6 +115,12 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void addRoom(Room room) {
+        addressBook.addRoom(room);
+        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
