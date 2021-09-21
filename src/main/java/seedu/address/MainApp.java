@@ -23,13 +23,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
@@ -55,7 +48,7 @@ public class MainApp extends Application {
     protected Storage storage;
     protected Model model;
     protected Config config;
-    protected RoomList rooms;
+    //protected RoomList rooms;
 
     @Override
     public void init() throws Exception {
@@ -93,27 +86,28 @@ public class MainApp extends Application {
         sampleTags2.add(new Tag("room2Tag4"));
         sampleTags2.add(new Tag("room2Tag1")); //should not be there since it is account for already
 
-        rooms = new RoomList();
-        Room room1 = new Room(1);
-        Room room2 = new Room(2);
-        Person person1 = new Person(
-                new Name("Alan"),
-                new Phone("12345678"),
-                new Email("hello@world.com"),
-                new Address("COMPUTING DRIVE, SINGAPORE 123456"),
-                sampleTags1);
-        Person person2 = new Person(
-                new Name("Blan"),
-                new Phone("87654321"),
-                new Email("goodbye@world.com"),
-                new Address("FASS DRIVE, SINGAPORE 852456"),
-                sampleTags2);
+        //        rooms = new RoomList();
+        //        Room room1 = new Room(1);
+        //        Room room2 = new Room(2);
+        //        Person person1 = new Person(
+        //                new Name("Alan"),
+        //                new Phone("12345678"),
+        //                new Email("hello@world.com"),
+        //                new Address("COMPUTING DRIVE, SINGAPORE 123456"),
+        //                sampleTags1);
+        //        Person person2 = new Person(
+        //                new Name("Blan"),
+        //                new Phone("87654321"),
+        //                new Email("goodbye@world.com"),
+        //                new Address("FASS DRIVE, SINGAPORE 852456"),
+        //                sampleTags2);
+        //
+        //        room1.addPerson(person1);
+        //        room1.addPerson(person2);
+        //
+        //        rooms.add(room1);
+        //        rooms.add(room2);
 
-        room1.addPerson(person1);
-        room1.addPerson(person2);
-
-        rooms.add(room1);
-        rooms.add(room2);
     }
 
     /**
