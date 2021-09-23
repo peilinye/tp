@@ -8,7 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Person;
+import seedu.address.model.room.exceptions.DuplicateRoomException;
+import seedu.address.model.room.exceptions.RoomNotFoundException;
 
 public class RoomList implements Iterable<Room> {
 
@@ -17,44 +18,52 @@ public class RoomList implements Iterable<Room> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent Room as the given argument.
-     */
-    public boolean contains(Room toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
-    }
-
-    /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a room to the list.
+     * The room must not already exist in the list.
      */
     public void add(Room toAdd) {
         requireNonNull(toAdd);
-
-        //need some exception here in the future
-        /*
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateRoomException();
         }
-        */
 
         internalList.add(toAdd);
     }
 
     /**
-     *
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Replaces the room {@code target} in the list with {@code editedRoom}.
+     * {@code target} must exist in the list.
+     * The room identity of {@code editedRoom} must not be the same as another existing room in the list.
      */
-    public void remove(Person toRemove) {
-        requireNonNull(toRemove);
+    public void setRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
 
-        //TODO: Error handling if room is not found
-        /*
-        if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new RoomNotFoundException();
         }
-        */
+
+        if (!target.isSameRoom(editedRoom) && contains(editedRoom)) {
+            throw new DuplicateRoomException();
+        }
+        internalList.set(index, editedRoom);
+    }
+
+
+    /**
+     * Removes the equivalent room from the list.
+     * The room must exist in the list.
+     */
+    public void remove(Room toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new RoomNotFoundException();
+        }
+    }
+
+    public void setRooms(RoomList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
     }
 
     /**
@@ -63,19 +72,10 @@ public class RoomList implements Iterable<Room> {
      */
     public void setRooms(List<Room> rooms) {
         requireAllNonNull(rooms);
-        //        implement the check below
-        //        if (!roomsAreUnique(rooms)) {
-        //            throw new DuplicateRoomException();
-        //        }
-
+        if (!roomsAreUnique(rooms)) {
+            throw new DuplicateRoomException();
+        }
         internalList.setAll(rooms);
-    }
-
-    /*
-     * Gets the internal list of rooms.
-     */
-    public ObservableList<Room> getInternalList() {
-        return this.internalList;
     }
 
     /**
@@ -83,6 +83,14 @@ public class RoomList implements Iterable<Room> {
      */
     public ObservableList<Room> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent room as the given argument.
+     */
+    public boolean contains(Room toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameRoom);
     }
 
     @Override
@@ -100,5 +108,19 @@ public class RoomList implements Iterable<Room> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Returns true if {@code rooms} contains only unique rooms.
+     */
+    private boolean roomsAreUnique(List<Room> rooms) {
+        for (int i = 0; i < rooms.size() - 1; i++) {
+            for (int j = i + 1; j < rooms.size(); j++) {
+                if (rooms.get(i).isSameRoom(rooms.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
