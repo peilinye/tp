@@ -257,13 +257,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* hotel receptionist
+* has a need to manage a significant number of guests and rooms
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage both guests and rooms faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -273,11 +274,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add a guest as a contact       | check them into rooms                                                  |
+| `* * *`  | user                                       | check guests into rooms        | track their status                                                     |
+| `* * *`  | user                                       | check guests out of rooms      | track their status                                                     |
+| `* * *`  | user                                       | search for vacant rooms        | assign guests to a vacant room                                         |
+| `* * *`  | user                                       | delete guests                  | remove them if the wrong details are entered                           |
+| `* * *`  | user                                       | list all guests and rooms      | check all the statuses
+| `*`      | user with many guests  in the address book | sort guests  by name           | locate a guest easily                                                  |
 
 *{More to be added}*
 
