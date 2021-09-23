@@ -13,6 +13,7 @@ public class RoomCard extends UiPart<Region> {
 
     private static final String FXML = "RoomListCard.fxml";
 
+    public final Room room;
     private final String testRoomNumber = "TES";
     private final String testRoomVacancy = "YENO";
 
@@ -23,8 +24,6 @@ public class RoomCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
-    public final Room room;
 
     @FXML
     private HBox cardPane;
