@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <fx:root minHeight="600" minWidth="1000"
          onCloseRequest="#handleExit"
          title="Trace2Gather"
