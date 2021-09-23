@@ -138,6 +138,8 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Room List Accessors =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
      * {@code versionedAddressBook}
