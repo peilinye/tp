@@ -6,16 +6,16 @@ import java.util.List;
 import seedu.address.model.person.Person;
 
 public class Room {
-    public final Integer roomNumber;
+    public final RoomNumber roomNumber;
     private List<Person> guests;
     private boolean isVacant;
 
     /**
-     * Constructs a {@code RoomNumber}.
+     * Constructs a {@code Room}.
      *
      * @param roomNumber A valid room number.
      */
-    public Room(int roomNumber) {
+    public Room(RoomNumber roomNumber) {
         this.roomNumber = roomNumber;
         guests = new ArrayList<Person>();
         this.isVacant = false;
@@ -28,7 +28,7 @@ public class Room {
      * @param isVacant Boolean true if room has no guests.
      * @param guests List of guests in the room.
      */
-    public Room(int roomNumber, boolean isVacant, List<Person> guests) {
+    public Room(RoomNumber roomNumber, boolean isVacant, List<Person> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
         this.guests = guests;
@@ -38,7 +38,7 @@ public class Room {
         guests.add(person);
     }
 
-    public Integer getRoomNumber() {
+    public RoomNumber getRoomNumber() {
         return roomNumber;
     }
 

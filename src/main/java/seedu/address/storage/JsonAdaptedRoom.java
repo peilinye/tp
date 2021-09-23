@@ -10,12 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumber;
 
 /**
  * Jackson-friendly version of {@link Room}.
  */
 class JsonAdaptedRoom {
-    public final Integer roomNumber;
+    public final String roomNumber;
     private final List<JsonAdaptedPerson> guests = new ArrayList<>();
     private final boolean isVacant;
 
@@ -23,7 +24,7 @@ class JsonAdaptedRoom {
      * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
-    public JsonAdaptedRoom(@JsonProperty("roomNumber") Integer roomNumber, @JsonProperty("isVacant") boolean isVacant,
+    public JsonAdaptedRoom(@JsonProperty("roomNumber") String roomNumber, @JsonProperty("isVacant") boolean isVacant,
         @JsonProperty("guests") List<JsonAdaptedPerson> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
@@ -36,7 +37,7 @@ class JsonAdaptedRoom {
      * Converts a given {@code Room} into this class for Jackson use.
      */
     public JsonAdaptedRoom(Room source) {
-        roomNumber = source.getRoomNumber();
+        roomNumber = source.getRoomNumber().value;
         isVacant = source.getIsVacant();
         guests.addAll(source.getGuests().stream()
                 .map(JsonAdaptedPerson::new)
@@ -54,7 +55,7 @@ class JsonAdaptedRoom {
             roomGuests.add(person.toModelType());
         }
         //insert validity checks and exception handling
-        final Integer modelRoomNumber = roomNumber;
+        final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
         final Boolean modelIsVacant = isVacant;
         final List<Person> modelGuests = roomGuests;
         return new Room(modelRoomNumber, modelIsVacant, modelGuests);
