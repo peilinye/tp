@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**: Edited the ability to list guests and added the ability to list rooms.
     * What it does: Allows the user to list all guests and rooms
     * Justification: This feature improves the product significantly because a hotel receptionist needs to be able to see all guests and rooms to track their statuses.
-    
+
 * **Code contributed**: [RepoSense link]()
 
 * **Documentation**:
@@ -20,4 +20,3 @@ Given below are my contributions to the project.
         * Added documentation for the features `list room` and `list guests`
     * Developer Guide:
         * Added target user profile, value proposition and use cases.
-        
