@@ -1,23 +1,31 @@
 package seedu.address.model.room;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ROOM_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VACANCY_ROOM_ONE;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
+import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.room.exceptions.DuplicateRoomException;
+import seedu.address.model.room.exceptions.RoomNotFoundException;
+import seedu.address.testutil.RoomBuilder;
 
 public class RoomListTest {
+
+    private static final Room ROOM_ONE_EDITED = new RoomBuilder()
+            .withNumber(VALID_NAME_ROOM_ONE)
+            .withVacancy(VALID_VACANCY_ROOM_ONE)
+            .build();
 
     private final RoomList roomList = new RoomList();
 
@@ -26,145 +34,141 @@ public class RoomListTest {
         assertThrows(NullPointerException.class, () -> roomList.contains(null));
     }
 
-    /*
     @Test
     public void contains_roomNotInList_returnsFalse() {
-        assertFalse(roomList.contains(ALICE));
+        assertFalse(roomList.contains(ROOM_ONE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+    public void contains_roomInList_returnsTrue() {
+        roomList.add(ROOM_ONE);
+        assertTrue(roomList.contains(ROOM_ONE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+    public void contains_roomWithSameIdentityFieldsInList_returnsTrue() {
+        roomList.add(ROOM_ONE);
+        Room editedRoom = ROOM_ONE_EDITED;
+        assertTrue(roomList.contains(editedRoom));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    public void add_duplicateRoom_throwsDuplicatePersonException() {
+        roomList.add(ROOM_ONE);
+        assertThrows(DuplicateRoomException.class, () -> roomList.add(ROOM_ONE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+    public void setRoom_nullTargetRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.setRoom(null, ROOM_ONE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+    public void setRoom_nullEditedRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.setRoom(ROOM_ONE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    public void setRoom_targetRoomNotInList_throwsRoomNotFoundException() {
+        assertThrows(RoomNotFoundException.class, () -> roomList.setRoom(ROOM_ONE, ROOM_ONE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRoom_editedRoomIsSameRoom_success() {
+        roomList.add(ROOM_ONE);
+        roomList.setRoom(ROOM_ONE, ROOM_ONE);
+        RoomList expectedRoomList = new RoomList();
+        expectedRoomList.add(ROOM_ONE);
+        assertEquals(expectedRoomList, roomList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRoom_editedRoomHasSameIdentity_success() {
+        roomList.add(ROOM_ONE);
+        Room editedRoom = ROOM_ONE_EDITED;
+        roomList.setRoom(ROOM_ONE, ROOM_ONE_EDITED);
+        RoomList expectedRoomList = new RoomList();
+        expectedRoomList.add(editedRoom);
+        assertEquals(expectedRoomList, roomList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRoom_editedRoomHasDifferentIdentity_success() {
+        roomList.add(ROOM_ONE);
+        roomList.setRoom(ROOM_ONE, ROOM_TWO);
+        RoomList expectedRoomList = new RoomList();
+        expectedRoomList.add(ROOM_TWO);
+        assertEquals(expectedRoomList, roomList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    public void setRoom_editedRoomHasNonUniqueIdentity_throwsDuplicateRoomException() {
+        roomList.add(ROOM_ONE);
+        roomList.add(ROOM_TWO);
+        assertThrows(DuplicateRoomException.class, () -> roomList.setRoom(ROOM_ONE, ROOM_TWO));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullRoom_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+    public void remove_roomDoesNotExist_throwsRoomNotFoundException() {
+        assertThrows(RoomNotFoundException.class, () -> roomList.remove(ROOM_ONE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingRoom_removesRoom() {
+        roomList.add(ROOM_ONE);
+        roomList.remove(ROOM_ONE);
+        RoomList expectedRoomList = new RoomList();
+        assertEquals(expectedRoomList, roomList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setRooms_nullRoomList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.setRooms((RoomList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRooms_roomList_replacesOwnListWithProvidedRoomList() {
+        roomList.add(ROOM_ONE);
+        RoomList expectedRoomList = new RoomList();
+        expectedRoomList.add(ROOM_TWO);
+        roomList.setRooms(expectedRoomList);
+        assertEquals(expectedRoomList, roomList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Person>) null));
+    public void setRooms_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> roomList.setRooms((List<Room>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
-        List<Person> personList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(personList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setRooms_list_replacesOwnListWithProvidedList() {
+        roomList.add(ROOM_ONE);
+        List<Room> localRoomList = Collections.singletonList(ROOM_TWO);
+        roomList.setRooms(localRoomList);
+        RoomList expectedRoomList = new RoomList();
+        expectedRoomList.add(ROOM_TWO);
+        assertEquals(expectedRoomList, roomList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
-        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    public void setRooms_listWithDuplicateRooms_throwsDuplicateRoomException() {
+        List<Room> listWithDuplicateRooms = Arrays.asList(ROOM_ONE, ROOM_ONE);
+        assertThrows(DuplicateRoomException.class, () -> roomList.setRooms(listWithDuplicateRooms));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+            -> roomList.asUnmodifiableObservableList().remove(0));
     }
-    */
 }

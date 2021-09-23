@@ -322,6 +322,14 @@
     -fx-padding: 8 1 8 1;
 }
 
+.table-header {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

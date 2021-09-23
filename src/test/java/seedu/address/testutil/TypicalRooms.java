@@ -1,20 +1,17 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomNumber;
-import seedu.address.model.room.Vacancy;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ROOM_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ROOM_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VACANCY_ROOM_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VACANCY_ROOM_TWO;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.AddressBook;
+import seedu.address.model.person.Person;
+import seedu.address.model.room.Room;
 
 public class TypicalRooms {
 

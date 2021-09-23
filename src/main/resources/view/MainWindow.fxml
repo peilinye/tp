@@ -12,7 +12,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.Label?>
+<fx:root minHeight="600" minWidth="1000"
+         onCloseRequest="#handleExit"
+         title="Trace2Gather"
+         type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/16"
+         xmlns:fx="http://javafx.com/fxml/1"
+>
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -47,14 +54,16 @@
         </StackPane>
 
         <HBox>
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="450" prefWidth="450" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
+            <Label styleClass="table-header" minWidth="450">Guests</Label>
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="roomList" minWidth="450" prefWidth="450" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <VBox fx:id="roomList" minWidth="500" prefWidth="500" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <Label styleClass="table-header" minWidth="450">Rooms</Label>
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>

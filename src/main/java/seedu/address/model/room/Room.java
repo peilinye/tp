@@ -49,7 +49,7 @@ public class Room {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both rooms have the same name.
      */
     public boolean isSameRoom(Room otherRoom) {
         if (otherRoom == this) {
