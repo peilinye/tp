@@ -30,7 +30,7 @@
             </HBox>
 
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label>Occupancy Status: </Label>
+                <Label style="-fx-font-size: 13px">Occupancy Status: </Label>
                 <Label fx:id="vacancy" text="\$vacancy" styleClass="cell_occupancy_label" />
             </HBox>
 
