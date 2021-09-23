@@ -1,14 +1,14 @@
 package seedu.address.model.room;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.model.person.Person;
 
 public class Room {
     public final RoomNumber roomNumber;
-    private Vacancy isVacant;
-    private List<Person> guests;
+    private Vacancy isVacant = new Vacancy("Vacant");
+    private Set<Person> guests = new HashSet<>();
 
     /**
      * Constructs a {@code Room}.
@@ -17,8 +17,6 @@ public class Room {
      */
     public Room(RoomNumber roomNumber) {
         this.roomNumber = roomNumber;
-        guests = new ArrayList<Person>();
-        this.isVacant = new Vacancy("Vacant");
     }
 
     /**
@@ -28,7 +26,7 @@ public class Room {
      * @param isVacant Vacancy true if room has no guests.
      * @param guests List of guests in the room.
      */
-    public Room(RoomNumber roomNumber, Vacancy isVacant, List<Person> guests) {
+    public Room(RoomNumber roomNumber, Vacancy isVacant, Set<Person> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
         this.guests = guests;
@@ -46,8 +44,20 @@ public class Room {
         return this.isVacant;
     }
 
-    public List<Person> getGuests() {
+    public Set<Person> getGuests() {
         return this.guests;
+    }
+
+    /**
+     * Returns true if both persons have the same name.
+     */
+    public boolean isSameRoom(Room otherRoom) {
+        if (otherRoom == this) {
+            return true;
+        }
+
+        return otherRoom != null
+                && otherRoom.getRoomNumber().equals(getRoomNumber());
     }
 
     @Override

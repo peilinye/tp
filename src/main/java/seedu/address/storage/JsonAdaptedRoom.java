@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -19,14 +19,14 @@ import seedu.address.model.room.Vacancy;
 class JsonAdaptedRoom {
     public final String roomNumber;
     private final String isVacant;
-    private final List<JsonAdaptedPerson> guests = new ArrayList<>();
+    private final Set<JsonAdaptedPerson> guests = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
     public JsonAdaptedRoom(@JsonProperty("roomNumber") String roomNumber, @JsonProperty("isVacant") String isVacant,
-        @JsonProperty("guests") List<JsonAdaptedPerson> guests) {
+        @JsonProperty("guests") Set<JsonAdaptedPerson> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
         if (guests != null) {
@@ -51,14 +51,15 @@ class JsonAdaptedRoom {
      * @throws IllegalValueException if there were any data constraints violated in the adapted room.
      */
     public Room toModelType() throws IllegalValueException {
-        final List<Person> roomGuests = new ArrayList<>();
+        final Set<Person> roomGuests = new HashSet<>();
         for (JsonAdaptedPerson person: guests) {
             roomGuests.add(person.toModelType());
         }
         //insert validity checks and exception handling
         final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
         final Vacancy modelIsVacant = new Vacancy(isVacant);
-        final List<Person> modelGuests = roomGuests;
+        final Set<Person> modelGuests = roomGuests;
+
         return new Room(modelRoomNumber, modelIsVacant, modelGuests);
     }
 }

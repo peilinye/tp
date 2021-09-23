@@ -35,12 +35,11 @@ public class RoomCard extends UiPart<Region> {
     @FXML
     private Label vacancy;
 
-
     @FXML
     private Label id;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code RoomCode} with the given {@code Room} and index to display.
      */
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);

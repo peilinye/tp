@@ -17,14 +17,6 @@ public class RoomList implements Iterable<Room> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent Room as the given argument.
-     */
-    public boolean contains(Room toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
-    }
-
-    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */
@@ -83,6 +75,14 @@ public class RoomList implements Iterable<Room> {
      */
     public ObservableList<Room> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent room as the given argument.
+     */
+    public boolean contains(Room toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameRoom);
     }
 
     @Override

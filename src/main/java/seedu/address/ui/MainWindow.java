@@ -16,9 +16,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
-import seedu.address.model.room.RoomNumber;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -119,17 +116,6 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-
-        /*
-        RoomList rooms = new RoomList();
-        rooms.add(new Room(new RoomNumber("001")));
-        rooms.add(new Room(new RoomNumber("002")));
-        rooms.add(new Room(new RoomNumber("003")));
-        rooms.add(new Room(new RoomNumber("040")));
-        rooms.add(new Room(new RoomNumber("050")));
-        roomListPanel = new RoomListPanel(rooms.asUnmodifiableObservableList());
-         */
 
         roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());

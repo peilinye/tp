@@ -5,15 +5,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Vacancy {
 
-    //TODO: Need a parser
     public static final String MESSAGE_CONSTRAINTS = "Vacancy can either only be vacant or occupied.";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
+     * Should only be either "Occupied" or "Vacant"
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    //public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
 
