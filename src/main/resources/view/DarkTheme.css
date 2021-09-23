@@ -132,6 +132,15 @@
     -fx-text-fill: #010504;
 }
 
+.cell_occupancy_label {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-background-color: #ac3cb7;
+    -fx-background-radius: 10px;
+    -fx-label-padding: 3px;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }

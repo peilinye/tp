@@ -46,11 +46,8 @@ public class RoomCard extends UiPart<Region> {
         super(FXML);
         this.room = room;
         id.setText(displayedIndex + ". ");
-        System.out.println("SEND - ROOMCARD");
         number.setText(room.getRoomNumber().value);
-        System.out.println("HELP - ROOMCARD");
         vacancy.setText(room.getIsVacant().value);
-        System.out.println("PLS - ROOMCARD");
     }
 
     @Override
