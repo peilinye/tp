@@ -19,7 +19,7 @@ public class RoomNumber {
     public RoomNumber(String roomNumber) {
         requireNonNull(roomNumber);
         checkArgument(isValidRoomNumber(roomNumber), MESSAGE_CONSTRAINTS);
-        value = roomNumber;
+        this.value = roomNumber;
     }
 
     /**

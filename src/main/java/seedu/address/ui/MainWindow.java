@@ -35,9 +35,9 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private RoomListPanel roomListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private RoomListPanel roomListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -120,13 +120,18 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+
+        /*
         RoomList rooms = new RoomList();
         rooms.add(new Room(new RoomNumber("001")));
         rooms.add(new Room(new RoomNumber("002")));
         rooms.add(new Room(new RoomNumber("003")));
         rooms.add(new Room(new RoomNumber("040")));
         rooms.add(new Room(new RoomNumber("050")));
-        roomListPanel = new RoomListPanel(rooms.getInternalList());
+        roomListPanel = new RoomListPanel(rooms.asUnmodifiableObservableList());
+         */
+
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

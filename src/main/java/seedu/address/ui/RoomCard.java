@@ -11,7 +11,10 @@ import seedu.address.model.room.Room;
  */
 public class RoomCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "RoomListCard.fxml";
+
+    private final String testRoomNumber = "TES";
+    private final String testRoomVacancy = "YENO";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,8 +28,14 @@ public class RoomCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+
     @FXML
-    private Label roomNumber;
+    private Label number;
+
+    @FXML
+    private Label vacancy;
+
+
     @FXML
     private Label id;
 
@@ -37,6 +46,11 @@ public class RoomCard extends UiPart<Region> {
         super(FXML);
         this.room = room;
         id.setText(displayedIndex + ". ");
+        System.out.println("SEND - ROOMCARD");
+        number.setText(room.getRoomNumber().value);
+        System.out.println("HELP - ROOMCARD");
+        vacancy.setText(room.getIsVacant().value);
+        System.out.println("PLS - ROOMCARD");
     }
 
     @Override

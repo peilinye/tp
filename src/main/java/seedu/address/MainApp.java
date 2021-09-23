@@ -74,6 +74,7 @@ public class MainApp extends Application {
 
 
 
+        /*
         //TODO: TESTING DATA
         Set<Tag> sampleTags1 = new HashSet<Tag>();
         Set<Tag> sampleTags2 = new HashSet<Tag>();
@@ -107,6 +108,7 @@ public class MainApp extends Application {
         //
         //        rooms.add(room1);
         //        rooms.add(room2);
+         */
 
     }
 

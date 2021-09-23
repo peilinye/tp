@@ -7,8 +7,8 @@ import seedu.address.model.person.Person;
 
 public class Room {
     public final RoomNumber roomNumber;
+    private Vacancy isVacant;
     private List<Person> guests;
-    private boolean isVacant;
 
     /**
      * Constructs a {@code Room}.
@@ -18,17 +18,17 @@ public class Room {
     public Room(RoomNumber roomNumber) {
         this.roomNumber = roomNumber;
         guests = new ArrayList<Person>();
-        this.isVacant = false;
+        this.isVacant = new Vacancy("Vacant");
     }
 
     /**
-     * Constructs a Room given its roomNumber, isVacant status and list of guests.
+     * Constructs a Room given its roomNumber, vacancy, status and list of guests.
      *
-     * @param roomNumber Integer roomNumber
-     * @param isVacant Boolean true if room has no guests.
+     * @param roomNumber RoomNumber roomNumber
+     * @param isVacant Vacancy true if room has no guests.
      * @param guests List of guests in the room.
      */
-    public Room(RoomNumber roomNumber, boolean isVacant, List<Person> guests) {
+    public Room(RoomNumber roomNumber, Vacancy isVacant, List<Person> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
         this.guests = guests;
@@ -42,7 +42,7 @@ public class Room {
         return roomNumber;
     }
 
-    public boolean getIsVacant() {
+    public Vacancy getIsVacant() {
         return this.isVacant;
     }
 

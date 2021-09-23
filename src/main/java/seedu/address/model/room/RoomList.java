@@ -31,7 +31,7 @@ public class RoomList implements Iterable<Room> {
     public void add(Room toAdd) {
         requireNonNull(toAdd);
 
-        //need some exception here in the future
+        //todo: need some exception here in the future
         /*
         if (contains(toAdd)) {
             throw new DuplicatePersonException();

@@ -11,20 +11,21 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
+import seedu.address.model.room.Vacancy;
 
 /**
  * Jackson-friendly version of {@link Room}.
  */
 class JsonAdaptedRoom {
     public final String roomNumber;
+    private final String isVacant;
     private final List<JsonAdaptedPerson> guests = new ArrayList<>();
-    private final boolean isVacant;
 
     /**
      * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
-    public JsonAdaptedRoom(@JsonProperty("roomNumber") String roomNumber, @JsonProperty("isVacant") boolean isVacant,
+    public JsonAdaptedRoom(@JsonProperty("roomNumber") String roomNumber, @JsonProperty("isVacant") String isVacant,
         @JsonProperty("guests") List<JsonAdaptedPerson> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
@@ -38,7 +39,7 @@ class JsonAdaptedRoom {
      */
     public JsonAdaptedRoom(Room source) {
         roomNumber = source.getRoomNumber().value;
-        isVacant = source.getIsVacant();
+        isVacant = source.getIsVacant().value;
         guests.addAll(source.getGuests().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
@@ -56,7 +57,7 @@ class JsonAdaptedRoom {
         }
         //insert validity checks and exception handling
         final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
-        final Boolean modelIsVacant = isVacant;
+        final Vacancy modelIsVacant = new Vacancy(isVacant);
         final List<Person> modelGuests = roomGuests;
         return new Room(modelRoomNumber, modelIsVacant, modelGuests);
     }
