@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Checks a group of persons into a room.
+ * Checks a group of persons into a room
  */
 public class CheckInCommand extends Command {
     public static final String COMMAND_WORD = "checkin";
@@ -93,4 +93,5 @@ public class CheckInCommand extends Command {
         return roomIndex.equals(e.roomIndex)
                 && guestIndexes.equals(e.guestIndexes);
     }
+
 }

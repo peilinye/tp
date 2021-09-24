@@ -10,6 +10,9 @@ import seedu.address.model.room.Room;
 
 import java.util.List;
 
+/**
+ * Checks out all the persons in a room
+ */
 public class CheckOutCommand extends Command {
     public static final String COMMAND_WORD = "checkout";
 
@@ -23,6 +26,9 @@ public class CheckOutCommand extends Command {
 
     private final Index roomIndex;
 
+    /**
+     * Creates a CheckOutCommand to check out the {@code Room} at the specified {@code Index}.
+     */
     public CheckOutCommand(Index roomIndex) {
         this.roomIndex = roomIndex;
     }
@@ -37,6 +43,8 @@ public class CheckOutCommand extends Command {
         }
 
         Room roomToEdit = lastShownRoomList.get(roomIndex.getZeroBased());
+        //TO-DO: Check if room is vacant already
+
         //Resets room to default (vacant, no guests)
         Room editedRoom = new Room(roomToEdit.getRoomNumber());
 
@@ -44,4 +52,5 @@ public class CheckOutCommand extends Command {
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(String.format(MESSAGE_CHECKOUT_SUCCESS, editedRoom));
     }
+
 }
