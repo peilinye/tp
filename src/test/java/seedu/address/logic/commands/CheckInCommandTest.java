@@ -51,9 +51,7 @@ public class CheckInCommandTest {
     @Test
     public void execute_invalidRoomIndex_throwsCommandException() {
         Index invalidRoomIndex = Index.fromZeroBased(model.getFilteredRoomList().size());
-
         List<Index> guestList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
-
         CheckInCommand checkInCommand = new CheckInCommand(invalidRoomIndex, guestList);
 
         assertCommandFailure(checkInCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
@@ -62,9 +60,7 @@ public class CheckInCommandTest {
     @Test
     public void execute_invalidGuestIndex_throwsCommandException() {
         Index invalidGuestIndex = Index.fromZeroBased(model.getFilteredPersonList().size());
-
         List<Index> guestList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON, invalidGuestIndex);
-
         CheckInCommand checkInCommand = new CheckInCommand(INDEX_FIRST_ROOM, guestList);
 
         assertCommandFailure(checkInCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -73,7 +69,6 @@ public class CheckInCommandTest {
     @Test
     public void execute_noGuests_throwsCommandException() {
         List<Index> guestList = Collections.emptyList();
-
         CheckInCommand checkInCommand = new CheckInCommand(INDEX_FIRST_ROOM, guestList);
 
         assertCommandFailure(checkInCommand, model, CheckInCommand.MESSAGE_NO_GUESTS);
