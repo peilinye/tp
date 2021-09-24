@@ -29,10 +29,15 @@ public class CheckInCommand extends Command {
             + "g/ 43 g/ 22";
 
     public static final String MESSAGE_CHECKIN_SUCCESS = "Room Checked In: %1$s";
+    public static final String MESSAGE_NO_GUESTS = "At least one person must be checked into the room.";
 
     private final Index roomIndex;
     private final List<Index> guestIndexes;
 
+    /**
+     * @param roomIndex The index of the room to be checked into
+     * @param guestIndexes A list of the indexes of guests to check into the room
+     */
     public CheckInCommand(Index roomIndex, List<Index> guestIndexes) {
         this.roomIndex = roomIndex;
         this.guestIndexes = guestIndexes;
@@ -62,6 +67,10 @@ public class CheckInCommand extends Command {
             Person guestToAdd = lastShownPersonList.get(guestIndex.getZeroBased());
             guests.add(guestToAdd);
         }
+        if (guests.isEmpty()) {
+            throw new CommandException(MESSAGE_NO_GUESTS);
+        }
+
         Room editedRoom = new Room(roomToEdit.getRoomNumber(), isOccupied, guests);
 
         model.setRoom(roomToEdit, editedRoom);
