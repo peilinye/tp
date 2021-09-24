@@ -28,7 +28,7 @@ public class CheckInCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + "g/ 43 g/ 22";
 
-    public static final String MESSAGE_CHECKIN_SUCCESS = "Room updated: %1$s";
+    public static final String MESSAGE_CHECKIN_SUCCESS = "Room Checked In: %1$s";
 
     private final Index roomIndex;
     private final List<Index> guestIndexes;
