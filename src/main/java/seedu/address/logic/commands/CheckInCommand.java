@@ -2,26 +2,33 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.Vacancy;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class CheckInCommand extends Command{
+/**
+ * Checks a group of persons into a room.
+ */
+public class CheckInCommand extends Command {
     public static final String COMMAND_WORD = "checkin";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Checks in people to a room "
             + "using their index numbers used in the last person listing.\n"
             + "Parameters: INDEX_ROOM (must be a positive integer) "
-            + "g/ [GUEST_INDEX]\n"
+            + "g/ [GUEST_INDEX] (can be used multiple times)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "g/ 43 g/ 22";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET =
-            "CheckIn command not implemented yet";
+    public static final String MESSAGE_CHECKIN_SUCCESS = "Room updated: %1$s";
 
     private final Index roomIndex;
     private final List<Index> guestIndexes;
@@ -34,7 +41,32 @@ public class CheckInCommand extends Command{
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-       throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Room> lastShownRoomList = model.getFilteredRoomList();
+
+        if (roomIndex.getZeroBased() >= lastShownRoomList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        }
+        for (Index guestIndex : guestIndexes) {
+            if (guestIndex.getZeroBased() >= lastShownPersonList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+        }
+
+        Room roomToEdit = lastShownRoomList.get(roomIndex.getZeroBased());
+        //TO-DO: Check if room is vacant first
+
+        Vacancy isOccupied = new Vacancy("Occupied");
+        Set<Person> guests = new HashSet<>();
+        for (Index guestIndex : guestIndexes) {
+            Person guestToAdd = lastShownPersonList.get(guestIndex.getZeroBased());
+            guests.add(guestToAdd);
+        }
+        Room editedRoom = new Room(roomToEdit.getRoomNumber(), isOccupied, guests);
+
+        model.setRoom(roomToEdit, editedRoom);
+        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
+        return new CommandResult(String.format(MESSAGE_CHECKIN_SUCCESS, editedRoom));
     }
 
     @Override
