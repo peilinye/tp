@@ -16,8 +16,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomList;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,9 +32,9 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private RoomListPanel roomListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private RoomListPanel roomListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -119,13 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        RoomList rooms = new RoomList();
-        rooms.add(new Room(1));
-        rooms.add(new Room(2));
-        rooms.add(new Room(3));
-        rooms.add(new Room(4));
-        rooms.add(new Room(5));
-        roomListPanel = new RoomListPanel(rooms.getInternalList());
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

@@ -26,6 +26,12 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+
+    public static final String VALID_NAME_ROOM_ONE = "001";
+    public static final String VALID_NAME_ROOM_TWO = "002";
+    public static final String VALID_VACANCY_ROOM_ONE = "Vacant";
+    public static final String VALID_VACANCY_ROOM_TWO = "Occupied";
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";

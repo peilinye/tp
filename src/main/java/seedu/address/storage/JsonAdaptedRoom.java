@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -10,21 +10,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumber;
+import seedu.address.model.room.Vacancy;
 
 /**
  * Jackson-friendly version of {@link Room}.
  */
 class JsonAdaptedRoom {
-    public final Integer roomNumber;
-    private final List<JsonAdaptedPerson> guests = new ArrayList<>();
-    private final boolean isVacant;
+    public final String roomNumber;
+    private final String isVacant;
+    private final Set<JsonAdaptedPerson> guests = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
-    public JsonAdaptedRoom(@JsonProperty("roomNumber") Integer roomNumber, @JsonProperty("isVacant") boolean isVacant,
-        @JsonProperty("guests") List<JsonAdaptedPerson> guests) {
+    public JsonAdaptedRoom(@JsonProperty("roomNumber") String roomNumber, @JsonProperty("isVacant") String isVacant,
+        @JsonProperty("guests") Set<JsonAdaptedPerson> guests) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
         if (guests != null) {
@@ -36,8 +38,8 @@ class JsonAdaptedRoom {
      * Converts a given {@code Room} into this class for Jackson use.
      */
     public JsonAdaptedRoom(Room source) {
-        roomNumber = source.getRoomNumber();
-        isVacant = source.getIsVacant();
+        roomNumber = source.getRoomNumber().value;
+        isVacant = source.getIsVacant().value;
         guests.addAll(source.getGuests().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
@@ -49,14 +51,15 @@ class JsonAdaptedRoom {
      * @throws IllegalValueException if there were any data constraints violated in the adapted room.
      */
     public Room toModelType() throws IllegalValueException {
-        final List<Person> roomGuests = new ArrayList<>();
+        final Set<Person> roomGuests = new HashSet<>();
         for (JsonAdaptedPerson person: guests) {
             roomGuests.add(person.toModelType());
         }
         //insert validity checks and exception handling
-        final Integer modelRoomNumber = roomNumber;
-        final Boolean modelIsVacant = isVacant;
-        final List<Person> modelGuests = roomGuests;
+        final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
+        final Vacancy modelIsVacant = new Vacancy(isVacant);
+        final Set<Person> modelGuests = roomGuests;
+
         return new Room(modelRoomNumber, modelIsVacant, modelGuests);
     }
 }
