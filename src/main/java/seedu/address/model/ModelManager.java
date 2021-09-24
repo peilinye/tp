@@ -116,6 +116,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+
+        addressBook.setRoom(target, editedRoom);
+    }
+
+    @Override
     public void addRoom(Room room) {
         addressBook.addRoom(room);
         updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);

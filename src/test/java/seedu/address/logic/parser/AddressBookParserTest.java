@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +15,10 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CheckInCommand;
+import seedu.address.logic.commands.CheckOutCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -38,6 +43,28 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_checkin() throws Exception {
+        List<Index> guestIndexes = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+
+        CheckInCommand command = (CheckInCommand) parser.parseCommand(
+                CheckInCommand.COMMAND_WORD
+                        + " "
+                        + INDEX_FIRST_ROOM.getOneBased()
+                        + " g/"
+                        + INDEX_FIRST_PERSON.getOneBased()
+                        + " g/"
+                        + INDEX_SECOND_PERSON.getOneBased());
+        assertEquals(new CheckInCommand(INDEX_FIRST_ROOM, guestIndexes), command);
+    }
+
+    @Test
+    public void parseCommand_checkout() throws Exception {
+        CheckOutCommand command = (CheckOutCommand) parser.parseCommand(
+                CheckOutCommand.COMMAND_WORD + " " + INDEX_FIRST_ROOM.getOneBased());
+        assertEquals(new CheckOutCommand(INDEX_FIRST_ROOM), command);
     }
 
     @Test
