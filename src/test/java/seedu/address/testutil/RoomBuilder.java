@@ -32,7 +32,7 @@ public class RoomBuilder {
      */
     public RoomBuilder(Room roomToCopy) {
         number = roomToCopy.getRoomNumber();
-        vacancy = roomToCopy.getIsVacant();
+        vacancy = roomToCopy.getVacancy();
         guests = roomToCopy.getGuests();
     }
 

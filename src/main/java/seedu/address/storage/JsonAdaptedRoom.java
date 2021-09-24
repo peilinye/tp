@@ -39,7 +39,7 @@ class JsonAdaptedRoom {
      */
     public JsonAdaptedRoom(Room source) {
         roomNumber = source.getRoomNumber().value;
-        isVacant = source.getIsVacant().isVacant();
+        isVacant = source.getVacancy().isVacant();
         guests.addAll(source.getGuests().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
@@ -57,9 +57,9 @@ class JsonAdaptedRoom {
         }
         //insert validity checks and exception handling
         final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
-        final Vacancy modelIsVacant = Vacancy.of(isVacant);
+        final Vacancy modelVacancy = Vacancy.of(isVacant);
         final Set<Person> modelGuests = roomGuests;
 
-        return new Room(modelRoomNumber, modelIsVacant, modelGuests);
+        return new Room(modelRoomNumber, modelVacancy, modelGuests);
     }
 }

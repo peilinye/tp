@@ -6,7 +6,7 @@ public abstract class Vacancy {
     public static final Vacancy OCCUPIED = new Occupied();
 
     /**
-     * Returns a {@code: Vacancy} of either vacant or occupied.
+     * Returns a {@code Vacancy} of either vacant or occupied.
      */
     public static Vacancy of(boolean isVacant) {
         return isVacant
