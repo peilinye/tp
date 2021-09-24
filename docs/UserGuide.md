@@ -66,12 +66,13 @@ Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized f
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+##Guest
 
 ### Adding a person: `add`
 
@@ -148,6 +149,10 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+##Room [coming soon]
+
+##Database / Storage
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -194,5 +199,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | `list room`, `list guests`
 **Help** | `help`
