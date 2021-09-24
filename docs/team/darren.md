@@ -9,7 +9,7 @@ Trace2Gather is a desktop address book application used for managing hotel guest
 
 Given below are my contributions to the project.
 
-## New Feature(s) 
+## New Feature(s)
   1. Linked Database's Room details to GUI, where Rooms are displayed on the GUI's list of rooms.
         * What it does: Allows users to visually see the rooms that were saved in the database and their last updated status.
         * Justification: This feature improves the product significantly because being able to visually check a room's status, such as its Occupancy Status, helps it's users to identify a room's status quickly and increases response time to the user requesting such information.
@@ -30,7 +30,6 @@ Given below are my contributions to the project.
   * Redirected Help Window's link to our project's User Guide page
 * Developer Guide:
     * Amended UML Diagrams
-    
 
 ## Community
 * PRs reviewed (with non-trivial review comments): [\#144](https://github.com/nus-cs2103-AY2122S1/ip/pull/144), [\#486](https://github.com/nus-cs2103-AY2122S1/ip/pull/486), [\#173](https://github.com/nus-cs2103-AY2122S1/ip/pull/173)
