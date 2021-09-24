@@ -12,7 +12,7 @@ import seedu.address.model.room.Vacancy;
 public class RoomBuilder {
 
     public static final String DEFAULT_ROOM_NUMBER = "777";
-    public static final String DEFAULT_VACANCY = "Vacant";
+    public static final Vacancy DEFAULT_VACANCY = Vacancy.VACANT;
 
     private RoomNumber number;
     private Vacancy vacancy;
@@ -23,7 +23,7 @@ public class RoomBuilder {
      */
     public RoomBuilder() {
         number = new RoomNumber(DEFAULT_ROOM_NUMBER);
-        vacancy = new Vacancy(DEFAULT_VACANCY);
+        vacancy = DEFAULT_VACANCY;
         guests = new HashSet<>();
     }
 
@@ -48,8 +48,8 @@ public class RoomBuilder {
     /**
      * Sets the {@code Vacancy} of the {@code Room} that we are building.
      */
-    public RoomBuilder withVacancy(String vacancy) {
-        this.vacancy = new Vacancy(vacancy);
+    public RoomBuilder withVacancy(Vacancy vacancy) {
+        this.vacancy = vacancy;
         return this;
     }
 

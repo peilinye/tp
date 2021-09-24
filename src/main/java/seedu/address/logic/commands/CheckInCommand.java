@@ -61,7 +61,6 @@ public class CheckInCommand extends Command {
         Room roomToEdit = lastShownRoomList.get(roomIndex.getZeroBased());
         //TO-DO: Check if room is vacant first
 
-        Vacancy isOccupied = new Vacancy("Occupied");
         Set<Person> guests = new HashSet<>();
         for (Index guestIndex : guestIndexes) {
             Person guestToAdd = lastShownPersonList.get(guestIndex.getZeroBased());
@@ -71,7 +70,7 @@ public class CheckInCommand extends Command {
             throw new CommandException(MESSAGE_NO_GUESTS);
         }
 
-        Room editedRoom = new Room(roomToEdit.getRoomNumber(), isOccupied, guests);
+        Room editedRoom = new Room(roomToEdit.getRoomNumber(), Vacancy.OCCUPIED, guests);
 
         model.setRoom(roomToEdit, editedRoom);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);

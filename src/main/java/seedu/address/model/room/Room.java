@@ -7,7 +7,7 @@ import seedu.address.model.person.Person;
 
 public class Room {
     public final RoomNumber roomNumber;
-    private Vacancy isVacant = new Vacancy("Vacant");
+    private Vacancy isVacant = Vacancy.VACANT;
     private Set<Person> guests = new HashSet<>();
 
     /**
