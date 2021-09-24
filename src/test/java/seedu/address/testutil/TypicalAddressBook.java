@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
+import static seedu.address.testutil.TypicalRooms.getTypicalRooms;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
-
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
-import static seedu.address.testutil.TypicalRooms.getTypicalRooms;
 
 /**
  * A utility class for constructing typical address books to be used in tests.

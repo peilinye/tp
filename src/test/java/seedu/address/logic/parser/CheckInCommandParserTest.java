@@ -1,16 +1,20 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.CheckInCommand;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CheckInCommand;
 
 public class CheckInCommandParserTest {
 
@@ -50,7 +54,10 @@ public class CheckInCommandParserTest {
         String userInput = "a g/"
                 + INDEX_FIRST_PERSON.getOneBased();
 
-        assertParseFailure(parser, userInput, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, CheckInCommand.MESSAGE_USAGE));
+        assertParseFailure(
+                parser,
+                userInput,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, CheckInCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -58,7 +65,10 @@ public class CheckInCommandParserTest {
         String userInput = INDEX_FIRST_ROOM.getOneBased()
                 + " g/ a";
 
-        assertParseFailure(parser, userInput, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, CheckInCommand.MESSAGE_USAGE));
+        assertParseFailure(
+                parser,
+                userInput,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, CheckInCommand.MESSAGE_USAGE));
     }
 
 }
