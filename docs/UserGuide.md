@@ -66,7 +66,7 @@ Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized f
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
 
 ![help message](images/helpMessage.png)
 
