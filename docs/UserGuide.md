@@ -81,7 +81,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -144,6 +144,33 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ##Room [coming soon]
+
+### Checking into a room : `checkin`
+
+Checks in a group of persons into a room.
+
+Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+A room can have more than one guest.
+</div>
+
+The indexes refer to the index numbers shown in the displayed person/room list.
+
+Examples:
+* `checkin 5 g/1`
+* `checkin 13 g/2 g/3 g/8`
+
+### Checking out of a room : `checkout`
+
+Checks out a group of persons from a room.
+
+Format: `checkout ROOM_INDEX`
+
+The room index refers to the index number shown in the displayed room list.
+
+Example:
+* `checkout 24`
 
 ### Listing all rooms : `list rooms`
 
