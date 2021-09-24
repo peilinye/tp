@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Thomas's Project Portfolio Page
 ---
 
 ### Project: AddressBook Level 3
@@ -10,30 +10,28 @@ Trace2Gather is a desktop address book application used for managing hotel guest
 Given below are my contributions to the project.
 
 ## New Features:
-1. Added the ability to check guests in and out of rooms.
-    * What it does: allows the user to assign guests to a room and keep track of which rooms are occupied, as well as check them out when they leave the hotel.
-    * Justification: This feature is indispensable for managing hotels.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: 
+1. `checkin` and `checkout`: Added the ability to check guests in and out of rooms.
+    * **What it does**: allows the user to assign guests to a room and keep track of which rooms are occupied, as well as check them out when they leave the hotel.
+    * **Justification**: This feature is indispensable for managing hotels. It's the whole point, innit? :P
+    * **Highlights**: This enhancement required adding a fair bit of miscellaneous functionality to other classes that will be important for future additions to the project.
+    * **Credits**: Original AB3 team, Darren for Room functionality
+  
 
-
-2. Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-## Code contributed:
-[RepoSense link]()
-* **Testing for the following**:
-  * CheckInCommand, CheckOutCommand
-  * CheckInCommandParser, CheckOutCommandParser
+## Further Code contributed:
+[RepoSense link]() [Coming Soon]
+* **Testing**:
+  * `CheckInCommand`, `CheckOutCommand`
+  * `CheckInCommandParser`, `CheckOutCommandParser`
+  * Added `TypicalAddressBook`
+  * Misc. functionality
   
 
 * **Enhancements**:
-    * Rewrote Vacancy class, greatly simplifying it and vanquishing bugs
+    * Rewrote `Vacancy` class, greatly simplifying it and vanquishing bugs
+    * Misc. functionality
 
 
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `checkin` and `checkout`
-
-    * Developer Guide:
-        * Added implementation details of the `checkin` and `checkout` feature.
   
