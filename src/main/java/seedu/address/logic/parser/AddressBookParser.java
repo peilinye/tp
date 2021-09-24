@@ -64,7 +64,7 @@ public class AddressBookParser {
             return new CheckInCommandParser().parse(arguments);
 
         case CheckOutCommand.COMMAND_WORD:
-            return new CheckOutCommand();
+            return new CheckOutCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

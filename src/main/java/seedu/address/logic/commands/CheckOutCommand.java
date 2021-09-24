@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -14,6 +15,12 @@ public class CheckOutCommand extends Command {
 
     public static final String MESSAGE_NOT_IMPLEMENTED_YET =
             "CheckOut command not implemented yet";
+
+    private final Index roomIndex;
+
+    public CheckOutCommand(Index roomIndex) {
+        this.roomIndex = roomIndex;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
