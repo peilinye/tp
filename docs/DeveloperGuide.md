@@ -279,8 +279,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | check guests out of rooms      | track their status                                                     |
 | `* * *`  | user                                       | search for vacant rooms        | assign guests to a vacant room                                         |
 | `* * *`  | user                                       | delete guests                  | remove them if the wrong details are entered                           |
-| `* * *`  | user                                       | list all guests and rooms      | check all the statuses
-| `*`      | user with many guests  in the address book | sort guests  by name           | locate a guest easily                                                  |
+| `* * *`  | user                                       | list all guests and rooms      | check all the statuses                                                 |
+| `*`      | user with many guests in the address book  | sort guests  by name           | locate a guest easily                                                  |
+| `* *`    | user                                       | search guests by their name    | find a guest's details easily                                          |
 
 *{More to be added}*
 
@@ -288,7 +289,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Deleting a person**
 
 **MSS**
 
@@ -310,6 +311,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
+
+
+**Use case: Adding a person**
+
+**MSS**
+
+1.  User requests to add a person and inputs the necessary parameters
+2.  AddressBook adds the person with the input details
+3.  AddressBook displays a message to the user indicating that the person has been added
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are missing parameters or input is not in the correct format
+* 1b. AddressBook displays a message indicating to the user the required parameters
+* 1c. User inputs the parameters again until all required parameters are input. Use case resumes at step 2.
 
 *{More to be added}*
 

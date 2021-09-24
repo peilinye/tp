@@ -94,12 +94,6 @@ Shows a list of all guests in the address book.
 
 Format: `list guests`
 
-### Listing all rooms : `list rooms`
-
-Shows a list of all rooms in the address book.
-
-Format: `list rooms`
-
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -150,6 +144,18 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ##Room [coming soon]
+
+### Listing all rooms : `list rooms`
+
+Shows a list of all rooms in the address book.
+
+Format: `list rooms`
+
+### Listing all vacant rooms : `list rooms vacant`
+
+Shows a list of all rooms that are vacant in the address book.
+
+Format: `list rooms vacant`
 
 ##Database / Storage
 
