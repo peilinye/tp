@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Person;
 
 public class Room {
-    public final RoomNumber roomNumber;
+    private final RoomNumber roomNumber;
     private final Vacancy vacancy;
     private final Set<Person> guests;
 

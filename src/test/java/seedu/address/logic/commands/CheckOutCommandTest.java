@@ -36,7 +36,7 @@ public class CheckOutCommandTest {
 
         Set<Person> guests = new HashSet<>();
         guests.add(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
-        Room roomToEdit = new Room(originalRoom.roomNumber, Vacancy.OCCUPIED, guests);
+        Room roomToEdit = new Room(originalRoom.getRoomNumber(), Vacancy.OCCUPIED, guests);
 
         model.setRoom(originalRoom, roomToEdit);
 
