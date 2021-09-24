@@ -57,12 +57,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: **FILL IN HERE**
 * Responsibilities: **FILL IN HERE**
 
-### Thomas Edward Hogbern
+### Thomas Edward Hogben
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thomashogben.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/BananaTechs)]
+[[portfolio](team/thomashogben.md)]
 
-* Role: **FILL IN HERE**
-* Responsibilities: **FILL IN HERE**
+* Role: **Developer**
+* Responsibilities: **Data**
