@@ -59,7 +59,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Thomas Edward Hogben
 
-<img src="images/thomashogben.jpg" width="200px">
+<img src="images/thomashogben.png" width="200px">
 
 [[github](http://github.com/BananaTechs)]
 [[portfolio](team/thomashogben.md)]
