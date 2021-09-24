@@ -61,7 +61,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case CheckInCommand.COMMAND_WORD:
-            return new CheckInCommand();
+            return new CheckInCommandParser().parse(arguments);
 
         case CheckOutCommand.COMMAND_WORD:
             return new CheckOutCommand();
