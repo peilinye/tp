@@ -53,4 +53,10 @@ public class CheckOutCommand extends Command {
         return new CommandResult(String.format(MESSAGE_CHECKOUT_SUCCESS, editedRoom));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CheckOutCommand // instanceof handles nulls
+                && roomIndex.equals(((CheckOutCommand) other).roomIndex)); // state check
+    }
 }

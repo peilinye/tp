@@ -80,18 +80,21 @@ public class CheckInCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        // short circuit if same object
         if (other == this) {
             return true;
         }
 
+        // instanceof handles nulls
         if (!(other instanceof CheckInCommand)) {
             return false;
         }
 
-        CheckInCommand e = (CheckInCommand) other;
+        // state check
+        CheckInCommand c = (CheckInCommand) other;
 
-        return roomIndex.equals(e.roomIndex)
-                && guestIndexes.equals(e.guestIndexes);
+        return roomIndex.equals(c.roomIndex)
+                && guestIndexes.equals(c.guestIndexes);
     }
 
 }
