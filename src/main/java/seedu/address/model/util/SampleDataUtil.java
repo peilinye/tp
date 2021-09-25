@@ -69,14 +69,4 @@ public class SampleDataUtil {
             new Room(new RoomNumber("005")),
         };
     }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getGuestsSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
-
 }

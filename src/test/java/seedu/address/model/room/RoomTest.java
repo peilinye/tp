@@ -93,4 +93,26 @@ public class RoomTest {
         editedRoomOne = new RoomBuilder(ROOM_ONE).withGuests(GUESTS).build();
         assertFalse(ROOM_ONE.equals(editedRoomOne));
     }
+
+    @Test
+    public void hashCodeCheck() {
+        // same object -> returns true
+        assertTrue(ROOM_ONE.hashCode() == ROOM_ONE.hashCode());
+
+        // same values -> returns true
+        Room roomOneCopy = new RoomBuilder(ROOM_ONE).build();
+        assertTrue(ROOM_ONE.hashCode() == roomOneCopy.hashCode());
+
+        // different room number -> returns false
+        Room editedRoomOne = new RoomBuilder(ROOM_ONE).withNumber(VALID_NAME_ROOM_TWO).build();
+        assertFalse(ROOM_ONE.hashCode() == editedRoomOne.hashCode());
+
+        // different vacancy -> returns false
+        editedRoomOne = new RoomBuilder(ROOM_ONE).withVacancy(VALID_VACANCY_ROOM_TWO).build();
+        assertFalse(ROOM_ONE.hashCode() == editedRoomOne.hashCode());
+
+        // different guests -> returns false
+        editedRoomOne = new RoomBuilder(ROOM_ONE).withGuests(GUESTS).build();
+        assertFalse(ROOM_ONE.hashCode() == editedRoomOne.hashCode());
+    }
 }
