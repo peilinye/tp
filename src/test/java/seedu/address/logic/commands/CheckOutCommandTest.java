@@ -59,6 +59,13 @@ public class CheckOutCommandTest {
     }
 
     @Test
+    public void execute_vacantRoom_throwsCommandException() {
+        CheckOutCommand checkOutCommand = new CheckOutCommand(INDEX_FIRST_ROOM);
+
+        assertCommandFailure(checkOutCommand, model, CheckOutCommand.MESSAGE_ROOM_IS_VACANT);
+    }
+
+    @Test
     public void equals() {
         CheckOutCommand checkOutRoomOneCommand = new CheckOutCommand(INDEX_FIRST_ROOM);
         CheckOutCommand checkOutRoomTwoCommand = new CheckOutCommand(INDEX_SECOND_ROOM);
