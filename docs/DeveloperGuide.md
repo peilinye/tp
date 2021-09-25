@@ -121,8 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data.
+    * All `Person` objects are contained in a `UniquePersonList` object.
+    * All `Room` objects are contained in a `RoomList` object.
+* stores the currently 'selected' object(s) (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+    * `Person` objects are stored in `ObservableList<Person>`
+    * `Room` objects are stored in `ObservableList<Room>`
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -275,8 +279,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a guest as a contact       | check them into rooms                                                  |
-| `* * *`  | user                                       | check guests into rooms        | track their status                                                     |
-| `* * *`  | user                                       | check guests out of rooms      | track their status                                                     |
+| `* * *`  | user                                       | check guests into rooms        | admit them into our hotel                                                   |
+| `* * *`  | user                                       | check guests out of rooms      | free up the room and have their information in the archive                                                  |
 | `* * *`  | user                                       | search for vacant rooms        | assign guests to a vacant room                                         |
 | `* * *`  | user                                       | delete guests                  | remove them if the wrong details are entered                           |
 | `* * *`  | user                                       | list all guests and rooms      | check all the statuses                                                 |

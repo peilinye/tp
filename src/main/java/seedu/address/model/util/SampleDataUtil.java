@@ -69,5 +69,4 @@ public class SampleDataUtil {
             new Room(new RoomNumber("005")),
         };
     }
-
 }

@@ -18,7 +18,6 @@ public class TypicalRooms {
     public static final Person ALICE = TypicalPersons.ALICE;
     public static final Person BENSON = TypicalPersons.BENSON;
 
-
     public static final Person[] GUESTS = new Person[]{ALICE, BENSON};
 
     public static final Room ROOM_ONE = new RoomBuilder().withNumber(VALID_NAME_ROOM_ONE)
