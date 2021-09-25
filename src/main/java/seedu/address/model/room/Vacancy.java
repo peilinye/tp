@@ -1,54 +1,55 @@
 package seedu.address.model.room;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+public abstract class Vacancy {
 
-public class Vacancy {
-
-    public static final String MESSAGE_CONSTRAINTS = "Vacancy can either only be vacant or occupied.";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     * Should only be either "Occupied" or "Vacant"
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
-    public final String value;
+    public static final Vacancy VACANT = new Vacant();
+    public static final Vacancy OCCUPIED = new Occupied();
 
     /**
-     * Constructs an {@code Vacancy}.
-     *
-     * @param vacancy A valid vacancy.
+     * Returns a {@code Vacancy} of either vacant or occupied.
      */
-    public Vacancy(String vacancy) {
-        requireNonNull(vacancy);
-        checkArgument(isValidVacancy(vacancy), MESSAGE_CONSTRAINTS);
-        value = vacancy;
+    public static Vacancy of(boolean isVacant) {
+        return isVacant
+                ? VACANT
+                : OCCUPIED;
     }
 
-    /**
-     * Returns true if a given string is a valid vacancy status.
-     */
-    public static boolean isValidVacancy(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public abstract boolean isVacant();
+
+    private static class Vacant extends Vacancy {
+
+        @Override
+        public boolean isVacant() {
+            return true;
+        }
+
+        @Override
+        public String toString() {
+            return "Vacant";
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            return other instanceof Vacant;
+        }
     }
 
-    @Override
-    public String toString() {
-        return value;
-    }
+    private static class Occupied extends Vacancy {
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Vacancy // instanceof handles nulls
-                && value.equals(((Vacancy) other).value)); // state check
-    }
+        @Override
+        public boolean isVacant() {
+            return false;
+        }
 
-    @Override
-    public int hashCode() {
-        return value.hashCode();
+        @Override
+        public String toString() {
+            return "Occupied";
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            return other instanceof Occupied;
+        }
     }
 
 }

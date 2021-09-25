@@ -38,11 +38,10 @@ public class CheckInCommandTest {
 
         Room roomToEdit = model.getFilteredRoomList().get(INDEX_FIRST_ROOM.getZeroBased());
 
-        Vacancy isOccupied = new Vacancy("Occupied");
         Set<Person> guests = new HashSet<>();
         guests.add(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         guests.add(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
-        Room editedRoom = new Room(roomToEdit.getRoomNumber(), isOccupied, guests);
+        Room editedRoom = new Room(roomToEdit.getRoomNumber(), Vacancy.OCCUPIED, guests);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setRoom(roomToEdit, editedRoom);
