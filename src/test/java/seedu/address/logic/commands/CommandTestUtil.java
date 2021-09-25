@@ -19,6 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.room.Vacancy;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -29,8 +30,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_ROOM_ONE = "001";
     public static final String VALID_NAME_ROOM_TWO = "002";
-    public static final String VALID_VACANCY_ROOM_ONE = "Vacant";
-    public static final String VALID_VACANCY_ROOM_TWO = "Occupied";
+    public static final Vacancy VALID_VACANCY_ROOM_ONE = Vacancy.VACANT;
+    public static final Vacancy VALID_VACANCY_ROOM_TWO = Vacancy.OCCUPIED;
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";

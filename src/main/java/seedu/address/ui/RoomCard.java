@@ -45,7 +45,7 @@ public class RoomCard extends UiPart<Region> {
         this.room = room;
         id.setText(displayedIndex + ". ");
         number.setText(room.getRoomNumber().value);
-        vacancy.setText(room.getIsVacant().value);
+        vacancy.setText(room.getVacancy().toString());
     }
 
     @Override
