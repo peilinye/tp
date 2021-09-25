@@ -1,5 +1,7 @@
 package seedu.address.model.room;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 public abstract class Vacancy {
 
     public static final Vacancy VACANT = new Vacant();
@@ -9,6 +11,7 @@ public abstract class Vacancy {
      * Returns a {@code Vacancy} of either vacant or occupied.
      */
     public static Vacancy of(boolean isVacant) {
+        requireAllNonNull(isVacant);
         return isVacant
                 ? VACANT
                 : OCCUPIED;

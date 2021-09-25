@@ -1,6 +1,8 @@
 package seedu.address.model.room;
 
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
@@ -8,7 +10,7 @@ import seedu.address.model.person.Person;
 public class Room {
     private final RoomNumber roomNumber;
     private final Vacancy vacancy;
-    private final Set<Person> guests;
+    private final Set<Person> guests = new HashSet<>();
 
     /**
      * Constructs a {@code Room}.
@@ -18,7 +20,6 @@ public class Room {
     public Room(RoomNumber roomNumber) {
         this.roomNumber = roomNumber;
         vacancy = Vacancy.VACANT;
-        guests = (Set<Person>) Collections.EMPTY_SET;
     }
 
     /**
@@ -31,7 +32,7 @@ public class Room {
     public Room(RoomNumber roomNumber, Vacancy vacancy, Set<Person> guests) {
         this.roomNumber = roomNumber;
         this.vacancy = vacancy;
-        this.guests = guests;
+        this.guests.addAll(guests);
     }
 
     public RoomNumber getRoomNumber() {
@@ -42,8 +43,12 @@ public class Room {
         return this.vacancy;
     }
 
+    /**
+     * Returns an immutable person set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
     public Set<Person> getGuests() {
-        return this.guests;
+        return Collections.unmodifiableSet(guests);
     }
 
     /**
@@ -67,11 +72,13 @@ public class Room {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Room
-                && roomNumber.equals(((Room) other).roomNumber));
+                && roomNumber.equals(((Room) other).roomNumber)
+                && vacancy.equals(((Room) other).vacancy)
+                && guests.equals(((Room) other).guests));
     }
 
     @Override
     public int hashCode() {
-        return roomNumber.hashCode();
+        return Objects.hash(roomNumber, vacancy, guests);
     }
 }

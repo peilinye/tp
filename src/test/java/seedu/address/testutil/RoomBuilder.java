@@ -57,12 +57,14 @@ public class RoomBuilder {
      * Sets the {@code Guests} of the {@code Room} that we are building.
      */
     public RoomBuilder withGuests(Person[] guests) {
-        this.guests.addAll(Arrays.asList(guests.clone()));
+        Set<Person> editedSet = new HashSet<>();
+        editedSet.addAll(Arrays.asList(guests.clone()));
+        this.guests = editedSet;
         return this;
     }
 
     public Room build() {
-        return new Room(number);
+        return new Room(number, vacancy, guests);
     }
 
 }
