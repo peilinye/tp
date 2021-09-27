@@ -23,6 +23,7 @@ public class CheckOutCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_CHECKOUT_SUCCESS = "Room Checked Out: %1$s";
+    public static final String MESSAGE_ROOM_IS_VACANT = "Room is already vacant.";
 
     private final Index roomIndex;
 
@@ -43,7 +44,9 @@ public class CheckOutCommand extends Command {
         }
 
         Room roomToEdit = lastShownRoomList.get(roomIndex.getZeroBased());
-        //TO-DO: Check if room is vacant already
+        if (roomToEdit.isVacant()) {
+            throw new CommandException(MESSAGE_ROOM_IS_VACANT);
+        }
 
         //Resets room to default (vacant, no guests)
         Room editedRoom = new Room(roomToEdit.getRoomNumber());

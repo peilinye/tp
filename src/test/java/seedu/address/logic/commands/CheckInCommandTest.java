@@ -26,6 +26,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.Vacancy;
+import seedu.address.testutil.RoomBuilder;
 
 public class CheckInCommandTest {
 
@@ -67,6 +68,23 @@ public class CheckInCommandTest {
         CheckInCommand checkInCommand = new CheckInCommand(INDEX_FIRST_ROOM, guestList);
 
         assertCommandFailure(checkInCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_occupiedRoom_throwsCommandException() {
+        Person[] currentGuests = new Person[] {
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())};
+        Room roomToEdit = model.getFilteredRoomList().get(INDEX_FIRST_ROOM.getZeroBased());
+        Room editedRoom = new RoomBuilder(roomToEdit)
+                .withVacancy(Vacancy.OCCUPIED)
+                .withGuests(currentGuests)
+                .build();
+        model.setRoom(roomToEdit, editedRoom);
+
+        List<Index> newGuestList = Arrays.asList(INDEX_SECOND_PERSON);
+        CheckInCommand checkInCommand = new CheckInCommand(INDEX_FIRST_ROOM, newGuestList);
+
+        assertCommandFailure(checkInCommand, model, CheckInCommand.MESSAGE_ROOM_IS_OCCUPIED);
     }
 
     @Test
