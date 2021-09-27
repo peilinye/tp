@@ -30,6 +30,7 @@ public class CheckInCommand extends Command {
 
     public static final String MESSAGE_CHECKIN_SUCCESS = "Room Checked In: %1$s";
     public static final String MESSAGE_NO_GUESTS = "At least one person must be checked into the room.";
+    public static final String MESSAGE_ROOM_IS_OCCUPIED = "Room is currently occupied.";
 
     private final Index roomIndex;
     private final List<Index> guestIndexes;
@@ -59,7 +60,9 @@ public class CheckInCommand extends Command {
         }
 
         Room roomToEdit = lastShownRoomList.get(roomIndex.getZeroBased());
-        //TO-DO: Check if room is vacant first
+        if (!roomToEdit.isVacant()) {
+            throw new CommandException(MESSAGE_ROOM_IS_OCCUPIED);
+        }
 
         Set<Person> guests = new HashSet<>();
         for (Index guestIndex : guestIndexes) {
