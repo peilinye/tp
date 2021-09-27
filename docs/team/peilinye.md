@@ -10,11 +10,9 @@ Trace2Gather is a desktop address book application used for managing hotel guest
 Given below are my contributions to the project.
 
 ## New Feature(s)
-1. Linked Database's Room details to GUI, where Rooms are displayed on the GUI's list of rooms.
-    * What it does: Allows users to visually see the rooms that were saved in the database and their last updated status.
-    * Justification: This feature improves the product significantly because being able to visually check a room's status, such as its Occupancy Status, helps it's users to identify a room's status quickly and increases response time to the user requesting such information.
-    * Highlights: This enhancement affects user interaction with the application. It required an in-depth analysis and understanding of the GUI codebase and jackSon's syntax, such as @FXML tags having only small characters
-    * Credit: jackSon documentation, stackOverflow
+1. Added the functionality of listing rooms by vacancy status.
+    * What it does: Shows users the rooms that are vacant or occupied in the GUI.
+    * Justification: This feature improves the product significantly by making it more convenient for users to see all rooms that are either vacant or occupied.
 
 ## Code contributed
 [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/) (To Be Updated)
@@ -22,7 +20,7 @@ Given below are my contributions to the project.
 
 ## Documentation
 * User Guide:
-     * Added documentation for the features `list rooms vacant`.
-     * Developer Guide:
-         * Added use cases, user stories.
-
+  * Added the documentation for the features `list rooms vacant` and `list rooms occupied`.
+* Developer Guide:
+  * Added use cases, user stories.
+    

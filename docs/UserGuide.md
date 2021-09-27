@@ -151,6 +151,12 @@ Shows a list of all rooms in the address book.
 
 Format: `list rooms`
 
+### Listing all occupied rooms : `list rooms occupied`
+
+Shows a list of all rooms that are occupied in the address book.
+
+Format: `list rooms occupied`
+
 ### Listing all vacant rooms : `list rooms vacant`
 
 Shows a list of all rooms that are vacant in the address book.

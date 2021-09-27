@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ye Pei Lin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peilinye.png" width="200px">
 
 [[github](http://github.com/peilinye)]
 [[portfolio](team/peilinye.md)]
