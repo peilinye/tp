@@ -51,6 +51,10 @@ public class Room {
         return Collections.unmodifiableSet(guests);
     }
 
+    public boolean isVacant() {
+        return vacancy.isVacant();
+    }
+
     /**
      * Returns true if both rooms have the same name.
      */
