@@ -12,6 +12,8 @@ import seedu.address.commons.core.listtype.ListType;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.room.RoomIsOccupiedPredicate;
+import seedu.address.model.room.RoomIsVacantPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -38,5 +40,17 @@ public class ListCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListCommand(new ListType("guests")), model,
                 ListCommand.MESSAGE_SUCCESS_GUESTS, expectedModel);
+    }
+
+    @Test
+    public void execute_listVacantRooms_showsVacantRooms() {
+        assertCommandSuccess(new ListCommand(new ListType("rooms"), new RoomIsVacantPredicate()),
+                model, ListCommand.MESSAGE_SUCCESS_ROOMS_TYPE, expectedModel);
+    }
+
+    @Test
+    public void execute_listOccupiedRooms_showsOccupiedRooms() {
+        assertCommandSuccess(new ListCommand(new ListType("rooms"), new RoomIsOccupiedPredicate()),
+                model, ListCommand.MESSAGE_SUCCESS_ROOMS_TYPE, expectedModel);
     }
 }
