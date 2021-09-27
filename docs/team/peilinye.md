@@ -23,4 +23,3 @@ Given below are my contributions to the project.
   * Added the documentation for the features `list rooms vacant` and `list rooms occupied`.
 * Developer Guide:
   * Added use cases, user stories.
-    
