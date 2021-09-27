@@ -3,13 +3,13 @@ package seedu.address.model.room;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Room}'s {@code Vacancy} status is vacant.
  */
 public class RoomIsVacantPredicate implements Predicate<Room> {
 
     @Override
     public boolean test(Room room) {
-        return room.getVacancy().equals(Vacancy.VACANT);
+        return room.isVacant();
     }
 
     @Override
