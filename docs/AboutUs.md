@@ -49,13 +49,13 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Fong Mun Kit, Wilbur
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wilburrito.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wilburrito)]
+[[portfolio](team/wilbur.md)]
 
-* Role: **FILL IN HERE**
-* Responsibilities: **FILL IN HERE**
+* Role: Developer
+* Responsibilities: DevOps, Data
 
 ### Thomas Edward Hogben
 
