@@ -14,9 +14,9 @@ Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized f
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://https://github.com/AY2122S1-CS2103T-T13-3/tp/releases).
+1. Download the latest `trace2gather.jar` from [here](https://https://github.com/AY2122S1-CS2103T-T13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Trace2Gather.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,7 +26,7 @@ Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized f
 
    * **`list guests`** : Lists all guests.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Trace2Gather.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -74,14 +74,14 @@ Format: `help`
 
 ##Guest
 
-### Adding a person: `add`
+### Adding a guest: `add`
 
-Adds a person to the address book.
+Adds a guest into Trace2Gather.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0).
+A guest can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -90,30 +90,30 @@ Examples:
 
 ### Listing all guests : `list guests`
 
-Shows a list of all guests in the address book.
+Shows a list of all guests in Trace2Gather.
 
 Format: `list guests`
 
-### Editing a person : `edit`
+### Editing a guest : `edit`
 
-Edits an existing person in the address book.
+Edits an existing guest in Trace2Gather.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the guest will be removed i.e adding of tags is not cumulative.
+* You can remove all the guest’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd guest to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating guests by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Find guests whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -121,33 +121,33 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Guests matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
 
-Deletes the specified person from the address book.
+### Deleting a guest : `delete`
+
+Deletes the specified guest from Trace2Gather.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the guest at the specified `INDEX`.
+* The index refers to the index number shown in the displayed guest list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd guest in Trace2Gather.
+* `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
 
-##Room [coming soon]
+##Room
 
 ### Checking into a room : `checkin`
 
-Checks in a group of persons into a room.
+Checks in a group of guests into a room.
 
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
@@ -155,7 +155,7 @@ Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 A room can have more than one guest.
 </div>
 
-The indexes refer to the index numbers shown in the displayed person/room list.
+The indexes refer to the index numbers shown in the displayed guest/room list.
 
 Examples:
 * `checkin 5 g/1`
@@ -163,7 +163,7 @@ Examples:
 
 ### Checking out of a room : `checkout`
 
-Checks out a group of persons from a room.
+Checks out a group of guests from a room.
 
 Format: `checkout ROOM_INDEX`
 
@@ -174,19 +174,19 @@ Example:
 
 ### Listing all rooms : `list rooms`
 
-Shows a list of all rooms in the address book.
+Shows a list of all rooms in Trace2Gather.
 
 Format: `list rooms`
 
 ### Listing all occupied rooms : `list rooms occupied`
 
-Shows a list of all rooms that are occupied in the address book.
+Shows a list of all rooms that are occupied in Trace2Gather.
 
 Format: `list rooms occupied`
 
 ### Listing all vacant rooms : `list rooms vacant`
 
-Shows a list of all rooms that are vacant in the address book.
+Shows a list of all rooms that are vacant in Trace2Gather.
 
 Format: `list rooms vacant`
 
@@ -194,7 +194,7 @@ Format: `list rooms vacant`
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from Trace2Gather.
 
 Format: `clear`
 
@@ -206,14 +206,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Trace2Gather data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Trace2Gather data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Trace2Gather will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -225,7 +225,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -238,5 +238,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list room`, `list guests`
+**List** | `list rooms`, `list rooms vacant`, `list rooms occupied`, `list guests`,
 **Help** | `help`
