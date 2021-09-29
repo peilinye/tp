@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your hotel management tasks done faster than traditional GUI apps.
+Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Trace2Gather can get your hotel management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -66,12 +66,13 @@ Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized f
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+##Guest
 
 ### Adding a person: `add`
 
@@ -80,7 +81,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -92,12 +93,6 @@ Examples:
 Shows a list of all guests in the address book.
 
 Format: `list guests`
-
-### Listing all rooms : `list rooms`
-
-Shows a list of all rooms in the address book.
-
-Format: `list rooms`
 
 ### Editing a person : `edit`
 
@@ -148,6 +143,55 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+##Room [coming soon]
+
+### Checking into a room : `checkin`
+
+Checks in a group of persons into a room.
+
+Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+A room can have more than one guest.
+</div>
+
+The indexes refer to the index numbers shown in the displayed person/room list.
+
+Examples:
+* `checkin 5 g/1`
+* `checkin 13 g/2 g/3 g/8`
+
+### Checking out of a room : `checkout`
+
+Checks out a group of persons from a room.
+
+Format: `checkout ROOM_INDEX`
+
+The room index refers to the index number shown in the displayed room list.
+
+Example:
+* `checkout 24`
+
+### Listing all rooms : `list rooms`
+
+Shows a list of all rooms in the address book.
+
+Format: `list rooms`
+
+### Listing all occupied rooms : `list rooms occupied`
+
+Shows a list of all rooms that are occupied in the address book.
+
+Format: `list rooms occupied`
+
+### Listing all vacant rooms : `list rooms vacant`
+
+Shows a list of all rooms that are vacant in the address book.
+
+Format: `list rooms vacant`
+
+##Database / Storage
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -194,5 +238,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | `list room`, `list guests`
 **Help** | `help`

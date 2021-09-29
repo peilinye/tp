@@ -19,6 +19,5 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the rooms list.
      * This list will not contain any duplicate rooms.
      */
-
     ObservableList<Room> getRoomList();
 }

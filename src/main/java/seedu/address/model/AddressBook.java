@@ -115,6 +115,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the address book.
+     * The room identity of {@code editedRoom} must not be the same as another existing room in the address book.
+     */
+    public void setRoom(Room target, Room editedRoom) {
+        requireNonNull(editedRoom);
+
+        rooms.setRoom(target, editedRoom);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -144,7 +155,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && rooms.equals(((AddressBook) other).rooms));
     }
 
     @Override
