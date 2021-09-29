@@ -9,9 +9,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Prof Damith
+### Prof Damith & Abhiman Yadav
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/johndoe.png" width="200px"> <img src="images/johndoe.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
@@ -59,7 +59,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Thomas Edward Hogben
 
-<img src="images/thomashogben.png" width="200px">
+<img src="images/bananatechs.png" width="200px">
 
 [[github](http://github.com/BananaTechs)]
 [[portfolio](team/thomashogben.md)]
