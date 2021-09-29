@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumber;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +38,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.room = null;
+        this.room = new Room(new RoomNumber("999"));
         this.tags.addAll(tags);
     }
 
@@ -74,6 +75,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 
     /**
@@ -115,7 +120,8 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getRoom().equals(getRoom());
     }
 
     @Override

@@ -9,27 +9,26 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Prof Damith
 
 <img src="images/johndoe.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
-
 * Role: Project Advisor
 
-### Jane Doe
+### Darren Hoon
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/darrenhoon.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/darrenhoon)]
+[[portfolio](team/darren.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: DevOps, UI
 
-### Johnny Doe
+### Liew Jian Hong
 
 <img src="images/jianh0ng.png" width="200px">
 
@@ -38,22 +37,32 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Ye Pei Lin
+
+<img src="images/johndoe.png" width="200px">
+
+[[github](http://github.com/peilinye)]
+[[portfolio](team/peilinye.md)]
+
+* Role: Developer
+* Responsibilities: Data, UI
+
+### Fong Mun Kit, Wilbur
 
 <img src="images/johndoe.png" width="200px">
 
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: **FILL IN HERE**
+* Responsibilities: **FILL IN HERE**
 
-### James Doe
+### Thomas Edward Hogben
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/thomashogben.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/BananaTechs)]
+[[portfolio](team/thomashogben.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: **Developer**
+* Responsibilities: **Data**

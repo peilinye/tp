@@ -78,6 +78,13 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Replaces the given room {@code target} with {@code editedRoom}.
+     * {@code target} must exist in the address book.
+     * The room identity of {@code editedRoom} must not be the same as another existing room in the address book.
+     */
+    void setRoom(Room target, Room editedRoom);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

@@ -116,6 +116,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setRoom(Room target, Room editedRoom) {
+        requireAllNonNull(target, editedRoom);
+
+        addressBook.setRoom(target, editedRoom);
+    }
+
+    @Override
     public void addRoom(Room room) {
         addressBook.addRoom(room);
         updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
@@ -137,6 +144,8 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    //=========== Filtered Room List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of

@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your hotel management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,7 +14,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `addressbook.jar` from [here](https://https://github.com/AY2122S1-CS2103T-T13-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
@@ -24,7 +24,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list guests`** : Lists all guests.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
@@ -59,19 +59,20 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+##Guest
 
 ### Adding a person: `add`
 
@@ -80,18 +81,18 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Listing all guests : `list guests`
 
-Shows a list of all persons in the address book.
+Shows a list of all guests in the address book.
 
-Format: `list`
+Format: `list guests`
 
 ### Editing a person : `edit`
 
@@ -142,6 +143,49 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+##Room [coming soon]
+
+### Checking into a room : `checkin`
+
+Checks in a group of persons into a room.
+
+Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+A room can have more than one guest.
+</div>
+
+The indexes refer to the index numbers shown in the displayed person/room list.
+
+Examples:
+* `checkin 5 g/1`
+* `checkin 13 g/2 g/3 g/8`
+
+### Checking out of a room : `checkout`
+
+Checks out a group of persons from a room.
+
+Format: `checkout ROOM_INDEX`
+
+The room index refers to the index number shown in the displayed room list.
+
+Example:
+* `checkout 24`
+
+### Listing all rooms : `list rooms`
+
+Shows a list of all rooms in the address book.
+
+Format: `list rooms`
+
+### Listing all vacant rooms : `list rooms vacant`
+
+Shows a list of all rooms that are vacant in the address book.
+
+Format: `list rooms vacant`
+
+##Database / Storage
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -188,5 +232,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | `list room`, `list guests`
 **Help** | `help`

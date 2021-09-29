@@ -11,12 +11,15 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumber;
 import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
@@ -57,4 +60,13 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static Room[] getSampleRooms() {
+        return new Room[] {
+            new Room(new RoomNumber("001")),
+            new Room(new RoomNumber("002")),
+            new Room(new RoomNumber("003")),
+            new Room(new RoomNumber("004")),
+            new Room(new RoomNumber("005")),
+        };
+    }
 }

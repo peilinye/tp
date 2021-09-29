@@ -11,7 +11,11 @@ import seedu.address.model.room.Room;
  */
 public class RoomCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "RoomListCard.fxml";
+
+    public final Room room;
+    private final String testRoomNumber = "TES";
+    private final String testRoomVacancy = "YENO";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -21,22 +25,27 @@ public class RoomCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Room room;
-
     @FXML
     private HBox cardPane;
+
     @FXML
-    private Label roomNumber;
+    private Label number;
+
+    @FXML
+    private Label vacancy;
+
     @FXML
     private Label id;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code RoomCode} with the given {@code Room} and index to display.
      */
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
         this.room = room;
         id.setText(displayedIndex + ". ");
+        number.setText(room.getRoomNumber().value);
+        vacancy.setText(room.getVacancy().toString());
     }
 
     @Override
