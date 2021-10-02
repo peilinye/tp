@@ -67,6 +67,12 @@ public class Room {
                 && otherRoom.getRoomNumber().equals(getRoomNumber());
     }
 
+    /**
+     * Finds a guest to replace his/her details with updated information.
+     * @param oldGuest the guest in the current guests
+     * @param editedGuest the guest with the updated information
+     * @return Room that contained the edited guests
+     */
     public Room replaceGuest(Person oldGuest, Person editedGuest) {
         Set<Person> editedGuests = guests;
 
