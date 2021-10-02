@@ -2,13 +2,17 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
+import seedu.address.model.room.RoomNumber;
+import seedu.address.model.room.Vacancy;
 
 /**
  * Wraps all data at the address-book level
@@ -111,6 +115,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
+        for (Room room: rooms) {
+            if (room.isVacant()) {
+                continue;
+            } else {
+                if (room.getGuests().contains(target)) {
+                    Room editedRoom = room.replaceGuest(target, editedPerson);
+                    setRoom(room, editedRoom);
+                } else {
+                    continue;
+                }
+            }
+        }
         persons.setPerson(target, editedPerson);
     }
 

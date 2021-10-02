@@ -50,14 +50,6 @@
         </StackPane>
 
         <HBox>
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
-            <Label styleClass="table-header" minWidth="450">Guests</Label>
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
           <VBox fx:id="roomList" minWidth="500" prefWidth="500" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <Label styleClass="table-header" minWidth="450">Rooms</Label>
 
@@ -65,6 +57,14 @@
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="roomListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
+
+          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
+            <Label styleClass="table-header" minWidth="450">Guests</Label>
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
         </HBox>
 

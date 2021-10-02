@@ -67,6 +67,17 @@ public class Room {
                 && otherRoom.getRoomNumber().equals(getRoomNumber());
     }
 
+    public Room replaceGuest(Person oldGuest, Person editedGuest) {
+        Set<Person> editedGuests = guests;
+
+        if (editedGuests.contains(oldGuest)) {
+            editedGuests.remove(oldGuest);
+            editedGuests.add(editedGuest);
+        }
+
+        return new Room(roomNumber, vacancy, editedGuests);
+    }
+
     @Override
     public String toString() {
         return roomNumber.toString();
