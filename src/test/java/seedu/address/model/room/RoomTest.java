@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_VACANCY_ROOM_TW
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRooms.ALICE;
 import static seedu.address.testutil.TypicalRooms.BENSON;
+import static seedu.address.testutil.TypicalRooms.CHARLIE;
 import static seedu.address.testutil.TypicalRooms.GUESTS;
 import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
@@ -39,7 +40,7 @@ public class RoomTest {
     }
 
     @Test
-    public void replaceGuestTest() {
+    public void replaceGuestTest_GuestPresent() {
         Person[] persons = {ALICE, BENSON};
 
         Person editedPerson = new PersonBuilder(ALICE).withName("Alicia").build();
@@ -54,6 +55,22 @@ public class RoomTest {
                 .withGuests(editedPersons).build();
 
         assertEquals(correctRoom, editedRoom);
+
+    }
+
+    @Test
+    public void replaceGuestTest_GuestAbsent() {
+        Person[] persons = {ALICE, BENSON};
+
+        Person editedPerson = new PersonBuilder(CHARLIE).withName("Cordoba").build();
+
+        Room room = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
+                .withGuests(persons).build();
+
+        Room editedRoom = room.replaceGuest(ALICE, editedPerson);
+        Room correctRoom = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
+                .withGuests(persons).build();
+        assertFalse(correctRoom.equals(editedRoom));
 
     }
 
