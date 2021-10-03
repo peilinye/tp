@@ -40,7 +40,7 @@ public class RoomTest {
     }
 
     @Test
-    public void replaceGuestTest_GuestPresent() {
+    public void replaceGuestTest_guestPresent() {
         Person[] persons = {ALICE, BENSON};
 
         Person editedPerson = new PersonBuilder(ALICE).withName("Alicia").build();
@@ -59,7 +59,7 @@ public class RoomTest {
     }
 
     @Test
-    public void replaceGuestTest_GuestAbsent() {
+    public void replaceGuestTest_guestAbsent() {
         Person[] persons = {ALICE, BENSON};
 
         Person editedPerson = new PersonBuilder(CHARLIE).withName("Cordoba").build();
