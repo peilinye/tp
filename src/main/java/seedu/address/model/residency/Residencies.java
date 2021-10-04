@@ -1,16 +1,16 @@
 package seedu.address.model.residency;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
-import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
-import seedu.address.model.room.Room;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.Person;
+import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
+import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
+import seedu.address.model.room.Room;
 
 public class Residencies {
 

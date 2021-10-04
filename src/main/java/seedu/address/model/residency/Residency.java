@@ -1,13 +1,13 @@
 package seedu.address.model.residency;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.room.Room;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.Person;
+import seedu.address.model.room.Room;
 
 /**
  * Encapsulates the stay of a guest in a room.
