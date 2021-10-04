@@ -3,8 +3,15 @@ package seedu.address.model.residency;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
@@ -12,6 +19,7 @@ import seedu.address.model.room.Room;
 
 public class ResidencyBook implements ReadOnlyResidencyBook {
 
+    private final List<Residency> residencyList = new ArrayList<>();
     private final HashMap<Room, Residency> roomMap = new HashMap<>();
     private final HashMap<Person, Residency> guestMap = new HashMap<>();
 
@@ -47,6 +55,7 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
             }
         }
 
+        residencyList.add(residency);
         roomMap.put(room, residency);
         for (Person guest : guests) {
             guestMap.put(guest, residency);
@@ -62,6 +71,7 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
         Room room = residency.getRoom();
         Set<Person> guests = residency.getGuests();
 
+        residencyList.remove(residency);
         roomMap.remove(room);
         for (Person guest : guests) {
             guestMap.remove(guest);
@@ -118,5 +128,10 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
     @Override
     public Map<Room, Residency> getRoomMap() {
         return Collections.unmodifiableMap(roomMap);
+    }
+
+    @Override
+    public ObservableList<Residency> getResidencyList() {
+        return (ObservableList<Residency>) residencyList;
     }
 }

@@ -1,9 +1,10 @@
 package seedu.address.model.residency;
 
+import java.util.Map;
+
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
-
-import java.util.Map;
 
 /**
  * Unmodifiable view of a residency book
@@ -21,4 +22,6 @@ public interface ReadOnlyResidencyBook {
      * This map will not contain any duplicate registrations.
      */
     Map<Room, Residency> getRoomMap();
+
+    ObservableList<Residency> getResidencyList();
 }
