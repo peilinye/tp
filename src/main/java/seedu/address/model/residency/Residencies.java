@@ -31,12 +31,20 @@ public class Residencies {
         }
     }
 
-    public static void edit(Room roomToEdit, Room editedRoom) {
-
-    }
-
     public static void edit(Person personToEdit, Person editedPerson) {
+        requireAllNonNull(personToEdit, editedPerson);
+        Optional residencyOption = getResidency(personToEdit);
+        residencyOption.ifPresent(obj -> {
+            Residency residency = (Residency) obj;
 
+            Room room = residency.getRoom();
+            Set<Person> guests = residency.getGuests();
+            guests.remove(personToEdit);
+            guests.add(editedPerson);
+
+            remove(residency);
+            register(room, guests);
+        });
     }
 
     public static Optional<Residency> getResidency(Room room) {
