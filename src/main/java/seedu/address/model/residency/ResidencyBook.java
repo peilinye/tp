@@ -3,16 +3,14 @@ package seedu.address.model.residency;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashMap;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
 import seedu.address.model.room.Room;
 
-public class ResidencyBook {
+public class ResidencyBook implements ReadOnlyResidencyBook {
 
     private final HashMap<Room, Residency> roomMap = new HashMap<>();
     private final HashMap<Person, Residency> guestMap = new HashMap<>();
@@ -112,4 +110,13 @@ public class ResidencyBook {
         return Optional.ofNullable(guestMap.get(guest));
     }
 
+    @Override
+    public Map<Person, Residency> getGuestMap() {
+        return Collections.unmodifiableMap(guestMap);
+    }
+
+    @Override
+    public Map<Room, Residency> getRoomMap() {
+        return Collections.unmodifiableMap(roomMap);
+    }
 }
