@@ -41,7 +41,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Id id, Phone phone, Email email, Address address,  Set<Tag> tags) {
+    public Person(Name name, Id id, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.id = id;
@@ -51,6 +51,10 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Creates a new {@code Person} with the specified data fields, and generates a new {@code Id} for them.
+     * Every field must be present and not null.
+     */
     public static Person createPerson(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         Id id = new Id();
         return new Person(name, id, phone, email, address, tags);
