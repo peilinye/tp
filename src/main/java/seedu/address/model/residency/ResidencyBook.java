@@ -12,7 +12,7 @@ import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
 import seedu.address.model.room.Room;
 
-public class Residencies {
+public class ResidencyBook {
 
     private final HashMap<Room, Residency> roomMap = new HashMap<>();
     private final HashMap<Person, Residency> guestMap = new HashMap<>();
