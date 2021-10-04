@@ -1,6 +1,8 @@
 package seedu.address.model.residency;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
+import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
 import seedu.address.model.room.Room;
 
 import java.util.HashMap;
@@ -15,11 +17,48 @@ public class Residencies {
     private static final HashMap<Room, Residency> roomMap = new HashMap<>();
     private static final HashMap<Person, Residency> guestMap = new HashMap<>();
 
+    /**
+     * Registers the stay of a set of guests in a room.
+     *
+     * @param room The {@code Room} to stay in
+     * @param guests The {@code Set} of {@code Person}s to stay in the room
+     * @throws DuplicateRoomRegException if the {@code Room} is already registered.
+     * @throws DuplicatePersonRegException if any {@code Person} is already registered.
+     */
     public static void register(Room room, Set<Person> guests) {
         requireNonNull(room);
         requireAllNonNull(guests);
+
+        register(new Residency(room, guests));
     }
 
+    /**
+     * Registers a {@code Residency}.
+     */
+    private static void register(Residency residency) {
+        requireNonNull(residency);
+        Room room = residency.getRoom();
+        Set<Person> guests = residency.getGuests();
+
+        if (roomMap.containsKey(room)) {
+            throw new DuplicateRoomRegException();
+        }
+        for (Person guest : guests) {
+            if (guestMap.containsKey(guest)) {
+                throw new DuplicatePersonRegException(guest);
+            }
+        }
+
+        roomMap.put(room, residency);
+        for (Person guest : guests) {
+            guestMap.put(guest, residency);
+        }
+    }
+
+    /**
+     * Removes and de-registers a {@code Residency}, making the room and guests
+     * available for new registrations.
+     */
     public static void remove(Residency residency) {
         requireNonNull(residency);
         Room room = residency.getRoom();
@@ -31,27 +70,45 @@ public class Residencies {
         }
     }
 
+    /**
+     * Replaces a {@code Person} object with a new one in the relevant {@code Residency},
+     * if it exists, and updates the registries accordingly.
+     *
+     * @param personToEdit The Person object to replace
+     * @param editedPerson The Person object to replace with
+     */
     public static void edit(Person personToEdit, Person editedPerson) {
         requireAllNonNull(personToEdit, editedPerson);
         Optional residencyOption = getResidency(personToEdit);
         residencyOption.ifPresent(obj -> {
             Residency residency = (Residency) obj;
 
-            Room room = residency.getRoom();
-            Set<Person> guests = residency.getGuests();
-            guests.remove(personToEdit);
-            guests.add(editedPerson);
-
+            // This keeps the same residency object, and just re-registers it after editing.
             remove(residency);
-            register(room, guests);
+            residency.setGuest(personToEdit, editedPerson);
+            register(residency);
         });
     }
 
+    /**
+     * Gets the {@code Residency} containing this {@code Room}, if it exists.
+     *
+     * @param room The room to get the residency of
+     * @return An {@code Optional} with the {@code Residency} present if it exists,
+     *         otherwise an empty Optional
+     */
     public static Optional<Residency> getResidency(Room room) {
         requireNonNull(room);
         return Optional.ofNullable(roomMap.get(room));
     }
 
+    /**
+     * Gets the {@code Residency} containing this {@code Person}, if it exists.
+     *
+     * @param guest The {@code Person} to get the residency of
+     * @return An {@code Optional} with the {@code Residency} present if it exists,
+     *         otherwise an empty Optional
+     */
     public static Optional<Residency> getResidency(Person guest) {
         requireNonNull(guest);
         return Optional.ofNullable(guestMap.get(guest));
