@@ -14,8 +14,8 @@ import seedu.address.model.room.Room;
 
 public class Residencies {
 
-    private static final HashMap<Room, Residency> roomMap = new HashMap<>();
-    private static final HashMap<Person, Residency> guestMap = new HashMap<>();
+    private final HashMap<Room, Residency> roomMap = new HashMap<>();
+    private final HashMap<Person, Residency> guestMap = new HashMap<>();
 
     /**
      * Registers the stay of a set of guests in a room.
@@ -25,7 +25,7 @@ public class Residencies {
      * @throws DuplicateRoomRegException if the {@code Room} is already registered.
      * @throws DuplicatePersonRegException if any {@code Person} is already registered.
      */
-    public static void register(Room room, Set<Person> guests) {
+    public void register(Room room, Set<Person> guests) {
         requireNonNull(room);
         requireAllNonNull(guests);
 
@@ -35,7 +35,7 @@ public class Residencies {
     /**
      * Registers a {@code Residency}.
      */
-    private static void register(Residency residency) {
+    private void register(Residency residency) {
         requireNonNull(residency);
         Room room = residency.getRoom();
         Set<Person> guests = residency.getGuests();
@@ -59,7 +59,7 @@ public class Residencies {
      * Removes and de-registers a {@code Residency}, making the room and guests
      * available for new registrations.
      */
-    public static void remove(Residency residency) {
+    public void remove(Residency residency) {
         requireNonNull(residency);
         Room room = residency.getRoom();
         Set<Person> guests = residency.getGuests();
@@ -77,7 +77,7 @@ public class Residencies {
      * @param personToEdit The Person object to replace
      * @param editedPerson The Person object to replace with
      */
-    public static void edit(Person personToEdit, Person editedPerson) {
+    public void edit(Person personToEdit, Person editedPerson) {
         requireAllNonNull(personToEdit, editedPerson);
         Optional<Residency> residencyOption = getResidency(personToEdit);
         residencyOption.ifPresent(residency -> {
@@ -95,7 +95,7 @@ public class Residencies {
      * @return An {@code Optional} with the {@code Residency} present if it exists,
      *         otherwise an empty Optional
      */
-    public static Optional<Residency> getResidency(Room room) {
+    public Optional<Residency> getResidency(Room room) {
         requireNonNull(room);
         return Optional.ofNullable(roomMap.get(room));
     }
@@ -107,7 +107,7 @@ public class Residencies {
      * @return An {@code Optional} with the {@code Residency} present if it exists,
      *         otherwise an empty Optional
      */
-    public static Optional<Residency> getResidency(Person guest) {
+    public Optional<Residency> getResidency(Person guest) {
         requireNonNull(guest);
         return Optional.ofNullable(guestMap.get(guest));
     }
