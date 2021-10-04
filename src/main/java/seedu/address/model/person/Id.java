@@ -24,6 +24,14 @@ public class Id {
         return id >= 0;
     }
 
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public static void setNextId(int newNextId) {
+        nextId = newNextId;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(value);
