@@ -291,16 +291,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Trace2Gather` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Deleting a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Trace2Gather shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Trace2Gather deletes the person
 
     Use case ends.
 
@@ -312,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Trace2Gather shows an error message.
 
       Use case resumes at step 2.
 
@@ -322,24 +322,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to add a person and inputs the necessary parameters
-2.  AddressBook adds the person with the input details
-3.  AddressBook displays a message to the user indicating that the person has been added
+2.  Trace2Gather adds the person with the input details
+3.  Trace2Gather displays a message to the user indicating that the person has been added
 
     Use case ends.
 
 **Extensions**
 
 * 1a. There are missing parameters or input is not in the correct format
-* 1b. AddressBook displays a message indicating to the user the required parameters
+* 1b. Trace2Gather displays a message indicating to the user the required parameters
 * 1c. User inputs the parameters again until all required parameters are input. Use case resumes at step 2.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should work without being connected to the Internet.
+5. Should be able to use most basic commands within a day of usage.
 
 *{More to be added}*
 
