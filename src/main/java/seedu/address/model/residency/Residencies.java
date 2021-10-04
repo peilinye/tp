@@ -79,10 +79,8 @@ public class Residencies {
      */
     public static void edit(Person personToEdit, Person editedPerson) {
         requireAllNonNull(personToEdit, editedPerson);
-        Optional residencyOption = getResidency(personToEdit);
-        residencyOption.ifPresent(obj -> {
-            Residency residency = (Residency) obj;
-
+        Optional<Residency> residencyOption = getResidency(personToEdit);
+        residencyOption.ifPresent(residency -> {
             // This keeps the same residency object, and just re-registers it after editing.
             remove(residency);
             residency.setGuest(personToEdit, editedPerson);

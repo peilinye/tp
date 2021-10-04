@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.room.Room;
-import seedu.address.model.room.RoomNumber;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,6 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Id id;
     private final Phone phone;
     private final Email email;
 
@@ -26,39 +25,35 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
-    //additional field
-    private final Room room;
-
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    private Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.room = new Room(new RoomNumber("999"));
         this.tags.addAll(tags);
+        this.id = new Id();
     }
 
     /**
      * Every field must be present and not null.
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param room
-     * @param tags
      */
-    public Person(Name name, Phone phone, Email email, Address address, Room room, Set<Tag> tags) {
+    public Person(Name name, Id id, Phone phone, Email email, Address address,  Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
+        this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.room = room;
         this.tags.addAll(tags);
+    }
+
+    public static Person createPerson(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        Id id = new Id();
+        return new Person(name, id, phone, email, address, tags);
     }
 
     public Name getName() {
@@ -77,8 +72,8 @@ public class Person {
         return address;
     }
 
-    public Room getRoom() {
-        return room;
+    public Id getId() {
+        return id;
     }
 
     /**
@@ -121,13 +116,13 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getRoom().equals(getRoom());
+                && otherPerson.getId().equals(getId());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, id);
     }
 
     @Override
