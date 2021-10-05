@@ -1,15 +1,14 @@
 package seedu.address.model.residency;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
-import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 import static seedu.address.testutil.TypicalPersons.PERSON_LIST_ONE;
 import static seedu.address.testutil.TypicalPersons.PERSON_LIST_TWO;
+import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
+import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
+
+import org.junit.jupiter.api.Test;
 
 public class ResidencyTest {
 
@@ -35,7 +34,7 @@ public class ResidencyTest {
         Residency residencyTwo = new Residency(ROOM_TWO, PERSON_LIST_TWO);
 
         assertFalse(residencyOne.hashCode() == residencyTwo.hashCode());
-        assertTrue(residencyOne.hashCode() == residencyTwo.hashCode());
+        assertTrue(residencyOne.hashCode() == residencyOneSame.hashCode());
     }
 
 }

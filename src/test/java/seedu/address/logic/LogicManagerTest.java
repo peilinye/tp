@@ -74,9 +74,12 @@ public class LogicManagerTest {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -146,6 +149,10 @@ public class LogicManagerTest {
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+
+        //System.out.println("Expected Model is: " + expectedModel.getFilteredPersonList());
+        //System.out.println("Actual Model is: " + model.getFilteredPersonList());
+
         assertEquals(expectedModel, model);
     }
 

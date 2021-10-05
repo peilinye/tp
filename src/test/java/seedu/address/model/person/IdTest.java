@@ -1,11 +1,12 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.exceptions.InvalidIdException;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.person.exceptions.InvalidIdException;
 
 public class IdTest {
 
@@ -27,51 +28,30 @@ public class IdTest {
 
         // nextId parameter starts at 0. calling empty .of() created a new Id based on current nextId value and
         // automatically increments nextId by 1
-        Id idZero = Id.of();
-        Id idOneSame = Id.of();
+        Id idZero = Id.of(0);
+        Id idOneSame = Id.of(1);
 
         assertFalse(idOne.equals(idZero));
         assertTrue(idOne.equals(idOneSame));
     }
 
     @Test
-    public void setIdTest() {
-        Id idOne = Id.of(1);
-        Id idZero = Id.of();
-        Id.setNextId(0);
-        Id nextIdReset = Id.of();
-
-        assertTrue(idZero.equals(nextIdReset));
-        assertFalse(idOne.equals(nextIdReset));
-    }
-
-    @Test
-    public void getIdTest() {
-        Id idOne = Id.of(1);
-        int afterIdOne = Id.getNextId();
-        Id idZero = Id.of();
-
-        assertTrue(afterIdOne == 0);
-        assertTrue(Id.getNextId() == 1);
-    }
-
-    @Test
     public void sameIdTest() {
         Id idZero = Id.of(0);
-        Id idZeroConstructor = Id.of();
-        Id idOne = Id.of();
+        Id idZeroSame = Id.of(0);
+        Id idOne = Id.of(1);
 
-        assertTrue(idZeroConstructor.equals(idZero));
+        assertTrue(idZeroSame.equals(idZero));
         assertFalse(idZero.equals(idOne));
     }
 
     @Test
     public void hashcodeTest() {
         Id idZero = Id.of(0);
-        Id idZeroConstructor = Id.of();
-        Id idOne = Id.of();
+        Id idZeroSame = Id.of(0);
+        Id idOne = Id.of(1);
 
-        assertTrue(idZeroConstructor.hashCode() == idZero.hashCode());
+        assertTrue(idZeroSame.hashCode() == idZero.hashCode());
         assertFalse(idZero.hashCode() == idOne.hashCode());
     }
 }

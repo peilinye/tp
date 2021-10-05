@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import seedu.address.model.person.exceptions.InvalidIdException;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.person.exceptions.InvalidIdException;
 
 public class Id {
 
@@ -44,17 +44,6 @@ public class Id {
     }
 
     /**
-     * Constructs an Id object using factory method.
-     * Increments class's nextId by one.
-     * @return Id object with current nextId value before nextId is incremented.
-     */
-    public static Id of() {
-        int currentId = Id.nextId;
-        Id.nextId++;
-        return new Id(currentId);
-    }
-
-    /**
      * Evaluates if an Integer provided is valid to be an Id.
      *
      * @param id integer value provided.
@@ -85,6 +74,14 @@ public class Id {
             throw new InvalidIdException();
         }
         nextId = newNextId;
+    }
+
+    /**
+     * Returns the Id object's value.
+     * @return the Integer value the Id object holds.
+     */
+    public int getValue() {
+        return this.value;
     }
 
     @Override
