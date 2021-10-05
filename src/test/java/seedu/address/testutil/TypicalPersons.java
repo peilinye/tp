@@ -13,7 +13,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
@@ -60,6 +62,12 @@ public class TypicalPersons {
             .withTags(VALID_TAG_FRIEND).withId(2103).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+
+    public static final Set<Person> PERSON_LIST_ONE =
+            new HashSet<Person>(Arrays.asList(ALICE, BENSON, CHARLIE));
+
+    public static final Set<Person> PERSON_LIST_TWO =
+            new HashSet<Person>(Arrays.asList(ALICE, BOB, DANIEL));
 
     private TypicalPersons() {} // prevents instantiation
 
