@@ -1,7 +1,9 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -13,7 +15,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
+import seedu.address.model.room.RoomNumber;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -29,17 +33,21 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
 
+    private final List<JsonAdaptedResidency> residencies = new ArrayList<>();
+
     private final int idCounter;
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons, rooms and id counter.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
+                                       @JsonProperty("residencies") List<JsonAdaptedResidency> residencies,
                                        @JsonProperty("id counter") int idCounter) {
         this.persons.addAll(persons);
         this.rooms.addAll(rooms);
+        this.residencies.addAll(residencies);
         this.idCounter = idCounter;
     }
 
@@ -51,6 +59,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
+        residencies.addAll(source.getResidencyList().stream().map(JsonAdaptedResidency::new).collect(Collectors.toList()));
         idCounter = Id.getNextId();
     }
 
@@ -76,6 +85,22 @@ class JsonSerializableAddressBook {
             addressBook.addRoom(room);
         }
         Id.setNextId(idCounter);
+
+        Map<Id, Person> idPersonMap = new HashMap<>();
+        Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
+
+        for (Person person : addressBook.getPersonList()) {
+            idPersonMap.put(person.getId(), person);
+        }
+
+        for (Room room : addressBook.getRoomList()) {
+            roomNumberRoomMap.put(room.getRoomNumber(), room);
+        }
+
+        for (JsonAdaptedResidency jsonAdaptedResidency : residencies) {
+            Residency residency = jsonAdaptedResidency.toModelType(idPersonMap, roomNumberRoomMap);
+            addressBook.register(residency);
+        }
 
         return addressBook;
     }

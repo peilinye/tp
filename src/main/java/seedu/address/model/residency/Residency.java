@@ -17,7 +17,7 @@ public class Residency {
     private final Room room;
     private final Set<Person> guests;
 
-    protected Residency(Room room, Set<Person> guests) {
+    public Residency(Room room, Set<Person> guests) {
         requireNonNull(room);
         requireAllNonNull(guests);
         this.room = room;

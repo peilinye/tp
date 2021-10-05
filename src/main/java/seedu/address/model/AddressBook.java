@@ -3,10 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.residency.Residency;
+import seedu.address.model.residency.ResidencyBook;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
 
@@ -18,6 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final RoomList rooms;
+    private final ResidencyBook residencyBook;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         rooms = new RoomList();
+        residencyBook = new ResidencyBook();
     }
 
     public AddressBook() {}
@@ -59,6 +64,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.rooms.setRooms(rooms);
     }
 
+    public void setResidencies(List<Residency> residencies) {
+        this.residencyBook.setResidencies(residencies);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -67,9 +76,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setRooms(newData.getRoomList());
+        setResidencies(newData.getResidencyList());
     }
 
-    //// person-level operations
+    //// (person / room / residency)-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -101,6 +111,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addRoom(Room r) {
         rooms.add(r);
+    }
+
+    public void register(Room room, Set<Person> guests) {
+        residencyBook.register(room, guests);
+    }
+
+    public void register(Residency residency) {
+        residencyBook.register(residency);
     }
 
     /**
@@ -149,6 +167,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Room> getRoomList() {
         return rooms.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Residency> getResidencyList() {
+        return residencyBook.getResidencyList();
     }
 
     @Override

@@ -41,7 +41,7 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
     /**
      * Registers a {@code Residency}.
      */
-    private void register(Residency residency) {
+    public void register(Residency residency) {
         requireNonNull(residency);
         Room room = residency.getRoom();
         Set<Person> guests = residency.getGuests();
@@ -118,6 +118,14 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
     public Optional<Residency> getResidency(Person guest) {
         requireNonNull(guest);
         return Optional.ofNullable(guestMap.get(guest));
+    }
+
+    public void setResidencies(List<Residency> residencies) {
+        guestMap.clear();
+        roomMap.clear();
+        for (Residency residency : residencies) {
+            register(residency);
+        }
     }
 
     @Override
