@@ -90,7 +90,7 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // same person, different room -> return false
-        Person editedCharlie = new PersonBuilder(CHARLIE).withRoom("007").build();
+        Person editedCharlie = new PersonBuilder(CHARLIE).withId(2106).build();
         assertFalse(CHARLIE.equals(editedCharlie));
     }
 }
