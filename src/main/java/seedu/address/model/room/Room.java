@@ -67,6 +67,23 @@ public class Room {
                 && otherRoom.getRoomNumber().equals(getRoomNumber());
     }
 
+    /**
+     * Finds a guest to replace his/her details with updated information.
+     * @param oldGuest the guest in the current guests
+     * @param editedGuest the guest with the updated information
+     * @return Room that contained the edited guests
+     */
+    public Room replaceGuest(Person oldGuest, Person editedGuest) {
+        Set<Person> editedGuests = guests;
+
+        if (editedGuests.contains(oldGuest)) {
+            editedGuests.remove(oldGuest);
+            editedGuests.add(editedGuest);
+        }
+
+        return new Room(roomNumber, vacancy, editedGuests);
+    }
+
     @Override
     public String toString() {
         return roomNumber.toString();

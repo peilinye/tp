@@ -119,20 +119,23 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getId().equals(getId());
+                && otherPerson.getTags().equals(getTags());
+        //&& otherPerson.getId().equals(getId());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, id);
+        //return Objects.hash(name, phone, email, address, tags, id);
+        return Objects.hash(name, phone, email, address, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Id: ")
+                .append(getId())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
