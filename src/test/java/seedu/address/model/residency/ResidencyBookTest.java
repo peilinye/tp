@@ -1,6 +1,9 @@
 package seedu.address.model.residency;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -15,6 +18,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
@@ -54,10 +58,10 @@ public class ResidencyBookTest {
 
     @Test
     public void register_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> residencyBook.register(null, new HashSet<Person>()));
-        assertThrows(NullPointerException.class,
-                () -> residencyBook.register(ROOM_ONE, null));
+        assertThrows(NullPointerException.class, ()
+            -> residencyBook.register(null, new HashSet<Person>()));
+        assertThrows(NullPointerException.class, ()
+            -> residencyBook.register(ROOM_ONE, null));
     }
 
     @Test
@@ -71,8 +75,8 @@ public class ResidencyBookTest {
         guestsRoomTwo.add(CARL);
 
         residencyBook.register(ROOM_ONE, guestsRoomOne);
-        assertThrows(DuplicatePersonRegException.class,
-                () -> residencyBook.register(ROOM_TWO, guestsRoomTwo));
+        assertThrows(DuplicatePersonRegException.class, ()
+            -> residencyBook.register(ROOM_TWO, guestsRoomTwo));
     }
 
     @Test
@@ -85,8 +89,8 @@ public class ResidencyBookTest {
         guestsRoomTwo.add(CARL);
 
         residencyBook.register(ROOM_ONE, guestsRoomOne);
-        assertThrows(DuplicateRoomRegException.class,
-                () -> residencyBook.register(ROOM_ONE, guestsRoomTwo));
+        assertThrows(DuplicateRoomRegException.class, ()
+            -> residencyBook.register(ROOM_ONE, guestsRoomTwo));
     }
 
     @Test
@@ -109,14 +113,14 @@ public class ResidencyBookTest {
         guests.add(ALICE);
         Residency residency = new Residency(ROOM_ONE, guests);
 
-        assertThrows(ResidencyNotFoundException.class,
-                () -> residencyBook.remove(residency));
+        assertThrows(ResidencyNotFoundException.class, ()
+            -> residencyBook.remove(residency));
     }
 
     @Test
     public void remove_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> residencyBook.remove(null));
+        assertThrows(NullPointerException.class, ()
+            -> residencyBook.remove(null));
     }
 
     @Test

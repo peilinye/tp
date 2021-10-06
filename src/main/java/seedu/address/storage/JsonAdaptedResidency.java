@@ -1,16 +1,20 @@
 package seedu.address.storage;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Room}.

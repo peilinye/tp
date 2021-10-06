@@ -59,7 +59,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
-        residencies.addAll(source.getResidencyList().stream().map(JsonAdaptedResidency::new).collect(Collectors.toList()));
+        residencies.addAll(source.getResidencyList().stream()
+                .map(JsonAdaptedResidency::new).collect(Collectors.toList()));
         idCounter = Id.getNextId();
     }
 
