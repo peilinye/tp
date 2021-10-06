@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -52,5 +54,41 @@ public class ListCommandTest {
     public void execute_listOccupiedRooms_showsOccupiedRooms() {
         assertCommandSuccess(new ListCommand(new ListType("rooms"), new RoomIsOccupiedPredicate()),
                 model, ListCommand.MESSAGE_SUCCESS_ROOMS_TYPE, expectedModel);
+    }
+
+    @Test
+    public void listRoomsCommand_equalsListRoomsCommand() {
+        ListCommand lc = new ListCommand(new ListType("rooms"));
+        assertEquals(new ListCommand(new ListType("rooms")), lc);
+    }
+
+    @Test
+    public void listGuestsCommand_equalsListGuestsCommand() {
+        ListCommand lc = new ListCommand(new ListType("guests"));
+        assertEquals(new ListCommand(new ListType("guests")), lc);
+    }
+
+    @Test
+    public void listGuestsCommand_notEqualsListRoomsCommand() {
+        ListCommand lc = new ListCommand(new ListType("guests"));
+        assertNotEquals(lc, new ListCommand(new ListType("rooms")));
+    }
+
+    @Test
+    public void listVacantRoomsCommand_equalsListVacantRoomsCommand() {
+        ListCommand lc = new ListCommand(new ListType("rooms"), new RoomIsVacantPredicate());
+        assertEquals(new ListCommand(new ListType("rooms"), new RoomIsVacantPredicate()), lc);
+    }
+
+    @Test
+    public void listOccupiedRoomsCommand_equalsListOccupiedRoomsCommand() {
+        ListCommand lc = new ListCommand(new ListType("rooms"), new RoomIsOccupiedPredicate());
+        assertEquals(new ListCommand(new ListType("rooms"), new RoomIsOccupiedPredicate()), lc);
+    }
+
+    @Test
+    public void listVacantRoomsCommand_notEqualsListOccupiedRoomsCommand() {
+        ListCommand lc = new ListCommand(new ListType("rooms"), new RoomIsVacantPredicate());
+        assertNotEquals(new ListCommand(new ListType("rooms"), new RoomIsOccupiedPredicate()), lc);
     }
 }
