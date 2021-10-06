@@ -7,15 +7,16 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Person;
-import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
-import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+import seedu.address.model.person.Person;
+import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
+import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
+import seedu.address.model.residency.exceptions.ResidencyNotFoundException;
 
 public class ResidencyBookTest {
 
@@ -42,9 +43,11 @@ public class ResidencyBookTest {
         assertTrue(residencyRoomOne.isPresent());
         assertTrue(residencyAlice.isPresent());
         assertTrue(residencyBenson.isPresent());
-
         assertEquals(residencyRoomOne.get(), residencyAlice.get());
         assertEquals(residencyRoomOne.get(), residencyBenson.get());
+
+        // Check if internal list contains the residency
+        assertTrue(residencyBook.asUnmodifiableObservableList().contains(residencyRoomOne.get()));
     }
 
     @Test
@@ -83,4 +86,35 @@ public class ResidencyBookTest {
         assertThrows(DuplicateRoomRegException.class,
                 () -> residencyBook.register(ROOM_ONE, guestsRoomTwo));
     }
+
+    @Test
+    public void remove_registeredResidency_success() {
+        Set<Person> guests = new HashSet<>();
+        guests.add(ALICE);
+        Residency residency = new Residency(ROOM_ONE, guests);
+
+        residencyBook.register(residency);
+        residencyBook.remove(residency);
+
+        assertTrue(residencyBook.getResidency(ALICE).isEmpty());
+        assertTrue(residencyBook.getResidency(ROOM_ONE).isEmpty());
+        assertFalse(residencyBook.asUnmodifiableObservableList().contains(residency));
+    }
+
+    @Test
+    public void remove_unregisteredResidency_throwsResidencyNotFoundException() {
+        Set<Person> guests = new HashSet<>();
+        guests.add(ALICE);
+        Residency residency = new Residency(ROOM_ONE, guests);
+
+        assertThrows(ResidencyNotFoundException.class,
+                () -> residencyBook.remove(residency));
+    }
+
+    @Test
+    public void remove_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> residencyBook.remove(null));
+    }
+
 }
