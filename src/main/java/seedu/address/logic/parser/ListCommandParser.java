@@ -29,12 +29,17 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        String[] argsArr = trimmedArgs.split(" ");
+        String[] argsArr = trimmedArgs.split(" ", 2);
         String type = argsArr[0];
         ListType listType = ParserUtil.parseListType(type);
         if (argsArr.length == 1) {
             return new ListCommand(listType);
         } else {
+            // list guests command should not have extra arguments
+            if (listType.isGuestsType()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+            }
             String listRoomArgument = argsArr[1];
             ListRoomArg arg = ParserUtil.parseListRoomArgument(listRoomArgument);
             return new ListCommand(listType, getListRoomPredicate(arg));
