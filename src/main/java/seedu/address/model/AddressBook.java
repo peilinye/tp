@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
@@ -79,7 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setResidencies(newData.getResidencyList());
     }
 
-    //// (person / room / residency)-level operations
+    //// (person / room)-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -113,14 +114,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         rooms.add(r);
     }
 
-    public void register(Room room, Set<Person> guests) {
-        residencyBook.register(room, guests);
-    }
-
-    public void register(Residency residency) {
-        residencyBook.register(residency);
-    }
-
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
@@ -143,6 +136,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
         persons.setPerson(target, editedPerson);
+        residencyBook.edit(target, editedPerson);
     }
 
     /**
@@ -162,6 +156,28 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// residency-level operations
+
+    public void register(Room room, Set<Person> guests) {
+        residencyBook.register(room, guests);
+    }
+
+    public void register(Residency residency) {
+        residencyBook.register(residency);
+    }
+
+    public void removeResidency(Residency residency) {
+        residencyBook.remove(residency);
+    }
+
+    public Optional<Residency> getResidency(Room room) {
+        return residencyBook.getResidency(room);
+    }
+
+    public Optional<Residency> getResidency(Person person) {
+        return residencyBook.getResidency(person);
     }
 
     //// util methods

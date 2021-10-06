@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 
 /**
@@ -126,6 +129,22 @@ public class ModelManager implements Model {
     public void addRoom(Room room) {
         addressBook.addRoom(room);
         updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+    }
+
+    public void register(Room room, Set<Person> guests) {
+        addressBook.register(room, guests);
+    }
+
+    public void removeResidency(Residency residency) {
+        addressBook.removeResidency(residency);
+    }
+
+    public Optional<Residency> getResidency(Room room) {
+        return addressBook.getResidency(room);
+    }
+
+    public Optional<Residency> getResidency(Person guest) {
+        return addressBook.getResidency(guest);
     }
 
     //=========== Filtered Person List Accessors =============================================================

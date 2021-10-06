@@ -7,7 +7,12 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.model.person.Person;
@@ -149,5 +154,4 @@ public class ResidencyBookTest {
         assertTrue(residencyRoomTwo.isPresent());
         assertEquals(residencyRoomTwo, residencyBenson);
     }
-
 }

@@ -28,7 +28,7 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
     private final HashMap<Person, Residency> guestMap = new HashMap<>();
 
     /**
-     * Registers the stay of a set of guests in a room.
+     * Registers the residency of a set of guests in a room.
      *
      * @param room The {@code Room} to stay in
      * @param guests The {@code Set} of {@code Person}s to stay in the room
@@ -69,6 +69,8 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
     /**
      * Removes and de-registers a {@code Residency}, making the room and guests
      * available for new registrations.
+     *
+     * @throws ResidencyNotFoundException if the given residency is not registered.
      */
     public void remove(Residency residency) {
         requireNonNull(residency);
