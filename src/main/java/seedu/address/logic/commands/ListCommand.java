@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ROOMS;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.listtype.ListType;
@@ -78,5 +79,20 @@ public class ListCommand extends Command {
         } else {
             return new CommandResult("placeholder");
         }
+    }
+
+    /**
+     * Returns true if the both are ListCommands with the same arguments.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof ListCommand) {
+            ListCommand otherListCommand = (ListCommand) other;
+            return listType.equals(otherListCommand.listType)
+                    && Objects.equals(predicate, otherListCommand.predicate);
+        }
+        return false;
     }
 }

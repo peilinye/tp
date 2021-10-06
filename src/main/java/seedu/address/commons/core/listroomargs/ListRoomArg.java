@@ -41,4 +41,14 @@ public class ListRoomArg {
     public boolean isOccupied() {
         return this.arg.equals(OCCUPIED);
     }
+
+    /**
+     * Returns true if both refer to ListRoomArg with the same argument.
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListRoomArg // instanceof handles nulls
+                && arg.equals(((ListRoomArg) other).arg)); // state check
+    }
 }
