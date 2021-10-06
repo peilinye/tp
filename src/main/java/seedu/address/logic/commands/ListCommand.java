@@ -25,9 +25,13 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS_ROOMS_TYPE = "Listed all rooms of indicated type";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all guests or rooms based on given argument.\n"
-            + "Parameters: LISTTYPE ('guests' or 'rooms')\n"
-            + "Example: " + COMMAND_WORD + " guests";
+            + ": Lists guests or rooms based on given arguments.\n"
+            + "Parameters: LISTTYPE ('guests' or 'rooms'), "
+            + "(optional) LISTROOMARG ('vacant' or 'occupied') (only for listing rooms).\n"
+            + "Examples: " + COMMAND_WORD + " guests, "
+            + COMMAND_WORD + " rooms, "
+            + COMMAND_WORD + " rooms occupied, "
+            + COMMAND_WORD + " rooms vacant";
 
     private ListType listType;
 
