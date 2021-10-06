@@ -69,8 +69,16 @@ class JsonSerializableAddressBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AddressBook toModelType() throws IllegalValueException {
-        // Add Persons and Rooms
         AddressBook addressBook = new AddressBook();
+
+        addPersonsAndRooms(addressBook);
+        addResidencies(addressBook);
+        setId();
+
+        return addressBook;
+    }
+
+    private void addPersonsAndRooms(AddressBook addressBook) throws IllegalValueException {
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
@@ -85,9 +93,9 @@ class JsonSerializableAddressBook {
             }
             addressBook.addRoom(room);
         }
-        Id.setNextId(idCounter);
+    }
 
-        // Register Residencies
+    private void addResidencies(AddressBook addressBook) {
         Map<Id, Person> idPersonMap = new HashMap<>();
         Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
 
@@ -103,8 +111,10 @@ class JsonSerializableAddressBook {
             Residency residency = jsonAdaptedResidency.toModelType(idPersonMap, roomNumberRoomMap);
             addressBook.register(residency);
         }
+    }
 
-        return addressBook;
+    private void setId() {
+        Id.setNextId(idCounter);
     }
 
 }
