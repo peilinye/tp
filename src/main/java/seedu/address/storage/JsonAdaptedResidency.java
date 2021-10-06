@@ -18,16 +18,17 @@ import java.util.stream.Collectors;
 class JsonAdaptedResidency {
 
     private final String roomNumber;
-    private final List<Integer> guestIds = new ArrayList<>();
+    private final int[] guestIds;
 
     /**
      * Constructs a {@code JsonAdaptedResidency} with the given residency details.
      */
     @JsonCreator
     public JsonAdaptedResidency(@JsonProperty("roomNumber") String roomNumber,
-                                @JsonProperty("guestIds") List<Integer> guestIds) {
+                                @JsonProperty("guestIds") int[] guestIds) {
         this.roomNumber = roomNumber;
-        this.guestIds.addAll(guestIds);
+        this.guestIds = guestIds;
+
     }
 
     /**
@@ -35,10 +36,14 @@ class JsonAdaptedResidency {
      */
     public JsonAdaptedResidency(Residency source) {
         roomNumber = source.getRoom().getRoomNumber().value;
-        guestIds.addAll(source.getGuests()
-                              .stream()
-                              .map(person -> person.getId().value)
-                              .collect(Collectors.toList()));
+        List<Integer> ids = source.getGuests()
+                                  .stream()
+                                  .map(person -> person.getId().value)
+                                  .collect(Collectors.toList());
+        guestIds = new int[ids.size()];
+        for (int i = 0; i < ids.size(); i++) {
+            guestIds[i] = ids.get(i);
+        }
     }
 
     /**

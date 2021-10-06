@@ -69,6 +69,7 @@ class JsonSerializableAddressBook {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AddressBook toModelType() throws IllegalValueException {
+        // Add Persons and Rooms
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
@@ -86,6 +87,7 @@ class JsonSerializableAddressBook {
         }
         Id.setNextId(idCounter);
 
+        // Register Residencies
         Map<Id, Person> idPersonMap = new HashMap<>();
         Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
 

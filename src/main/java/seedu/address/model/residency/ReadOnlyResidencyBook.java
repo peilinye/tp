@@ -23,5 +23,5 @@ public interface ReadOnlyResidencyBook {
      */
     Map<Room, Residency> getRoomMap();
 
-    ObservableList<Residency> getResidencyList();
+    ObservableList<Residency> asUnmodifiableObservableList();
 }
