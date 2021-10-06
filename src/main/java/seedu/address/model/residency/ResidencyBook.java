@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
+import seedu.address.model.residency.exceptions.ResidencyNotFoundException;
 import seedu.address.model.room.Room;
 
 public class ResidencyBook implements ReadOnlyResidencyBook {
@@ -73,6 +74,10 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
         requireNonNull(residency);
         Room room = residency.getRoom();
         Set<Person> guests = residency.getGuests();
+
+        if (!internalList.contains(residency)) {
+            throw new ResidencyNotFoundException();
+        }
 
         internalList.remove(residency);
         roomMap.remove(room);
