@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.listroomargs.ListRoomArg;
@@ -20,13 +22,20 @@ public class ListCommandParser implements Parser<ListCommand> {
      */
     @Override
     public ListCommand parse(String args) throws ParseException {
-        String[] argsArr = args.trim().split(" ");
+        // check for empty arguments
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
+
+        String[] argsArr = trimmedArgs.split(" ");
         String type = argsArr[0];
         ListType listType = ParserUtil.parseListType(type);
         if (argsArr.length == 1) {
             return new ListCommand(listType);
         } else {
-            String listRoomArgument = args.trim().split(" ")[1];
+            String listRoomArgument = argsArr[1];
             ListRoomArg arg = ParserUtil.parseListRoomArgument(listRoomArgument);
             return new ListCommand(listType, getListRoomPredicate(arg));
         }
