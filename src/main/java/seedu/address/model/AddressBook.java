@@ -129,6 +129,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
+        //TODO: might need to update this if we want UI to display people in the room, and their names updated too
+        for (Room room: rooms) {
+            if (room.isVacant()) {
+                continue;
+            } else {
+                if (room.getGuests().contains(target)) {
+                    Room editedRoom = room.replaceGuest(target, editedPerson);
+                    setRoom(room, editedRoom);
+                } else {
+                    continue;
+                }
+            }
+        }
         persons.setPerson(target, editedPerson);
     }
 
