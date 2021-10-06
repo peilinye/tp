@@ -52,5 +52,8 @@
   } ],
   "rooms" : [],
   "residencies" : [],
+  "residencyBook" : {
+    "residencies" : [ ]
+  },
   "idCounter" : 7
 }

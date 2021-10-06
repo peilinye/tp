@@ -7,6 +7,8 @@
     "id" : 0
   } ],
   "rooms" : [],
-  "residencies" : [],
+  "residencyBook" : {
+    "residencies" : [ ]
+  },
   "idCounter" : 1
 }
