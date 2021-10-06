@@ -69,8 +69,8 @@ public class Residency {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Residency
-                && ((Residency) other).room == this.room
-                && ((Residency) other).guests == this.guests);
+                && ((Residency) other).room.equals(this.room)
+                && ((Residency) other).guests.equals(this.guests));
     }
 
     @Override
