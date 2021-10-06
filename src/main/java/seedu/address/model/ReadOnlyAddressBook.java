@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.ReadOnlyResidencyBook;
 import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 
@@ -27,4 +28,10 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate residencies.
      */
     ObservableList<Residency> getResidencyList();
+
+    /**
+     * Returns an unmodifiable view of the residency book.
+     * This will not contain any duplicate residencies.
+     */
+    ReadOnlyResidencyBook getResidencyBook();
 }

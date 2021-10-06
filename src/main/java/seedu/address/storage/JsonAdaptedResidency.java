@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
@@ -17,7 +16,7 @@ import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
 
 /**
- * Jackson-friendly version of {@link Room}.
+ * Jackson-friendly version of {@link Residency}.
  */
 class JsonAdaptedResidency {
 
@@ -52,8 +51,6 @@ class JsonAdaptedResidency {
 
     /**
      * Converts this Jackson-friendly adapted residency object into the model's {@code Residency} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted room.
      */
     public Residency toModelType(Map<Id, Person> idPersonMap, Map<RoomNumber, Room> roomNumberRoomMap) {
         Set<Person> guests = new HashSet<>();
@@ -62,6 +59,8 @@ class JsonAdaptedResidency {
         }
 
         Room room = roomNumberRoomMap.get(new RoomNumber(roomNumber));
+
+        // TODO: Check if any data constraints are violated
 
         return new Residency(room, guests);
     }

@@ -9,6 +9,7 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.residency.ReadOnlyResidencyBook;
 import seedu.address.model.residency.Residency;
 import seedu.address.model.residency.ResidencyBook;
 import seedu.address.model.room.Room;
@@ -201,6 +202,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Residency> getResidencyList() {
         return residencyBook.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ReadOnlyResidencyBook getResidencyBook() {
+        return residencyBook;
     }
 
     @Override
