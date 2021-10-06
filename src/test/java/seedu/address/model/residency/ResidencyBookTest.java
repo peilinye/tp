@@ -7,10 +7,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.model.person.Person;
@@ -115,6 +112,42 @@ public class ResidencyBookTest {
     public void remove_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class,
                 () -> residencyBook.remove(null));
+    }
+
+    @Test
+    public void setResidencies_emptyList_success() {
+        Set<Person> guests = new HashSet<>();
+        guests.add(ALICE);
+        Residency residency = new Residency(ROOM_ONE, guests);
+
+        residencyBook.register(residency);
+        residencyBook.setResidencies(new ArrayList<>());
+
+        assertTrue(residencyBook.asUnmodifiableObservableList().isEmpty());
+        assertTrue(residencyBook.getRoomMap().isEmpty());
+        assertTrue(residencyBook.getGuestMap().isEmpty());
+    }
+
+    @Test
+    public void setResidencies_populatedList_success() {
+        Set<Person> guestsRoomOne = new HashSet<>();
+        Set<Person> guestsRoomTwo = new HashSet<>();
+        guestsRoomOne.add(ALICE);
+        guestsRoomTwo.add(BENSON);
+
+        List<Residency> residencies = new ArrayList<>();
+        residencies.add(new Residency(ROOM_TWO, guestsRoomTwo));
+
+        residencyBook.register(ROOM_ONE, guestsRoomOne);
+        residencyBook.setResidencies(residencies);
+
+        Optional<Residency> residencyRoomTwo = residencyBook.getResidency(ROOM_TWO);
+        Optional<Residency> residencyBenson = residencyBook.getResidency(BENSON);
+
+        assertTrue(residencyBook.getResidency(ROOM_ONE).isEmpty());
+        assertTrue(residencyBook.getResidency(ALICE).isEmpty());
+        assertTrue(residencyRoomTwo.isPresent());
+        assertEquals(residencyRoomTwo, residencyBenson);
     }
 
 }
