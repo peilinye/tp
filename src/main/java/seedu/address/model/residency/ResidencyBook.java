@@ -124,6 +124,7 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
     }
 
     public void setResidencies(List<Residency> residencies) {
+        internalList.clear();
         guestMap.clear();
         roomMap.clear();
         for (Residency residency : residencies) {
