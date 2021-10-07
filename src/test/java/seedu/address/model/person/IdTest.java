@@ -69,6 +69,7 @@ public class IdTest {
         Id idOne = Id.of(1);
         RoomNumber roomNumber = new RoomNumber("005");
 
+        assertTrue(idZero.equals(idZero));
         assertTrue(idZeroSame.equals(idZero));
         assertFalse(idZero.equals(idOne));
         assertFalse(idZero.equals(roomNumber));
