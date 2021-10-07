@@ -161,12 +161,23 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// residency-level operations
 
+    /**
+     * Registers a residency using a Room object and guests as a Set of person objects.
+     *
+     * @param room Room object.
+     * @param guests Set of Person objets residing in the room.
+     */
     public void register(Room room, Set<Person> guests) {
         requireNonNull(room);
         requireNonNull(guests);
         residencyBook.register(room, guests);
     }
 
+    /**
+     * Registers a residency using a Residency object.
+     *
+     * @param residency Residency object that contains a Room object and guests as a Set of person objects.
+     */
     public void register(Residency residency) {
         requireNonNull(residency);
         residencyBook.register(residency);
