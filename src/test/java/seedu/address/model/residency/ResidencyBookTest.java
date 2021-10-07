@@ -1,9 +1,6 @@
 package seedu.address.model.residency;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -23,6 +20,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
 import seedu.address.model.residency.exceptions.ResidencyNotFoundException;
+import seedu.address.testutil.PersonBuilder;
 
 public class ResidencyBookTest {
 
@@ -124,6 +122,26 @@ public class ResidencyBookTest {
     }
 
     @Test
+    public void edit_validInput_success() {
+        Set<Person> guests = new HashSet<>();
+        guests.add(ALICE);
+        guests.add(BENSON);
+        Person editedBenson = new PersonBuilder(BENSON).withAddress("editedAddress").build();
+        residencyBook.register(ROOM_ONE, guests);
+        residencyBook.edit(BENSON, editedBenson);
+
+        Optional<Residency> residencyOption = residencyBook.getResidency(editedBenson);
+        assertTrue(residencyOption.isPresent());
+        assertTrue(residencyBook.getResidency(BENSON).isEmpty());
+
+        Residency residency = residencyOption.get();
+        assertTrue(residency.getRoom().equals(ROOM_ONE));
+        assertTrue(residency.getGuests().contains(ALICE));
+        assertTrue(residency.getGuests().contains(editedBenson));
+        assertFalse(residency.getGuests().contains(BENSON));
+    }
+
+    @Test
     public void setResidencies_emptyList_success() {
         Set<Person> guests = new HashSet<>();
         guests.add(ALICE);
@@ -157,5 +175,37 @@ public class ResidencyBookTest {
         assertTrue(residencyBook.getResidency(ALICE).isEmpty());
         assertTrue(residencyRoomTwo.isPresent());
         assertEquals(residencyRoomTwo, residencyBenson);
+    }
+
+    @Test
+    public void equals() {
+        ResidencyBook book1 = new ResidencyBook();
+        ResidencyBook book2 = new ResidencyBook();
+
+        Set<Person> guests1 = new HashSet<>();
+        Set<Person> guests2 = new HashSet<>();
+        guests1.add(ALICE);
+        guests1.add(BENSON);
+        guests2.add(ALICE);
+        guests2.add(BENSON);
+
+        book1.register(ROOM_ONE, guests1);
+        book2.register(ROOM_ONE, guests2);
+
+        // same object -> returns true
+        assertEquals(book1, book1);
+
+        // same values -> returns true
+        assertEquals(book1, book2);
+
+        // different types -> returns false
+        assertNotEquals(book1, 1);
+
+        // null -> returns false
+        assertNotEquals(book1, null);
+
+        // different ResidencyBook -> returns false
+        book2 = new ResidencyBook();
+        assertNotEquals(book1, book2);
     }
 }

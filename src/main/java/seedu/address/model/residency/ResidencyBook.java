@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
@@ -152,5 +153,12 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
     @Override
     public ObservableList<Residency> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ResidencyBook // instanceof handles nulls
+                && internalList.equals(((ResidencyBook) other).internalList));
     }
 }

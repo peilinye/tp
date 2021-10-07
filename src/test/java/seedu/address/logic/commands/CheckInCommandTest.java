@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -102,19 +101,19 @@ public class CheckInCommandTest {
         CheckInCommand checkInRoomTwoCommand = new CheckInCommand(INDEX_SECOND_ROOM, guestList);
 
         // same object -> returns true
-        assertTrue(checkInRoomOneCommand.equals(checkInRoomOneCommand));
+        assertEquals(checkInRoomOneCommand, checkInRoomOneCommand);
 
         // same values -> returns true
         CheckInCommand checkInRoomOneCommandCopy = new CheckInCommand(INDEX_FIRST_ROOM, guestList);
-        assertTrue(checkInRoomOneCommand.equals(checkInRoomOneCommandCopy));
+        assertEquals(checkInRoomOneCommandCopy, checkInRoomOneCommand);
 
         // different types -> returns false
-        assertFalse(checkInRoomOneCommand.equals(1));
+        assertNotEquals(checkInRoomOneCommand, 1);
 
         // null -> returns false
-        assertFalse(checkInRoomOneCommand.equals(null));
+        assertNotEquals(checkInRoomOneCommand, null);
 
         // different CheckInCommand -> returns false
-        assertFalse(checkInRoomOneCommand.equals(checkInRoomTwoCommand));
+        assertNotEquals(checkInRoomTwoCommand, checkInRoomOneCommand);
     }
 }
