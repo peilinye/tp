@@ -3,11 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 
 /**
@@ -44,7 +46,8 @@ public class CheckOutCommand extends Command {
         }
 
         Room roomToEdit = lastShownRoomList.get(roomIndex.getZeroBased());
-        if (roomToEdit.isVacant()) {
+        Optional<Residency> residency = model.getResidency(roomToEdit);
+        if (residency.isEmpty()) {
             throw new CommandException(MESSAGE_ROOM_IS_VACANT);
         }
 
@@ -52,6 +55,7 @@ public class CheckOutCommand extends Command {
         Room editedRoom = new Room(roomToEdit.getRoomNumber());
 
         model.setRoom(roomToEdit, editedRoom);
+        residency.ifPresent(r -> model.removeResidency(r));
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(String.format(MESSAGE_CHECKOUT_SUCCESS, editedRoom));
     }
