@@ -151,7 +151,7 @@ Checks in a group of guests into a room.
 
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A room can have more than one guest.
 </div>
 
