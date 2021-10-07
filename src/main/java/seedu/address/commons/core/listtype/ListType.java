@@ -41,4 +41,14 @@ public class ListType {
     public boolean isRoomsType() {
         return this.type.equals(ROOMS);
     }
+
+    /**
+     * Returns true if both refer to ListType with the same argument.
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListType // instanceof handles nulls
+                && type.equals(((ListType) other).type)); // state check
+    }
 }
