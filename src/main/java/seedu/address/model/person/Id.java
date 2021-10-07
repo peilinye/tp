@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.person.exceptions.InvalidIdException;
 
+/**
+ * The ID field of a person. Used to distinguish between different Persons,
+ * especially if they have the same name.
+ */
 public class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
