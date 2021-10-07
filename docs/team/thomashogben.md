@@ -15,7 +15,6 @@ Given below are my contributions to the project.
     * **Justification**: This feature is indispensable for managing hotels. It's the whole point, innit? :P
     * **Highlights**: This enhancement required adding a fair bit of miscellaneous functionality to other classes that will be important for future additions to the project.
     * **Credits**: Original AB3 team, Darren for Room functionality
-  
 
 ## Further Code contributed:
 [RepoSense link]() [Coming Soon]
@@ -24,7 +23,6 @@ Given below are my contributions to the project.
   * `CheckInCommandParser`, `CheckOutCommandParser`
   * Added `TypicalAddressBook`
   * Misc. functionality
-  
 
 * **Enhancements**:
     * Rewrote `Vacancy` class, greatly simplifying it and vanquishing bugs
@@ -34,4 +32,3 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `checkin` and `checkout`
-  

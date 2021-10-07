@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -35,6 +35,9 @@ public class CheckInCommandTest {
     @Test
     public void execute_validRoomIndexValidGuestList_success() {
         List<Index> guestList = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+        Set<Person> guestSet = new HashSet<>();
+        guestSet.add(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        guestSet.add(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         CheckInCommand checkInCommand = new CheckInCommand(INDEX_FIRST_ROOM, guestList);
 
         Room roomToEdit = model.getFilteredRoomList().get(INDEX_FIRST_ROOM.getZeroBased());
@@ -46,6 +49,7 @@ public class CheckInCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setRoom(roomToEdit, editedRoom);
+        expectedModel.register(editedRoom, guestSet);
 
         String expectedMessage = String.format(CheckInCommand.MESSAGE_CHECKIN_SUCCESS, editedRoom);
 
@@ -72,19 +76,33 @@ public class CheckInCommandTest {
 
     @Test
     public void execute_occupiedRoom_throwsCommandException() {
-        Person[] currentGuests = new Person[] {
-                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())};
+        Set<Person> currentGuests = new HashSet<>();
+        currentGuests.add(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Room roomToEdit = model.getFilteredRoomList().get(INDEX_FIRST_ROOM.getZeroBased());
         Room editedRoom = new RoomBuilder(roomToEdit)
                 .withVacancy(Vacancy.OCCUPIED)
-                .withGuests(currentGuests)
                 .build();
         model.setRoom(roomToEdit, editedRoom);
+        model.register(editedRoom, currentGuests);
 
         List<Index> newGuestList = Arrays.asList(INDEX_SECOND_PERSON);
         CheckInCommand checkInCommand = new CheckInCommand(INDEX_FIRST_ROOM, newGuestList);
 
         assertCommandFailure(checkInCommand, model, CheckInCommand.MESSAGE_ROOM_IS_OCCUPIED);
+    }
+
+    @Test
+    public void execute_guestAlreadyRegistered_throwsCommandException() {
+        Set<Person> guestsRoomOne = new HashSet<>();
+        guestsRoomOne.add(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        List<Index> guestsRoomTwo = Arrays.asList(INDEX_FIRST_PERSON);
+
+        Room roomOne = model.getFilteredRoomList().get(INDEX_FIRST_ROOM.getZeroBased());
+        model.register(roomOne, guestsRoomOne);
+        CheckInCommand checkInCommand = new CheckInCommand(INDEX_SECOND_ROOM, guestsRoomTwo);
+
+        assertCommandFailure(checkInCommand, model,
+                String.format(CheckInCommand.MESSAGE_PERSON_ALREADY_CHECKED_IN, INDEX_FIRST_PERSON.getOneBased()));
     }
 
     @Test
@@ -102,19 +120,19 @@ public class CheckInCommandTest {
         CheckInCommand checkInRoomTwoCommand = new CheckInCommand(INDEX_SECOND_ROOM, guestList);
 
         // same object -> returns true
-        assertTrue(checkInRoomOneCommand.equals(checkInRoomOneCommand));
+        assertEquals(checkInRoomOneCommand, checkInRoomOneCommand);
 
         // same values -> returns true
         CheckInCommand checkInRoomOneCommandCopy = new CheckInCommand(INDEX_FIRST_ROOM, guestList);
-        assertTrue(checkInRoomOneCommand.equals(checkInRoomOneCommandCopy));
+        assertEquals(checkInRoomOneCommandCopy, checkInRoomOneCommand);
 
         // different types -> returns false
-        assertFalse(checkInRoomOneCommand.equals(1));
+        assertNotEquals(checkInRoomOneCommand, 1);
 
         // null -> returns false
-        assertFalse(checkInRoomOneCommand.equals(null));
+        assertNotEquals(checkInRoomOneCommand, null);
 
         // different CheckInCommand -> returns false
-        assertFalse(checkInRoomOneCommand.equals(checkInRoomTwoCommand));
+        assertNotEquals(checkInRoomTwoCommand, checkInRoomOneCommand);
     }
 }

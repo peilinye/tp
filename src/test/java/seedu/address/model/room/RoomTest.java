@@ -1,5 +1,6 @@
 package seedu.address.model.room;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ROOM_ONE;
@@ -7,12 +8,17 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ROOM_TWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VACANCY_ROOM_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VACANCY_ROOM_TWO;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalRooms.ALICE;
+import static seedu.address.testutil.TypicalRooms.BENSON;
+import static seedu.address.testutil.TypicalRooms.CHARLIE;
 import static seedu.address.testutil.TypicalRooms.GUESTS;
 import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.RoomBuilder;
 
 
@@ -31,6 +37,49 @@ public class RoomTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Room room = new RoomBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> room.getGuests().remove(0));
+    }
+
+    @Test
+    public void replaceGuestTest_guestPresent() {
+        Person[] persons = {ALICE, BENSON};
+
+        Person editedPerson = new PersonBuilder(ALICE).withName("Alicia").build();
+
+        Person[] editedPersons = {editedPerson, BENSON};
+
+        Room room = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
+                .withGuests(persons).build();
+
+        Room editedRoom = room.replaceGuest(ALICE, editedPerson);
+        Room correctRoom = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
+                .withGuests(editedPersons).build();
+
+        Person[] wrongPersons = {BENSON, CHARLIE};
+        Room wrongRoom = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
+                .withGuests(wrongPersons).build();
+        Room wrongEditedRoom = wrongRoom.replaceGuest(ALICE, CHARLIE);
+
+        assertEquals(correctRoom, editedRoom);
+        assertFalse(correctRoom.equals(wrongEditedRoom));
+
+
+
+    }
+
+    @Test
+    public void replaceGuestTest_guestAbsent() {
+        Person[] persons = {ALICE, BENSON};
+
+        Person editedPerson = new PersonBuilder(CHARLIE).withName("Cordoba").build();
+
+        Room room = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
+                .withGuests(persons).build();
+
+        Room editedRoom = room.replaceGuest(ALICE, editedPerson);
+        Room correctRoom = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
+                .withGuests(persons).build();
+        assertFalse(correctRoom.equals(editedRoom));
+
     }
 
 

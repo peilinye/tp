@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
-import static seedu.address.testutil.TypicalRooms.CHARLIE;
 
 import org.junit.jupiter.api.Test;
 
@@ -89,8 +88,12 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // same person, different room -> return false
-        Person editedCharlie = new PersonBuilder(CHARLIE).withRoom("007").build();
+
+        /*
+        // same person, different ID -> return false
+        Person editedCharlie = new PersonBuilder(CHARLIE).withId(2106).build();
         assertFalse(CHARLIE.equals(editedCharlie));
+        */
+
     }
 }

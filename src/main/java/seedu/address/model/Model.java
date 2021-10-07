@@ -1,11 +1,17 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.Residency;
+import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
+import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
+import seedu.address.model.residency.exceptions.ResidencyNotFoundException;
 import seedu.address.model.room.Room;
 
 /**
@@ -84,6 +90,42 @@ public interface Model {
      * The room identity of {@code editedRoom} must not be the same as another existing room in the address book.
      */
     void setRoom(Room target, Room editedRoom);
+
+    /**
+     * Registers the residency of a set of guests in a room.
+     *
+     * @param room The {@code Room} to stay in
+     * @param guests The {@code Set} of {@code Person}s to stay in the room
+     * @throws DuplicateRoomRegException if the {@code Room} is already registered.
+     * @throws DuplicatePersonRegException if any {@code Person} is already registered.
+     */
+    void register(Room room, Set<Person> guests);
+
+    /**
+     * Removes and de-registers a {@code Residency}, making the room and guests
+     * available for new registrations.
+     *
+     * @throws ResidencyNotFoundException if the given residency is not registered.
+     */
+    void removeResidency(Residency residency);
+
+    /**
+     * Gets the {@code Residency} containing this {@code Room}, if it exists.
+     *
+     * @param room The room to get the residency of
+     * @return An {@code Optional} with the {@code Residency} present if it exists,
+     *         otherwise an empty Optional
+     */
+    Optional<Residency> getResidency(Room room);
+
+    /**
+     * Gets the {@code Residency} containing this {@code Person}, if it exists.
+     *
+     * @param guest The {@code Person} to get the residency of
+     * @return An {@code Optional} with the {@code Residency} present if it exists,
+     *         otherwise an empty Optional
+     */
+    Optional<Residency> getResidency(Person guest);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

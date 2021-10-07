@@ -11,7 +11,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.Residency;
+import seedu.address.model.residency.ResidencyBook;
 import seedu.address.model.room.Room;
 
 /**
@@ -28,14 +31,22 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
 
+    private final JsonAdaptedResidencyBook residencyBook;
+
+    private final int idCounter;
+
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons, rooms, residency book and id counter.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("rooms") List<JsonAdaptedRoom> rooms) {
+                                       @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
+                                       @JsonProperty("residencyBook") JsonAdaptedResidencyBook residencyBook,
+                                       @JsonProperty("id counter") int idCounter) {
         this.persons.addAll(persons);
         this.rooms.addAll(rooms);
+        this.residencyBook = residencyBook;
+        this.idCounter = idCounter;
     }
 
     /**
@@ -46,6 +57,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
+        residencyBook = new JsonAdaptedResidencyBook(source.getResidencyBook());
+        idCounter = Id.getNextId();
     }
 
     /**
@@ -55,6 +68,15 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+
+        addPersonsAndRooms(addressBook);
+        addResidencies(addressBook);
+        setId();
+
+        return addressBook;
+    }
+
+    private void addPersonsAndRooms(AddressBook addressBook) throws IllegalValueException {
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
@@ -69,7 +91,18 @@ class JsonSerializableAddressBook {
             }
             addressBook.addRoom(room);
         }
-        return addressBook;
+    }
+
+    private void addResidencies(AddressBook addressBook) {
+        ResidencyBook tempResidencyBook =
+                residencyBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList());
+        for (Residency residency : tempResidencyBook.asUnmodifiableObservableList()) {
+            addressBook.register(residency);
+        }
+    }
+
+    private void setId() {
+        Id.setNextId(idCounter);
     }
 
 }
