@@ -39,6 +39,7 @@ public class CheckOutCommandTest {
         Room roomToEdit = new Room(originalRoom.getRoomNumber(), Vacancy.OCCUPIED, guests);
 
         model.setRoom(originalRoom, roomToEdit);
+        model.register(roomToEdit, guests);
 
         // Checking out a room should return it to its default state
         Room editedRoom = originalRoom;

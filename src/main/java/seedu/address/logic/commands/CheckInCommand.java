@@ -31,7 +31,7 @@ public class CheckInCommand extends Command {
     public static final String MESSAGE_CHECKIN_SUCCESS = "Room Checked In: %1$s";
     public static final String MESSAGE_NO_GUESTS = "At least one person must be checked into the room.";
     public static final String MESSAGE_ROOM_IS_OCCUPIED = "Room is currently occupied.";
-    public static final String MESSAGE_PERSON_ALREADY_CHECKED_IN = "Guest %1$i is already checked in.";
+    public static final String MESSAGE_PERSON_ALREADY_CHECKED_IN = "Guest %1$s is already checked in.";
 
     private final Index roomIndex;
     private final List<Index> guestIndexes;
