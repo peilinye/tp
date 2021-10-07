@@ -21,10 +21,13 @@ public class ResidencyTest {
     public void isSameResidency() {
         Residency residencyOne = new Residency(ROOM_ONE, PERSON_LIST_ONE);
         Residency residencyOneSame = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        Residency residencyOneDifferent = new Residency(ROOM_ONE, PERSON_LIST_TWO);
         Residency residencyTwo = new Residency(ROOM_TWO, PERSON_LIST_TWO);
 
         assertFalse(residencyOne.equals(residencyTwo));
         assertTrue(residencyOne.equals(residencyOneSame));
+        assertTrue(residencyOne.equals(residencyOne));
+        assertFalse(residencyOne.equals(residencyOneDifferent));
     }
 
     @Test
