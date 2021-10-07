@@ -9,6 +9,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 import seedu.address.testutil.PersonBuilder;
 
@@ -146,6 +149,26 @@ public class AddCommandTest {
 
         @Override
         public void setRoom(Room target, Room editedRoom) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void register(Room room, Set<Person> guests) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeResidency(Residency residency) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Residency> getResidency(Room room) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Residency> getResidency(Person guest) {
             throw new AssertionError("This method should not be called.");
         }
 

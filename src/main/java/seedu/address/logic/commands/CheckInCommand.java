@@ -31,6 +31,7 @@ public class CheckInCommand extends Command {
     public static final String MESSAGE_CHECKIN_SUCCESS = "Room Checked In: %1$s";
     public static final String MESSAGE_NO_GUESTS = "At least one person must be checked into the room.";
     public static final String MESSAGE_ROOM_IS_OCCUPIED = "Room is currently occupied.";
+    public static final String MESSAGE_PERSON_ALREADY_CHECKED_IN = "Guest %1$s is already checked in.";
 
     private final Index roomIndex;
     private final List<Index> guestIndexes;
@@ -60,13 +61,19 @@ public class CheckInCommand extends Command {
         }
 
         Room roomToEdit = lastShownRoomList.get(roomIndex.getZeroBased());
-        if (!roomToEdit.isVacant()) {
+        if (model.getResidency(roomToEdit).isPresent()) {
             throw new CommandException(MESSAGE_ROOM_IS_OCCUPIED);
         }
 
         Set<Person> guests = new HashSet<>();
         for (Index guestIndex : guestIndexes) {
             Person guestToAdd = lastShownPersonList.get(guestIndex.getZeroBased());
+
+            if (model.getResidency(guestToAdd).isPresent()) {
+                throw new CommandException(
+                        String.format(MESSAGE_PERSON_ALREADY_CHECKED_IN, guestIndex.getOneBased()));
+            }
+
             guests.add(guestToAdd);
         }
         if (guests.isEmpty()) {
@@ -76,6 +83,7 @@ public class CheckInCommand extends Command {
         Room editedRoom = new Room(roomToEdit.getRoomNumber(), Vacancy.OCCUPIED, guests);
 
         model.setRoom(roomToEdit, editedRoom);
+        model.register(editedRoom, guests);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(String.format(MESSAGE_CHECKIN_SUCCESS, editedRoom));
     }

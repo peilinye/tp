@@ -3,10 +3,15 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.residency.ReadOnlyResidencyBook;
+import seedu.address.model.residency.Residency;
+import seedu.address.model.residency.ResidencyBook;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomList;
 
@@ -18,6 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final RoomList rooms;
+    private final ResidencyBook residencyBook;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         rooms = new RoomList();
+        residencyBook = new ResidencyBook();
     }
 
     public AddressBook() {}
@@ -59,6 +66,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.rooms.setRooms(rooms);
     }
 
+    public void setResidencies(List<Residency> residencies) {
+        this.residencyBook.setResidencies(residencies);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
@@ -67,9 +78,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setRooms(newData.getRoomList());
+        setResidencies(newData.getResidencyList());
     }
 
-    //// person-level operations
+    //// (person / room)-level operations
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -125,6 +137,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
         persons.setPerson(target, editedPerson);
+        residencyBook.edit(target, editedPerson);
     }
 
     /**
@@ -146,6 +159,28 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// residency-level operations
+
+    public void register(Room room, Set<Person> guests) {
+        residencyBook.register(room, guests);
+    }
+
+    public void register(Residency residency) {
+        residencyBook.register(residency);
+    }
+
+    public void removeResidency(Residency residency) {
+        residencyBook.remove(residency);
+    }
+
+    public Optional<Residency> getResidency(Room room) {
+        return residencyBook.getResidency(room);
+    }
+
+    public Optional<Residency> getResidency(Person person) {
+        return residencyBook.getResidency(person);
+    }
+
     //// util methods
 
     @Override
@@ -165,11 +200,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Residency> getResidencyList() {
+        return residencyBook.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ReadOnlyResidencyBook getResidencyBook() {
+        return residencyBook;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
-                && rooms.equals(((AddressBook) other).rooms));
+                && rooms.equals(((AddressBook) other).rooms)
+                && residencyBook.equals(((AddressBook) other).residencyBook));
     }
 
     @Override

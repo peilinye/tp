@@ -22,7 +22,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final int DEFAULT_ID = Integer.MAX_VALUE;
-    //public static final int DEFAULT_ID = 0;
 
     private Name name;
     private Phone phone;

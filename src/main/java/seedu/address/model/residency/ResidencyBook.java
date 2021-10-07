@@ -3,29 +3,39 @@ package seedu.address.model.residency;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
+import seedu.address.model.residency.exceptions.ResidencyNotFoundException;
 import seedu.address.model.room.Room;
 
-public class Residencies {
+public class ResidencyBook implements ReadOnlyResidencyBook {
 
-    private static final HashMap<Room, Residency> roomMap = new HashMap<>();
-    private static final HashMap<Person, Residency> guestMap = new HashMap<>();
+    private final ObservableList<Residency> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Residency> internalUnmodifiableList =
+            FXCollections.unmodifiableObservableList(internalList);
+
+    private final HashMap<Room, Residency> roomMap = new HashMap<>();
+    private final HashMap<Person, Residency> guestMap = new HashMap<>();
 
     /**
-     * Registers the stay of a set of guests in a room.
+     * Registers the residency of a set of guests in a room.
      *
      * @param room The {@code Room} to stay in
      * @param guests The {@code Set} of {@code Person}s to stay in the room
      * @throws DuplicateRoomRegException if the {@code Room} is already registered.
      * @throws DuplicatePersonRegException if any {@code Person} is already registered.
      */
-    public static void register(Room room, Set<Person> guests) {
+    public void register(Room room, Set<Person> guests) {
         requireNonNull(room);
         requireAllNonNull(guests);
 
@@ -35,7 +45,7 @@ public class Residencies {
     /**
      * Registers a {@code Residency}.
      */
-    private static void register(Residency residency) {
+    public void register(Residency residency) {
         requireNonNull(residency);
         Room room = residency.getRoom();
         Set<Person> guests = residency.getGuests();
@@ -49,6 +59,7 @@ public class Residencies {
             }
         }
 
+        internalList.add(residency);
         roomMap.put(room, residency);
         for (Person guest : guests) {
             guestMap.put(guest, residency);
@@ -58,12 +69,19 @@ public class Residencies {
     /**
      * Removes and de-registers a {@code Residency}, making the room and guests
      * available for new registrations.
+     *
+     * @throws ResidencyNotFoundException if the given residency is not registered.
      */
-    public static void remove(Residency residency) {
+    public void remove(Residency residency) {
         requireNonNull(residency);
         Room room = residency.getRoom();
         Set<Person> guests = residency.getGuests();
 
+        if (!internalList.contains(residency)) {
+            throw new ResidencyNotFoundException();
+        }
+
+        internalList.remove(residency);
         roomMap.remove(room);
         for (Person guest : guests) {
             guestMap.remove(guest);
@@ -77,7 +95,7 @@ public class Residencies {
      * @param personToEdit The Person object to replace
      * @param editedPerson The Person object to replace with
      */
-    public static void edit(Person personToEdit, Person editedPerson) {
+    public void edit(Person personToEdit, Person editedPerson) {
         requireAllNonNull(personToEdit, editedPerson);
         Optional<Residency> residencyOption = getResidency(personToEdit);
         residencyOption.ifPresent(residency -> {
@@ -95,7 +113,7 @@ public class Residencies {
      * @return An {@code Optional} with the {@code Residency} present if it exists,
      *         otherwise an empty Optional
      */
-    public static Optional<Residency> getResidency(Room room) {
+    public Optional<Residency> getResidency(Room room) {
         requireNonNull(room);
         return Optional.ofNullable(roomMap.get(room));
     }
@@ -107,9 +125,39 @@ public class Residencies {
      * @return An {@code Optional} with the {@code Residency} present if it exists,
      *         otherwise an empty Optional
      */
-    public static Optional<Residency> getResidency(Person guest) {
+    public Optional<Residency> getResidency(Person guest) {
         requireNonNull(guest);
         return Optional.ofNullable(guestMap.get(guest));
     }
 
+    public void setResidencies(List<Residency> residencies) {
+        internalList.clear();
+        guestMap.clear();
+        roomMap.clear();
+        for (Residency residency : residencies) {
+            register(residency);
+        }
+    }
+
+    @Override
+    public Map<Person, Residency> getGuestMap() {
+        return Collections.unmodifiableMap(guestMap);
+    }
+
+    @Override
+    public Map<Room, Residency> getRoomMap() {
+        return Collections.unmodifiableMap(roomMap);
+    }
+
+    @Override
+    public ObservableList<Residency> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ResidencyBook // instanceof handles nulls
+                && internalList.equals(((ResidencyBook) other).internalList));
+    }
 }

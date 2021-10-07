@@ -24,7 +24,7 @@ public class Residency {
      * @param room Room object where guests stay in.
      * @param guests Set of Person objects who stayed in this room.
      */
-    protected Residency(Room room, Set<Person> guests) {
+    public Residency(Room room, Set<Person> guests) {
         requireNonNull(room);
         requireAllNonNull(guests);
         this.room = room;
@@ -69,8 +69,8 @@ public class Residency {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Residency
-                && ((Residency) other).room == this.room
-                && ((Residency) other).guests == this.guests);
+                && ((Residency) other).room.equals(this.room)
+                && ((Residency) other).guests.equals(this.guests));
     }
 
     @Override
