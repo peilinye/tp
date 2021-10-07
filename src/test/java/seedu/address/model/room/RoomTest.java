@@ -54,7 +54,15 @@ public class RoomTest {
         Room correctRoom = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
                 .withGuests(editedPersons).build();
 
+        Person[] wrongPersons = {BENSON, CHARLIE};
+        Room wrongRoom = new RoomBuilder().withNumber("001").withVacancy(Vacancy.OCCUPIED)
+                .withGuests(wrongPersons).build();
+        Room wrongEditedRoom = wrongRoom.replaceGuest(ALICE, CHARLIE);
+
         assertEquals(correctRoom, editedRoom);
+        assertFalse(correctRoom.equals(wrongEditedRoom));
+
+
 
     }
 
