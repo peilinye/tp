@@ -66,6 +66,13 @@ public class AddressBookTest {
     }
 
     @Test
+    public void register_nullResidency_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.register(null));
+        assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
+        assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
+    }
+
+    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }

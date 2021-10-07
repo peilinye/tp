@@ -28,6 +28,16 @@ public class ResidencyTest {
     }
 
     @Test
+    public void toStringTest() {
+        Residency residencyOne = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        Residency residencyOneSame = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        Residency residencyTwo = new Residency(ROOM_TWO, PERSON_LIST_TWO);
+
+        assertFalse(residencyOne.toString().equals(residencyTwo.toString()));
+        assertTrue(residencyOne.toString().equals(residencyOneSame.toString()));
+    }
+
+    @Test
     public void hashcodeTest() {
         Residency residencyOne = new Residency(ROOM_ONE, PERSON_LIST_ONE);
         Residency residencyOneSame = new Residency(ROOM_ONE, PERSON_LIST_ONE);

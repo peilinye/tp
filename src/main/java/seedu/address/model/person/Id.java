@@ -22,6 +22,7 @@ public class Id {
 
     /**
      * Constructor for Id object given an Integer Id.
+     *
      * @param id
      */
     private Id(int id) {
@@ -50,6 +51,7 @@ public class Id {
      * @return boolean to indicate if integer is non-negative.
      */
     public static boolean isValidId(int id) {
+        requireNonNull(id);
         return id >= 0;
     }
 

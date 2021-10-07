@@ -61,7 +61,7 @@ public class Residency {
 
     @Override
     public String toString() {
-        String message = String.format("Room [], Guests []", String.valueOf(room), String.valueOf(guests));
+        String message = String.format("Room [%s], Guests [%s]", room, guests);
         return message;
     }
 

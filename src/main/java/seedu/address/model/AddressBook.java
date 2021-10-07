@@ -162,10 +162,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// residency-level operations
 
     public void register(Room room, Set<Person> guests) {
+        requireNonNull(room);
+        requireNonNull(guests);
         residencyBook.register(room, guests);
     }
 
     public void register(Residency residency) {
+        requireNonNull(residency);
         residencyBook.register(residency);
     }
 
