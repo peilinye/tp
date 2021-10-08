@@ -1,10 +1,13 @@
 package seedu.address.model.room;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
+
+/**
+ * Tests that a {@code Room}'s {@code RoomNumber} matches any of the keywords given.
+ */
 public class RoomNumberContainsKeywordsPredicate implements Predicate<Room> {
     private final List<String> keywords;
 
