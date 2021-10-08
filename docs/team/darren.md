@@ -15,14 +15,32 @@ Given below are my contributions to the project.
         * Justification: This feature improves the product significantly because being able to visually check a room's status, such as its Occupancy Status, helps it's users to identify a room's status quickly and increases response time to the user requesting such information.
         * Highlights: This enhancement affects user interaction with the application. It required an in-depth analysis and understanding of the GUI codebase and jackSon's syntax, such as @FXML tags having only small characters
         * Credit: jackSon documentation, stackOverflow
+  2. Find Room command to enable users to search for specific rooms
+        * What it does: Allows users to search for specific rooms in the given list of rooms
+        * Justification: This feature improves the product significantly as being able to quickly search for specific rooms helps the user to retrieve information about the room faster as compared to manually scrolling down till they find the room
+        * Highlights: This enhancement required us to put ourselves in the shoes of a potential user and what were the pain points that might arise from our application without this feature.
+        * Credit: Existing UML Diagrams, Well-thought out code structure that enables easy extensibility.
 
-## Code contributed
+## Code Contributed
 [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/) (To Be Updated)
+
+#### Testing
+* Room: TypicalRooms, RoomBuilder, RoomListTest
+* Logic:
+    * AddressBookParserTest: `FindRoomCommand`
+    * FindRoomCommandParserTest
+    * FindRoomCommandTest
+* Model:
+    * ResidencyTest
+
+
+#### GUI
+* Amended GUI to reflect addressBook.json values for Room
+* Added styling to indicate vacancy status of rooms
+
+#### Misc
 * Provided boilerplate code for team to start work in first week of team project
 * Added Room, RoomNumber, Vacancy objects
-* Testing for the following:
-    * Room: TypicalRooms, RoomBuilder, RoomListTest
-* Amended GUI to reflect addressBook.json values for Room
 
 
 ## Documentation

@@ -172,6 +172,15 @@ The room index refers to the index number shown in the displayed room list.
 Example:
 * `checkout 24`
 
+### Locating a specific room : `room`
+
+Shows a list of rooms that match the room numbers provided.
+
+Format: `room ROOM_NUMBER(s)`
+
+Example:
+* `room 001 002`
+
 ### Listing all rooms : `list rooms`
 
 Shows a list of all rooms in Trace2Gather.
