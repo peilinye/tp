@@ -132,6 +132,21 @@
     -fx-text-fill: #010504;
 }
 
+.cell_occupancy_label {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 12px;
+    -fx-text-fill: #010504;
+    -fx-background-color: #ac3cb7;
+    -fx-background-radius: 10px;
+    -fx-label-padding: 3px;
+}
+
+.cell_room_sub_label {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
@@ -305,6 +320,14 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.table-header {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: white;
+    -fx-alignment: center;
 }
 
 #cardPane {

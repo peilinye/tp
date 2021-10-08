@@ -15,7 +15,6 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-
 Class UniquePersonList
 Class Person
 Class Address
@@ -23,6 +22,11 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+
+Class RoomList
+Class Room
+Class RoomNumber
+Class Vacancy
 
 }
 
@@ -45,6 +49,12 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+
+AddressBook *--> "1" RoomList
+RoomList --> "~* all" Room
+Room *--> RoomNumber
+Room *--> Vacancy
+Room *--> "*" Person
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

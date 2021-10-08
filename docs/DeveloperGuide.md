@@ -121,8 +121,14 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data.
+    * All `Person` objects are contained in a `UniquePersonList` object.
+    * All `Room` objects are contained in a `RoomList` object.
+    * All `Residency` objects are contained in a `ResidencyBook` object.
+* stores the currently 'selected' object(s) (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+    * `Person` objects are stored in `ObservableList<Person>`
+    * `Room` objects are stored in `ObservableList<Room>`
+    * `Residency` objects are stored in `ObservableList<Residency>`
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -238,6 +244,9 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+_{Potential Data Archiving: Expired Residencies stored in a separate file from the 
+  main addressbook.json to facilitate archiving}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -257,13 +266,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* hotel receptionist
+* has a need to manage a significant number of guests and rooms
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage both guests and rooms faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -273,26 +283,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add a guest as a contact       | check them into rooms                                                  |
+| `* * *`  | user                                       | check guests into rooms        | admit them into our hotel                                                   |
+| `* * *`  | user                                       | check guests out of rooms      | free up the room and have their information in the archive                                                  |
+| `* * *`  | user                                       | search for vacant rooms        | assign guests to a vacant room                                         |
+| `* * *`  | user                                       | delete guests                  | remove them if the wrong details are entered                           |
+| `* * *`  | user                                       | list all guests and rooms      | check all the statuses                                                 |
+| `*`      | user with many guests in the address book  | sort guests  by name           | locate a guest easily                                                  |
+| `* *`    | user                                       | search guests by their name    | find a guest's details easily                                          |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Trace2Gather` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Deleting a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Trace2Gather shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Trace2Gather deletes the person
 
     Use case ends.
 
@@ -304,17 +317,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Trace2Gather shows an error message.
 
       Use case resumes at step 2.
+
+
+**Use case: Adding a person**
+
+**MSS**
+
+1.  User requests to add a person and inputs the necessary parameters
+2.  Trace2Gather adds the person with the input details
+3.  Trace2Gather displays a message to the user indicating that the person has been added
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are missing parameters or input is not in the correct format
+* 1b. Trace2Gather displays a message indicating to the user the required parameters
+* 1c. User inputs the parameters again until all required parameters are input. Use case resumes at step 2.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should work without being connected to the Internet.
+5. Should be able to use most basic commands within a day of usage.
 
 *{More to be added}*
 

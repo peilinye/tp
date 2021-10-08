@@ -6,6 +6,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,18 +15,23 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CheckInCommand;
+import seedu.address.logic.commands.CheckOutCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.room.RoomNumberContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -38,6 +45,28 @@ public class AddressBookParserTest {
         Person person = new PersonBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_checkin() throws Exception {
+        List<Index> guestIndexes = Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON);
+
+        CheckInCommand command = (CheckInCommand) parser.parseCommand(
+                CheckInCommand.COMMAND_WORD
+                        + " "
+                        + INDEX_FIRST_ROOM.getOneBased()
+                        + " g/"
+                        + INDEX_FIRST_PERSON.getOneBased()
+                        + " g/"
+                        + INDEX_SECOND_PERSON.getOneBased());
+        assertEquals(new CheckInCommand(INDEX_FIRST_ROOM, guestIndexes), command);
+    }
+
+    @Test
+    public void parseCommand_checkout() throws Exception {
+        CheckOutCommand command = (CheckOutCommand) parser.parseCommand(
+                CheckOutCommand.COMMAND_WORD + " " + INDEX_FIRST_ROOM.getOneBased());
+        assertEquals(new CheckOutCommand(INDEX_FIRST_ROOM), command);
     }
 
     @Test
@@ -77,15 +106,24 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_findRoom() throws Exception {
+        List<String> keywords = Arrays.asList("001", "002");
+        FindRoomCommand command = (FindRoomCommand) parser.parseCommand(
+                FindRoomCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindRoomCommand(new RoomNumberContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
+    //change test cases?
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_listGuests() throws Exception {
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " guests") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " rooms") instanceof ListCommand);
     }
 
     @Test

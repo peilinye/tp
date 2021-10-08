@@ -1,12 +1,15 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.listroomargs.ListRoomArg;
+import seedu.address.commons.core.listtype.ListType;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -120,5 +123,37 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String list type} into a {@code ListType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code list type} is invalid.
+     */
+    public static ListType parseListType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        if (!ListType.isValidListType(trimmedType)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListType.MESSAGE_CONSTRAINTS));
+        }
+        return new ListType(trimmedType);
+    }
+
+    /**
+     * Parses a {@code String list room argument} into a {@code ListRoomArg}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code list room argument} is invalid.
+     */
+    public static ListRoomArg parseListRoomArgument(String arg) throws ParseException {
+        requireNonNull(arg);
+        String trimmedArg = arg.trim();
+        if (!ListRoomArg.isValidListType(trimmedArg)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomArg.MESSAGE_CONSTRAINTS));
+        }
+        return new ListRoomArg(trimmedArg);
     }
 }

@@ -20,6 +20,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.residency.ReadOnlyResidencyBook;
+import seedu.address.model.residency.Residency;
+import seedu.address.model.residency.ResidencyBook;
+import seedu.address.model.room.Room;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -29,6 +33,8 @@ public class AddressBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getRoomList());
+        assertEquals(Collections.emptyList(), addressBook.getResidencyList());
     }
 
     @Test
@@ -60,6 +66,13 @@ public class AddressBookTest {
     }
 
     @Test
+    public void register_nullResidency_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.register(null));
+        assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
+        assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
+    }
+
+    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }
@@ -88,6 +101,9 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Room> rooms = FXCollections.observableArrayList();
+        private final ObservableList<Residency> residencies = FXCollections.observableArrayList();
+        private final ResidencyBook residencyBook = new ResidencyBook();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +112,21 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Room> getRoomList() {
+            return rooms;
+        }
+
+        @Override
+        public ObservableList<Residency> getResidencyList() {
+            return residencies;
+        }
+
+        @Override
+        public ReadOnlyResidencyBook getResidencyBook() {
+            return residencyBook;
         }
     }
 

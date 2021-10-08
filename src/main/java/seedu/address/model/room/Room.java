@@ -1,32 +1,87 @@
 package seedu.address.model.room;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.person.Person;
 
 public class Room {
-    public final Integer roomNumber;
-    private List<Person> guests;
-    private boolean isVacant;
+    private final RoomNumber roomNumber;
+    private final Vacancy vacancy;
+    private final Set<Person> guests = new HashSet<>();
 
     /**
-     * Constructs a {@code RoomNumber}.
+     * Constructs a {@code Room}.
      *
      * @param roomNumber A valid room number.
      */
-    public Room(int roomNumber) {
+    public Room(RoomNumber roomNumber) {
         this.roomNumber = roomNumber;
-        guests = new ArrayList<Person>();
-        this.isVacant = false;
+        vacancy = Vacancy.VACANT;
     }
 
-    public void addPerson(Person person) {
-        guests.add(person);
+    /**
+     * Constructs a Room given its roomNumber, vacancy, status and list of guests.
+     *
+     * @param roomNumber RoomNumber roomNumber
+     * @param vacancy Vacant if room has no guests.
+     * @param guests List of guests in the room.
+     */
+    public Room(RoomNumber roomNumber, Vacancy vacancy, Set<Person> guests) {
+        this.roomNumber = roomNumber;
+        this.vacancy = vacancy;
+        this.guests.addAll(guests);
     }
 
-    public List<Person> getGuests() {
-        return this.guests;
+    public RoomNumber getRoomNumber() {
+        return roomNumber;
+    }
+
+    public Vacancy getVacancy() {
+        return this.vacancy;
+    }
+
+    /**
+     * Returns an immutable person set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Person> getGuests() {
+        return Collections.unmodifiableSet(guests);
+    }
+
+    public boolean isVacant() {
+        return vacancy.isVacant();
+    }
+
+    /**
+     * Returns true if both rooms have the same name.
+     */
+    public boolean isSameRoom(Room otherRoom) {
+        if (otherRoom == this) {
+            return true;
+        }
+
+        return otherRoom != null
+                && otherRoom.getRoomNumber().equals(getRoomNumber());
+    }
+
+    /**
+     * Finds a guest to replace his/her details with updated information.
+     * @param oldGuest the guest in the current guests
+     * @param editedGuest the guest with the updated information
+     * @return Room that contained the edited guests
+     */
+    public Room replaceGuest(Person oldGuest, Person editedGuest) {
+        Set<Person> editedGuests = guests;
+
+        if (editedGuests.contains(oldGuest)) {
+            editedGuests.remove(oldGuest);
+            editedGuests.add(editedGuest);
+        }
+
+        return new Room(roomNumber, vacancy, editedGuests);
     }
 
     @Override
@@ -38,11 +93,13 @@ public class Room {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Room
-                && roomNumber.equals(((Room) other).roomNumber));
+                && roomNumber.equals(((Room) other).roomNumber)
+                && vacancy.equals(((Room) other).vacancy)
+                && guests.equals(((Room) other).guests));
     }
 
     @Override
     public int hashCode() {
-        return roomNumber.hashCode();
+        return Objects.hash(roomNumber, vacancy, guests);
     }
 }

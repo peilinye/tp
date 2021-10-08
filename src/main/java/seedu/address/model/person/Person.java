@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.room.Room;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,6 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Id id;
     private final Phone phone;
     private final Email email;
 
@@ -25,39 +25,26 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
-    //additional field
-    private final Room room;
-
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Id id, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
+        this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.room = null;
         this.tags.addAll(tags);
     }
 
     /**
+     * Creates a new {@code Person} with the specified data fields, and generates a new {@code Id} for them.
      * Every field must be present and not null.
-     * @param name
-     * @param phone
-     * @param email
-     * @param address
-     * @param room
-     * @param tags
      */
-    public Person(Name name, Phone phone, Email email, Address address, Room room, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.room = room;
-        this.tags.addAll(tags);
+    public static Person createPerson(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        Id id = new Id();
+        return new Person(name, id, phone, email, address, tags);
     }
 
     public Name getName() {
@@ -76,6 +63,10 @@ public class Person {
         return address;
     }
 
+    public Id getId() {
+        return id;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -85,8 +76,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same name.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -94,8 +84,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -118,11 +107,13 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags());
+        //&& otherPerson.getId().equals(getId());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
+        //return Objects.hash(name, phone, email, address, tags, id);
         return Objects.hash(name, phone, email, address, tags);
     }
 
@@ -130,14 +121,20 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Phone: ")
+                .append("; Id: ")
+                .append(getId())
+                .append("; Phone: ")
                 .append(getPhone())
-                .append(" Email: ")
+                .append("; Email: ")
                 .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append("; Address: ")
+                .append(getAddress());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 
