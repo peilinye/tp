@@ -104,6 +104,8 @@ public class AddressBookTest {
         private final ObservableList<Room> rooms = FXCollections.observableArrayList();
         private final ObservableList<Residency> residencies = FXCollections.observableArrayList();
         private final ResidencyBook residencyBook = new ResidencyBook();
+        private final ObservableList<Residency> records = FXCollections.observableArrayList();
+        private final ResidencyBook recordsBook = new ResidencyBook();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -127,6 +129,16 @@ public class AddressBookTest {
         @Override
         public ReadOnlyResidencyBook getResidencyBook() {
             return residencyBook;
+        }
+
+        @Override
+        public ObservableList<Residency> getRecordsList() {
+            return records;
+        }
+
+        @Override
+        public ReadOnlyResidencyBook getRecordsBook() {
+            return recordsBook;
         }
     }
 
