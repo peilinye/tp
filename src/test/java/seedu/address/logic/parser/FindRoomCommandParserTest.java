@@ -26,61 +26,23 @@ import seedu.address.model.room.RoomNumberContainsKeywordsPredicate;
 
 public class FindRoomCommandParserTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private FindRoomCommandParser parser = new FindRoomCommandParser();
 
     @Test
-    public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
-
-        FindGuestCommand findGuestFirstCommand = new FindGuestCommand(firstPredicate);
-        FindGuestCommand findGuestSecondCommand = new FindGuestCommand(secondPredicate);
-
-        // same object -> returns true
-        assertTrue(findGuestFirstCommand.equals(findGuestFirstCommand));
-
-        // same values -> returns true
-        FindGuestCommand findGuestFirstCommandCopy = new FindGuestCommand(firstPredicate);
-        assertTrue(findGuestFirstCommand.equals(findGuestFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(findGuestFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(findGuestFirstCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(findGuestFirstCommand.equals(findGuestSecondCommand));
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindGuestCommand command = new FindGuestCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    }
+    public void parse_validArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindRoomCommand expectedFindCommand =
+                new FindRoomCommand(new RoomNumberContainsKeywordsPredicate(Arrays.asList("001", "002")));
+        assertParseSuccess(parser, "001 002", expectedFindCommand);
 
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindGuestCommand command = new FindGuestCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n 001 \n \t 002  \t", expectedFindCommand);
     }
 
 }
