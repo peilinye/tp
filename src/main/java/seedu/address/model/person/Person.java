@@ -17,7 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Id id;
+    private final NRIC nric;
     private final Phone phone;
     private final Email email;
 
@@ -28,13 +28,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Id id, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, NRIC nric, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, nric, tags);
         this.name = name;
-        this.id = id;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
         this.tags.addAll(tags);
     }
 
@@ -43,8 +43,8 @@ public class Person {
      * Every field must be present and not null.
      */
     public static Person createPerson(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        Id id = new Id();
-        return new Person(name, id, phone, email, address, tags);
+        NRIC nric = new NRIC();
+        return new Person(name, phone, email, address, nric, tags);
     }
 
     public Name getName() {
@@ -63,8 +63,8 @@ public class Person {
         return address;
     }
 
-    public Id getId() {
-        return id;
+    public NRIC getNRIC() {
+        return nric;
     }
 
     /**
@@ -114,21 +114,21 @@ public class Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         //return Objects.hash(name, phone, email, address, tags, id);
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, nric, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Id: ")
-                .append(getId())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; NRIC: ")
+                .append(getNRIC());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
