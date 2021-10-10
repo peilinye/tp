@@ -19,7 +19,6 @@ import seedu.address.logic.commands.FindGuestCommand;
 import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
