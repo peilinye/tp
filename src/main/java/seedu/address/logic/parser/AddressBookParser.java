@@ -15,6 +15,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindGuestCommand;
 import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -59,6 +60,9 @@ public class AddressBookParser {
         // TODO: Do we really want this? I accidentally used it before and it cleared my entire json :(
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+        case FindGuestCommand.COMMAND_WORD:
+            return new FindGuestCommandParser().parse(arguments);
 
         case FindRoomCommand.COMMAND_WORD:
             return new FindRoomCommandParser().parse(arguments);

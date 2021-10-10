@@ -111,11 +111,11 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd guest to be `Betsy Crower` and clears all existing tags.
 
-### Locating guests by name: `find`
+### Locating guests by name: `guest`
 
 Find guests whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `guest KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -125,8 +125,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `guest John` returns `john` and `John Doe`
+* `guest alex david` returns `Alex Yeoh`, `David Li`<br>
 
 
 ### Deleting a guest : `delete`
@@ -141,7 +141,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd guest in Trace2Gather.
-* `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
+* `guest Betsy` followed by `delete 1` deletes the 1st guest in the results of the `guest` command.
 
 ##Room
 
@@ -246,6 +246,6 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
 **List** | `list rooms`, `list rooms vacant`, `list rooms occupied`, `list guests`,
 **Help** | `help`
