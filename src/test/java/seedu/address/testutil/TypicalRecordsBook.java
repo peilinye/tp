@@ -3,8 +3,11 @@ package seedu.address.testutil;
 import static seedu.address.testutil.TypicalPersons.PERSON_LIST_ONE;
 import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.address.model.AddressBook;
 import seedu.address.model.residency.Residency;
-import seedu.address.model.residency.ResidencyBook;
 
 public class TypicalRecordsBook {
 
@@ -12,9 +15,17 @@ public class TypicalRecordsBook {
 
     private TypicalRecordsBook() {};
 
-    public static ResidencyBook getTypicalRecordsBook() {
-        ResidencyBook residencies = new ResidencyBook(true);
-        residencies.register(RESIDENCY_ONE);
-        return residencies;
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Residency residency : getTypicalRecordsBook()) {
+            ab.record(residency);
+        }
+        return ab;
+    }
+
+    public static List<Residency> getTypicalRecordsBook() {
+        ArrayList<Residency> records = new ArrayList<>();
+        records.add(RESIDENCY_ONE);
+        return records;
     }
 }

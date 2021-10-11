@@ -11,20 +11,30 @@ import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
 //import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 //import seedu.address.model.person.Person;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.address.model.AddressBook;
 import seedu.address.model.residency.Residency;
-import seedu.address.model.residency.ResidencyBook;
 
 public class TypicalResidencyBook {
 
     //TODO: implement code once ready
     public static final Residency RESIDENCY_ONE = new Residency(ROOM_ONE, PERSON_LIST_ONE);
 
-
     private TypicalResidencyBook() {}
 
-    public static ResidencyBook getTypicalResidencyBook() {
-        ResidencyBook residencies = new ResidencyBook(false);
-        residencies.register(RESIDENCY_ONE);
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Residency residency : getTypicalResidencyBook()) {
+            ab.register(residency);
+        }
+        return ab;
+    }
+
+    public static List<Residency> getTypicalResidencyBook() {
+        ArrayList<Residency> residencies = new ArrayList<>();
+        residencies.add(RESIDENCY_ONE);
         return residencies;
     }
 }

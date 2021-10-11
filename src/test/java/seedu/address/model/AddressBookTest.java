@@ -35,6 +35,8 @@ import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
 import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
 import seedu.address.model.room.Room;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalRecordsBook;
+import seedu.address.testutil.TypicalResidencyBook;
 
 public class AddressBookTest {
 
@@ -102,25 +104,25 @@ public class AddressBookTest {
 
     @Test
     public void getRecord_validPerson_returnsTrue() {
-        addressBook.setRecords(getTypicalRecordsBook().asUnmodifiableObservableList());
+        addressBook.setRecords(getTypicalRecordsBook());
         assertEquals(Optional.of(RESIDENCY_ONE), addressBook.getRecord(ALICE));
     }
 
     @Test
     public void getRecord_invalidPerson_returnsEmptyOptional() {
-        addressBook.setRecords(getTypicalRecordsBook().asUnmodifiableObservableList());
+        addressBook.setRecords(getTypicalRecordsBook());
         assertEquals(Optional.empty(), addressBook.getRecord(DANIEL));
     }
 
     @Test
     public void getRecord_validRoom_returnsTrue() {
-        addressBook.setRecords(getTypicalRecordsBook().asUnmodifiableObservableList());
+        addressBook.setRecords(getTypicalRecordsBook());
         assertEquals(Optional.of(RESIDENCY_ONE), addressBook.getRecord(ROOM_ONE));
     }
 
     @Test
     public void getRecord_invalidRoom_returnsEmptyOptional() {
-        addressBook.setRecords(getTypicalRecordsBook().asUnmodifiableObservableList());
+        addressBook.setRecords(getTypicalRecordsBook());
         assertEquals(Optional.empty(), addressBook.getRecord(ROOM_TWO));
     }
 
@@ -135,20 +137,20 @@ public class AddressBookTest {
     public void register_validResidency_registersCorrectly() {
         Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
         addressBook.register(residency);
-        assertEquals(addressBook.getResidencyBook(), getTypicalResidencyBook());
+        assertEquals(addressBook.getResidencyBook(), TypicalResidencyBook.getTypicalAddressBook().getResidencyBook());
     }
 
     @Test
     public void register_invalidResidencyWithDuplicateRooms_throwsDuplicateRoomRegException() {
         Residency invalidResidency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
-        addressBook.setResidencies(getTypicalResidencyBook().asUnmodifiableObservableList());
+        addressBook.setResidencies(getTypicalResidencyBook());
         assertThrows(DuplicateRoomRegException.class, () -> addressBook.register(invalidResidency));
     }
 
     @Test
     public void register_invalidResidencyWithDuplicatePersons_throwsDuplicatePersonRegException() {
         Residency invalidResidency = new Residency(ROOM_TWO, PERSON_LIST_ONE);
-        addressBook.setResidencies(getTypicalResidencyBook().asUnmodifiableObservableList());
+        addressBook.setResidencies(getTypicalResidencyBook());
         assertThrows(DuplicatePersonRegException.class, () -> addressBook.register(invalidResidency));
     }
 
@@ -161,11 +163,8 @@ public class AddressBookTest {
     public void record_validResidency_registersCorrectly() {
         Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
         addressBook.record(residency);
-        assertEquals(getTypicalRecordsBook(), addressBook.getRecordsBook());
+        assertEquals(addressBook.getRecordsBook(), TypicalRecordsBook.getTypicalAddressBook().getRecordsBook());
     }
-    //TODO: more tests for register and record
-
-
 
 
     /**
