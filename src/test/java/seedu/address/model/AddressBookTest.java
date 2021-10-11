@@ -113,6 +113,18 @@ public class AddressBookTest {
     }
 
     @Test
+    public void getRecord_validRoom_returnsTrue() {
+        addressBook.setRecords(getTypicalRecordsBook().asUnmodifiableObservableList());
+        assertEquals(Optional.of(RESIDENCY_ONE), addressBook.getRecord(ROOM_ONE));
+    }
+
+    @Test
+    public void getRecord_invalidRoom_returnsEmptyOptional() {
+        addressBook.setRecords(getTypicalRecordsBook().asUnmodifiableObservableList());
+        assertEquals(Optional.empty(), addressBook.getRecord(ROOM_TWO));
+    }
+
+    @Test
     public void register_nullResidency_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.register(null));
         assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
