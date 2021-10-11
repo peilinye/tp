@@ -55,6 +55,7 @@ public class CheckOutCommand extends Command {
         Room editedRoom = new Room(roomToEdit.getRoomNumber());
 
         model.setRoom(roomToEdit, editedRoom);
+        residency.ifPresent(model::record);
         residency.ifPresent(model::removeResidency);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(String.format(MESSAGE_CHECKOUT_SUCCESS, editedRoom));

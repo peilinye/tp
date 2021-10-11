@@ -44,4 +44,6 @@ public class JsonSerializableAddressBookTest {
                 dataFromFile::toModelType);
     }
 
+    //TODO: addResidencies tests
+
 }

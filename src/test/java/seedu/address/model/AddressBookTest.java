@@ -35,6 +35,7 @@ public class AddressBookTest {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
         assertEquals(Collections.emptyList(), addressBook.getRoomList());
         assertEquals(Collections.emptyList(), addressBook.getResidencyList());
+        assertEquals(Collections.emptyList(), addressBook.getRecordsList());
     }
 
     @Test
@@ -66,13 +67,6 @@ public class AddressBookTest {
     }
 
     @Test
-    public void register_nullResidency_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.register(null));
-        assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
-        assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
-    }
-
-    @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }
@@ -96,6 +90,20 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void register_nullResidency_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.register(null));
+        assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
+        assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
+    }
+
+    @Test
+    public void record_nullResidency_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.record(null));
+    }
+
+    //TODO: more tests for register and record
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
@@ -103,9 +111,9 @@ public class AddressBookTest {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Room> rooms = FXCollections.observableArrayList();
         private final ObservableList<Residency> residencies = FXCollections.observableArrayList();
-        private final ResidencyBook residencyBook = new ResidencyBook();
+        private final ResidencyBook residencyBook = new ResidencyBook(false);
         private final ObservableList<Residency> records = FXCollections.observableArrayList();
-        private final ResidencyBook recordsBook = new ResidencyBook();
+        private final ResidencyBook recordsBook = new ResidencyBook(true);
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);

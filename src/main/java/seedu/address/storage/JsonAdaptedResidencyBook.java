@@ -45,8 +45,8 @@ public class JsonAdaptedResidencyBook {
     /**
      * Converts this Jackson-friendly adapted residency book object into the model's {@code ResidencyBook} object.
      */
-    public ResidencyBook toModelType(List<Person> persons, List<Room> rooms) {
-        ResidencyBook residencyBook = new ResidencyBook();
+    public ResidencyBook toModelType(List<Person> persons, List<Room> rooms, boolean allowDuplicates) {
+        ResidencyBook residencyBook = new ResidencyBook(allowDuplicates);
 
         Map<Id, Person> idPersonMap = new HashMap<>();
         Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
@@ -66,4 +66,5 @@ public class JsonAdaptedResidencyBook {
 
         return residencyBook;
     }
+
 }

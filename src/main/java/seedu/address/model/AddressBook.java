@@ -36,8 +36,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         rooms = new RoomList();
-        residencyBook = new ResidencyBook();
-        recordsBook = new ResidencyBook();
+        residencyBook = new ResidencyBook(false);
+        recordsBook = new ResidencyBook(true);
     }
 
     public AddressBook() {}
@@ -199,7 +199,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Registers a residenc into the recordsBook using a Residency object.
+     * Registers a residency into the recordsBook using a Residency object.
      *
      * @param residency Residency object that contains a Room object and guests as a Set of person objects.
      */

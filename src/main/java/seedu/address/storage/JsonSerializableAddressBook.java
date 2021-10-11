@@ -100,9 +100,9 @@ class JsonSerializableAddressBook {
 
     private void addResidencies(AddressBook addressBook) {
         ResidencyBook tempResidencyBook =
-                residencyBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList());
+                residencyBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList(), false);
         ResidencyBook tempRecords =
-                recordsBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList());
+                recordsBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList(), true);
         for (Residency residency : tempResidencyBook.asUnmodifiableObservableList()) {
             addressBook.register(residency);
         }

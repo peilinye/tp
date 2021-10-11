@@ -28,7 +28,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class ResidencyBookTest {
 
-    private final ResidencyBook residencyBook = new ResidencyBook();
+    private final ResidencyBook residencyBook = new ResidencyBook(false);
 
     @Test
     public void constructor() {
@@ -183,8 +183,8 @@ public class ResidencyBookTest {
 
     @Test
     public void equals() {
-        ResidencyBook book1 = new ResidencyBook();
-        ResidencyBook book2 = new ResidencyBook();
+        ResidencyBook book1 = new ResidencyBook(false);
+        ResidencyBook book2 = new ResidencyBook(false);
 
         Set<Person> guests1 = new HashSet<>();
         Set<Person> guests2 = new HashSet<>();
@@ -209,7 +209,7 @@ public class ResidencyBookTest {
         assertNotEquals(book1, null);
 
         // different ResidencyBook -> returns false
-        book2 = new ResidencyBook();
+        book2 = new ResidencyBook(false);
         assertNotEquals(book1, book2);
     }
 }
