@@ -7,12 +7,20 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.PERSON_LIST_ONE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalRecordsBook.RESIDENCY_ONE;
+import static seedu.address.testutil.TypicalRecordsBook.getTypicalRecordsBook;
+import static seedu.address.testutil.TypicalResidencyBook.getTypicalResidencyBook;
+import static seedu.address.testutil.TypicalRooms.ROOM_ONE;
+import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +31,8 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.residency.ReadOnlyResidencyBook;
 import seedu.address.model.residency.Residency;
 import seedu.address.model.residency.ResidencyBook;
+import seedu.address.model.residency.exceptions.DuplicatePersonRegException;
+import seedu.address.model.residency.exceptions.DuplicateRoomRegException;
 import seedu.address.model.room.Room;
 import seedu.address.testutil.PersonBuilder;
 
@@ -91,6 +101,18 @@ public class AddressBookTest {
     }
 
     @Test
+    public void getRecord_validPerson_returnsTrue() {
+        addressBook.setRecords(getTypicalRecordsBook().asUnmodifiableObservableList());
+        assertEquals(Optional.of(RESIDENCY_ONE), addressBook.getRecord(ALICE));
+    }
+
+    @Test
+    public void getRecord_invalidPerson_returnsEmptyOptional() {
+        addressBook.setRecords(getTypicalRecordsBook().asUnmodifiableObservableList());
+        assertEquals(Optional.empty(), addressBook.getRecord(DANIEL));
+    }
+
+    @Test
     public void register_nullResidency_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.register(null));
         assertThrows(NullPointerException.class, () -> addressBook.register(null, null));
@@ -98,11 +120,41 @@ public class AddressBookTest {
     }
 
     @Test
+    public void register_validResidency_registersCorrectly() {
+        Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        addressBook.register(residency);
+        assertEquals(addressBook.getResidencyBook(), getTypicalResidencyBook());
+    }
+
+    @Test
+    public void register_invalidResidencyWithDuplicateRooms_throwsDuplicateRoomRegException() {
+        Residency invalidResidency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        addressBook.setResidencies(getTypicalResidencyBook().asUnmodifiableObservableList());
+        assertThrows(DuplicateRoomRegException.class, () -> addressBook.register(invalidResidency));
+    }
+
+    @Test
+    public void register_invalidResidencyWithDuplicatePersons_throwsDuplicatePersonRegException() {
+        Residency invalidResidency = new Residency(ROOM_TWO, PERSON_LIST_ONE);
+        addressBook.setResidencies(getTypicalResidencyBook().asUnmodifiableObservableList());
+        assertThrows(DuplicatePersonRegException.class, () -> addressBook.register(invalidResidency));
+    }
+
+    @Test
     public void record_nullResidency_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.record(null));
     }
 
+    @Test
+    public void record_validResidency_registersCorrectly() {
+        Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        addressBook.record(residency);
+        assertEquals(getTypicalRecordsBook(), addressBook.getRecordsBook());
+    }
     //TODO: more tests for register and record
+
+
+
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.

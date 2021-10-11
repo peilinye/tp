@@ -180,7 +180,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Registers a residency using a Room object and guests as a Set of person objects.
      *
      * @param room Room object.
-     * @param guests Set of Person objets residing in the room.
+     * @param guests Set of Person objects residing in the room.
      */
     public void register(Room room, Set<Person> guests) {
         requireNonNull(room);
