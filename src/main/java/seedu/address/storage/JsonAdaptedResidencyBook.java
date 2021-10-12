@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.model.person.NRIC;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.ReadOnlyResidencyBook;
 import seedu.address.model.residency.Residency;
@@ -48,11 +48,11 @@ public class JsonAdaptedResidencyBook {
     public ResidencyBook toModelType(List<Person> persons, List<Room> rooms) {
         ResidencyBook residencyBook = new ResidencyBook();
 
-        Map<NRIC, Person> NRICPersonMap = new HashMap<>();
+        Map<Nric, Person> nricPersonMap = new HashMap<>();
         Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
 
         for (Person person : persons) {
-            NRICPersonMap.put(person.getNRIC(), person);
+            nricPersonMap.put(person.getNric(), person);
         }
 
         for (Room room : rooms) {
@@ -60,7 +60,7 @@ public class JsonAdaptedResidencyBook {
         }
 
         for (JsonAdaptedResidency jsonAdaptedResidency : residencies) {
-            Residency residency = jsonAdaptedResidency.toModelType(NRICPersonMap, roomNumberRoomMap);
+            Residency residency = jsonAdaptedResidency.toModelType(nricPersonMap, roomNumberRoomMap);
             residencyBook.register(residency);
         }
 

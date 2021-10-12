@@ -96,17 +96,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nric} into an {@code NRIC}.
+     * Parses a {@code String nric} into an {@code Nric}.
      *
      * @throws ParseException if the given {@code String nric} is invalid.
      */
-    public static NRIC parseNRIC(String nric) throws ParseException {
+    public static Nric parseNric(String nric) throws ParseException {
         requireNonNull(nric);
-        String trimmedNRIC = nric.trim();
-        if (!NRIC.isValidNRIC(trimmedNRIC)) {
-            throw new ParseException(NRIC.MESSAGE_CONSTRAINTS);
+        String trimmedNric = nric.trim();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
         }
-        return new NRIC(trimmedNRIC);
+        return new Nric(trimmedNric);
     }
 
     /**

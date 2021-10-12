@@ -55,7 +55,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        nric = source.getNRIC().value;
+        nric = source.getNric().value;
     }
 
     /**
@@ -102,14 +102,14 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, NRIC.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
         }
-        if (!NRIC.isValidNRIC(nric)) {
-            throw new IllegalValueException(NRIC.MESSAGE_CONSTRAINTS);
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
-        final NRIC modelNRIC = NRIC.of(nric);
+        final Nric modelNric = Nric.of(nric);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelNRIC, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelTags);
     }
 }

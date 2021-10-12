@@ -17,7 +17,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final NRIC nric;
+    private final Nric nric;
     private final Phone phone;
     private final Email email;
 
@@ -28,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, NRIC nric, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, nric, tags);
         this.name = name;
         this.phone = phone;
@@ -42,7 +42,7 @@ public class Person {
      * Creates a new {@code Person} with the specified data fields, and generates a new {@code Id} for them.
      * Every field must be present and not null.
      */
-    public static Person createPerson(Name name, Phone phone, Email email, Address address, NRIC nric, Set<Tag> tags) {
+    public static Person createPerson(Name name, Phone phone, Email email, Address address, Nric nric, Set<Tag> tags) {
         return new Person(name, phone, email, nric, address, tags);
     }
 
@@ -62,7 +62,7 @@ public class Person {
         return address;
     }
 
-    public NRIC getNRIC() {
+    public Nric getNric() {
         return nric;
     }
 
@@ -126,8 +126,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; NRIC: ")
-                .append(getNRIC());
+                .append("; Nric: ")
+                .append(getNric());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

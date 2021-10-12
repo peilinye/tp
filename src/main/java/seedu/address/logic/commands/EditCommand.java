@@ -95,9 +95,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        NRIC updatedNRIC = editPersonDescriptor.getNRIC().orElse(personToEdit.getNRIC());
+        Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedNRIC, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private NRIC nric;
+        private Nric nric;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -145,7 +145,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setNRIC(toCopy.nric);
+            setNric(toCopy.nric);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -181,11 +181,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setNRIC(NRIC nric) {
+        public void setNric(Nric nric) {
             this.nric = nric;
         }
 
-        public Optional<NRIC> getNRIC() {
+        public Optional<Nric> getNric() {
             return Optional.ofNullable(nric);
         }
 
@@ -238,7 +238,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getNRIC().equals(e.getNRIC())
+                    && getNric().equals(e.getNric())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

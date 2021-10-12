@@ -23,7 +23,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private NRIC nric;
+    private Nric nric;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -32,7 +32,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        nric = new NRIC(DEFAULT_NRIC);
+        nric = new Nric(DEFAULT_NRIC);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -46,7 +46,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        nric = personToCopy.getNRIC();
+        nric = personToCopy.getNric();
     }
 
     /**
@@ -92,8 +92,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Room} of the {@code Person} that we are building.
      */
-    public PersonBuilder withNRIC(String nric) {
-        this.nric = NRIC.of(nric);
+    public PersonBuilder withNric(String nric) {
+        this.nric = Nric.of(nric);
         return this;
     }
 
