@@ -245,6 +245,8 @@ public class ResidencyBookTest {
     public void equals() {
         ResidencyBook book1 = new ResidencyBook(false);
         ResidencyBook book2 = new ResidencyBook(false);
+        ResidencyBook book3 = new ResidencyBook(true);
+        ResidencyBook book4 = new ResidencyBook(true);
 
         Set<Person> guests1 = new HashSet<>();
         Set<Person> guests2 = new HashSet<>();
@@ -255,21 +257,30 @@ public class ResidencyBookTest {
 
         book1.register(ROOM_ONE, guests1);
         book2.register(ROOM_ONE, guests2);
+        book3.register(ROOM_ONE, guests1);
+        book4.register(ROOM_ONE, guests2);
 
         // same object -> returns true
         assertEquals(book1, book1);
+        assertEquals(book3, book3);
 
         // same values -> returns true
         assertEquals(book1, book2);
+        assertEquals(book3, book4);
 
         // different types -> returns false
         assertNotEquals(book1, 1);
+        assertNotEquals(book3, 1);
 
         // null -> returns false
         assertNotEquals(book1, null);
+        assertNotEquals(book4, null);
 
         // different ResidencyBook -> returns false
         book2 = new ResidencyBook(false);
+        book4 = new ResidencyBook(true);
+
         assertNotEquals(book1, book2);
+        assertNotEquals(book3, book4);
     }
 }
