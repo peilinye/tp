@@ -3,12 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Id;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,14 +16,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final int DEFAULT_ID = Integer.MAX_VALUE;
+    public static final String DEFAULT_NRIC = "S9915772H";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private Id id;
+    private NRIC nric;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -37,9 +32,9 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        nric = new NRIC(DEFAULT_NRIC);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        id = Id.of(DEFAULT_ID);
     }
 
     /**
@@ -51,7 +46,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        id = personToCopy.getId();
+        nric = personToCopy.getNRIC();
     }
 
     /**
@@ -97,13 +92,13 @@ public class PersonBuilder {
     /**
      * Sets the {@code Room} of the {@code Person} that we are building.
      */
-    public PersonBuilder withId(int id) {
-        this.id = Id.of(id);
+    public PersonBuilder withNRIC(String nric) {
+        this.nric = NRIC.of(nric);
         return this;
     }
 
     public Person build() {
-        return new Person(name, id, phone, email, address, tags);
+        return new Person(name, phone, email, nric, address, tags);
     }
 
 }

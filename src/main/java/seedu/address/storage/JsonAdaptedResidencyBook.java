@@ -48,11 +48,11 @@ public class JsonAdaptedResidencyBook {
     public ResidencyBook toModelType(List<Person> persons, List<Room> rooms) {
         ResidencyBook residencyBook = new ResidencyBook();
 
-        Map<NRIC, Person> idPersonMap = new HashMap<>();
+        Map<NRIC, Person> NRICPersonMap = new HashMap<>();
         Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
 
         for (Person person : persons) {
-            idPersonMap.put(person.getNRIC(), person);
+            NRICPersonMap.put(person.getNRIC(), person);
         }
 
         for (Room room : rooms) {
@@ -60,7 +60,7 @@ public class JsonAdaptedResidencyBook {
         }
 
         for (JsonAdaptedResidency jsonAdaptedResidency : residencies) {
-            Residency residency = jsonAdaptedResidency.toModelType(idPersonMap, roomNumberRoomMap);
+            Residency residency = jsonAdaptedResidency.toModelType(NRICPersonMap, roomNumberRoomMap);
             residencyBook.register(residency);
         }
 

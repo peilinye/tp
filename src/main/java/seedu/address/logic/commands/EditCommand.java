@@ -95,9 +95,14 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        NRIC sameId = personToEdit.getNRIC();
+        NRIC updatedNRIC = editPersonDescriptor.getNRIC().orElse(personToEdit.getNRIC());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, sameId,  updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedNRIC, updatedAddress, updatedTags);
+    }
+
+    @Override
+    public String toString() {
+        return this.editPersonDescriptor.toString();
     }
 
     @Override
@@ -127,6 +132,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private NRIC nric;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -139,6 +145,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setNRIC(toCopy.nric);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -147,7 +154,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, nric, address, tags);
         }
 
         public void setName(Name name) {
@@ -172,6 +179,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setNRIC(NRIC nric) {
+            this.nric = nric;
+        }
+
+        public Optional<NRIC> getNRIC() {
+            return Optional.ofNullable(nric);
         }
 
         public void setAddress(Address address) {
@@ -200,6 +215,12 @@ public class EditCommand extends Command {
         }
 
         @Override
+        public String toString() {
+            return this.name.toString() + this.phone.toString() + this.email.toString() + this.email.toString()
+                    + this.nric.toString() + this.address.toString() + this.tags.toString();
+        }
+
+        @Override
         public boolean equals(Object other) {
             // short circuit if same object
             if (other == this) {
@@ -217,6 +238,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getNRIC().equals(e.getNRIC())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }

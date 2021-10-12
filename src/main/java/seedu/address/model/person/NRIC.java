@@ -54,11 +54,11 @@ public class NRIC {
      * In other words, it checks for null or whether the string is empty.
      *
      * @param IC the String of a supposed NRIC.
-     * @return boolean to indicate if integer is non-negative.
+     * @return boolean to indicate if string is non-empty.
      */
     public static boolean isValidNRIC(String IC) {
         requireNonNull(IC);
-        return IC.isEmpty();
+        return (IC.length() > 0);
     }
 
     /**
@@ -78,7 +78,7 @@ public class NRIC {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof NRIC
-                && ((NRIC) other).value == this.value);
+                && ((NRIC) other).value.equals(this.value));
     }
 
     @Override

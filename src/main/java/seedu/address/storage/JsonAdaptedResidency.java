@@ -28,7 +28,7 @@ class JsonAdaptedResidency {
      */
     @JsonCreator
     public JsonAdaptedResidency(@JsonProperty("roomNumber") String roomNumber,
-                                @JsonProperty("guestIds") String[] guestNRICs) {
+                                @JsonProperty("guestNRICs") String[] guestNRICs) {
         this.roomNumber = roomNumber;
         this.guestNRICs = guestNRICs;
 
@@ -52,10 +52,13 @@ class JsonAdaptedResidency {
     /**
      * Converts this Jackson-friendly adapted residency object into the model's {@code Residency} object.
      */
-    public Residency toModelType(Map<NRIC, Person> idPersonMap, Map<RoomNumber, Room> roomNumberRoomMap) {
+    public Residency toModelType(Map<NRIC, Person> NRICPersonMap, Map<RoomNumber, Room> roomNumberRoomMap) {
         Set<Person> guests = new HashSet<>();
         for (String nric : guestNRICs) {
-            guests.add(idPersonMap.get(NRIC.of(nric)));
+            NRIC something = NRIC.of(nric);
+            Person x = NRICPersonMap.get(something);
+            guests.add(x);
+            //guests.add(NRICPersonMap.get(NRIC.of(nric)));
         }
 
         Room room = roomNumberRoomMap.get(new RoomNumber(roomNumber));

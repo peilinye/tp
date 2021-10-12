@@ -32,16 +32,16 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("NRIC") String nric) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("nric") String nric, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.nric = nric;
     }
 
     /**
@@ -110,7 +110,6 @@ class JsonAdaptedPerson {
         final NRIC modelNRIC = NRIC.of(nric);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNRIC, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelNRIC, modelAddress, modelTags);
     }
-
 }

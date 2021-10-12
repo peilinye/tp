@@ -41,12 +41,10 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
-                                       @JsonProperty("residencyBook") JsonAdaptedResidencyBook residencyBook,
-                                       @JsonProperty("id counter") int idCounter) {
+                                       @JsonProperty("residencyBook") JsonAdaptedResidencyBook residencyBook) {
         this.persons.addAll(persons);
         this.rooms.addAll(rooms);
         this.residencyBook = residencyBook;
-        //this.idCounter = idCounter;
     }
 
     /**
@@ -58,7 +56,6 @@ class JsonSerializableAddressBook {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
         residencyBook = new JsonAdaptedResidencyBook(source.getResidencyBook());
-        //idCounter = Id.getNextId();
     }
 
     /**
@@ -71,7 +68,6 @@ class JsonSerializableAddressBook {
 
         addPersonsAndRooms(addressBook);
         addResidencies(addressBook);
-        setId();
 
         return addressBook;
     }
@@ -101,8 +97,9 @@ class JsonSerializableAddressBook {
         }
     }
 
+    /*
     private void setId() {
-        //Id.setNextId(idCounter);
+        Id.setNextId(idCounter);
     }
-
+    */
 }

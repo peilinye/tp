@@ -28,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, NRIC nric, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, NRIC nric, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, nric, tags);
         this.name = name;
         this.phone = phone;
@@ -42,9 +42,8 @@ public class Person {
      * Creates a new {@code Person} with the specified data fields, and generates a new {@code Id} for them.
      * Every field must be present and not null.
      */
-    public static Person createPerson(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        NRIC nric = new NRIC();
-        return new Person(name, phone, email, address, nric, tags);
+    public static Person createPerson(Name name, Phone phone, Email email, Address address, NRIC nric, Set<Tag> tags) {
+        return new Person(name, phone, email, nric, address, tags);
     }
 
     public Name getName() {

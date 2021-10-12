@@ -37,8 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         NRIC nric = ParserUtil.parseNRIC(argMultimap.getValue(PREFIX_NRIC).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        Person person = Person.createPerson(name, phone, email, address, tagList);
+        Person person = Person.createPerson(name, phone, email, address, nric ,tagList);
 
         return new AddCommand(person);
     }
