@@ -5,13 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-
-import java.util.HashSet;
-import java.util.Set;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +17,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.room.Room;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -79,21 +74,6 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_personCheckedIn_throwsCommandException() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-
-        Room room = model.getFilteredRoomList().get(INDEX_FIRST_ROOM.getZeroBased());
-        Set<Person> guests = new HashSet<>();
-        guests.add(personToDelete);
-        model.register(room, guests);
-
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_PERSON_CHECKED_IN, personToDelete.getName(), room);
-
-        assertCommandFailure(deleteCommand, model, expectedMessage);
     }
 
     @Test

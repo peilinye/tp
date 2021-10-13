@@ -17,9 +17,9 @@ public class TypicalRooms {
 
     public static final Person ALICE = TypicalPersons.ALICE;
     public static final Person BENSON = TypicalPersons.BENSON;
-    public static final Person CARL = TypicalPersons.CARL;
+    public static final Person CHARLIE = TypicalPersons.CHARLIE;
 
-    public static final Person[] GUESTS = new Person[]{ALICE, BENSON, CARL};
+    public static final Person[] GUESTS = new Person[]{ALICE, BENSON, CHARLIE};
 
     public static final Room ROOM_ONE = new RoomBuilder().withNumber(VALID_NAME_ROOM_ONE)
             .withVacancy(VALID_VACANCY_ROOM_ONE).build();
@@ -28,6 +28,17 @@ public class TypicalRooms {
             .withVacancy(VALID_VACANCY_ROOM_TWO).withGuests(GUESTS).build();
 
     private TypicalRooms() {} // prevents instantiation
+
+    /**
+     * Returns an {@code AddressBook} with all the typical rooms.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Room room : getTypicalRooms()) {
+            ab.addRoom(room);
+        }
+        return ab;
+    }
 
     public static List<Room> getTypicalRooms() {
         return new ArrayList<>(Arrays.asList(ROOM_ONE, ROOM_TWO));

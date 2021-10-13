@@ -50,36 +50,7 @@
     "tagged" : [ ],
     "id" : 6
   } ],
-  "rooms" : [ {
-    "roomNumber" : "001",
-    "isVacant" : true,
-    "guests" : [ ]
-  }, {
-    "roomNumber" : "002",
-    "isVacant" : false,
-    "guests" : [ {
-      "name" : "Alice Pauline",
-      "phone" : "94351253",
-      "email" : "alice@example.com",
-      "address" : "123, Jurong West Ave 6, #08-111",
-      "tagged" : [ "friends" ],
-      "id" : 0
-    }, {
-      "name" : "Benson Meier",
-      "phone" : "98765432",
-      "email" : "johnd@example.com",
-      "address" : "311, Clementi Ave 2, #02-25",
-      "tagged" : [ "owesMoney", "friends" ],
-      "id" : 1
-    }, {
-      "name" : "Carl Kurz",
-      "phone" : "95352563",
-      "email" : "heinz@example.com",
-      "address" : "wall street",
-      "tagged" : [ ],
-      "id" : 2
-    } ]
-  } ],
+  "rooms" : [],
   "residencies" : [],
   "residencyBook" : {
     "residencies" : [ ]
