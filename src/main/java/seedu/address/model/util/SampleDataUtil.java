@@ -48,6 +48,9 @@ public class SampleDataUtil {
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
+        for (Room sampleRoom : getSampleRooms()) {
+            sampleAb.addRoom(sampleRoom);
+        }
         return sampleAb;
     }
 
