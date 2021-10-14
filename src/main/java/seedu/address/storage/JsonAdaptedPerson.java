@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Id;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -30,23 +30,23 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final Integer id;
+    private final String nric;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("id") int id) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("nric") String nric, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.nric = nric;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.id = id;
     }
 
     /**
@@ -60,7 +60,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        id = source.getId().value;
+        nric = source.getNric().value;
     }
 
     /**
@@ -106,16 +106,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        if (id == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
+        if (nric == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Nric.class.getSimpleName()));
         }
-        if (!Id.isValidId(id)) {
-            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        if (!Nric.isValidNric(nric)) {
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
-        final Id modelId = Id.of(id);
+        final Nric modelNric = Nric.of(nric);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelId, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelTags);
     }
-
 }

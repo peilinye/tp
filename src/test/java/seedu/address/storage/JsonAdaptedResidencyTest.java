@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Id;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
@@ -29,10 +29,10 @@ public class JsonAdaptedResidencyTest {
         Residency residency = new Residency(ROOM_ONE, guests);
         JsonAdaptedResidency jsonResidency = new JsonAdaptedResidency(residency);
 
-        Map<Id, Person> idPersonMap = new HashMap<>();
+        Map<Nric, Person> idPersonMap = new HashMap<>();
         Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
-        idPersonMap.put(ALICE.getId(), ALICE);
-        idPersonMap.put(BENSON.getId(), BENSON);
+        idPersonMap.put(ALICE.getNric(), ALICE);
+        idPersonMap.put(BENSON.getNric(), BENSON);
         roomNumberRoomMap.put(ROOM_ONE.getRoomNumber(), ROOM_ONE);
 
         Residency test = jsonResidency.toModelType(idPersonMap, roomNumberRoomMap);

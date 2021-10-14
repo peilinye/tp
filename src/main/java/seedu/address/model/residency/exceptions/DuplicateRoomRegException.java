@@ -1,8 +1,8 @@
 package seedu.address.model.residency.exceptions;
 
 public class DuplicateRoomRegException extends RuntimeException {
-    public static final String message = "This room is currently occupied.";
+    public static final String MESSAGE = "This room is currently occupied.";
     public DuplicateRoomRegException() {
-        super(message);
+        super(MESSAGE);
     }
 }

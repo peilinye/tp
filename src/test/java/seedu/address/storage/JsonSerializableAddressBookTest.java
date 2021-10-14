@@ -79,7 +79,7 @@ public class JsonSerializableAddressBookTest {
     public void toModelType_duplicateRoomResidenciesFile_throwsDuplicateRoomRegException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_ROOM_RESIDENCIES_FILE,
                 JsonSerializableAddressBook.class).get();
-        assertThrows(DuplicateRoomRegException.class, DuplicateRoomRegException.message,
+        assertThrows(DuplicateRoomRegException.class, DuplicateRoomRegException.MESSAGE,
                 dataFromFile::toModelType);
     }
 

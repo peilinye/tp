@@ -4,22 +4,22 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ],
-    "id" : 0
+    "nric" : "test1",
+    "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ],
-    "id" : 1
+    "nric" : "test2",
+    "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Charlie D",
     "phone" : "11111111",
     "email" : "amy@example.com",
     "address" : "Block 312, Amy Street 1",
-    "tagged" : [ "friend" ],
-    "id" : 2103
+    "nric" : "test10",
+    "tagged" : [ "friend" ]
   } ],
   "rooms" : [ {
     "roomNumber" : "001",
@@ -29,11 +29,10 @@
   "residencyBook" : {
     "residencies" : [ {
       "roomNumber" : "001",
-      "guestIds" : [ 0, 1, 2103 ]
+      "guestNRICs" : [ "test1", "test2", "test10" ]
     } ]
   },
   "recordsBook" : {
     "residencies" : [ ]
-  },
-  "idCounter" : 2103
+  }
 }
