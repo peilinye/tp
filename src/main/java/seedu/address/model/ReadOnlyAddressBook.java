@@ -34,4 +34,16 @@ public interface ReadOnlyAddressBook {
      * This will not contain any duplicate residencies.
      */
     ReadOnlyResidencyBook getResidencyBook();
+
+    /**
+     * Returns an unmodifiable view of the residencies records list.
+     * This list will not contain any duplicate residencies.
+     */
+    ObservableList<Residency> getRecordsList();
+
+    /**
+     * Returns an unmodifiable view of the residency records book.
+     * This will not contain any duplicate residencies.
+     */
+    ReadOnlyResidencyBook getRecordsBook();
 }

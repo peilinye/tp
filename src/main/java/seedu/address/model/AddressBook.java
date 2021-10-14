@@ -24,6 +24,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final RoomList rooms;
     private final ResidencyBook residencyBook;
+    private final ResidencyBook recordsBook;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,7 +36,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         rooms = new RoomList();
-        residencyBook = new ResidencyBook();
+        residencyBook = new ResidencyBook(false);
+        recordsBook = new ResidencyBook(true);
     }
 
     public AddressBook() {}
@@ -66,8 +68,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.rooms.setRooms(rooms);
     }
 
+    /**
+     * Replaces the contents of the residency list with {@code residencies}.
+     * {@code residencies} must not contain duplicate residencies.
+     */
     public void setResidencies(List<Residency> residencies) {
         this.residencyBook.setResidencies(residencies);
+    }
+
+    /**
+     * Replaces the contents of the residency records with {@code records}.
+     * {@code records} must not contain duplicate residencies.
+     */
+    public void setRecords(List<Residency> records) {
+        this.recordsBook.setResidencies(records);
     }
 
     /**
@@ -79,6 +93,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setRooms(newData.getRoomList());
         setResidencies(newData.getResidencyList());
+        setRecords(newData.getRecordsList());
     }
 
     //// (person / room)-level operations
@@ -165,7 +180,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Registers a residency using a Room object and guests as a Set of person objects.
      *
      * @param room Room object.
-     * @param guests Set of Person objets residing in the room.
+     * @param guests Set of Person objects residing in the room.
      */
     public void register(Room room, Set<Person> guests) {
         requireNonNull(room);
@@ -183,6 +198,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         residencyBook.register(residency);
     }
 
+    /**
+     * Registers a residency into the recordsBook using a Residency object.
+     *
+     * @param residency Residency object that contains a Room object and guests as a Set of person objects.
+     */
+    public void record(Residency residency) {
+        requireNonNull(residency);
+        recordsBook.register(residency);
+    }
+
     public void removeResidency(Residency residency) {
         residencyBook.remove(residency);
     }
@@ -193,6 +218,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public Optional<Residency> getResidency(Person person) {
         return residencyBook.getResidency(person);
+    }
+
+    public Optional<Residency> getRecord(Room room) {
+        return recordsBook.getResidency(room);
+    }
+
+    public Optional<Residency> getRecord(Person person) {
+        return recordsBook.getResidency(person);
     }
 
     //// util methods
@@ -224,12 +257,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Residency> getRecordsList() {
+        return recordsBook.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ReadOnlyResidencyBook getRecordsBook() {
+        return recordsBook;
+    }
+
+    @SuppressWarnings("checkstyle:CommentsIndentation")
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
                 && rooms.equals(((AddressBook) other).rooms)
-                && residencyBook.equals(((AddressBook) other).residencyBook));
+                && residencyBook.equals(((AddressBook) other).residencyBook)
+                && recordsBook.equals(((AddressBook) other).recordsBook));
     }
 
     @Override

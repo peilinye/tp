@@ -26,6 +26,11 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
 
     private final HashMap<Room, Residency> roomMap = new HashMap<>();
     private final HashMap<Person, Residency> guestMap = new HashMap<>();
+    private final boolean allowDuplicates;
+
+    public ResidencyBook(boolean allowDuplicates) {
+        this.allowDuplicates = allowDuplicates;
+    }
 
     /**
      * Registers the residency of a set of guests in a room.
@@ -50,11 +55,11 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
         Room room = residency.getRoom();
         Set<Person> guests = residency.getGuests();
 
-        if (roomMap.containsKey(room)) {
+        if (roomMap.containsKey(room) && !allowDuplicates) {
             throw new DuplicateRoomRegException();
         }
         for (Person guest : guests) {
-            if (guestMap.containsKey(guest)) {
+            if (guestMap.containsKey(guest) && !allowDuplicates) {
                 throw new DuplicatePersonRegException(guest);
             }
         }
@@ -158,6 +163,7 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ResidencyBook // instanceof handles nulls
+                && allowDuplicates == ((ResidencyBook) other).allowDuplicates
                 && internalList.equals(((ResidencyBook) other).internalList));
     }
 }

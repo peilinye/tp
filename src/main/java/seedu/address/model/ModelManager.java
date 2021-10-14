@@ -147,6 +147,18 @@ public class ModelManager implements Model {
         return addressBook.getResidency(guest);
     }
 
+    public void record(Residency residency) {
+        addressBook.record(residency);
+    }
+
+    public Optional<Residency> getRecord(Room room) {
+        return addressBook.getRecord(room);
+    }
+
+    public Optional<Residency> getRecord(Person guest) {
+        return addressBook.getRecord(guest);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

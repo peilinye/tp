@@ -51,8 +51,10 @@
     "id" : 6
   } ],
   "rooms" : [],
-  "residencies" : [],
   "residencyBook" : {
+    "residencies" : [ ]
+  },
+  "recordsBook" : {
     "residencies" : [ ]
   },
   "idCounter" : 7

@@ -127,6 +127,8 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
+
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
@@ -154,6 +156,11 @@ public class AddCommandTest {
 
         @Override
         public void register(Room room, Set<Person> guests) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void record(Residency residency) {
             throw new AssertionError("This method should not be called.");
         }
 
