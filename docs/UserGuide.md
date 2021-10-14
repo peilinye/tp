@@ -26,7 +26,7 @@ Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized f
 
    * **`list guests`** : Lists all guests.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Trace2Gather.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nric/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -78,15 +78,15 @@ Format: `help`
 
 Adds a guest into Trace2Gather.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A guest can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nric/S98765432G`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison nric/S98765431G p/1234567 t/criminal`
 
 ### Listing all guests : `list guests`
 
@@ -111,11 +111,11 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd guest to be `Betsy Crower` and clears all existing tags.
 
-### Locating guests by name: `find`
+### Locating guests by name: `guest`
 
 Find guests whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `guest KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -125,8 +125,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `guest John` returns `john` and `John Doe`
+* `guest alex david` returns `Alex Yeoh`, `David Li`<br>
 
 
 ### Deleting a guest : `delete`
@@ -141,7 +141,7 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd guest in Trace2Gather.
-* `find Betsy` followed by `delete 1` deletes the 1st guest in the results of the `find` command.
+* `guest Betsy` followed by `delete 1` deletes the 1st guest in the results of the `guest` command.
 
 ##Room
 
@@ -171,6 +171,15 @@ The room index refers to the index number shown in the displayed room list.
 
 Example:
 * `checkout 24`
+
+### Locating a specific room : `room`
+
+Shows a list of rooms that match the room numbers provided.
+
+Format: `room ROOM_NUMBER(s)`
+
+Example:
+* `room 001 002`
 
 ### Listing all rooms : `list rooms`
 
@@ -233,10 +242,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
 **List** | `list rooms`, `list rooms vacant`, `list rooms occupied`, `list guests`,
 **Help** | `help`

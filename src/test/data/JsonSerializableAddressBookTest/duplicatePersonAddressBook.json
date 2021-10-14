@@ -3,15 +3,15 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "nric" : "S98765432A",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ],
-    "id" : 0
+    "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street",
-    "id" : 0
+    "nric" : "S98765432A",
+    "address": "4th street"
   } ],
   "rooms": [],
   "residencyBook" : {
@@ -19,6 +19,5 @@
   },
   "recordsBook" : {
     "residencies" : [ ]
-  },
-  "idCounter" : 1
+  }
 }

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Id;
+//import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
 import seedu.address.model.residency.ResidencyBook;
@@ -33,9 +33,10 @@ class JsonSerializableAddressBook {
 
     private final JsonAdaptedResidencyBook residencyBook;
 
+
     private final JsonAdaptedResidencyBook recordsBook;
 
-    private final int idCounter;
+    //private final int idCounter;
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons, rooms, residency book and id counter.
@@ -50,7 +51,6 @@ class JsonSerializableAddressBook {
         this.rooms.addAll(rooms);
         this.residencyBook = residencyBook;
         this.recordsBook = recordsBook;
-        this.idCounter = idCounter;
     }
 
     /**
@@ -63,7 +63,6 @@ class JsonSerializableAddressBook {
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
         residencyBook = new JsonAdaptedResidencyBook(source.getResidencyBook());
         recordsBook = new JsonAdaptedResidencyBook(source.getRecordsBook());
-        idCounter = Id.getNextId();
     }
 
     /**
@@ -76,7 +75,6 @@ class JsonSerializableAddressBook {
 
         addPersonsAndRooms(addressBook);
         addResidencies(addressBook);
-        setId();
 
         return addressBook;
     }
@@ -111,8 +109,9 @@ class JsonSerializableAddressBook {
         }
     }
 
+    /*
     private void setId() {
         Id.setNextId(idCounter);
     }
-
+    */
 }
