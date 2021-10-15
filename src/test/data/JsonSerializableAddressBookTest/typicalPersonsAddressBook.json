@@ -51,8 +51,10 @@
     "tagged" : [ ]
   } ],
   "rooms" : [],
-  "residencies" : [],
   "residencyBook" : {
+    "residencies" : [ ]
+  },
+  "recordsBook" : {
     "residencies" : [ ]
   }
 }

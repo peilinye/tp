@@ -10,5 +10,8 @@
   "residencyBook" : {
     "residencies" : [ ]
   },
+  "recordsBook" : {
+    "residencies" : [ ]
+  },
   "idCounter" : 1
 }

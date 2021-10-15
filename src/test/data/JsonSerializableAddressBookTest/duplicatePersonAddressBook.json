@@ -16,5 +16,8 @@
   "rooms": [],
   "residencyBook" : {
     "residencies" : [ ]
+  },
+  "recordsBook" : {
+    "residencies" : [ ]
   }
 }

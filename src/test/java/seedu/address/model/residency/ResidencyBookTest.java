@@ -28,7 +28,8 @@ import seedu.address.testutil.PersonBuilder;
 
 public class ResidencyBookTest {
 
-    private final ResidencyBook residencyBook = new ResidencyBook();
+    private final ResidencyBook residencyBook = new ResidencyBook(false);
+    private final ResidencyBook recordsBook = new ResidencyBook(true);
 
     @Test
     public void constructor() {
@@ -59,6 +60,29 @@ public class ResidencyBookTest {
     }
 
     @Test
+    public void register_validRoomValidGuestsAllowsDuplicates_success() {
+        Set<Person> guests = new HashSet<>();
+
+        guests.add(ALICE);
+        guests.add(BENSON);
+
+        recordsBook.register(ROOM_ONE, guests);
+
+        Optional<Residency> residencyRoomOne = recordsBook.getResidency(ROOM_ONE);
+        Optional<Residency> residencyAlice = recordsBook.getResidency(ALICE);
+        Optional<Residency> residencyBenson = recordsBook.getResidency(BENSON);
+
+        assertTrue(residencyRoomOne.isPresent());
+        assertTrue(residencyAlice.isPresent());
+        assertTrue(residencyBenson.isPresent());
+        assertEquals(residencyRoomOne.get(), residencyAlice.get());
+        assertEquals(residencyRoomOne.get(), residencyBenson.get());
+
+        // Check if internal list contains the residency
+        assertTrue(recordsBook.asUnmodifiableObservableList().contains(residencyRoomOne.get()));
+    }
+
+    @Test
     public void register_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, ()
             -> residencyBook.register(null, new HashSet<Person>()));
@@ -82,6 +106,25 @@ public class ResidencyBookTest {
     }
 
     @Test
+    public void register_personAlreadyRegisteredAllowDuplicates_success() {
+        Set<Person> guestsRoomOne = new HashSet<>();
+        Set<Person> guestsRoomTwo = new HashSet<>();
+
+        guestsRoomOne.add(ALICE);
+        guestsRoomOne.add(BENSON);
+        guestsRoomTwo.add(BENSON);
+        guestsRoomTwo.add(CARL);
+
+        recordsBook.register(ROOM_ONE, guestsRoomOne);
+        recordsBook.register(ROOM_TWO, guestsRoomTwo);
+
+        Optional<Residency> residencyRoomTwo = recordsBook.getResidency(ROOM_TWO);
+
+        assertTrue(recordsBook.asUnmodifiableObservableList().contains(residencyRoomTwo.get()));
+
+    }
+
+    @Test
     public void register_roomAlreadyRegistered_throwsDuplicateRoomRegException() {
         Set<Person> guestsRoomOne = new HashSet<>();
         Set<Person> guestsRoomTwo = new HashSet<>();
@@ -93,6 +136,23 @@ public class ResidencyBookTest {
         residencyBook.register(ROOM_ONE, guestsRoomOne);
         assertThrows(DuplicateRoomRegException.class, ()
             -> residencyBook.register(ROOM_ONE, guestsRoomTwo));
+    }
+
+    @Test
+    public void register_roomAlreadyRegisteredAllowDuplicates_success() {
+        Set<Person> guestsRoomOne = new HashSet<>();
+        Set<Person> guestsRoomTwo = new HashSet<>();
+
+        guestsRoomOne.add(ALICE);
+        guestsRoomOne.add(BENSON);
+        guestsRoomTwo.add(CARL);
+
+        recordsBook.register(ROOM_ONE, guestsRoomOne);
+        recordsBook.register(ROOM_ONE, guestsRoomTwo);
+
+        Optional<Residency> residencyRoomTwo = recordsBook.getResidency(ROOM_ONE);
+
+        assertTrue(recordsBook.asUnmodifiableObservableList().contains(residencyRoomTwo.get()));
     }
 
     @Test
@@ -183,8 +243,10 @@ public class ResidencyBookTest {
 
     @Test
     public void equals() {
-        ResidencyBook book1 = new ResidencyBook();
-        ResidencyBook book2 = new ResidencyBook();
+        ResidencyBook book1 = new ResidencyBook(false);
+        ResidencyBook book2 = new ResidencyBook(false);
+        ResidencyBook book3 = new ResidencyBook(true);
+        ResidencyBook book4 = new ResidencyBook(true);
 
         Set<Person> guests1 = new HashSet<>();
         Set<Person> guests2 = new HashSet<>();
@@ -195,21 +257,30 @@ public class ResidencyBookTest {
 
         book1.register(ROOM_ONE, guests1);
         book2.register(ROOM_ONE, guests2);
+        book3.register(ROOM_ONE, guests1);
+        book4.register(ROOM_ONE, guests2);
 
         // same object -> returns true
         assertEquals(book1, book1);
+        assertEquals(book3, book3);
 
         // same values -> returns true
         assertEquals(book1, book2);
+        assertEquals(book3, book4);
 
         // different types -> returns false
         assertNotEquals(book1, 1);
+        assertNotEquals(book3, 1);
 
         // null -> returns false
         assertNotEquals(book1, null);
+        assertNotEquals(book4, null);
 
         // different ResidencyBook -> returns false
-        book2 = new ResidencyBook();
+        book2 = new ResidencyBook(false);
+        book4 = new ResidencyBook(true);
+
         assertNotEquals(book1, book2);
+        assertNotEquals(book3, book4);
     }
 }

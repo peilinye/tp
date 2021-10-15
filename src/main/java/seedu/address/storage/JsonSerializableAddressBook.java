@@ -33,6 +33,9 @@ class JsonSerializableAddressBook {
 
     private final JsonAdaptedResidencyBook residencyBook;
 
+
+    private final JsonAdaptedResidencyBook recordsBook;
+
     //private final int idCounter;
 
     /**
@@ -41,10 +44,13 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
-                                       @JsonProperty("residencyBook") JsonAdaptedResidencyBook residencyBook) {
+                                       @JsonProperty("residencyBook") JsonAdaptedResidencyBook residencyBook,
+                                       @JsonProperty("recordsBook") JsonAdaptedResidencyBook recordsBook,
+                                       @JsonProperty("id counter") int idCounter) {
         this.persons.addAll(persons);
         this.rooms.addAll(rooms);
         this.residencyBook = residencyBook;
+        this.recordsBook = recordsBook;
     }
 
     /**
@@ -56,6 +62,7 @@ class JsonSerializableAddressBook {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
         residencyBook = new JsonAdaptedResidencyBook(source.getResidencyBook());
+        recordsBook = new JsonAdaptedResidencyBook(source.getRecordsBook());
     }
 
     /**
@@ -91,9 +98,14 @@ class JsonSerializableAddressBook {
 
     private void addResidencies(AddressBook addressBook) {
         ResidencyBook tempResidencyBook =
-                residencyBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList());
+                residencyBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList(), false);
+        ResidencyBook tempRecords =
+                recordsBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList(), true);
         for (Residency residency : tempResidencyBook.asUnmodifiableObservableList()) {
             addressBook.register(residency);
+        }
+        for (Residency residency: tempRecords.asUnmodifiableObservableList()) {
+            addressBook.record(residency);
         }
     }
 

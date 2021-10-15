@@ -150,4 +150,11 @@ public interface Model {
      * {@code room} must not already exist in the address book.
      */
     void addRoom(Room room);
+
+    /**
+     * Records the past residency of a set of guests in a room.
+     *
+     * @param residency The residency to be recorded.
+     */
+    void record(Residency residency);
 }

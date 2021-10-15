@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ROOM;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.Vacancy;
 
@@ -40,6 +42,7 @@ public class CheckOutCommandTest {
 
         model.setRoom(originalRoom, roomToEdit);
         model.register(roomToEdit, guests);
+        Optional<Residency> toBeRecorded = model.getResidency(roomToEdit);
 
         // Checking out a room should return it to its default state
         Room editedRoom = originalRoom;
@@ -47,6 +50,7 @@ public class CheckOutCommandTest {
         String expectedMessage = String.format(CheckOutCommand.MESSAGE_CHECKOUT_SUCCESS, editedRoom);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.record(toBeRecorded.get());
 
         assertCommandSuccess(checkOutCommand, model, expectedMessage, expectedModel);
     }
