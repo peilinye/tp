@@ -11,7 +11,7 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<fx:root minHeight="600" minWidth="1000"
+<fx:root minHeight="600" minWidth="1500"
          onCloseRequest="#handleExit"
          title="Trace2Gather"
          type="javafx.stage.Stage"
@@ -66,6 +66,17 @@
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
+
+          <VBox styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
+            <Label styleClass="table-header" minWidth="450">History</Label>
+            <Label styleClass="table-header" minWidth="450">fx:id needs work</Label>
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane VBox.vgrow="ALWAYS"/>
+          </VBox>
+
+
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
