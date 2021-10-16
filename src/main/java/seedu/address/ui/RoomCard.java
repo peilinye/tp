@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.room.Room;
@@ -37,6 +40,9 @@ public class RoomCard extends UiPart<Region> {
     @FXML
     private Label id;
 
+    @FXML
+    private FlowPane tags;
+
     /**
      * Creates a {@code RoomCode} with the given {@code Room} and index to display.
      */
@@ -46,6 +52,9 @@ public class RoomCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         number.setText(room.getRoomNumber().value);
         vacancy.setText(room.getVacancy().toString());
+        room.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
