@@ -5,7 +5,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * A UI component that displays information of a {@code Room}.
@@ -37,7 +42,8 @@ public class RoomCard extends UiPart<Region> {
     private Label id;
 
     @FXML
-    private FlowPane residents;
+    private FlowPane guests;
+
 
     /**
      * Creates a {@code RoomCode} with the given {@code Room} and index to display.
@@ -48,6 +54,16 @@ public class RoomCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         number.setText(room.getRoomNumber().value);
         vacancy.setText(room.getVacancy().toString());
+
+        if (room.getVacancy().toString().equals("Vacant")) {
+            vacancy.setStyle("-fx-text-fill: #1be3b2 !important;");
+        } else {
+            vacancy.setStyle("-fx-text-fill: #f51d50 !important;");
+        }
+
+        Set<Person> allGuests = room.getGuests();
+        allGuests.stream().map(person -> person.getName().toString())
+                .forEach(nameString -> guests.getChildren().add(new Label(nameString)));
     }
 
     @Override
