@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -22,16 +23,21 @@ class JsonAdaptedResidency {
 
     private final String roomNumber;
     private final String[] guestNrics;
+    private final String checkInTime;
+    private final String checkOutTime;
 
     /**
      * Constructs a {@code JsonAdaptedResidency} with the given residency details.
      */
     @JsonCreator
     public JsonAdaptedResidency(@JsonProperty("roomNumber") String roomNumber,
-                                @JsonProperty("guestNRICs") String[] guestNrics) {
+                                @JsonProperty("guestNRICs") String[] guestNrics,
+                                @JsonProperty("checkInTime") String checkInTime,
+                                @JsonProperty("checkOutTime") String checkOutTime) {
         this.roomNumber = roomNumber;
         this.guestNrics = guestNrics;
-
+        this.checkInTime = checkInTime;
+        this.checkOutTime = checkOutTime;
     }
 
     /**
@@ -39,6 +45,7 @@ class JsonAdaptedResidency {
      */
     public JsonAdaptedResidency(Residency source) {
         roomNumber = source.getRoom().getRoomNumber().value;
+
         List<String> nrics = source.getGuests()
                                   .stream()
                                   .map(person -> person.getNric().value)
@@ -47,6 +54,9 @@ class JsonAdaptedResidency {
         for (int i = 0; i < nrics.size(); i++) {
             guestNrics[i] = nrics.get(i);
         }
+
+        checkInTime = source.getCheckInTime().toString();
+        checkOutTime = source.getCheckOutTime().map(LocalDateTime::toString).orElseGet(() -> null);
     }
 
     /**
@@ -62,8 +72,11 @@ class JsonAdaptedResidency {
 
         Room room = roomNumberRoomMap.get(new RoomNumber(roomNumber));
 
+        LocalDateTime checkIn = LocalDateTime.parse(checkInTime);
+        LocalDateTime checkOut = checkOutTime != null ? LocalDateTime.parse(checkOutTime) : null;
+
         // TODO: Check if any data constraints are violated
 
-        return new Residency(room, guests);
+        return new Residency(room, guests, checkIn, checkOut);
     }
 }

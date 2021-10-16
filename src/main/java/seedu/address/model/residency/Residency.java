@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
@@ -30,7 +31,7 @@ public class Residency {
      * @param guests Set of Person objects who stayed in this room.
      */
     public Residency(Room room, Set<Person> guests) {
-        this(room, guests, LocalDateTime.now());
+        this(room, guests, LocalDateTime.now(), null);
     }
 
     /**
@@ -40,12 +41,13 @@ public class Residency {
      * @param room Room object where guests stay in.
      * @param guests Set of Person objects who stayed in this room.
      */
-    public Residency(Room room, Set<Person> guests, LocalDateTime checkInTime) {
+    public Residency(Room room, Set<Person> guests, LocalDateTime checkInTime, LocalDateTime checkOutTime) {
         requireNonNull(room);
         requireAllNonNull(guests);
         this.room = room;
         this.guests = guests;
         this.checkInTime = checkInTime;
+        this.checkOutTime = checkOutTime;
     }
 
     /**
@@ -93,8 +95,8 @@ public class Residency {
         return this.checkInTime;
     }
 
-    public LocalDateTime getCheckOutTime() {
-        return this.checkOutTime;
+    public Optional<LocalDateTime> getCheckOutTime() {
+        return Optional.ofNullable(this.checkOutTime);
     }
 
     @Override
