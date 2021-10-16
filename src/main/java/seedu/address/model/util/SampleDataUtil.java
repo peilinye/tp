@@ -67,11 +67,11 @@ public class SampleDataUtil {
 
     public static Room[] getSampleRooms() {
         return new Room[] {
-            new Room(new RoomNumber("001")),
-            new Room(new RoomNumber("002")),
-            new Room(new RoomNumber("003")),
-            new Room(new RoomNumber("004")),
-            new Room(new RoomNumber("005")),
+            new Room(new RoomNumber("001"), getTagSet("normal")),
+            new Room(new RoomNumber("002"), getTagSet("normal")),
+            new Room(new RoomNumber("003"), getTagSet("normal")),
+            new Room(new RoomNumber("004"), getTagSet("normal")),
+            new Room(new RoomNumber("005"), getTagSet("normal")),
         };
     }
 }
