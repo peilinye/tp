@@ -31,7 +31,6 @@
 
             <HBox spacing="5" alignment="CENTER_LEFT">
 
-
                 <Label styleClass="cell_room_sub_label">Occupancy Status: </Label>
                 <Label fx:id="vacancy" text="\$vacancy" styleClass="cell_occupancy_label" />
             </HBox>
