@@ -20,9 +20,14 @@ Given below are my contributions to the project.
         * Justification: This feature improves the product significantly as being able to quickly search for specific rooms helps the user to retrieve information about the room faster as compared to manually scrolling down till they find the room
         * Highlights: This enhancement required us to put ourselves in the shoes of a potential user and what were the pain points that might arise from our application without this feature.
         * Credit: Existing UML Diagrams, Well-thought out code structure that enables easy extensibility.
+  3. GUI Updates (elaborated in below section on GUI)
+        * What it does: Allow users to see in detail the changes to the state of the application based on their actions
+        * Justification: Being able to visually see which guests are in which rooms or who stayed in the vicinity and their corresponding information fast enables faster retrieval of information
+        * Highlights: These enhancements enabled us to visually check if our system is registering the changes based on the commands we type
+        * Credit: Original AB3 team for making the code structure highly extensible
 
 ## Code Contributed
-[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/) (To Be Updated)
+[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=t13-3&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=darrenhoon&tabRepo=AY2122S1-CS2103T-T13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 #### Testing
 * Room: TypicalRooms, RoomBuilder, RoomListTest
@@ -37,6 +42,8 @@ Given below are my contributions to the project.
 #### GUI
 * Amended GUI to reflect addressBook.json values for Room
 * Added styling to indicate vacancy status of rooms
+* Included guests to rooms shown on GUI, along with appropriate styling
+* Added History list in GUI along with its styling
 
 #### Misc
 * Provided boilerplate code for team to start work in first week of team project
