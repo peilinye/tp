@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Set;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -8,8 +10,6 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
 
-import java.util.Comparator;
-import java.util.Set;
 
 public class ResidencyCard extends UiPart<Region> {
 
@@ -34,12 +34,6 @@ public class ResidencyCard extends UiPart<Region> {
     @FXML
     private FlowPane personInfo;
 
-
-
-    /*
-    @FXML
-    private FlowPane tags;
-    */
 
     /**
      * Creates a {@code ResidencyCode} with the given {@code Residency} and index to display.
