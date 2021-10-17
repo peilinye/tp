@@ -7,6 +7,7 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model <<Rectangle>>{
 Interface ReadOnlyAddressBook <<Interface>>
 Interface ReadOnlyUserPrefs <<Interface>>
+Interface ReadOnlyResidencyBook <<Interface>>
 Interface Model <<Interface>>
 Class AddressBook
 Class ReadOnlyAddressBook
@@ -22,11 +23,14 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Nric
 
 Class RoomList
 Class Room
 Class RoomNumber
 Class Vacancy
+Class ResidencyBook
+Class Residency
 
 }
 
@@ -49,6 +53,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> Nric
 
 AddressBook *--> "1" RoomList
 RoomList --> "~* all" Room
@@ -59,6 +64,15 @@ Room *--> "*" Person
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+
+AddressBook *-left-> "1" ReadOnlyResidencyBook
+ResidencyBook .up.|> ReadOnlyResidencyBook
+ResidencyBook --> "~*" Residency
+ResidencyBook --> "~*" Room
+ResidencyBook --> "~*" Person
+Residency --> "1...*" Person
+Residency --> "1" Room
+
 
 ModelManager -->"~* filtered" Person
 @enduml

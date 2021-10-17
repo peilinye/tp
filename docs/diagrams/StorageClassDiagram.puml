@@ -21,6 +21,7 @@ Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedRoom
 Class JsonAdaptedTag
+Class JsonAdaptedResidencyBook
 }
 
 }
