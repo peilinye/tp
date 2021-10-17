@@ -29,6 +29,8 @@ public class ResidencyCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label number;
+    @FXML
     private Label name;
     @FXML
     private Label phone;

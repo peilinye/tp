@@ -6,7 +6,6 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
 
 import java.util.logging.Logger;
@@ -15,7 +14,7 @@ public class ResidencyListPanel extends UiPart<Region> {
     private static final String FXML = "ResidencyListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ResidencyListPanel.class);
 
-    @javafx.fxml.FXML
+    @FXML
     private ListView<Residency> residencyListView;
 
     /**

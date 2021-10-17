@@ -67,13 +67,12 @@
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
+          <VBox fx:id="residencyList" styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
             <Label styleClass="table-header" minWidth="450">History</Label>
-            <Label styleClass="table-header" minWidth="450">fx:id needs work</Label>
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
-            <StackPane VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="residencyListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
 
