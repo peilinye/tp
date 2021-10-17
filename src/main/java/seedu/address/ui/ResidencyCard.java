@@ -32,15 +32,7 @@ public class ResidencyCard extends UiPart<Region> {
     @FXML
     private Label number;
     @FXML
-    private Label name;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane nric;
+    private FlowPane personInfo;
 
 
 
@@ -61,16 +53,6 @@ public class ResidencyCard extends UiPart<Region> {
 
         Set<Person> guests = residency.getGuests();
         guests.stream().map(person -> {
-            /*
-            String cellInfo = String.format("Name: %s\nNRIC: %s\nAddress: %s\nContact: %s\nEmail: %s",
-                    person.getName().toString(),
-                    person.getNric().toString(),
-                    person.getAddress().toString(),
-                    person.getPhone().toString(),
-                    person.getEmail().toString()
-            );
-            */
-
             String cellInfo = String.format("%s\n%s\n%s\n%s\n%s",
                     person.getName().toString(),
                     person.getNric().toString(),
@@ -79,8 +61,7 @@ public class ResidencyCard extends UiPart<Region> {
                     person.getEmail().toString()
             );
             return cellInfo;
-        })
-                .forEach(nricString -> nric.getChildren().add(new Label(nricString)));
+        }).forEach(nricString -> personInfo.getChildren().add(new Label(nricString)));
 
 
         /*

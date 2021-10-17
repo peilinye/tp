@@ -34,7 +34,7 @@
 
 
             <HBox>
-                <FlowPane fx:id="nric" />
+                <FlowPane fx:id="personInfo" />
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />
