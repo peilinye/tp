@@ -57,7 +57,7 @@ public class RoomCard extends UiPart<Region> {
         if (room.getVacancy().toString().equals("Vacant")) {
             vacancy.setStyle("-fx-text-fill: #1be3b2 !important;");
         } else {
-            vacancy.setStyle("-fx-text-fill: #f51d50 !important;");
+            vacancy.setStyle("-fx-text-fill: #f51d50 !important; -fx-font-style: italic !important;");
         }
 
         Set<Person> allGuests = room.getGuests();

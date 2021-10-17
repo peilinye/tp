@@ -382,9 +382,12 @@
 .cell_occupancy_label {
     -fx-font-family: "Open Sans Regular";
     -fx-font-size: 14px;
-    //-fx-text-fill: #1be3b2 !important;
+
+    /*
+    -fx-text-fill: #1be3b2 !important;
+    -fx-background-color: #ac3cb7;
+    */
     -fx-font-weight: 700 !important;
-    //-fx-background-color: #ac3cb7;
     -fx-background-radius: 10px;
     -fx-label-padding: 3px;
 }
