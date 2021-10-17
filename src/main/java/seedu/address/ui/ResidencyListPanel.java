@@ -10,7 +10,6 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.residency.Residency;
 
-
 public class ResidencyListPanel extends UiPart<Region> {
     private static final String FXML = "ResidencyListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ResidencyListPanel.class);

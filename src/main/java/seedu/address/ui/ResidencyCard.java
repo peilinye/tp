@@ -57,16 +57,6 @@ public class ResidencyCard extends UiPart<Region> {
             return cellInfo;
         }).forEach(nricString -> personInfo.getChildren().add(new Label(nricString)));
 
-
-        /*
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        */
     }
 
     @Override
