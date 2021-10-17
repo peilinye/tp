@@ -9,10 +9,11 @@ import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
 
 import java.util.Comparator;
+import java.util.Set;
 
 public class ResidencyCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "ResidencyListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -39,7 +40,10 @@ public class ResidencyCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label nric;
+    private FlowPane nric;
+
+
+
     /*
     @FXML
     private FlowPane tags;
@@ -51,8 +55,35 @@ public class ResidencyCard extends UiPart<Region> {
     public ResidencyCard(Residency residency, int displayedIndex) {
         super(FXML);
         this.residency = residency;
-        /*
+
         id.setText(displayedIndex + ". ");
+        number.setText(residency.getRoom().getRoomNumber().value);
+
+        Set<Person> guests = residency.getGuests();
+        guests.stream().map(person -> {
+            /*
+            String cellInfo = String.format("Name: %s\nNRIC: %s\nAddress: %s\nContact: %s\nEmail: %s",
+                    person.getName().toString(),
+                    person.getNric().toString(),
+                    person.getAddress().toString(),
+                    person.getPhone().toString(),
+                    person.getEmail().toString()
+            );
+            */
+
+            String cellInfo = String.format("%s\n%s\n%s\n%s\n%s",
+                    person.getName().toString(),
+                    person.getNric().toString(),
+                    person.getAddress().toString(),
+                    person.getPhone().toString(),
+                    person.getEmail().toString()
+            );
+            return cellInfo;
+        })
+                .forEach(nricString -> nric.getChildren().add(new Label(nricString)));
+
+
+        /*
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
