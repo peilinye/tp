@@ -244,7 +244,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-_{Potential Data Archiving: Expired Residencies stored in a separate file from the 
+_{Potential Data Archiving: Expired Residencies stored in a separate file from the
   main addressbook.json to facilitate archiving}_
 
 
