@@ -71,7 +71,7 @@ public class Room {
     }
 
     /**
-     * Returns true if both rooms have the same name.
+     * Returns true if both rooms have the same {@code RoomNumber}.
      */
     public boolean isSameRoom(Room otherRoom) {
         if (otherRoom == this) {
@@ -110,7 +110,8 @@ public class Room {
                 || (other instanceof Room
                 && roomNumber.equals(((Room) other).roomNumber)
                 && vacancy.equals(((Room) other).vacancy)
-                && guests.equals(((Room) other).guests));
+                && guests.equals(((Room) other).guests)
+                && tags.equals(((Room) other).tags));
     }
 
     @Override

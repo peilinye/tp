@@ -172,5 +172,17 @@ public class ParserUtil {
         return new ListRoomArg(trimmedArg);
     }
 
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Integer} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified integer is invalid (not non-zero unsigned integer).
+     */
+    public static Integer parseNumber(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Integer.parseInt(trimmedIndex);
+    }
 
 }
