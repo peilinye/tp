@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.Set;
 
 import javafx.fxml.FXML;
@@ -41,8 +42,10 @@ public class RoomCard extends UiPart<Region> {
     private Label id;
 
     @FXML
-    private FlowPane guests;
+    private FlowPane tags;
 
+    @FXML
+    private FlowPane guests;
 
     /**
      * Creates a {@code RoomCode} with the given {@code Room} and index to display.
@@ -53,6 +56,9 @@ public class RoomCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         number.setText(room.getRoomNumber().value);
         vacancy.setText(room.getVacancy().toString());
+        room.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         if (room.getVacancy().toString().equals("Vacant")) {
             vacancy.setStyle("-fx-text-fill: #1be3b2 !important;");

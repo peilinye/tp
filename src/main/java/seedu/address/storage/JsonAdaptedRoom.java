@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,6 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
 import seedu.address.model.room.Vacancy;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Room}.
@@ -20,18 +23,20 @@ class JsonAdaptedRoom {
     public final String roomNumber;
     private final boolean isVacant;
     private final Set<JsonAdaptedPerson> guests = new HashSet<>();
+    private final Set<JsonAdaptedTag> tags = new HashSet<>();
 
     /**
      * Constructs a {@code JsonAdaptedRoom} with the given room details.
      */
     @JsonCreator
     public JsonAdaptedRoom(@JsonProperty("roomNumber") String roomNumber, @JsonProperty("isVacant") boolean isVacant,
-        @JsonProperty("guests") Set<JsonAdaptedPerson> guests) {
+        @JsonProperty("guests") Set<JsonAdaptedPerson> guests, @JsonProperty("tags") Set<JsonAdaptedTag> tags) {
         this.roomNumber = roomNumber;
         this.isVacant = isVacant;
         if (guests != null) {
             this.guests.addAll(guests);
         }
+        this.tags.addAll(tags);
     }
 
     /**
@@ -42,6 +47,9 @@ class JsonAdaptedRoom {
         isVacant = source.getVacancy().isVacant();
         guests.addAll(source.getGuests().stream()
                 .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
+        tags.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
 
@@ -55,11 +63,16 @@ class JsonAdaptedRoom {
         for (JsonAdaptedPerson person: guests) {
             roomGuests.add(person.toModelType());
         }
+        final List<Tag> roomTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tags) {
+            roomTags.add(tag.toModelType());
+        }
         //insert validity checks and exception handling
         final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
         final Vacancy modelVacancy = Vacancy.of(isVacant);
         final Set<Person> modelGuests = roomGuests;
+        final Set<Tag> modelTags = new HashSet<>(roomTags);
 
-        return new Room(modelRoomNumber, modelVacancy, modelGuests);
+        return new Room(modelRoomNumber, modelVacancy, modelGuests, modelTags);
     }
 }
