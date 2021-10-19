@@ -7,6 +7,7 @@ public class ListType {
     public static final String MESSAGE_CONSTRAINTS = "List types should be 'rooms' or 'guests'.";
     private static final String ROOMS = "rooms";
     private static final String GUESTS = "guests";
+    private static final String RECORDS = "records";
 
     private String type;
 
@@ -25,7 +26,7 @@ public class ListType {
      * Returns true if a given string is a valid list type.
      */
     public static boolean isValidListType(String type) {
-        return type.equals(ROOMS) || type.equals(GUESTS);
+        return type.equals(ROOMS) || type.equals(GUESTS) || type.equals(RECORDS);
     }
 
     /**
@@ -40,6 +41,13 @@ public class ListType {
      */
     public boolean isRoomsType() {
         return this.type.equals(ROOMS);
+    }
+
+    /**
+     * Returns true if the ListType is a RECORDS type.
+     */
+    public boolean isRecordsType() {
+        return this.type.equals(RECORDS);
     }
 
     /**
