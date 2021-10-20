@@ -184,7 +184,7 @@ Step 2. Hit Enter.
 ![SearchGuestResult](images/SearchGuestResult.png)
 ![SearchRoomResult](images/SearchRoomResult.png)
 
-The Rooms / Guests that have matchin names will appear in their respective lists.
+The Rooms / Guests that have matching names will appear in their respective lists.
 
 #### Design considerations:
 
@@ -227,6 +227,17 @@ The rooms of the specified vacancy status will appear in the room list.
 * The valid string will create a predicate object for `Model#updateFilteredRoomList()` to filter the rooms based on.
     * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
     * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
+
+### Uniqueness of Guests
+
+#### Implementation
+
+The mechanism guaranteeing the uniqueness of Guests is facilitated by the `Nric` class, and its invocation is via `AddressBookParser`.
+* `AddressBookParser#parseCommand()`  — Interprets the command the user inputs to invoke the `AddCommandParser`.
+* `ParserUtil#parseNric()`  — checks whether a `Person` object already exists with the same Nric.
+
+
+
 
 
 --------------------------------------------------------------------------------------------------------------------
