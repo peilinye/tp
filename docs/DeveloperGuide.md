@@ -194,7 +194,7 @@ The Rooms / Guests that have matchin names will appear in their respective lists
     * Pros: Consistent implementation - similar to the other commands.
     * Cons: Increased need for good file system and extensive application of Object-Oriented Principles required.
 
-
+    
 ### Listing rooms by vacancy feature
 
 #### Implementation
@@ -227,6 +227,34 @@ The rooms of the specified vacancy status will appear in the room list.
 * The valid string will create a predicate object for `Model#updateFilteredRoomList()` to filter the rooms based on.
     * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
     * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
+
+### Past Records Feature
+
+This section describes how past residencies are stored such that it can be displayed/searched for contact tracing.
+
+The past residencies are read from the same json data file as the other components in the `AddressBook`, through the `JsonAdaptedResidencyBook` class.
+
+They are stored in a `ResidencyBook`, similar to the one storing current residencies.
+![Relationship of AddressBook and ResidencyBook](images/AddressBookSubset.png)
+
+This `ResidencyBook` only calls upon `ResidencyBook#register(Residency)` but not `ResidencyBook#remove(Residency)` to prevent editing
+of the records stored.
+
+It is exposed in `ModelManager#getFilteredRecordList()`, `ModelManager#updateFilteredRecordList()`, `
+LogicManager#getFilteredRecordList()` where the contents are stored in a `FilteredList` for display in the UI.
+
+#### Design considerations:
+
+* Possible location of storage of past residencies.
+    * Second file.
+    * Pros: Keeping past residency storage separate from the main data storage minimises any mixup in the storing of information.
+    * Cons: This requires the file to store its own set of persons and rooms and because the residency keeps minimal information in order to minimise
+      space required for the storage file, it results in redundancy when storing the same information across 2 files. Changes also have to be written twice.
+
+* Consistency
+    * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
+      in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
