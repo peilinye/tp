@@ -1,13 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECORDS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ROOMS;
 
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.listtype.ListType;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.room.Room;
 
@@ -22,13 +25,16 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_ROOMS = "Listed all rooms";
 
+    public static final String MESSAGE_SUCCESS_RECORDS = "Listed all records";
+
     public static final String MESSAGE_SUCCESS_ROOMS_TYPE = "Listed all rooms of indicated type";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists guests or rooms based on given arguments.\n"
-            + "Parameters: LISTTYPE ('guests' or 'rooms'), "
+            + "Parameters: LISTTYPE ('guests', 'rooms' or 'records'), "
             + "(optional) LISTROOMARG ('vacant' or 'occupied') (only for listing rooms).\n"
             + "Examples: " + COMMAND_WORD + " guests, "
+            + COMMAND_WORD + " records, "
             + COMMAND_WORD + " rooms, "
             + COMMAND_WORD + " rooms occupied, "
             + COMMAND_WORD + " rooms vacant";
@@ -66,8 +72,15 @@ public class ListCommand extends Command {
         return this.listType.isRoomsType();
     }
 
+    /**
+     * Returns true if the ListCommand lists records.
+     */
+    public boolean isRecords() {
+        return this.listType.isRecordsType();
+    }
+
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (this.isGuests()) {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -80,8 +93,11 @@ public class ListCommand extends Command {
                 model.updateFilteredRoomList(predicate);
                 return new CommandResult(MESSAGE_SUCCESS_ROOMS_TYPE);
             }
+        } else if (this.isRecords()) {
+            model.updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
+            return new CommandResult(MESSAGE_SUCCESS_RECORDS);
         } else {
-            return new CommandResult("placeholder");
+            throw new CommandException(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 

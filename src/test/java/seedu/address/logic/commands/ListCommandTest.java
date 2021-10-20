@@ -16,6 +16,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.room.RoomIsOccupiedPredicate;
 import seedu.address.model.room.RoomIsVacantPredicate;
+import seedu.address.testutil.TypicalRecordsBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -57,6 +58,14 @@ public class ListCommandTest {
     }
 
     @Test
+    public void execute_listAllRecords_showsAllRecords() {
+        model.setAddressBook(TypicalRecordsBook.getTypicalAddressBook());
+        expectedModel.setAddressBook(TypicalRecordsBook.getTypicalAddressBook());
+        assertCommandSuccess(new ListCommand(new ListType("records")), model,
+                ListCommand.MESSAGE_SUCCESS_RECORDS, expectedModel);
+    }
+
+    @Test
     public void listRoomsCommand_equalsListRoomsCommand() {
         ListCommand lc = new ListCommand(new ListType("rooms"));
         assertEquals(new ListCommand(new ListType("rooms")), lc);
@@ -90,5 +99,11 @@ public class ListCommandTest {
     public void listVacantRoomsCommand_notEqualsListOccupiedRoomsCommand() {
         ListCommand lc = new ListCommand(new ListType("rooms"), new RoomIsVacantPredicate());
         assertNotEquals(new ListCommand(new ListType("rooms"), new RoomIsOccupiedPredicate()), lc);
+    }
+
+    @Test
+    public void listRecordsCommand_equalsListRecordsCommand() {
+        ListCommand lc = new ListCommand(new ListType("records"));
+        assertEquals(new ListCommand(new ListType("records")), lc);
     }
 }

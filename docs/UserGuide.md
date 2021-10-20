@@ -199,6 +199,24 @@ Shows a list of all rooms that are vacant in Trace2Gather.
 
 Format: `list rooms vacant`
 
+##Records
+
+### Listing all records : `list records`
+
+Shows a list of past residencies in Trace2Gather.
+
+Format: `list records`
+
+### Locating specific records: `record`
+
+Shows the records that match the keywords provided (case sensitive, at least 1).
+
+Format: `record KEYWORD_ONE... `
+
+Example: <br/>
+`record Alex` shows the residencies Alex has in the past.<br/>
+`record 001` shows the residencies Room 001 has in the past.
+
 ##Database / Storage
 
 ### Clearing all entries : `clear`
