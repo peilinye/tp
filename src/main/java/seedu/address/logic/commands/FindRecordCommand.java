@@ -10,13 +10,13 @@ import seedu.address.model.residency.exceptions.ResidencyContainsKeywordsPredica
 
 /**
  * Finds and lists all past residencies in Trace2Gather whose data contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case sensitive.
  */
 public class FindRecordCommand extends Command {
     public static final String COMMAND_WORD = "record";
 
     //TODO add desc
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the specific room number";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the records with the given keywords.";
 
     private final ResidencyContainsKeywordsPredicate predicate;
 
