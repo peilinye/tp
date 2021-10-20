@@ -69,4 +69,8 @@ shadowJar {
     archiveName = 'trace2gather.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
