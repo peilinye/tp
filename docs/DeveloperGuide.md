@@ -184,7 +184,7 @@ Step 2. Hit Enter.
 ![SearchGuestResult](images/SearchGuestResult.png)
 ![SearchRoomResult](images/SearchRoomResult.png)
 
-The Rooms / Guests that have matchin names will appear in their respective lists.
+The Rooms / Guests that have matching names will appear in their respective lists.
 
 #### Design considerations:
 
@@ -228,6 +228,21 @@ The rooms of the specified vacancy status will appear in the room list.
     * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
     * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
 
+### Uniqueness of Guests [coming soon]
+
+#### Implementation
+
+The mechanism guaranteeing the uniqueness of Guests is facilitated by the `Nric` class, and its invocation is via `AddressBookParser`.
+* `AddressBookParser#parseCommand()`  — Interprets the command the user inputs to invoke the `AddCommandParser`.
+* `ParserUtil#parseNric()`  — checks whether a `Person` object already exists with the same Nric.
+
+#### Design considerations:
+
+**Aspect: How duplicates are avoided:**
+
+* An `AddCommand` that wants to add a `Person` with an `Nric` that another existing `Person` already will be considered an invalid command.
+    * Uniqueness  —  This mechanism will help to prevent the adding of duplicate `Person` objects.
+    
 ### Past Records Feature
 
 This section describes how past residencies are stored such that it can be displayed/searched for contact tracing.
@@ -254,8 +269,6 @@ LogicManager#getFilteredRecordList()` where the contents are stored in a `Filter
 * Consistency
     * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
       in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
