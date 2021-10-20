@@ -60,7 +60,7 @@ RoomList --> "~* all" Room
 Room *--> RoomNumber
 Room *--> Vacancy
 Room *--> "*" Person
-Room *--> "*" Tag
+Room *--> "1..*" Tag
 
 
 Name -[hidden]right-> Phone
