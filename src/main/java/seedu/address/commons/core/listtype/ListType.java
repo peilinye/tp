@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class ListType {
-    public static final String MESSAGE_CONSTRAINTS = "List types should be 'rooms' or 'guests'.";
+    public static final String MESSAGE_CONSTRAINTS = "List types should be 'rooms', 'guests' or 'records'.";
     private static final String ROOMS = "rooms";
     private static final String GUESTS = "guests";
     private static final String RECORDS = "records";

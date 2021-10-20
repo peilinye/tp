@@ -67,6 +67,15 @@ public class ListCommandParserTest {
     }
 
     @Test
+    public void parse_validArgs_returnsListCommandForRecords() {
+        // no leading and trailing whitespaces
+        ListCommand expectedListCommand =
+                new ListCommand(new ListType("records"));
+        assertParseSuccess(parser, " records \n ", expectedListCommand);
+    }
+
+
+    @Test
     public void parse_extraArgs_throwsParseException() {
         assertParseFailure(parser, "guests xxx",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
