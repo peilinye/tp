@@ -194,6 +194,40 @@ The Rooms / Guests that have matchin names will appear in their respective lists
     * Pros: Consistent implementation - similar to the other commands.
     * Cons: Increased need for good file system and extensive application of Object-Oriented Principles required.
 
+    
+### Listing rooms by vacancy feature
+
+#### Implementation
+
+The list mechanism is facilitated by `LogicManager`. It extends `Logic` and its invocation is via the `AddressBookParser`.
+
+* `AddressBookParser#parseCommand()` — Interprets the command the user inputs to invoke the `ListCommand`.
+* `ListCommand#execute()` — Filters the list of rooms based on whether they are vacant or occupied and shows the relevant type to user.
+
+This operation is exposed in the `Model` interface as `Model#updateFilteredRoomList()`.
+
+Given below is an example usage scenario and how the list mechanism behaves at each step.
+
+Step 1. User lists the rooms based on the desired vacancy status.
+
+![ListOccupied](images/ListOccupied.png)
+![ListVacant](images/ListVacant.png)
+
+Step 2. Hit Enter.
+
+![ListOccupiedResult](images/ListOccupiedResult.png)
+![ListVacantResult](images/ListVacantResult.png)
+
+The rooms of the specified vacancy status will appear in the room list.
+
+#### Design considerations:
+
+**Aspect: How list room occupied / vacant executes:**
+
+* The valid string will create a predicate object for `Model#updateFilteredRoomList()` to filter the rooms based on.
+    * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
+    * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
+
 ### Past Records Feature
 
 This section describes how past residencies are stored such that it can be displayed/searched for contact tracing.
@@ -212,14 +246,14 @@ LogicManager#getFilteredRecordList()` where the contents are stored in a `Filter
 #### Design considerations:
 
 * Possible location of storage of past residencies.
-  * Second file. 
-  * Pros: Keeping past residency storage separate from the main data storage minimises any mixup in the storing of information.
-  * Cons: This requires the file to store its own set of persons and rooms and because the residency keeps minimal information in order to minimise
-  space required for the storage file, it results in redundancy when storing the same information across 2 files. Changes also have to be written twice.
+    * Second file.
+    * Pros: Keeping past residency storage separate from the main data storage minimises any mixup in the storing of information.
+    * Cons: This requires the file to store its own set of persons and rooms and because the residency keeps minimal information in order to minimise
+      space required for the storage file, it results in redundancy when storing the same information across 2 files. Changes also have to be written twice.
 
 * Consistency
-  * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
-  in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.
+    * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
+      in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.
 
 
 
@@ -243,7 +277,7 @@ LogicManager#getFilteredRecordList()` where the contents are stored in a `Filter
 
 * hotel receptionist
 * has a need to manage a significant number of guests and rooms
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -259,13 +293,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a guest as a contact       | check them into rooms                                                  |
-| `* * *`  | user                                       | check guests into rooms        | admit them into our hotel                                                   |
+| `* * *`  | user                                       | check guests into rooms        | admit them into our hotel                                              |
 | `* * *`  | user                                       | check guests out of rooms      | free up the room and have their information in the archive                                                  |
 | `* * *`  | user                                       | search for vacant rooms        | assign guests to a vacant room                                         |
 | `* * *`  | user                                       | delete guests                  | remove them if the wrong details are entered                           |
 | `* * *`  | user                                       | list all guests and rooms      | check all the statuses                                                 |
 | `*`      | user with many guests in the address book  | sort guests  by name           | locate a guest easily                                                  |
 | `* *`    | user                                       | search guests by their name    | find a guest's details easily                                          |
+| `* * *`  | user who has to track past records of guests | perform queries on past data | check records of past guests and details of their stay                 |
+| `* *`    | user                                       | add rooms with specified tags  | keep track of different types of rooms in my hotel                     |
 
 *{More to be added}*
 
