@@ -79,7 +79,10 @@ public class ListCommandParserTest {
     public void parse_extraArgs_throwsParseException() {
         assertParseFailure(parser, "guests xxx",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "records xxx",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
+
 
     @Test
     public void parse_invalidListTypeArgs_throwsParseException() {
