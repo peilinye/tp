@@ -17,13 +17,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.residency.Residency;
 import seedu.address.model.residency.exceptions.ResidencyContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.TypicalRecordsBook;
@@ -144,8 +142,8 @@ public class ModelManagerTest {
         String[] searchTerm = new String[] {"001"};
         modelManager.updateFilteredRecordList(
                 new ResidencyContainsKeywordsPredicate(new ArrayList<String>(Arrays.asList(searchTerm))) {
-        });
-        assertEquals(modelManager.getFilteredRecordList(),TypicalRecordsBook.getTypicalAddressBook().getRecordsList());
+            });
+        assertEquals(modelManager.getFilteredRecordList(), TypicalRecordsBook.getTypicalAddressBook().getRecordsList());
     }
 
     @Test
