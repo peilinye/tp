@@ -228,7 +228,7 @@ The rooms of the specified vacancy status will appear in the room list.
     * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
     * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
 
-### Uniqueness of Guests
+### Uniqueness of Guests [coming soon]
 
 #### Implementation
 
@@ -236,9 +236,12 @@ The mechanism guaranteeing the uniqueness of Guests is facilitated by the `Nric`
 * `AddressBookParser#parseCommand()`  — Interprets the command the user inputs to invoke the `AddCommandParser`.
 * `ParserUtil#parseNric()`  — checks whether a `Person` object already exists with the same Nric.
 
+#### Design considerations:
 
+**Aspect: How duplicates are avoided:**
 
-
+* An `AddCommand` that wants to add a `Person` with an `Nric` that another existing `Person` already will be considered an invalid command.
+    * Uniqueness  —  This mechanism will help to prevent the adding of duplicate `Person` objects.
 
 --------------------------------------------------------------------------------------------------------------------
 
