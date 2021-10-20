@@ -21,6 +21,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
+    Predicate<Residency> PREDICATE_SHOW_ALL_RECORDS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -133,6 +134,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered room list */
     ObservableList<Room> getFilteredRoomList();
 
+    /** Returns an unmodifiable view of the filtered record list */
+    ObservableList<Residency> getFilteredRecordList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -146,6 +150,12 @@ public interface Model {
     void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
+     * Updates the filter of the filtered record list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRecordList(Predicate<Residency> predicate);
+
+    /**
      * Adds the given room.
      * {@code room} must not already exist in the address book.
      */
@@ -157,4 +167,7 @@ public interface Model {
      * @param residency The residency to be recorded.
      */
     void record(Residency residency);
+
+
+
 }
