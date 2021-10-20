@@ -14,13 +14,17 @@ import static seedu.address.testutil.TypicalRooms.ROOM_TWO;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.residency.Residency;
+import seedu.address.model.residency.exceptions.ResidencyContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.TypicalRecordsBook;
 
@@ -121,6 +125,27 @@ public class ModelManagerTest {
     public void getRecord_invalidRoom_returnsEmptyOptional() {
         modelManager.setAddressBook(TypicalRecordsBook.getTypicalAddressBook());
         assertEquals(Optional.empty(), modelManager.getRecord(ROOM_TWO));
+    }
+
+    @Test
+    public void getFilteredRecordList_validRecordList_success() {
+        modelManager.setAddressBook(TypicalRecordsBook.getTypicalAddressBook());
+        assertEquals(TypicalRecordsBook.getTypicalAddressBook().getRecordsList(), modelManager.getFilteredRecordList());
+    }
+
+    @Test
+    public void getFilteredRecordList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRecordList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredRecordList_validPredicate_success() {
+        modelManager.setAddressBook(TypicalRecordsBook.getTypicalAddressBook());
+        String[] searchTerm = new String[] {"001"};
+        modelManager.updateFilteredRecordList(
+                new ResidencyContainsKeywordsPredicate(new ArrayList<String>(Arrays.asList(searchTerm))) {
+        });
+        assertEquals(modelManager.getFilteredRecordList(),TypicalRecordsBook.getTypicalAddressBook().getRecordsList());
     }
 
     @Test
