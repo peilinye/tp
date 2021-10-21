@@ -124,7 +124,7 @@ public class MainWindow extends UiPart<Stage> {
         roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
         roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
 
-        residencyListPanel = new ResidencyListPanel(logic.getAddressBook().getRecordsList());
+        residencyListPanel = new ResidencyListPanel(logic.getFilteredRecordList());
         residencyListPanelPlaceholder.getChildren().add(residencyListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

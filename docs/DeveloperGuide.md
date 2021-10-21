@@ -160,93 +160,115 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Guest and Room search feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The search mechanism is facilitated by `LogicManager`. It extends `Logic` and its invocation is via the `AddressBookParser`.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `AddressBookParser#parseCommand()` — Interprets the command the user inputs to invoke the `FindGuestCommand` and `FindRoomCommand`.
+* `FindGuestCommand#execute()` — Finds the guest in the hotel with matching name
+* `FindRoomCommand#execute()` — Finds the room in the hotel with matching room number
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. User searches for the data entry desired.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![SearchGuest](images/SearchGuest.png)
+![SearchRoom](images/SearchRoom.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. Hit Enter.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![SearchGuestResult](images/SearchGuestResult.png)
+![SearchRoomResult](images/SearchRoomResult.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+The Rooms / Guests that have matching names will appear in their respective lists.
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How search guest / room executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* The string name / room number will be passed into a predicate checker to check if any of the data present contains the information as requested.
+    * Pros: Consistent implementation - similar to the other commands.
+    * Cons: Increased need for good file system and extensive application of Object-Oriented Principles required.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    
+### Listing rooms by vacancy feature
 
-_{more aspects and alternatives to be added}_
+#### Implementation
 
-### \[Proposed\] Data archiving
+The list mechanism is facilitated by `LogicManager`. It extends `Logic` and its invocation is via the `AddressBookParser`.
 
-_{Explain here how the data archiving feature will be implemented}_
+* `AddressBookParser#parseCommand()` — Interprets the command the user inputs to invoke the `ListCommand`.
+* `ListCommand#execute()` — Filters the list of rooms based on whether they are vacant or occupied and shows the relevant type to user.
 
-_{Potential Data Archiving: Expired Residencies stored in a separate file from the
-  main addressbook.json to facilitate archiving}_
+This operation is exposed in the `Model` interface as `Model#updateFilteredRoomList()`.
 
+Given below is an example usage scenario and how the list mechanism behaves at each step.
+
+Step 1. User lists the rooms based on the desired vacancy status.
+
+![ListOccupied](images/ListOccupied.png)
+![ListVacant](images/ListVacant.png)
+
+Step 2. Hit Enter.
+
+![ListOccupiedResult](images/ListOccupiedResult.png)
+![ListVacantResult](images/ListVacantResult.png)
+
+The rooms of the specified vacancy status will appear in the room list.
+
+#### Design considerations:
+
+**Aspect: How list room occupied / vacant executes:**
+
+* The valid string will create a predicate object for `Model#updateFilteredRoomList()` to filter the rooms based on.
+    * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
+    * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
+
+### Uniqueness of Guests [coming soon]
+
+#### Implementation
+
+The mechanism guaranteeing the uniqueness of Guests is facilitated by the `Nric` class, and its invocation is via `AddressBookParser`.
+* `AddressBookParser#parseCommand()`  — Interprets the command the user inputs to invoke the `AddCommandParser`.
+* `ParserUtil#parseNric()`  — checks whether a `Person` object already exists with the same Nric.
+
+#### Design considerations:
+
+**Aspect: How duplicates are avoided:**
+
+* An `AddCommand` that wants to add a `Person` with an `Nric` that another existing `Person` already will be considered an invalid command.
+    * Uniqueness  —  This mechanism will help to prevent the adding of duplicate `Person` objects.
+    
+### Past Records Feature
+
+This section describes how past residencies are stored such that it can be displayed/searched for contact tracing.
+
+The past residencies are read from the same json data file as the other components in the `AddressBook`, through the `JsonAdaptedResidencyBook` class.
+
+They are stored in a `ResidencyBook`, similar to the one storing current residencies.
+![Relationship of AddressBook and ResidencyBook](images/AddressBookSubset.png)
+
+This `ResidencyBook` only calls upon `ResidencyBook#register(Residency)` but not `ResidencyBook#remove(Residency)` to prevent editing
+of the records stored.
+
+It is exposed in `ModelManager#getFilteredRecordList()`, `ModelManager#updateFilteredRecordList()`, `
+LogicManager#getFilteredRecordList()` where the contents are stored in a `FilteredList` for display in the UI.
+
+#### Design considerations:
+
+* Possible location of storage of past residencies.
+    * Second file.
+    * Pros: Keeping past residency storage separate from the main data storage minimises any mixup in the storing of information.
+    * Cons: This requires the file to store its own set of persons and rooms and because the residency keeps minimal information in order to minimise
+      space required for the storage file, it results in redundancy when storing the same information across 2 files. Changes also have to be written twice.
+
+* Consistency
+    * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
+      in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -268,7 +290,7 @@ _{Potential Data Archiving: Expired Residencies stored in a separate file from t
 
 * hotel receptionist
 * has a need to manage a significant number of guests and rooms
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -284,13 +306,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a guest as a contact       | check them into rooms                                                  |
-| `* * *`  | user                                       | check guests into rooms        | admit them into our hotel                                                   |
+| `* * *`  | user                                       | check guests into rooms        | admit them into our hotel                                              |
 | `* * *`  | user                                       | check guests out of rooms      | free up the room and have their information in the archive                                                  |
 | `* * *`  | user                                       | search for vacant rooms        | assign guests to a vacant room                                         |
 | `* * *`  | user                                       | delete guests                  | remove them if the wrong details are entered                           |
 | `* * *`  | user                                       | list all guests and rooms      | check all the statuses                                                 |
 | `*`      | user with many guests in the address book  | sort guests  by name           | locate a guest easily                                                  |
 | `* *`    | user                                       | search guests by their name    | find a guest's details easily                                          |
+| `* * *`  | user who has to track past records of guests | perform queries on past data | check records of past guests and details of their stay                 |
+| `* *`    | user                                       | add rooms with specified tags  | keep track of different types of rooms in my hotel                     |
 
 *{More to be added}*
 
