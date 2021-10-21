@@ -50,14 +50,22 @@ public class AddRoomCommand extends Command {
             throw new CommandException(MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS);
         }
 
-        for (int i = 1; i <= number; i++) {
-            int newNum = numRooms + i;
-            String roomNumber = String.format("%03d", newNum);
+        int totalNumOfRooms = numRooms + number;
+        for (int i = numRooms + 1; i <= totalNumOfRooms; i++) {
+            String roomNumber = String.format("%03d", i);
             Room room = new Room(new RoomNumber(roomNumber), tags);
             model.addRoom(room);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, number, tags.toString()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddRoomCommand // instanceof handles nulls
+                && number == ((AddRoomCommand) other).number
+                && tags.equals(((AddRoomCommand) other).tags));
     }
 
 }
