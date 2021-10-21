@@ -145,6 +145,20 @@ Examples:
 
 ##Room
 
+### Adding rooms : `addroom`
+
+Adds the specified number of rooms with the specified tags.
+
+Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A room can have more than one tag.
+</div>
+
+Examples:
+* `addroom 5 t/type A`
+* `addroom 10 t/type B t/reserved`
+
 ### Checking into a room : `checkin`
 
 Checks in a group of guests into a room.
