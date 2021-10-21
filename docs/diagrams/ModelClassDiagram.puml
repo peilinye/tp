@@ -60,12 +60,14 @@ RoomList --> "~* all" Room
 Room *--> RoomNumber
 Room *--> Vacancy
 Room *--> "*" Person
+Room *--> "1..*" Tag
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-AddressBook *-left-> "1" ReadOnlyResidencyBook
+AddressBook *-left-> "2" ReadOnlyResidencyBook
 ResidencyBook .up.|> ReadOnlyResidencyBook
 ResidencyBook --> "~*" Residency
 ResidencyBook --> "~*" Room
