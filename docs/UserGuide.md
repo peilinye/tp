@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Trace2Gather can get your hotel management tasks done faster than traditional GUI apps.
+Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Trace2Gather can get your hotel management tasks done faster than traditional GUI apps.
+<br>
+This user guide is designed to provide documentation for any user of Trace2Gather, as all users will have access to the features documented here.
 
 * Table of Contents
 {:toc}
@@ -16,7 +18,7 @@ Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized f
 
 1. Download the latest `trace2gather.jar` from [here](https://https://github.com/AY2122S1-CS2103T-T13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Trace2Gather.
+1. Copy the file to the folder you want to use as the _home folder_ for Trace2Gather.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -26,11 +28,15 @@ Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized f
 
    * **`list guests`** : Lists all guests.
 
+   * **`addroom`**`5 t/type A` : Adds 5 rooms of type A to the room list.
+
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nric/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
+
+   * **`checkin`**`5 g/1` : Checks in the 1st guest into the 5th room.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all rooms, guests and past records.
 
    * **`exit`** : Exits the app.
 
@@ -72,7 +78,7 @@ Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t
 
 Format: `help`
 
-##Guest
+## Guest
 
 ### Adding a guest: `add`
 
@@ -127,7 +133,8 @@ Format: `guest KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `guest John` returns `john` and `John Doe`
 * `guest alex david` returns `Alex Yeoh`, `David Li`<br>
-
+  ![guestsearch](images/Guestalexdavid1.png)
+  ![guestsearch](images/Guestalexdavid2.png)
 
 ### Deleting a guest : `delete`
 
@@ -143,16 +150,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd guest in Trace2Gather.
 * `guest Betsy` followed by `delete 1` deletes the 1st guest in the results of the `guest` command.
 
-##Room
+## Room
 
 ### Adding rooms : `addroom`
 
-Adds the specified number of rooms with the specified tags.
+Adds the specified number of rooms with the specified tag(s).
 
 Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 
+* Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the end of the list of rooms.
+* The specified number of rooms **must be a positive integer** 1, 2, 3, …​
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A room can have more than one tag.
+A room can have one or more tags.
 </div>
 
 Examples:
@@ -173,7 +183,7 @@ The indexes refer to the index numbers shown in the displayed guest/room list.
 
 Examples:
 * `checkin 5 g/1`
-* `checkin 13 g/2 g/3 g/8`
+* `checkin 3 g/2 g/3 g/6` ![checkin3](images/Checkin3.png)
 
 ### Checking out of a room : `checkout`
 
@@ -184,16 +194,16 @@ Format: `checkout ROOM_INDEX`
 The room index refers to the index number shown in the displayed room list.
 
 Example:
-* `checkout 24`
+* `checkout 4` ![checkout4](images/Checkout4.png)
 
 ### Locating a specific room : `room`
 
 Shows a list of rooms that match the room numbers provided.
 
-Format: `room ROOM_NUMBER(s)`
+Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 
 Example:
-* `room 001 002`
+* `room 001 002` ![room001002](images/Room001002.png)
 
 ### Listing all rooms : `list rooms`
 
@@ -213,7 +223,7 @@ Shows a list of all rooms that are vacant in Trace2Gather.
 
 Format: `list rooms vacant`
 
-##Records
+## Records
 
 ### Listing all records : `list records`
 
@@ -231,7 +241,7 @@ Example: <br/>
 `record Alex` shows the residencies Alex has in the past.<br/>
 `record 001` shows the residencies Room 001 has in the past.
 
-##Database / Storage
+## Database / Storage
 
 ### Clearing all entries : `clear`
 
@@ -274,11 +284,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​` <br> e.g., ``add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague``
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
+**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/type A`
 **Clear** | `clear`
-**Checkout** | `checkout 3`
+**Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
+**Checkout** | `checkout ROOM_INDEX`<br> e.g., `checkout 4`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Exit** | `exit`
 **Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
-**List** | `list rooms`, `list rooms vacant`, `list rooms occupied`, `list guests`,
+**List** | `list guests`, `list records`, `list rooms`, `list rooms occupied`, `list rooms vacant`
 **Help** | `help`
+**Record** | `record KEYWORD_ONE...`<br> e.g., `record Alex`, `record 001`
+**Room** | `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`<br> e.g., `room 001 002`
