@@ -36,7 +36,7 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListCommand(listType);
         } else {
             // list guests command should not have extra arguments
-            if (listType.isGuestsType()) {
+            if (listType.isGuestsType() || listType.isRecordsType()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             }

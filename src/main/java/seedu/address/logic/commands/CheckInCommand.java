@@ -80,7 +80,7 @@ public class CheckInCommand extends Command {
             throw new CommandException(MESSAGE_NO_GUESTS);
         }
 
-        Room editedRoom = new Room(roomToEdit.getRoomNumber(), Vacancy.OCCUPIED, guests);
+        Room editedRoom = new Room(roomToEdit.getRoomNumber(), Vacancy.OCCUPIED, guests, roomToEdit.getTags());
 
         model.setRoom(roomToEdit, editedRoom);
         model.register(editedRoom, guests);

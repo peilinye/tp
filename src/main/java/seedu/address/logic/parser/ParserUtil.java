@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTEGER;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.listroomargs.ListRoomArg;
 import seedu.address.commons.core.listtype.ListType;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -172,5 +174,17 @@ public class ParserUtil {
         return new ListRoomArg(trimmedArg);
     }
 
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Integer} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified integer is invalid (not non-zero unsigned integer).
+     */
+    public static Integer parseNumber(String oneBasedIndex) throws IllegalValueException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new IllegalValueException(MESSAGE_INVALID_INTEGER);
+        }
+        return Integer.parseInt(trimmedIndex);
+    }
 
 }

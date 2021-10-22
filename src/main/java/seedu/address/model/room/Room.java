@@ -1,25 +1,30 @@
 package seedu.address.model.room;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 public class Room {
     private final RoomNumber roomNumber;
     private final Vacancy vacancy;
     private final Set<Person> guests = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs a {@code Room}.
      *
      * @param roomNumber A valid room number.
      */
-    public Room(RoomNumber roomNumber) {
+    public Room(RoomNumber roomNumber, Set<Tag> tags) {
         this.roomNumber = roomNumber;
         vacancy = Vacancy.VACANT;
+        this.tags.addAll(tags);
     }
 
     /**
@@ -29,10 +34,12 @@ public class Room {
      * @param vacancy Vacant if room has no guests.
      * @param guests List of guests in the room.
      */
-    public Room(RoomNumber roomNumber, Vacancy vacancy, Set<Person> guests) {
+    public Room(RoomNumber roomNumber, Vacancy vacancy, Set<Person> guests, Set<Tag> tags) {
+        requireAllNonNull(roomNumber, vacancy, tags);
         this.roomNumber = roomNumber;
         this.vacancy = vacancy;
         this.guests.addAll(guests);
+        this.tags.addAll(tags);
     }
 
     public RoomNumber getRoomNumber() {
@@ -51,12 +58,20 @@ public class Room {
         return Collections.unmodifiableSet(guests);
     }
 
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
     public boolean isVacant() {
         return vacancy.isVacant();
     }
 
     /**
-     * Returns true if both rooms have the same name.
+     * Returns true if both rooms have the same {@code RoomNumber}.
      */
     public boolean isSameRoom(Room otherRoom) {
         if (otherRoom == this) {
@@ -81,7 +96,7 @@ public class Room {
             editedGuests.add(editedGuest);
         }
 
-        return new Room(roomNumber, vacancy, editedGuests);
+        return new Room(roomNumber, vacancy, editedGuests, tags);
     }
 
     @Override
@@ -95,7 +110,8 @@ public class Room {
                 || (other instanceof Room
                 && roomNumber.equals(((Room) other).roomNumber)
                 && vacancy.equals(((Room) other).vacancy)
-                && guests.equals(((Room) other).guests));
+                && guests.equals(((Room) other).guests)
+                && tags.equals(((Room) other).tags));
     }
 
     @Override

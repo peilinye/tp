@@ -12,6 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
 import seedu.address.model.tag.Tag;
@@ -53,6 +54,9 @@ public class SampleDataUtil {
         for (Room sampleRoom : getSampleRooms()) {
             sampleAb.addRoom(sampleRoom);
         }
+        for (Residency sampleResidency : getSampleResidency()) {
+            sampleAb.record(sampleResidency);
+        }
         return sampleAb;
     }
 
@@ -67,11 +71,25 @@ public class SampleDataUtil {
 
     public static Room[] getSampleRooms() {
         return new Room[] {
-            new Room(new RoomNumber("001")),
-            new Room(new RoomNumber("002")),
-            new Room(new RoomNumber("003")),
-            new Room(new RoomNumber("004")),
-            new Room(new RoomNumber("005")),
+            new Room(new RoomNumber("001"), getTagSet("normal")),
+            new Room(new RoomNumber("002"), getTagSet("normal")),
+            new Room(new RoomNumber("003"), getTagSet("normal")),
+            new Room(new RoomNumber("004"), getTagSet("normal")),
+            new Room(new RoomNumber("005"), getTagSet("normal")),
+        };
+    }
+
+    public static Residency[] getSampleResidency() {
+        Person[] guests = getSamplePersons();
+        Person[] guestsOne = new Person[] {guests[0], guests[1], guests[2]};
+        Person[] guestsTwo = new Person[] {guests[3], guests[4], guests[5]};
+        Set<Person> guestsOneSet = Arrays.stream(guestsOne).collect(Collectors.toSet());
+        Set<Person> guestsTwoSet = Arrays.stream(guestsTwo).collect(Collectors.toSet());
+        Room[] rooms = getSampleRooms();
+
+        return new Residency[] {
+            new Residency(rooms[0], guestsOneSet),
+            new Residency(rooms[1], guestsTwoSet)
         };
     }
 }
