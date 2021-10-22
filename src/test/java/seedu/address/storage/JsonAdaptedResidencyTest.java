@@ -56,8 +56,8 @@ public class JsonAdaptedResidencyTest {
 
         String expectedMessage = RoomNumber.MESSAGE_CONSTRAINTS;
 
-        assertThrows(IllegalValueException.class, expectedMessage,
-                () -> jsonResidency.toModelType(idPersonMap, roomNumberRoomMap));
+        assertThrows(IllegalValueException.class, expectedMessage, ()
+            -> jsonResidency.toModelType(idPersonMap, roomNumberRoomMap));
     }
 
     @Test
@@ -67,7 +67,8 @@ public class JsonAdaptedResidencyTest {
 
     @Test
     public void toModelType_nullCheckInTime_throwsIllegalValueException() {
-        JsonAdaptedResidency jsonResidency = new JsonAdaptedResidency(ROOM_ONE.getRoomNumber().toString(), new String[0], null, null);
+        JsonAdaptedResidency jsonResidency =
+                new JsonAdaptedResidency(ROOM_ONE.getRoomNumber().toString(), new String[0], null, null);
 
         Map<Nric, Person> nricPersonMap = new HashMap<>();
         Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
@@ -75,8 +76,8 @@ public class JsonAdaptedResidencyTest {
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "check in time");
 
-        assertThrows(IllegalValueException.class, expectedMessage,
-                () -> jsonResidency.toModelType(nricPersonMap, roomNumberRoomMap));
+        assertThrows(IllegalValueException.class, expectedMessage, ()
+            -> jsonResidency.toModelType(nricPersonMap, roomNumberRoomMap));
     }
 
     @Test
