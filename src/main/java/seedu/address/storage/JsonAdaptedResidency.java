@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
@@ -20,6 +21,8 @@ import seedu.address.model.room.RoomNumber;
  * Jackson-friendly version of {@link Residency}.
  */
 class JsonAdaptedResidency {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Residency's %s field is missing!";
 
     private final String roomNumber;
     private final String[] guestNrics;
@@ -62,7 +65,9 @@ class JsonAdaptedResidency {
     /**
      * Converts this Jackson-friendly adapted residency object into the model's {@code Residency} object.
      */
-    public Residency toModelType(Map<Nric, Person> nricPersonMap, Map<RoomNumber, Room> roomNumberRoomMap) {
+    public Residency toModelType(Map<Nric, Person> nricPersonMap,
+                                 Map<RoomNumber, Room> roomNumberRoomMap) throws IllegalValueException {
+        // TODO: Check if any data constraints are violated
         Set<Person> guests = new HashSet<>();
         for (String nric : guestNrics) {
             Nric something = Nric.of(nric);
@@ -71,11 +76,16 @@ class JsonAdaptedResidency {
         }
 
         Room room = roomNumberRoomMap.get(new RoomNumber(roomNumber));
+        if (room == null) {
+            throw new IllegalValueException(RoomNumber.MESSAGE_CONSTRAINTS);
+        }
 
+        if (checkInTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "check in time"));
+        }
         LocalDateTime checkIn = LocalDateTime.parse(checkInTime);
-        LocalDateTime checkOut = checkOutTime != null ? LocalDateTime.parse(checkOutTime) : null;
 
-        // TODO: Check if any data constraints are violated
+        LocalDateTime checkOut = checkOutTime != null ? LocalDateTime.parse(checkOutTime) : null;
 
         return new Residency(room, guests, checkIn, checkOut);
     }
