@@ -96,7 +96,7 @@ class JsonSerializableAddressBook {
         }
     }
 
-    private void addResidencies(AddressBook addressBook) {
+    private void addResidencies(AddressBook addressBook) throws IllegalValueException {
         ResidencyBook tempResidencyBook =
                 residencyBook.toModelType(addressBook.getPersonList(), addressBook.getRoomList(), false);
         ResidencyBook tempRecords =

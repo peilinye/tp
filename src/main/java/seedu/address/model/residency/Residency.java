@@ -3,11 +3,14 @@ package seedu.address.model.residency;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.exceptions.AlreadyCheckedOutException;
 import seedu.address.model.room.Room;
 
 /**
@@ -17,18 +20,34 @@ public class Residency {
 
     private final Room room;
     private final Set<Person> guests;
+    private LocalDateTime checkInTime;
+    private LocalDateTime checkOutTime;
 
     /**
      * Constructor for Residency object.
+     * Automatically sets the check in time to the current time.
      *
      * @param room Room object where guests stay in.
      * @param guests Set of Person objects who stayed in this room.
      */
     public Residency(Room room, Set<Person> guests) {
+        this(room, guests, LocalDateTime.now(), null);
+    }
+
+    /**
+     * Constructor for Residency object.
+     * Allows for setting a custom check in time.
+     *
+     * @param room Room object where guests stay in.
+     * @param guests Set of Person objects who stayed in this room.
+     */
+    public Residency(Room room, Set<Person> guests, LocalDateTime checkInTime, LocalDateTime checkOutTime) {
         requireNonNull(room);
         requireAllNonNull(guests);
         this.room = room;
         this.guests = guests;
+        this.checkInTime = checkInTime;
+        this.checkOutTime = checkOutTime;
     }
 
     /**
@@ -57,6 +76,27 @@ public class Residency {
     public void setGuest(Person personToEdit, Person editedPerson) {
         guests.remove(personToEdit);
         guests.add(editedPerson);
+    }
+
+    /**
+     * Sets the check out time to the current time.
+     * This cannot be changed in the future.
+     *
+     * @throws AlreadyCheckedOutException if this method has been called before.
+     */
+    public void checkOut() {
+        if (checkOutTime != null) {
+            throw new AlreadyCheckedOutException();
+        }
+        checkOutTime = LocalDateTime.now();
+    }
+
+    public LocalDateTime getCheckInTime() {
+        return this.checkInTime;
+    }
+
+    public Optional<LocalDateTime> getCheckOutTime() {
+        return Optional.ofNullable(this.checkOutTime);
     }
 
     @Override

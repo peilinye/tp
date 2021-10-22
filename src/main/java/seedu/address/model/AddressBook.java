@@ -153,6 +153,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
         persons.setPerson(target, editedPerson);
         residencyBook.edit(target, editedPerson);
+        recordsBook.edit(target, editedPerson);
     }
 
     /**
