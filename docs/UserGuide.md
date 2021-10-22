@@ -145,6 +145,20 @@ Examples:
 
 ##Room
 
+### Adding rooms : `addroom`
+
+Adds the specified number of rooms with the specified tags.
+
+Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A room can have more than one tag.
+</div>
+
+Examples:
+* `addroom 5 t/type A`
+* `addroom 10 t/type B t/reserved`
+
 ### Checking into a room : `checkin`
 
 Checks in a group of guests into a room.
@@ -199,6 +213,24 @@ Shows a list of all rooms that are vacant in Trace2Gather.
 
 Format: `list rooms vacant`
 
+##Records
+
+### Listing all records : `list records`
+
+Shows a list of past residencies in Trace2Gather.
+
+Format: `list records`
+
+### Locating specific records: `record`
+
+Shows the records that match the keywords provided (case sensitive, at least 1).
+
+Format: `record KEYWORD_ONE... `
+
+Example: <br/>
+`record Alex` shows the residencies Alex has in the past.<br/>
+`record 001` shows the residencies Room 001 has in the past.
+
 ##Database / Storage
 
 ### Clearing all entries : `clear`
@@ -242,8 +274,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​` <br> e.g., ``add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague``
 **Clear** | `clear`
+**Checkout** | `checkout 3`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
