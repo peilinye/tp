@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedResidency.MESSAGE_DATETIME_CONSTRAINTS_FORMAT;
 import static seedu.address.storage.JsonAdaptedResidency.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -39,6 +40,10 @@ public class JsonAdaptedResidencyTest {
         roomNumberRoomMap.put(ROOM_ONE.getRoomNumber(), ROOM_ONE);
 
         assertEquals(residency, jsonResidency.toModelType(idPersonMap, roomNumberRoomMap));
+
+        residency.checkOut();
+        jsonResidency = new JsonAdaptedResidency(residency);
+        assertEquals(residency, jsonResidency.toModelType(idPersonMap, roomNumberRoomMap));
     }
 
     @Test
@@ -62,7 +67,17 @@ public class JsonAdaptedResidencyTest {
 
     @Test
     public void toModelType_invalidCheckInTime_throwsIllegalValueException() {
+        JsonAdaptedResidency jsonResidency =
+                new JsonAdaptedResidency(ROOM_ONE.getRoomNumber().toString(), new String[0], "beedle", null);
 
+        Map<Nric, Person> nricPersonMap = new HashMap<>();
+        Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
+        roomNumberRoomMap.put(ROOM_ONE.getRoomNumber(), ROOM_ONE);
+
+        String expectedMessage = String.format(MESSAGE_DATETIME_CONSTRAINTS_FORMAT, "check in time");
+
+        assertThrows(IllegalValueException.class, expectedMessage, ()
+            -> jsonResidency.toModelType(nricPersonMap, roomNumberRoomMap));
     }
 
     @Test
@@ -82,6 +97,19 @@ public class JsonAdaptedResidencyTest {
 
     @Test
     public void toModelType_invalidCheckOutTime_throwsIllegalValueException() {
+        JsonAdaptedResidency jsonResidency =
+                new JsonAdaptedResidency(ROOM_ONE.getRoomNumber().toString(),
+                        new String[0],
+                        "2021-10-22T11:15:57.563274400",
+                        "beedle");
 
+        Map<Nric, Person> nricPersonMap = new HashMap<>();
+        Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
+        roomNumberRoomMap.put(ROOM_ONE.getRoomNumber(), ROOM_ONE);
+
+        String expectedMessage = String.format(MESSAGE_DATETIME_CONSTRAINTS_FORMAT, "check out time");
+
+        assertThrows(IllegalValueException.class, expectedMessage, ()
+            -> jsonResidency.toModelType(nricPersonMap, roomNumberRoomMap));
     }
 }

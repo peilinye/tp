@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,7 @@ import seedu.address.model.room.RoomNumber;
 class JsonAdaptedResidency {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Residency's %s field is missing!";
+    public static final String MESSAGE_DATETIME_CONSTRAINTS_FORMAT = "Residency's %s format is incorrect.";
 
     private final String roomNumber;
     private final String[] guestNrics;
@@ -83,9 +85,20 @@ class JsonAdaptedResidency {
         if (checkInTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "check in time"));
         }
-        LocalDateTime checkIn = LocalDateTime.parse(checkInTime);
+        LocalDateTime checkIn;
+        try {
+            checkIn = LocalDateTime.parse(checkInTime);
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(String.format(MESSAGE_DATETIME_CONSTRAINTS_FORMAT, "check in time"));
+        }
 
-        LocalDateTime checkOut = checkOutTime != null ? LocalDateTime.parse(checkOutTime) : null;
+        // TODO: Check if check out time is before check in time
+        LocalDateTime checkOut;
+        try {
+            checkOut = checkOutTime != null ? LocalDateTime.parse(checkOutTime) : null;
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(String.format(MESSAGE_DATETIME_CONSTRAINTS_FORMAT, "check out time"));
+        }
 
         return new Residency(room, guests, checkIn, checkOut);
     }
