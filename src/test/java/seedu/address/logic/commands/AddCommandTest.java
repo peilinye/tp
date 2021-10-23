@@ -127,8 +127,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-
-
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
@@ -136,6 +134,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasRoom(Room room) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -191,6 +194,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Room> getFilteredRoomList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Integer getNumberOfRooms() {
             throw new AssertionError("This method should not be called.");
         }
 
