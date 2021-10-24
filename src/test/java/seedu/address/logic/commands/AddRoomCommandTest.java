@@ -33,7 +33,7 @@ public class AddRoomCommandTest {
 
     @Test
     public void constructor_nullTags_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddRoomCommand(1,null));
+        assertThrows(NullPointerException.class, () -> new AddRoomCommand(1, null));
     }
 
     @Test
@@ -67,10 +67,10 @@ public class AddRoomCommandTest {
         AddRoomCommand addRoomCommand10 = new AddRoomCommand(10, tags);
         ModelStub modelStub1 = new ModelStubWithMaxRooms();
 
-        assertThrows(CommandException.class, AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS,
-                () -> addRoomCommand1.execute(modelStub1));
-        assertThrows(CommandException.class, AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS,
-                () -> addRoomCommand10.execute(modelStub1));
+        assertThrows(CommandException.class, AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, ()
+            -> addRoomCommand1.execute(modelStub1));
+        assertThrows(CommandException.class, AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, ()
+            -> addRoomCommand10.execute(modelStub1));
     }
 
     @Test
@@ -86,8 +86,8 @@ public class AddRoomCommandTest {
         ModelStub modelStub2 = new ModelStubWith990Rooms();
         // command exception thrown when adding 10 rooms
         AddRoomCommand addRoomCommand10 = new AddRoomCommand(10, tags);
-        assertThrows(CommandException.class, AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS,
-                () -> addRoomCommand10.execute(modelStub2));
+        assertThrows(CommandException.class, AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, ()
+            -> addRoomCommand10.execute(modelStub2));
     }
 
 
