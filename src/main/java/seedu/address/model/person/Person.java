@@ -75,7 +75,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same nric.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -83,7 +83,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getNric().equals(getNric());
     }
 
     /**
@@ -101,12 +101,15 @@ public class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getNric().equals(getNric());
+
+        /*
+        otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
-        //&& otherPerson.getId().equals(getId());
+                && otherPerson.getTags().equals(getTags())
+         */
     }
 
     @Override
