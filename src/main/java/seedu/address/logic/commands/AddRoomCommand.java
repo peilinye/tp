@@ -34,6 +34,9 @@ public class AddRoomCommand extends Command {
 
     /**
      * Creates an AddRoomCommand to add the specified number of {@code Rooms} with the specified {@code Tags}
+     *
+     * @param number The number of rooms to be added.
+     * @param tags The tags to be set for the rooms.
      */
     public AddRoomCommand(int number, Set<Tag> tags) {
         requireAllNonNull(number, tags);
@@ -45,7 +48,7 @@ public class AddRoomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        int numRooms = model.getFilteredRoomList().size();
+        int numRooms = model.getNumberOfRooms();
         if (this.number + numRooms > 999) {
             throw new CommandException(MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS);
         }

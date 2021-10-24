@@ -103,6 +103,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasRoom(Room room) {
+        requireNonNull(room);
+        return addressBook.hasRoom(room);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -187,6 +193,13 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Room> getFilteredRoomList() {
         return filteredRooms;
+    }
+
+    /**
+     * Returns the number of rooms in the room list.
+     */
+    public Integer getNumberOfRooms() {
+        return filteredRooms.size();
     }
 
     @Override

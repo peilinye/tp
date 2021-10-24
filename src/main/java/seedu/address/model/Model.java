@@ -67,6 +67,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a room with the same room number as {@code room} exists in the address book.
+     */
+    boolean hasRoom(Room room);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -134,6 +139,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered room list */
     ObservableList<Room> getFilteredRoomList();
 
+    /** Returns the number of rooms in the filtered room list */
+    Integer getNumberOfRooms();
+
     /** Returns an unmodifiable view of the filtered record list */
     ObservableList<Residency> getFilteredRecordList();
 
@@ -167,7 +175,5 @@ public interface Model {
      * @param residency The residency to be recorded.
      */
     void record(Residency residency);
-
-
 
 }
