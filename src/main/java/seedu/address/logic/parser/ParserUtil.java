@@ -179,10 +179,10 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the specified integer is invalid (not non-zero unsigned integer).
      */
-    public static Integer parseNumber(String oneBasedIndex) throws IllegalValueException {
+    public static Integer parseNumber(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new IllegalValueException(MESSAGE_INVALID_INTEGER);
+            throw new ParseException(MESSAGE_INVALID_INTEGER);
         }
         return Integer.parseInt(trimmedIndex);
     }
