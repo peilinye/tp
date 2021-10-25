@@ -4,14 +4,14 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "nric" : "test1",
+    "nric" : "S98765432A",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "nric" : "test2",
+    "nric" : "S98765432B",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Charlie D",
@@ -32,7 +32,7 @@
       "roomNumber" : "001",
       "checkInTime" : "2021-10-16T13:56:43.151757900",
       "checkOutTime" : "2021-10-16T13:57:07.728702200",
-      "guestNRICs" : [ "test1", "test2", "test10" ]
+      "guestNRICs" : [ "S98765432A", "S98765432B", "test10" ]
     } ]
   },
   "recordsBook" : {

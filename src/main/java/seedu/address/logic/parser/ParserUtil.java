@@ -11,7 +11,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.listroomargs.ListRoomArg;
 import seedu.address.commons.core.listtype.ListType;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -179,10 +178,10 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the specified integer is invalid (not non-zero unsigned integer).
      */
-    public static Integer parseNumber(String oneBasedIndex) throws IllegalValueException {
+    public static Integer parseNumber(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new IllegalValueException(MESSAGE_INVALID_INTEGER);
+            throw new ParseException(MESSAGE_INVALID_INTEGER);
         }
         return Integer.parseInt(trimmedIndex);
     }
