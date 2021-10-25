@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import javafx.fxml.FXML;
@@ -31,6 +32,11 @@ public class ResidencyCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label number;
+
+    @FXML
+    private Label in;
+    @FXML
+    private Label out;
     @FXML
     private FlowPane personInfo;
 
@@ -44,6 +50,8 @@ public class ResidencyCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         number.setText(residency.getRoom().getRoomNumber().value);
+        in.setText(residency.getCheckInTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        out.setText(residency.getCheckOutTime().get().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
 
         Set<Person> guests = residency.getGuests();
         guests.stream().map(person -> {

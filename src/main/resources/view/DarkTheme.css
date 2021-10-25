@@ -417,5 +417,38 @@
     -fx-font-size: 14;
 }
 
+.cell_occupancy_label_checkin {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 14px;
+
+    /*
+    -fx-text-fill: #1be3b2 !important;
+    -fx-background-color: #ac3cb7;
+    */
+    -fx-font-weight: 700 !important;
+    -fx-background-radius: 10px;
+    -fx-label-padding: 3px;
+    -fx-text-fill: #d6e31b !important;
+}
+
+.cell_occupancy_label_checkout {
+    -fx-font-family: "Open Sans Regular";
+    -fx-font-size: 14px;
+
+    /*
+    -fx-text-fill: #1be3b2 !important;
+    -fx-background-color: #ac3cb7;
+    */
+    -fx-font-weight: 700 !important;
+    -fx-background-radius: 10px;
+    -fx-label-padding: 3px;
+    -fx-text-fill: #f5941d !important;
+}
+
+
+
+
+
+
 
 
