@@ -318,7 +318,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### Use Cases
+
+Refer to [_Use Cases_](UseCases.md).
 
 (For all use cases below, the **System** is the `Trace2Gather` and the **Actor** is the `user`, unless specified otherwise)
 
