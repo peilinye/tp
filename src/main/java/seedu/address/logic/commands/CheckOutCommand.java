@@ -53,10 +53,10 @@ public class CheckOutCommand extends Command {
 
         //Resets room to default (vacant, no guests)
         Room editedRoom = new Room(roomToEdit.getRoomNumber(), roomToEdit.getTags());
-
         model.setRoom(roomToEdit, editedRoom);
         residency.ifPresent(model::record);
         residency.ifPresent(model::removeResidency);
+        residency.ifPresent(Residency::checkOut);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
         return new CommandResult(String.format(MESSAGE_CHECKOUT_SUCCESS, editedRoom));
     }

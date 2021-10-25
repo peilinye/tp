@@ -33,6 +33,8 @@
   "recordsBook" : {
     "residencies" : [ {
       "roomNumber" : "001",
+      "checkInTime" : "2021-10-16T13:56:43.151757900",
+      "checkOutTime" : "2021-10-16T13:57:07.728702200",
       "guestNRICs" : [ "S98765432A", "S98765432B", "test10" ]
     } ]
   }

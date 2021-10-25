@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.ReadOnlyResidencyBook;
@@ -45,7 +46,10 @@ public class JsonAdaptedResidencyBook {
     /**
      * Converts this Jackson-friendly adapted residency book object into the model's {@code ResidencyBook} object.
      */
-    public ResidencyBook toModelType(List<Person> persons, List<Room> rooms, boolean allowDuplicates) {
+    public ResidencyBook toModelType(List<Person> persons,
+                                     List<Room> rooms,
+                                     boolean allowDuplicates) throws IllegalValueException {
+
         ResidencyBook residencyBook = new ResidencyBook(allowDuplicates);
 
         Map<Nric, Person> nricPersonMap = new HashMap<>();
