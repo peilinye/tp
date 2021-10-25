@@ -25,17 +25,27 @@
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
+
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
                 <Label fx:id="number" text="\$number" styleClass="cell_big_label" />
             </HBox>
 
+
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Label styleClass="cell_room_sub_label">Check In: </Label>
+                <Label fx:id="in" text="\$in" styleClass="cell_occupancy_label_checkin" />
+
+                <Label styleClass="cell_room_sub_label">Check Out: </Label>
+                <Label fx:id="out" text="\$out" styleClass="cell_occupancy_label_checkout" />
+            </HBox>
+
+
             <HBox>
                 <FlowPane fx:id="personInfo" />
                 <minWidth>
-                    <!-- Ensures that the label text is never truncated -->
+
                     <Region fx:constant="USE_PREF_SIZE" />
                 </minWidth>
             </HBox>
