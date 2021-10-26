@@ -325,12 +325,16 @@ Refer to [_Use Cases_](UseCases.md).
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should work without being connected to the Internet.
-5. Should be able to use most basic commands within a day of usage.
+2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should work without being connected to the Internet.
+4. Should be able to use most basic commands within a day of usage.
+5. User should be able to identify key information on the GUI quickly using colour coded text.
+6. The system should respond within two seconds of a command input.
+7. The product is not required to handle the printing of reports.
+8. The rooms show what type of rooms they are, such as First Class or Standard etc.
+9. Guests have tags assigned to them to better identify them.
+10. The data integrity of the application is preserved in the event where the application closes unexpectedly.
 
-*{More to be added}*
 
 ### Glossary
 
