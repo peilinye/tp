@@ -43,7 +43,7 @@ Given below are my contributions to the project.
 * Amended GUI to reflect addressBook.json values for Room
 * Added styling to indicate vacancy status of rooms
 * Included guests to rooms shown on GUI, along with appropriate styling
-* Added History list in GUI along with its styling
+* Added History list in GUI along with its card styling
 
 #### Misc
 * Provided boilerplate code for team to start work in first week of team project
@@ -55,10 +55,12 @@ Given below are my contributions to the project.
   * Redirected Help Window's link to our project's User Guide page
 * Developer Guide:
     * Amended UML Diagrams
+* Use Cases:
+    * Created Use Cases page along with respective use cases
 
 ## Community
 * PRs reviewed (with non-trivial review comments): [\#144](https://github.com/nus-cs2103-AY2122S1/ip/pull/144), [\#486](https://github.com/nus-cs2103-AY2122S1/ip/pull/486), [\#173](https://github.com/nus-cs2103-AY2122S1/ip/pull/173)
-* Contributed to forum discussions: [\#176](https://github.com/nus-cs2103-AY2122S1/forum/issues/176), [\#183](https://github.com/nus-cs2103-AY2122S1/forum/issues/183)
+* Contributed to forum discussions: [\#176](https://github.com/nus-cs2103-AY2122S1/forum/issues/176), [\#183](https://github.com/nus-cs2103-AY2122S1/forum/issues/183), [\#296](https://github.com/nus-cs2103-AY2122S1/forum/issues/296)
 * Updated module setup guide for all students to reflect latest intelliJ settings: [\#3](https://github.com/se-edu/guides/pull/3)
 
 ## Additional
