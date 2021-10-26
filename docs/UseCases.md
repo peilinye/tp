@@ -16,25 +16,6 @@ For all use cases below, the **System** is the `Trace2Gather` and the **Actor** 
 
 ## Guest
 
-### Use case: Delete a guest
-**MSS**
-1.  User requests to list guests.
-2.  Trace2Gather shows a list of guests.
-3.  User requests to delete a specific guest in the list.
-4.  Trace2Gather deletes the guest.
-    
-    Use case ends.
-
-**Extensions**
-* 2a. The list is empty.
-  Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. Trace2Gather shows an error message.
-      
-        Use case resumes at step 2.
-
-<br><br>
-
 ### Use case: Add a guest
 **MSS**
 

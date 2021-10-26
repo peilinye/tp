@@ -34,8 +34,6 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
    * **`checkin`**`5 g/1` : Checks in the 1st guest into the 5th room.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
    * **`clear`** : Deletes all rooms, guests and past records.
 
    * **`exit`** : Exits the app.
@@ -135,20 +133,7 @@ Examples:
 * `guest alex david` returns `Alex Yeoh`, `David Li`<br>
   ![guestsearch](images/Guestalexdavid1.png)
   ![guestsearch](images/Guestalexdavid2.png)
-
-### Deleting a guest : `delete`
-
-Deletes the specified guest from Trace2Gather.
-
-Format: `delete INDEX`
-
-* Deletes the guest at the specified `INDEX`.
-* The index refers to the index number shown in the displayed guest list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd guest in Trace2Gather.
-* `guest Betsy` followed by `delete 1` deletes the 1st guest in the results of the `guest` command.
+  
 
 ## Room
 
