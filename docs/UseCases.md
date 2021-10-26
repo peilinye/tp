@@ -228,10 +228,34 @@ For all use cases below, the **System** is the `Trace2Gather` and the **Actor** 
 
 <br><br>
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
+## History
+
+### Use case: Retrieve all history records
+**MSS**
+
+1.  User requests to retrieve all history record entries.
+2.  User is able to view all history record entries.
+
+    Use case ends.
+
+<br><br>
+
+### Use case: Search for specific history record
+**MSS**
+
+1.  User requests to find a specific history record using either room number or guest name.
+2.  User is able to view all history records as specified.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list containing history records with desired history record(s) is empty.
+
+  Use case ends.
+
+<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
