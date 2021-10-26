@@ -128,7 +128,62 @@ For all use cases below, the **System** is the `Trace2Gather` and the **Actor** 
         Use case resumes at step 2.
 
 <br><br>
-      
+
+### Use case: Search for room(s)
+**MSS**
+
+1.  User requests to find a specific room / some rooms using the room number.
+2.  User is able to view all rooms as specified.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list containing room(s) with desired room number(s) is empty.
+
+  Use case ends.
+
+<br><br>
+
+### Use case: Retrieve all occupied rooms
+**MSS**
+
+1.  User requests to retrieve all occupied rooms.
+2.  User is able to view all the entries of occupied rooms.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list containing all occupied rooms is empty.
+
+  Use case ends.
+
+<br><br>
+
+### Use case: Retrieve all vacant rooms
+**MSS**
+
+1.  User requests to retrieve all vacant rooms.
+2.  User is able to view all vacant rooms.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The list containing all vacant rooms is empty.
+
+  Use case ends.
+
+<br><br>
+
+### Use case: Retrieve all rooms
+**MSS**
+
+1.  User requests to retrieve all the entries of rooms.
+2.  User is able to view all the entries of rooms.
+
+    Use case ends.
+
+<br><br>
+
 ### Use case: Check-in guest(s) to a room
 **MSS**
 
@@ -173,10 +228,7 @@ For all use cases below, the **System** is the `Trace2Gather` and the **Actor** 
 
 <br><br>
 
-### Use case: Search for room(s)
 
-
-<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
