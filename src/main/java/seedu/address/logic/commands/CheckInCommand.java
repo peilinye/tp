@@ -31,7 +31,10 @@ public class CheckInCommand extends Command {
     public static final String MESSAGE_CHECKIN_SUCCESS = "Room Checked In: %1$s";
     public static final String MESSAGE_NO_GUESTS = "At least one person must be checked into the room.";
     public static final String MESSAGE_ROOM_IS_OCCUPIED = "Room is currently occupied.";
-    public static final String MESSAGE_PERSON_ALREADY_CHECKED_IN = "Guest %1$s is already checked in.";
+    public static final String MESSAGE_PERSON_ALREADY_CHECKED_IN =
+            "One or more guests have already been checked into another room.";
+    public static final String MESSAGE_PERSON_INDEX_OUT_OF_BOUNDS = "Invalid guest number for one or more guests.";
+    public static final String MESSAGE_ROOM_INDEX_OUT_OF_BOUNDS = "Invalid room number.";
 
     private final Index roomIndex;
     private final List<Index> guestIndexes;
@@ -66,6 +69,7 @@ public class CheckInCommand extends Command {
         }
 
         Set<Person> guests = new HashSet<>();
+        //TODO ERROR 2
         for (Index guestIndex : guestIndexes) {
             Person guestToAdd = lastShownPersonList.get(guestIndex.getZeroBased());
 
