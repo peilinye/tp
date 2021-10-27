@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.listroomargs.ListRoomArg;
 import seedu.address.commons.core.listtype.ListType;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -181,7 +182,8 @@ public class ParserUtil {
     public static Integer parseNumber(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INTEGER);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_INTEGER, AddRoomCommand.MESSAGE_USAGE));
         }
         return Integer.parseInt(trimmedIndex);
     }
