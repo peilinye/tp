@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTEGER;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.util.SampleDataUtil.getTagSet;
@@ -38,11 +39,11 @@ public class AddRoomCommandParserTest {
         String userInputNan = "a t/normal";
 
         assertParseFailure(parser, userInputZero,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_INTEGER + "\n" +  AddRoomCommand.MESSAGE_USAGE));
         assertParseFailure(parser, userInputNegative,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_INTEGER + "\n" +  AddRoomCommand.MESSAGE_USAGE));
         assertParseFailure(parser, userInputNan,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_INTEGER + "\n" + AddRoomCommand.MESSAGE_USAGE));
     }
 
     @Test
