@@ -36,8 +36,8 @@ public class AddRoomCommandParser implements Parser<AddRoomCommand> {
         try {
             numberOfRooms = ParserUtil.parseNumber(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_INTEGER, AddRoomCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_INTEGER,
+                    AddRoomCommand.MESSAGE_USAGE), ive);
         }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

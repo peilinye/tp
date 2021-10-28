@@ -69,10 +69,10 @@ public class AddRoomCommandTest {
 
         assertThrows(CommandException.class,
                 String.format(AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, 1), ()
-            -> addRoomCommand1.execute(modelStub1));
+                        -> addRoomCommand1.execute(modelStub1));
         assertThrows(CommandException.class,
                 String.format(AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, 10), ()
-            -> addRoomCommand10.execute(modelStub1));
+                        -> addRoomCommand10.execute(modelStub1));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class AddRoomCommandTest {
         AddRoomCommand addRoomCommand10 = new AddRoomCommand(10, tags);
         assertThrows(CommandException.class,
                 String.format(AddRoomCommand.MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, 10), ()
-            -> addRoomCommand10.execute(modelStub2));
+                        -> addRoomCommand10.execute(modelStub2));
     }
 
 

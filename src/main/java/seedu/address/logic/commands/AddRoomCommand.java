@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTEGER;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -51,9 +50,7 @@ public class AddRoomCommand extends Command {
 
         int numRooms = model.getNumberOfRooms();
         if (this.number + numRooms > 999) {
-            // todo: this error msg here wrong
-            throw new CommandException(
-                    String.format(MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, number));
+            throw new CommandException(String.format(MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, number));
         }
 
         int totalNumOfRooms = numRooms + number;
