@@ -50,7 +50,7 @@ public class AddRoomCommand extends Command {
 
         int numRooms = model.getNumberOfRooms();
         if (this.number + numRooms > 999) {
-            throw new CommandException(MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS);
+            throw new CommandException(String.format(MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, number));
         }
 
         int totalNumOfRooms = numRooms + number;
