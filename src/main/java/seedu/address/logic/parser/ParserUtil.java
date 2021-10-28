@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTEGER;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -181,7 +180,7 @@ public class ParserUtil {
     public static Integer parseNumber(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INTEGER);
+            throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Integer.parseInt(trimmedIndex);
     }
