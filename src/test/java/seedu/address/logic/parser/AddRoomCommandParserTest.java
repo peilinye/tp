@@ -37,12 +37,9 @@ public class AddRoomCommandParserTest {
         String userInputNegative = "-5 t/normal";
         String userInputNan = "a t/normal";
 
-        assertParseFailure(parser, userInputZero,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRoomCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, userInputNegative,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRoomCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, userInputNan,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRoomCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInputZero, AddRoomCommand.MESSAGE_INVALID_INTEGER);
+        assertParseFailure(parser, userInputNegative, AddRoomCommand.MESSAGE_INVALID_INTEGER);
+        assertParseFailure(parser, userInputNan, AddRoomCommand.MESSAGE_INVALID_INTEGER);
     }
 
     @Test
