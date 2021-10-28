@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,13 +104,13 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
      */
     public void edit(Person personToEdit, Person editedPerson) {
         requireAllNonNull(personToEdit, editedPerson);
-        Optional<Residency> residencyOption = getResidency(personToEdit);
-        residencyOption.ifPresent(residency -> {
-            // This keeps the same residency object, and just re-registers it after editing.
+        List<Residency> residencies = getResidencies(personToEdit);
+
+        for (Residency residency : residencies) {
             remove(residency);
             residency.setGuest(personToEdit, editedPerson);
             register(residency);
-        });
+        }
     }
 
     /**
@@ -135,6 +137,20 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
         return Optional.ofNullable(guestMap.get(guest));
     }
 
+    /**
+     * Gets the List of {@code Residency} containing this {@code Person}, if it exists.
+     *
+     * @param guest The {@code Person} to get the residency of
+     * @return A {@code List} with the {@code Residency} that the {@code Person} is in.
+     */
+    public List<Residency> getResidencies(Person guest) {
+        requireNonNull(guest);
+        List<Residency> relevantResidencies = internalList.stream()
+                .filter(residency -> residency.getGuests().contains(guest)).collect(Collectors.toUnmodifiableList());
+        List<Residency> results = relevantResidencies;
+        return results;
+    }
+
     public void setResidencies(List<Residency> residencies) {
         internalList.clear();
         guestMap.clear();
@@ -156,7 +172,14 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
 
     @Override
     public ObservableList<Residency> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        Comparator<Residency> cmp = new Comparator<Residency>() {
+            @Override
+            public int compare(Residency o1, Residency o2) {
+                return o2.getCheckInTime().compareTo(o1.getCheckInTime());
+            }
+        };
+        FXCollections.sort(internalList, cmp);
+        return FXCollections.unmodifiableObservableList(internalList);
     }
 
     @Override
