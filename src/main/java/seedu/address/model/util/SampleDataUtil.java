@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,23 +27,23 @@ public class SampleDataUtil {
         return new Person[] {
             Person.createPerson(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Nric("S98765432N"),
-                getTagSet("friends")),
+                    Set.of()),
             Person.createPerson(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Nric("S98765432M"),
-                getTagSet("colleagues", "friends")),
+                    Set.of()),
             Person.createPerson(new Name("Charlotte Oliveiro"), new Phone("93210283"),
-                    new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Nric("S98765432L"),
-                getTagSet("neighbours")),
+                new Email("charlotte@example.com"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Nric("S98765432L"),
+                    Set.of()),
             Person.createPerson(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Nric("S98765432K"),
-                getTagSet("family")),
+                    Set.of()),
             Person.createPerson(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Nric("S98765432J"),
-                getTagSet("classmates")),
+                    Set.of()),
             Person.createPerson(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Nric("S98765432I"),
-                getTagSet("colleagues"))
+                    Set.of())
         };
     }
 
@@ -88,8 +89,8 @@ public class SampleDataUtil {
         Room[] rooms = getSampleRooms();
 
         return new Residency[] {
-            new Residency(rooms[0], guestsOneSet),
-            new Residency(rooms[1], guestsTwoSet)
+            new Residency(rooms[0], guestsOneSet, LocalDateTime.now().minusDays(1), LocalDateTime.now()),
+            new Residency(rooms[1], guestsTwoSet, LocalDateTime.now().minusDays(1), LocalDateTime.now())
         };
     }
 }

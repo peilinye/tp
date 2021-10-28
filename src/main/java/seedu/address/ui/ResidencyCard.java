@@ -58,8 +58,8 @@ public class ResidencyCard extends UiPart<Region> {
             String cellInfo = String.format("%s\n%s\n%s\n%s\n%s",
                     person.getName().toString(),
                     person.getNric().toString(),
-                    person.getAddress().toString(),
                     person.getPhone().toString(),
+                    person.getAddress().toString(),
                     person.getEmail().toString()
             );
             return cellInfo;
