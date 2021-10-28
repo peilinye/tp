@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUEST;
 
 import java.util.ArrayList;
@@ -31,8 +30,7 @@ public class CheckInCommandParser implements Parser<CheckInCommand> {
         try {
             roomIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CheckInCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(CheckInCommand.MESSAGE_ROOM_INVALID_INDEX);
         }
 
         List<String> guestList = argMultimap.getAllValues(PREFIX_GUEST);
@@ -42,8 +40,7 @@ public class CheckInCommandParser implements Parser<CheckInCommand> {
                 guestIndexes.add(ParserUtil.parseIndex(guestString));
             }
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CheckInCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(CheckInCommand.MESSAGE_PERSON_INVALID_INDEX);
         }
 
         return new CheckInCommand(roomIndex, guestIndexes);
