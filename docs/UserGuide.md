@@ -28,11 +28,11 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
    * **`list guests`** : Lists all guests.
 
-   * **`addroom`**`5 t/type A` : Adds 5 rooms of type A to the room list.
+   * **`addroom`**`5 t/typeA` : Adds 5 rooms of type A to the room list.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nric/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
 
-   * **`checkin`**`5 g/1` : Checks in the 1st guest into the 5th room.
+   * **`checkin`**`005 g/1` : Checks in the 1st guest into the 5th room.
 
    * **`clear`** : Deletes all rooms, guests and past records.
 
@@ -150,19 +150,29 @@ Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 A room can have one or more tags.
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You can only add up to 999 rooms.
+</div>
+
 Examples:
-* `addroom 5 t/type A`
-* `addroom 10 t/type B t/reserved`
+* `addroom 5 t/typeA`
+* `addroom 10 t/typeB t/reserved`
 
 ### Checking into a room : `checkin`
 
-Checks in a group of guests into a room.
+Checks in a group of guests into a room. 
 
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A room can have more than one guest.
 </div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+However, you cannot check in the same guest to multiple rooms.
+</div>
+
+
 
 The indexes refer to the index numbers shown in the displayed guest/room list.
 
@@ -218,13 +228,15 @@ Format: `list records`
 
 ### Locating specific records: `record`
 
-Shows the records that match the keywords provided (case sensitive, at least 1).
+Shows the records that match the keywords provided (case-sensitive, at least 1).
 
 Format: `record KEYWORD_ONE... `
 
 Example: <br/>
-`record Alex` shows the residencies Alex has in the past.<br/>
-`record 001` shows the residencies Room 001 has in the past.
+`record Alex` shows the residencies Alex had in the past.<br/>
+`record 001` shows the residencies Room 001 had in the past.<br/>
+`record Alex 001` shows the residencies that involve Alex staying in Room 001 in the past.<br/>
+`record Alex Bernice` shows the residencies Alex and Bernice had in the past.
 
 ## Database / Storage
 
@@ -233,6 +245,10 @@ Example: <br/>
 Clears all entries from Trace2Gather.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Using this command will clear your JSON file, which means that all your room and guest objects will be erased.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -270,11 +286,10 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
-**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/type A`
+**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/typeA`
 **Clear** | `clear`
 **Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
 **Checkout** | `checkout ROOM_INDEX`<br> e.g., `checkout 4`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
 **Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
