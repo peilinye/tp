@@ -48,6 +48,8 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
 **:information_source: Notes about the command format:**<br>
 
+* All commands are in lower case, e.g. add, record, guest, addroom, etc.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -84,8 +86,20 @@ Adds a guest into Trace2Gather.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​`
 
+Acceptable format for keywords:<br/>
+1. Names: No special characters, but spaces are allowed.
+2. Phone Number: Digits only, and at least 3 digits long.
+3. Email: Must follow the format of xxx@yyy.zzz. <br/>
+4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
+5. Nric: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
+6. Tags: No whitespaces within a tag.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A guest can have any number of tags (including 0).
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Two guests who are considered identical have identical Nrics.
 </div>
 
 Examples:
@@ -103,13 +117,21 @@ Format: `list guests`
 Edits an existing guest in Trace2Gather.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the guest will be removed i.e adding of tags is not cumulative.
 * You can remove all the guest’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
+
+Acceptable format for keywords:
+1. Names: No special characters, but spaces are allowed.
+2. Phone Number: Digits only, and at least 3 digits long.
+3. Email: Must follow the format of xxx@yyy.zzz. <br/>
+4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
+5. Nric: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
+6. Tags: No whitespaces within a tag.
+
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
@@ -145,6 +167,8 @@ Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 
 * Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the end of the list of rooms.
 * The specified number of rooms **must be a positive integer** 1, 2, 3, …​
+* A maximum of 999 rooms are allowed.
+* Note: There should be no whitespace within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A room can have one or more tags.
@@ -228,15 +252,23 @@ Format: `list records`
 
 ### Locating specific records: `record`
 
-Shows the records that match the keywords provided (case-sensitive, at least 1).
+Shows the records that match the keywords provided (**not** case-sensitive, at least 1).<br/>
 
 Format: `record KEYWORD_ONE... `
+
+Keywords include: dates of stay, names, and room numbers.<br/>
+
+Acceptable format for keywords:<br/>
+1. Dates of stay: YYYY-MM-DD.
+2. Names: No special characters, but spaces are allowed.
+3. Room Numbers: must be in its 3-digit format, e.g. 001, 233, 999.<br/>
 
 Example: <br/>
 `record Alex` shows the residencies Alex had in the past.<br/>
 `record 001` shows the residencies Room 001 had in the past.<br/>
 `record Alex 001` shows the residencies that involve Alex staying in Room 001 in the past.<br/>
-`record Alex Bernice` shows the residencies Alex and Bernice had in the past.
+`record Alex Bernice` shows the residencies Alex and Bernice had in the past.<br/>
+`record 2021-10-31` shows the past residences that include the specified date.
 
 ## Database / Storage
 
