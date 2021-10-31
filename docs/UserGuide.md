@@ -84,6 +84,8 @@ Adds a guest into Trace2Gather.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​`
 
+* Note: There should be no whitespace within a tag.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A guest can have any number of tags (including 0).
 </div>
@@ -145,14 +147,16 @@ Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 
 * Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the end of the list of rooms.
 * The specified number of rooms **must be a positive integer** 1, 2, 3, …​
+* A maximum of 999 rooms are allowed.
+* Note: There should be no whitespace within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A room can have one or more tags.
 </div>
 
 Examples:
-* `addroom 5 t/type A`
-* `addroom 10 t/type B t/reserved`
+* `addroom 5 t/type_A`
+* `addroom 10 t/type_B t/reserved`
 
 ### Checking into a room : `checkin`
 
@@ -270,11 +274,10 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
-**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/type A`
+**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/typeA`
 **Clear** | `clear`
 **Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
 **Checkout** | `checkout ROOM_INDEX`<br> e.g., `checkout 4`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
 **Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
