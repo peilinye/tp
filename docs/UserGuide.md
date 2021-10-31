@@ -155,8 +155,8 @@ A room can have one or more tags.
 </div>
 
 Examples:
-* `addroom 5 t/type_A`
-* `addroom 10 t/type_B t/reserved`
+* `addroom 5 t/typeA`
+* `addroom 10 t/typeB t/reserved`
 
 ### Checking into a room : `checkin`
 
@@ -222,7 +222,7 @@ Format: `list records`
 
 ### Locating specific records: `record`
 
-Shows the records that match the keywords provided (case sensitive, at least 1).
+Shows the records that match the keywords provided (**not** case-sensitive, at least 1).
 
 Format: `record KEYWORD_ONE... `
 
