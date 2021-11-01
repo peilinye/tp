@@ -20,7 +20,7 @@ public class CheckOutCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Checks out all the people in a room "
-            + "using their index numbers used in the last person listing.\n"
+            + "using their index numbers in the displayed list.\n"
             + "Parameters: INDEX_ROOM (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

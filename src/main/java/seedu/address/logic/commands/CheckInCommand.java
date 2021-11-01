@@ -88,6 +88,7 @@ public class CheckInCommand extends Command {
         model.setRoom(roomToEdit, editedRoom);
         model.register(editedRoom, guests);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
+        model.updateFilteredRecordList(Model.PREDICATE_SHOW_ALL_RECORDS);
         return new CommandResult(String.format(MESSAGE_CHECKIN_SUCCESS, editedRoom));
     }
 

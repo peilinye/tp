@@ -101,7 +101,8 @@ public class Residency {
 
     @Override
     public String toString() {
-        String message = String.format("Room [%s], Guests [%s]", room, guests);
+        String message = String.format("Room [%s], Guests [%s], CheckInTime [%s], CheckOutTime [%s]",
+                room, guests, checkInTime, checkOutTime);
         return message;
     }
 
