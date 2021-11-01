@@ -11,7 +11,8 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<fx:root minHeight="600" minWidth="1500"
+<fx:root minHeight="600"
+         minWidth="1375"
          onCloseRequest="#handleExit"
          title="Trace2Gather"
          type="javafx.stage.Stage"
@@ -37,21 +38,24 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+
+        <StackPane VBox.vgrow="ALWAYS" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
+        <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="100" prefHeight="100" maxHeight="100">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
 
-        <HBox>
-          <VBox fx:id="roomList" minWidth="500" prefWidth="500" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-            <Label styleClass="table-header" minWidth="450">Rooms</Label>
+        <HBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="roomList" styleClass="pane-with-border" minWidth="450" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <HBox style="-fx-text-alignment: center !important; -fx-alignment: center;">
+              <Label styleClass="table-header">Rooms</Label>
+            </HBox>
 
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
@@ -59,16 +63,22 @@
             <StackPane fx:id="roomListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
-            <Label styleClass="table-header" minWidth="450">Guests</Label>
+          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="450" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+
+            <HBox style="-fx-text-alignment: center !important; -fx-alignment: center;">
+              <Label styleClass="table-header">Guests</Label>
+            </HBox>
+
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="residencyList" styleClass="pane-with-border" minWidth="500" prefWidth="500" VBox.vgrow="ALWAYS">
-            <Label styleClass="table-header" minWidth="450">History</Label>
+          <VBox fx:id="residencyList" styleClass="pane-with-border" minWidth="450" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <HBox style="-fx-text-alignment: center !important; -fx-alignment: center;">
+              <Label styleClass="table-header">History</Label>
+            </HBox>
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

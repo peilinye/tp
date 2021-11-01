@@ -129,7 +129,7 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Nric: ")
+                .append("; Id: ")
                 .append(getNric());
 
         Set<Tag> tags = getTags();
