@@ -43,7 +43,7 @@
 
 
             <HBox>
-                <FlowPane fx:id="personInfo" />
+                <FlowPane fx:id="personInfo" prefWrapLength="350"/>
                 <minWidth>
 
                     <Region fx:constant="USE_PREF_SIZE" />
