@@ -13,7 +13,9 @@ import seedu.address.model.room.RoomNumberContainsKeywordsPredicate;
 public class FindRoomCommand extends Command {
     public static final String COMMAND_WORD = "room";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the specific room number";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the specific room number(s) provided. "
+            + "Room numbers should be 3 digits.\n"
+            + "Example: " + COMMAND_WORD + " 001 002";
 
     private final RoomNumberContainsKeywordsPredicate predicate;
 
