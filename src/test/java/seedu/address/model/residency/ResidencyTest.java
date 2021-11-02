@@ -14,10 +14,10 @@ import org.junit.jupiter.api.Test;
 
 public class ResidencyTest {
 
-    public static LocalDateTime CHECK_IN_TIME_ONE = LocalDateTime.of(2021, 10, 31, 12, 0);
-    public static LocalDateTime CHECK_OUT_TIME_ONE = LocalDateTime.of(2021, 11, 1, 12, 0);
-    public static LocalDateTime CHECK_IN_TIME_TWO = LocalDateTime.of(2021, 11, 2, 12, 0);
-    public static LocalDateTime CHECK_OUT_TIME_TWO = LocalDateTime.of(2021, 11, 3, 12, 0);
+    public static final LocalDateTime CHECK_IN_TIME_ONE = LocalDateTime.of(2021, 10, 31, 12, 0);
+    public static final LocalDateTime CHECK_OUT_TIME_ONE = LocalDateTime.of(2021, 11, 1, 12, 0);
+    public static final LocalDateTime CHECK_IN_TIME_TWO = LocalDateTime.of(2021, 11, 2, 12, 0);
+    public static final LocalDateTime CHECK_OUT_TIME_TWO = LocalDateTime.of(2021, 11, 3, 12, 0);
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -29,7 +29,8 @@ public class ResidencyTest {
 
         Residency residencyOne = new Residency(ROOM_ONE, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, CHECK_OUT_TIME_ONE);
         Residency residencyOneSame = new Residency(ROOM_ONE, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, CHECK_OUT_TIME_ONE);
-        Residency residencyOneDifferent = new Residency(ROOM_ONE, PERSON_LIST_TWO, CHECK_IN_TIME_TWO, CHECK_OUT_TIME_TWO);
+        Residency residencyOneDifferent =
+                new Residency(ROOM_ONE, PERSON_LIST_TWO, CHECK_IN_TIME_TWO, CHECK_OUT_TIME_TWO);
         Residency residencyTwo = new Residency(ROOM_TWO, PERSON_LIST_TWO, CHECK_IN_TIME_TWO, CHECK_OUT_TIME_TWO);
 
         assertFalse(residencyOne.equals(residencyTwo));
