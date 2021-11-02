@@ -102,7 +102,7 @@ public class EditCommand extends Command {
 
         Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedNric, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNric, updatedTags);
     }
 
     @Override
