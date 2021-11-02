@@ -19,8 +19,8 @@ public class CheckOutCommand extends Command {
     public static final String COMMAND_WORD = "checkout";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Checks out all the people in a room "
-            + "using their index numbers in the displayed list.\n"
+            + ": Checks out all the guests in a room "
+            + "using it's index number in the displayed list (not room number).\n"
             + "Parameters: INDEX_ROOM (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

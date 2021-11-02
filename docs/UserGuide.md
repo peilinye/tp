@@ -189,7 +189,8 @@ Checks in a group of guests into a room.
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A room can have more than one guest.
+1. A room can have more than one guest.<br/>
+2. If you cannot check in guests to a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise use the command `list rooms` and `list guests` to show all rooms and guests.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -252,7 +253,8 @@ Format: `list records`
 
 ### Locating specific records: `record`
 
-Shows the records that match the keywords provided (**not** case-sensitive, at least 1).<br/>
+Shows the records that match all the keywords provided (**not** case-sensitive, at least 1).<br/>
+
 
 Format: `record KEYWORD_ONE... `
 
