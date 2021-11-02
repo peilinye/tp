@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INTEGER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -36,8 +35,7 @@ public class AddRoomCommandParser implements Parser<AddRoomCommand> {
         try {
             numberOfRooms = ParserUtil.parseNumber(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_INTEGER,
-                    AddRoomCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(AddRoomCommand.MESSAGE_INVALID_INTEGER);
         }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
