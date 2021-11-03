@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.model.residency.ResidencyTest.CHECK_IN_TIME_ONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
@@ -135,14 +136,14 @@ public class AddressBookTest {
 
     @Test
     public void register_validResidency_registersCorrectly() {
-        Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, null);
         addressBook.register(residency);
         assertEquals(addressBook.getResidencyBook(), TypicalResidencyBook.getTypicalAddressBook().getResidencyBook());
     }
 
     @Test
     public void register_invalidResidencyWithDuplicateRooms_throwsDuplicateRoomRegException() {
-        Residency invalidResidency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        Residency invalidResidency = new Residency(ROOM_ONE, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, null);
         addressBook.setResidencies(getTypicalResidencyBook());
         assertThrows(DuplicateRoomRegException.class, () -> addressBook.register(invalidResidency));
     }
@@ -161,7 +162,7 @@ public class AddressBookTest {
 
     @Test
     public void record_validResidency_registersCorrectly() {
-        Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
+        Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, null);
         addressBook.record(residency);
         assertEquals(addressBook.getRecordsBook(), TypicalRecordsBook.getTypicalAddressBook().getRecordsBook());
     }
