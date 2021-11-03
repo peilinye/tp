@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ROOMS;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class AddRoomCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "%1$s new rooms of type %2$s added.";
     public static final String MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS =
-            "Adding %1$s rooms exceeds maximum 999 rooms allowed.";
+            "Adding %1$s more room(s) would exceed the maximum 999 rooms allowed.";
     public static final String MESSAGE_INVALID_INTEGER = "The number of rooms to add should be a positive integer";
 
     private final int number;
@@ -49,6 +50,7 @@ public class AddRoomCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
         int numRooms = model.getNumberOfRooms();
         if (this.number + numRooms > 999) {
             throw new CommandException(String.format(MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS, number));
