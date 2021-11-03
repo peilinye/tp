@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
@@ -101,20 +102,35 @@ public class Residency {
 
     @Override
     public String toString() {
-        String message = String.format("Room [%s], Guests [%s]", room, guests);
+        String message = String.format("Room [%s], Guests [%s], CheckInTime [%s], CheckOutTime [%s]",
+                room, guests, checkInTime, checkOutTime);
         return message;
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof Residency
-                && ((Residency) other).room.equals(this.room)
-                && ((Residency) other).guests.equals(this.guests));
+        if (this.checkOutTime == null) {
+            return other == this
+                    || (other instanceof Residency
+                    && ((Residency) other).room.equals(this.room)
+                    && ((Residency) other).guests.equals(this.guests)
+                    && ((Residency) other).checkInTime.truncatedTo(ChronoUnit.MINUTES)
+                    .equals(this.checkInTime.truncatedTo(ChronoUnit.MINUTES)));
+        } else {
+            return other == this
+                    || (other instanceof Residency
+                    && ((Residency) other).room.equals(this.room)
+                    && ((Residency) other).guests.equals(this.guests)
+                    && ((Residency) other).checkInTime.truncatedTo(ChronoUnit.MINUTES)
+                    .equals(this.checkInTime.truncatedTo(ChronoUnit.MINUTES))
+                    && ((Residency) other).checkOutTime.truncatedTo(ChronoUnit.MINUTES)
+                    .equals(this.checkOutTime.truncatedTo(ChronoUnit.MINUTES)));
+        }
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(room, guests);
+        return Objects.hash(room, guests, checkInTime, checkOutTime);
     }
 }

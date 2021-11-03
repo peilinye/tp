@@ -28,7 +28,7 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Nric nric, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Nric nric, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, nric, tags);
         this.name = name;
         this.phone = phone;
@@ -43,7 +43,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public static Person createPerson(Name name, Phone phone, Email email, Address address, Nric nric, Set<Tag> tags) {
-        return new Person(name, phone, email, nric, address, tags);
+        return new Person(name, phone, email, address, nric, tags);
     }
 
     public Name getName() {
@@ -129,7 +129,7 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Nric: ")
+                .append("; Id: ")
                 .append(getNric());
 
         Set<Tag> tags = getTags();

@@ -39,7 +39,7 @@
             <FlowPane fx:id="tags" />
 
             <HBox>
-                <FlowPane fx:id="guests" />
+                <FlowPane fx:id="guests" prefWrapLength="350"/>
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />

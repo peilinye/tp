@@ -28,11 +28,11 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
    * **`list guests`** : Lists all guests.
 
-   * **`addroom`**`5 t/type A` : Adds 5 rooms of type A to the room list.
+   * **`addroom`**`5 t/typeA` : Adds 5 rooms of type A to the room list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nric/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
 
-   * **`checkin`**`5 g/1` : Checks in the 1st guest into the 5th room.
+   * **`checkin`**`005 g/1` : Checks in the 1st guest into the 5th room.
 
    * **`clear`** : Deletes all rooms, guests and past records.
 
@@ -48,14 +48,16 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
 **:information_source: Notes about the command format:**<br>
 
+* All commands are in lower case, e.g. add, record, guest, addroom, etc.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Quarantine` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Quarantine`, `t/SeafoodAllergy` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -82,15 +84,27 @@ Format: `help`
 
 Adds a guest into Trace2Gather.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/NRIC [t/TAG]…​`
+
+Acceptable format for keywords:<br/>
+1. Names: No special characters, but spaces are allowed.
+2. Phone Number: Digits only, and at least 3 digits long.
+3. Email: Must follow the format of xxx@yyy.zzz. <br/>
+4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
+5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
+6. Tags: No whitespaces within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A guest can have any number of tags (including 0).
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Two guests who have identical IDs are considered identical.
+</div>
+
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nric/S98765432G`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison nric/S98765431G p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432G`
+* `add n/Betsy Crowe t/Quarantine e/betsycrowe@example.com a/Crowe Lane id/S98765431G p/1234567 t/SeafoodAllergy`
 
 ### Listing all guests : `list guests`
 
@@ -103,13 +117,21 @@ Format: `list guests`
 Edits an existing guest in Trace2Gather.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the guest will be removed i.e adding of tags is not cumulative.
 * You can remove all the guest’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
+
+Acceptable format for keywords:
+1. Names: No special characters, but spaces are allowed.
+2. Phone Number: Digits only, and at least 3 digits long.
+3. Email: Must follow the format of xxx@yyy.zzz. <br/>
+4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
+5. ID: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
+6. Tags: No whitespaces within a tag.
+
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
@@ -146,24 +168,36 @@ Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 * Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the end of the list of rooms.
 * The specified number of rooms **must be a positive integer** 1, 2, 3, …​
 * The full list of rooms will be shown after rooms have been added.
+* Note: There should be no whitespace within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A room can have one or more tags.
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+You can only add up to 999 rooms.
+</div>
+
 Examples:
-* `addroom 5 t/type A`
-* `addroom 10 t/type B t/reserved`
+* `addroom 5 t/typeA`
+* `addroom 10 t/typeB t/reserved`
 
 ### Checking into a room : `checkin`
 
-Checks in a group of guests into a room.
+Checks in a group of guests into a room. 
 
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A room can have more than one guest.
+1. A room can have more than one guest.<br/>
+2. If you cannot check in guests to a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise use the command `list rooms` and `list guests` to show all rooms and guests.
 </div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+However, you cannot check in the same guest to multiple rooms.
+</div>
+
+
 
 The indexes refer to the index numbers shown in the displayed guest/room list.
 
@@ -219,13 +253,24 @@ Format: `list records`
 
 ### Locating specific records: `record`
 
-Shows the records that match the keywords provided (case sensitive, at least 1).
+Shows the records that match all the keywords provided (i.e. `AND` search) (**not** case-sensitive, at least 1).<br/>
+
 
 Format: `record KEYWORD_ONE... `
 
+Keywords include: dates of stay, names, and room numbers.<br/>
+
+Acceptable format for keywords:<br/>
+1. Dates of stay: YYYY-MM-DD.
+2. Names: No special characters, but spaces are allowed.
+3. Room Numbers: must be in its 3-digit format, e.g. 001, 233, 999.<br/>
+
 Example: <br/>
-`record Alex` shows the residencies Alex has in the past.<br/>
-`record 001` shows the residencies Room 001 has in the past.
+`record Alex` shows the residencies Alex had in the past.<br/>
+`record 001` shows the residencies Room 001 had in the past.<br/>
+`record Alex 001` shows the residencies that involve Alex staying in Room 001 in the past.<br/>
+`record Alex Bernice` shows the residencies Alex and Bernice had together in the past.<br/>
+`record 2021-10-31` shows the past residences that include the specified date (both checkin and checkout included).
 
 ## Database / Storage
 
@@ -234,6 +279,10 @@ Example: <br/>
 Clears all entries from Trace2Gather.
 
 Format: `clear`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Using this command will clear your JSON file, which means that all your room and guest objects will be erased.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -271,11 +320,10 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
-**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/type A`
+**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/typeA`
 **Clear** | `clear`
 **Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
 **Checkout** | `checkout ROOM_INDEX`<br> e.g., `checkout 4`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
 **Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
