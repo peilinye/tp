@@ -200,33 +200,28 @@ The Rooms / Guests that have matching names will appear in their respective list
 #### Implementation
 
 The list mechanism is facilitated by `LogicManager`. It extends `Logic` and its invocation is via the `AddressBookParser`.
+It implements the following key operations.
 
 * `AddressBookParser#parseCommand()` — Interprets the command the user inputs to invoke the `ListCommand`.
-* `ListCommand#execute()` — Filters the list of rooms based on whether they are vacant or occupied and shows the relevant type to user.
+* `ListCommand#execute()` — Executes the relevant `ListCommand`.
+* `Model#updateFilteredRoomList()` — Filters the list of rooms based on their vacancy status and updates the internal list of rooms to be displayed by the UI.
 
 This operation is exposed in the `Model` interface as `Model#updateFilteredRoomList()`.
 
-Given below is an example usage scenario and how the list mechanism behaves at each step.
+The following sequence diagram shows the interactions between objects of the Logic component for the list vacant room mechanism.
 
-Step 1. User lists the rooms based on the desired vacancy status.
+![Interactions Inside the Logic Component for the `list rooms vacant` Command](images/ListRoomsByVacancySequenceDiagram.png)
 
-![ListOccupied](images/ListOccupied.png)
-![ListVacant](images/ListVacant.png)
-
-Step 2. Hit Enter.
-
-![ListOccupiedResult](images/ListOccupiedResult.png)
-![ListVacantResult](images/ListVacantResult.png)
-
+The `list rooms occupied` command works the same way, except a `RoomIsOccupiedPredicate` is passed as argument when calling `Model#updateFilteredRoomList()`.
 The rooms of the specified vacancy status will appear in the room list.
 
 #### Design considerations:
 
 **Aspect: How list room occupied / vacant executes:**
 
-* The valid string will create a predicate object for `Model#updateFilteredRoomList()` to filter the rooms based on.
-    * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
-    * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
+* The `ParserUtil` checks that the `ListRoomArg` is valid (either "occupied" or "vacant" and not any other arguments), and the `ListCommandParser` creates a predicate object for `Model#updateFilteredRoomList()` to filter the rooms based on.
+    * Pros: Consistency - similar implementation as the command to list all rooms, list all guests and list all records.
+    * Cons: This implementation does not fully adhere to OOP principles like inheritance. No new command classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
 
 ### Uniqueness of Guests [coming soon]
 
