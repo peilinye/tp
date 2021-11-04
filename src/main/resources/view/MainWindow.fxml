@@ -11,8 +11,8 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<fx:root minHeight="600"
-         minWidth="1375"
+<fx:root minHeight="450"
+         minWidth="800"
          onCloseRequest="#handleExit"
          title="Trace2Gather"
          type="javafx.stage.Stage"
@@ -52,7 +52,7 @@
         </StackPane>
 
         <HBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-          <VBox fx:id="roomList" styleClass="pane-with-border" minWidth="450" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="roomList" styleClass="pane-with-border" minWidth="200" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <HBox style="-fx-text-alignment: center !important; -fx-alignment: center;">
               <Label styleClass="table-header">Rooms</Label>
             </HBox>
@@ -63,7 +63,7 @@
             <StackPane fx:id="roomListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="450" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="personList" styleClass="pane-with-border" minWidth="200" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
 
             <HBox style="-fx-text-alignment: center !important; -fx-alignment: center;">
               <Label styleClass="table-header">Guests</Label>
@@ -75,7 +75,7 @@
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <VBox fx:id="residencyList" styleClass="pane-with-border" minWidth="450" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox fx:id="residencyList" styleClass="pane-with-border" minWidth="200" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <HBox style="-fx-text-alignment: center !important; -fx-alignment: center;">
               <Label styleClass="table-header">History</Label>
             </HBox>
