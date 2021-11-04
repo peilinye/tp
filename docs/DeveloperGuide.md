@@ -12,7 +12,10 @@ title: Developer Guide
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+* Welcome to the developer's guide for Trace2Gather! This guide is meant for developers who may want to contribute to our code base, or use our codebase to build their own project.
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -52,9 +55,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `guest Alex`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagramForDG.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -98,9 +101,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("guest Alex")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `guest Alex` Command](images/FindGuestSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -132,11 +135,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -172,19 +170,17 @@ The search mechanism is facilitated by `LogicManager`. It extends `Logic` and it
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
-Given below is an example usage scenario and how the search mechanism behaves at each step.
+Given below is an example usage scenario:
 
-Step 1. User searches for the data entry desired.
+1. User searches for the data entry desired. In this case, the user's input is "guest Alex"
 
-![SearchGuest](images/SearchGuest.png)
-![SearchRoom](images/SearchRoom.png)
+2. Hit Enter.
 
-Step 2. Hit Enter.
+3. The Rooms / Guests that have matching names will appear in their respective lists.
 
-![SearchGuestResult](images/SearchGuestResult.png)
-![SearchRoomResult](images/SearchRoomResult.png)
+The behaviour of the search mechanism is illustrated by the following sequence diagram.
 
-The Rooms / Guests that have matching names will appear in their respective lists.
+![Interactions Inside the Logic Component for the `guest Alex` Command](images/FindGuestSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -228,7 +224,7 @@ The rooms of the specified vacancy status will appear in the room list.
     * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
     * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
 
-### Uniqueness of Guests [coming soon]
+### Uniqueness of Guests
 
 #### Implementation
 
