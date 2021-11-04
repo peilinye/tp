@@ -36,38 +36,57 @@ public class FindRoomCommandParserTest {
     public void parse_validStringArgs_throwsParseException() {
         // no leading and trailing whitespaces
         assertParseFailure(parser, "hello",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
 
         // multiple whitespaces between keywords
         assertParseFailure(parser, "   \n hello  ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
 
         // multiple strings as input
         assertParseFailure(parser, "hello search",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
 
         // valid inputs followed by an invalid one
         assertParseFailure(parser, " 001 002 hello",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
     }
 
     @Test
-    public void parse_nonValidNumericArgs_throwsParseException() {
+    public void parse_negativeRoomNumber_throwsParseException() {
         // no leading and trailing whitespaces
-        assertParseFailure(parser, "1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
 
         // multiple whitespaces between keywords
-        assertParseFailure(parser, "   1  ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "   -1  ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
 
         // multiple strings as input
-        assertParseFailure(parser, "1 2",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1 2",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
 
         // valid inputs followed by an invalid one
-        assertParseFailure(parser, " 001 002 1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " 001 002 -1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
+    }
+
+    @Test
+    public void parse_roomNumberLargerThan999_throwsParseException() {
+        // no leading and trailing whitespaces
+        assertParseFailure(parser, "1000",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
+
+        // multiple whitespaces between keywords
+        assertParseFailure(parser, "   1000  ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
+
+        // multiple strings as input
+        assertParseFailure(parser, "1000 1001",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
+
+        // valid inputs followed by an invalid one
+        assertParseFailure(parser, " 001 002 1000",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
     }
 
 }
