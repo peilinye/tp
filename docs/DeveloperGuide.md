@@ -249,23 +249,23 @@ This section describes how past residencies are stored such that it can be displ
 
 The past residencies are read from the same json data file as the other components in the `AddressBook`, through the `JsonAdaptedResidencyBook` class.
 
-They are stored in a `ResidencyBook`, similar to the one storing current residencies.
-![Relationship of AddressBook and ResidencyBook](images/AddressBookSubset.png)
 
-This `ResidencyBook` only calls upon `ResidencyBook#register(Residency)` but not `ResidencyBook#remove(Residency)` to prevent editing
-of the records stored.
+Past residencies can be searched through the use of the `record` command, where any number of keywords can be entered and any record matching all the keywords are displayed to the user.
 
-It is exposed in `ModelManager#getFilteredRecordList()`, `ModelManager#updateFilteredRecordList()`, `
-LogicManager#getFilteredRecordList()` where the contents are stored in a `FilteredList` for display in the UI.
+Given below is an example of the search function for all the past residencies of room 001.
+
+![Sequence Diagram of record command](images/RecordCommandSequenceDiagram.png)
+
 
 #### Design considerations:
 
-* Possible location of storage of past residencies.
-    * Second file.
+* Possible location of storage of past residencies in a second file.
     * Pros: Keeping past residency storage separate from the main data storage minimises any mixup in the storing of information.
     * Cons: This requires the file to store its own set of persons and rooms and because the residency keeps minimal information in order to minimise
       space required for the storage file, it results in redundancy when storing the same information across 2 files. Changes also have to be written twice.
 
+* AND vs OR for searching records
+    * In contrast to the search for guest showing results matching any of keywords given, searching records shows results matching all of the keywords. This is to allow for more targeted search such as filtering both date and room at the same time to only show records of a particular room at a particular time. This increases the utility of the function in terms of contact tracing.
 * Consistency
     * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
       in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.
