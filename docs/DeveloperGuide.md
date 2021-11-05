@@ -351,31 +351,111 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
 
-### Deleting a person
+1. Adding a person while all persons are being shown
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: List all persons using the `list guests` command. Multiple persons in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432G`<br>
+      Expected: A new person object is added to the list of guests, with the name John Doe, and the person's details as described by the test case input.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `add n/Wilburrito`<br>
+      Expected: No person is added. This is to be expected as the mandatory fields for `add` are not fulfilled. An error message should appear with the correct command format that one should be following.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect add commands to try: `add`, `add wilburrito`<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Editing a Person object
+    1. List all persons using the `list guests` command. Multiple persons in the list.
+   
+    2. Test case: `edit 1 n/Wilburrito`<br>
+       Expected: The first person in the list of guests will have their name edited to `Wilburrito`, with a success message reiterating the edited details of the person.
+   
+    3. Test case: `edit 2 n/Wilburger id/S9999999X`<br>
+       Expected: The first second person in the list of guests will have their name edited to `Wilburger` as well as their id edited to `S9999999X`.
+   
+    4. Test case: `edit 0 n/Wilburroni`<br>
+       Expected: No guests in the list will be edited, and an error will appear saying `Invalid Command Format!` due to the index being invalid.
+   
+    5. Other incorrect edit commands to try: `edit`, `edit x` where `x` is an index that is larger than the largest index of the guest list.<br>
+       Expected: No guests in the list will be edited, and an error will appear saying `Invalid Command Format!`.
+   
+3. Checking in a Person object
+    1. Prerequisites:
+       1. List all Person objects using the `list guests` command. Multiple persons in the list.
+       2. List all the Room objects using the `list rooms` room. Multiple rooms in the list.
+       
+    2. Test case: `checkin 001 g/1`<br>
+       Expected: The first person in the list of guests gets checked into Room 001, with the success message: `Room Checked In: 001`.
+   
+    3. Test case: `checkin 002 g/2 g/3`<br>
+       Expected: The second and third person in the list of guests gets checked into Room 002, with the success message: `Room Checked In: 002`.
+   
+    4. Test case: `checkin 000 g/4 g/5`<br>
+       Expected: The fourth and fifth person in the list of guests **does not** get checked into Room 000, because Room 000 does not exist, as it is an invalid room number.
+   
+    5. Other incorrect checkin commands to try: `checkin`, `checkin 1000 g/1`, `checkin g/1`<br>
+       Expected: Similar to previous.
+    
+4. Checking out a Person object
+    1. Prerequisites:
+       1. List all Person objects using the `list guests` command. Multiple persons in the list.
+       2. List all the Room objects using the `list rooms` room. Multiple rooms in the list.
+       3. Make sure that at least 1 guest is checked into any Room 001.
+    2. Test case: `checkout 001`<br>
+       Expected: The person in Room 001 will be checked out with the message `Room Checked Out: 001` being shown. The room's occupancy status should change from `Occupied` to `Vacant`.
+    3. Test case: `checkout 1000`<br>
+       Expected: An error saying `The room index provided is invalid. Index should be the one that is displayed in the Room panels below`.
+    4. Other incorrect commands to try: `checkout`, `checkout x`, where `x` is an index greater than the largest index in the current Room list.<br>
+       Expected: For `checkout`, an error `Invalid command format!` will be shown. For `checkout x`, There will be the same error as described in 6iii.
+
+   
+6. Searching for guests
+   1. List all persons using the `list guests` command. Multiple persons in the list. Make sure that there is a guest named `Wilburrito` and a guest named `Bernice` by either editing an existing guest or adding a new one, and also that there is no guest named `zzzzzzzz`. Make sure to do this before testing each of the test cases below.
+   
+   2. Test case: `guest wilburrito`<br>
+      Expected: The list will show any matches to the name `wilburrito`. If you followed step 4i, this will return at least 1 guest in the guest list.
+   
+   3. Test case: `guest wilburrito bernice`<br>
+      Expected: The list will show any matches to the name `wilburrito` and `bernice`. If you followed step 4i, this will return at least 2 guests in the guest list.
+   
+   4. Test case: `guest zzzzzzzz`<br>
+      Expected: The list will show any matches to the name `zzzzzzzz`. If you followed step 4i, this will return 0 guests in the guest list.
+   
+   5. Incorrect commands to try: `guest`.
+   
+7. Adding rooms
+   1. List all rooms using the `list rooms` command. Multiple rooms in the list, not exceeding 900 rooms. 
+   2. Test case: `addroom 1 t/luxury`<br>
+      Expected: A room will be added to the end of the Room list, and it will appear with the tag `luxury`.
+   3. Test case: `addroom 3 t/special`<br>
+      Expected: 3 rooms wll be added to the end of the Room list, and they will appear with the tag `special`.
+   4. Test case: `addroom 1000 t/shouldnotwork`<br>
+      Expected: No rooms will be added and an error will be shown, saying `Adding 1000 or more room(s) would exceed the maximum 999 rooms allowed`.
+   5. Other incorrect commands to try: `addroom`, `addroom 1`, `addroom x` where `x` will cause the number of rooms to exceed 1000.
+      Expected: `addroom`, `addroom 1` will cause an error to be shown, saying `Invalid command format`. `addroom x` will cause the same error to be shown as described by 5iv.
+
+8. Searching for rooms by room number
+   1. List all rooms using the `list rooms` command. Multiple rooms in the list (at least 2 but not more than 900). Make sure to use this command each time before trying a new test case.
+   2. Test case: `room 001`<br>
+      Expected: The room list should now only show `001`.
+   3. Test case: `room 001 002`<br>
+      Expected: The room list should now only show `001` and `002`.
+   4. Test case: `room 901`<br>
+      Expected: The room list should show no rooms, as there were only 900 rooms in the initial room list.
+   5. Test case: `room 1000` <br>
+      Expected: An error `Invalid command format!` will be shown and the specified room will not appear as it is not possible for it to exist.
+   6. Other invalid commands to try: `room`, `room 000`.
+      Expected: An error `Invalid command format!` will be shown. Depending on the command input, a brief description of why the command is invalid may be provided.
+        
 
 ### Saving data
 
