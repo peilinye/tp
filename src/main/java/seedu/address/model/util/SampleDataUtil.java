@@ -87,10 +87,14 @@ public class SampleDataUtil {
         Set<Person> guestsOneSet = Arrays.stream(guestsOne).collect(Collectors.toSet());
         Set<Person> guestsTwoSet = Arrays.stream(guestsTwo).collect(Collectors.toSet());
         Room[] rooms = getSampleRooms();
+        LocalDateTime sampleDateOne = LocalDateTime.of(2021, 11, 1, 12, 0);
+        LocalDateTime sampleDateTwo = LocalDateTime.of(2021, 11, 2, 12, 0);
+        LocalDateTime sampleDateThree = LocalDateTime.of(2021, 10, 30, 12, 0);
+        LocalDateTime sampleDateFour = LocalDateTime.of(2021, 10, 31, 12, 0);
 
         return new Residency[] {
-            new Residency(rooms[0], guestsOneSet, LocalDateTime.now().minusDays(1), LocalDateTime.now()),
-            new Residency(rooms[1], guestsTwoSet, LocalDateTime.now().minusDays(1), LocalDateTime.now())
+            new Residency(rooms[0], guestsOneSet, sampleDateOne, sampleDateTwo),
+            new Residency(rooms[1], guestsTwoSet, sampleDateThree, sampleDateFour)
         };
     }
 }
