@@ -1,8 +1,7 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-
-import seedu.address.model.person.exceptions.InvalidNricException;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * The ID field of a person. Used to distinguish between different Persons,
@@ -13,6 +12,14 @@ public class Nric {
     public static final String MESSAGE_CONSTRAINTS =
             "IDs must not be empty or only whitespace characters";
     public static final String NOT_APPLICABLE_TO_PERSON = "NOT APPLICABLE";
+
+    /*
+     * The first character of the address must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final int MAX_LENGTH = 50;
+
     public final String value;
 
     /**
@@ -22,6 +29,7 @@ public class Nric {
         this.value = ic;
     }
 
+    // TODO remove default Nric constructor
     /**
      * Default constructor for Nric object; used if person for some reason does not
      * have an Nric number; usually a foreigner.
@@ -38,11 +46,7 @@ public class Nric {
      */
     public static Nric of(String ic) {
         requireNonNull(ic);
-
-        if (ic.isEmpty()) {
-            throw new InvalidNricException();
-        }
-
+        checkArgument(isValidNric(ic), MESSAGE_CONSTRAINTS);
         return new Nric(ic);
     }
 
@@ -50,12 +54,11 @@ public class Nric {
      * Evaluates if an Nric provided is valid to be a Person's Nric.
      * In other words, it checks for null or whether the string is empty.
      *
-     * @param ic the String of a supposed Nric.
+     * @param test the String of a supposed Nric.
      * @return boolean to indicate if string is non-empty.
      */
-    public static boolean isValidNric(String ic) {
-        requireNonNull(ic);
-        return (ic.length() > 0);
+    public static boolean isValidNric(String test) {
+        return test.matches(VALIDATION_REGEX) && test.length() <= MAX_LENGTH;
     }
 
     /**
