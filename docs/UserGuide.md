@@ -168,7 +168,7 @@ Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 
 * Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the end of the list of rooms.
 * The specified number of rooms **must be a positive integer** 1, 2, 3, …​
-* A maximum of 999 rooms are allowed.
+* The full list of rooms will be shown after rooms have been added.
 * Note: There should be no whitespace within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**

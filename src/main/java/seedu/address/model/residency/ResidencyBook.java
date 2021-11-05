@@ -147,8 +147,7 @@ public class ResidencyBook implements ReadOnlyResidencyBook {
         requireNonNull(guest);
         List<Residency> relevantResidencies = internalList.stream()
                 .filter(residency -> residency.getGuests().contains(guest)).collect(Collectors.toUnmodifiableList());
-        List<Residency> results = relevantResidencies;
-        return results;
+        return relevantResidencies;
     }
 
     public void setResidencies(List<Residency> residencies) {
