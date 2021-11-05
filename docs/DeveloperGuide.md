@@ -419,43 +419,71 @@ testers are expected to do more *exploratory* testing.
 
    
 6. Searching for guests
-   1. List all persons using the `list guests` command. Multiple persons in the list. Make sure that there is a guest named `Wilburrito` and a guest named `Bernice` by either editing an existing guest or adding a new one, and also that there is no guest named `zzzzzzzz`. Make sure to do this before testing each of the test cases below.
+    1. List all persons using the `list guests` command. Multiple persons in the list. Make sure that there is a guest named `Wilburrito` and a guest named `Bernice` by either editing an existing guest or adding a new one, and also that there is no guest named `zzzzzzzz`. Make sure to do this before testing each of the test cases below.
    
-   2. Test case: `guest wilburrito`<br>
-      Expected: The list will show any matches to the name `wilburrito`. If you followed step 4i, this will return at least 1 guest in the guest list.
+    2. Test case: `guest wilburrito`<br>
+       Expected: The list will show any matches to the name `wilburrito`. If you followed step 4i, this will return at least 1 guest in the guest list.
    
-   3. Test case: `guest wilburrito bernice`<br>
-      Expected: The list will show any matches to the name `wilburrito` and `bernice`. If you followed step 4i, this will return at least 2 guests in the guest list.
+    3. Test case: `guest wilburrito bernice`<br>
+       Expected: The list will show any matches to the name `wilburrito` and `bernice`. If you followed step 4i, this will return at least 2 guests in the guest list.
    
-   4. Test case: `guest zzzzzzzz`<br>
-      Expected: The list will show any matches to the name `zzzzzzzz`. If you followed step 4i, this will return 0 guests in the guest list.
+    4. Test case: `guest zzzzzzzz`<br>
+       Expected: The list will show any matches to the name `zzzzzzzz`. If you followed step 4i, this will return 0 guests in the guest list.
    
-   5. Incorrect commands to try: `guest`.
+    5. Incorrect commands to try: `guest`.
    
 7. Adding rooms
-   1. List all rooms using the `list rooms` command. Multiple rooms in the list, not exceeding 900 rooms. 
-   2. Test case: `addroom 1 t/luxury`<br>
-      Expected: A room will be added to the end of the Room list, and it will appear with the tag `luxury`.
-   3. Test case: `addroom 3 t/special`<br>
-      Expected: 3 rooms wll be added to the end of the Room list, and they will appear with the tag `special`.
-   4. Test case: `addroom 1000 t/shouldnotwork`<br>
-      Expected: No rooms will be added and an error will be shown, saying `Adding 1000 or more room(s) would exceed the maximum 999 rooms allowed`.
-   5. Other incorrect commands to try: `addroom`, `addroom 1`, `addroom x` where `x` will cause the number of rooms to exceed 1000.
-      Expected: `addroom`, `addroom 1` will cause an error to be shown, saying `Invalid command format`. `addroom x` will cause the same error to be shown as described by 5iv.
+    1. List all rooms using the `list rooms` command. Multiple rooms in the list, not exceeding 900 rooms. 
+    2. Test case: `addroom 1 t/luxury`<br>
+       Expected: A room will be added to the end of the Room list, and it will appear with the tag `luxury`.
+    3. Test case: `addroom 3 t/special`<br>
+       Expected: 3 rooms wll be added to the end of the Room list, and they will appear with the tag `special`.
+    4. Test case: `addroom 1000 t/shouldnotwork`<br>
+       Expected: No rooms will be added and an error will be shown, saying `Adding 1000 or more room(s) would exceed the maximum 999 rooms allowed`.
+    5. Other incorrect commands to try: `addroom`, `addroom 1`, `addroom x` where `x` will cause the number of rooms to exceed 1000.
+       Expected: `addroom`, `addroom 1` will cause an error to be shown, saying `Invalid command format`. `addroom x` will cause the same error to be shown as described by 5iv.
 
 8. Searching for rooms by room number
-   1. List all rooms using the `list rooms` command. Multiple rooms in the list (at least 2 but not more than 900). Make sure to use this command each time before trying a new test case.
-   2. Test case: `room 001`<br>
-      Expected: The room list should now only show `001`.
-   3. Test case: `room 001 002`<br>
-      Expected: The room list should now only show `001` and `002`.
-   4. Test case: `room 901`<br>
-      Expected: The room list should show no rooms, as there were only 900 rooms in the initial room list.
-   5. Test case: `room 1000` <br>
-      Expected: An error `Invalid command format!` will be shown and the specified room will not appear as it is not possible for it to exist.
-   6. Other invalid commands to try: `room`, `room 000`.
-      Expected: An error `Invalid command format!` will be shown. Depending on the command input, a brief description of why the command is invalid may be provided.
-        
+    1. List all rooms using the `list rooms` command. Multiple rooms in the list (at least 2 but not more than 900). Make sure to use this command each time before trying a new test case.
+    2. Test case: `room 001`<br>
+       Expected: The room list should now only show `001`.
+    3. Test case: `room 001 002`<br>
+       Expected: The room list should now only show `001` and `002`.
+    4. Test case: `room 901`<br>
+       Expected: The room list should show no rooms, as there were only 900 rooms in the initial room list.
+    5. Test case: `room 1000` <br>
+       Expected: An error `Invalid command format!` will be shown and the specified room will not appear as it is not possible for it to exist.
+    6. Other invalid commands to try: `room`, `room 000`.
+       Expected: An error `Invalid command format!` will be shown. Depending on the command input, a brief description of why the command is invalid may be provided.
+   
+9. Listing all rooms
+    1. Test case: `list rooms`<br>
+       Expected: All rooms are displayed in the Rooms panel.
+   
+10. Listing all occupied rooms
+    1. Test case: `list rooms occupied`<br>
+       Expected: All occupied rooms are displayed in the Rooms panel.
+    
+11. Listing all vacant rooms
+    1. Test case: `list rooms vacant`<br>
+       Expected: All vacant rooms are displayed in the Rooms panel.
+    
+12. Listing all records
+    1. Test case: `list records`<br>
+    Expected: All past records are displayed in the History panel, sorted from most recent record at the top.
+    
+13. Searching for records
+    1. List all records using the `list records` command. Multiple records in the list (at least 2). Make sure to use this command each time before trying a new test case. 
+    2. Test case: `record Alex`<br>      
+       Expected: All records with the keyword `Alex` are displayed in the History panel.  
+    3. Test case: `record 001`<br>
+       Expected: All records with the keyword `001` are displayed in the History panel
+    4. Test case: `record 2021-11-01`<br>
+       Expected: All records with the date 2021-11-01(both checkin and checkout) are displayed in the History panel.
+    5. Test case: `record Alex 001`<br>
+       Expected: ALl records with both keywords `Alex` and `001` are displayed in the History panel.
+    6. Invalid command to try: `record`.
+       Expected: An error `Invalid command format!` will be shown.
 
 ### Saving data
 
