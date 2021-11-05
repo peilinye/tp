@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/jianh0ng.png" width="200px">
 
-[[github](http://github.com/jianh0ng)] [[portfolio](team/jianhong.md)]
+[[github](http://github.com/jianh0ng)] [[portfolio](team/jianh0ng.md)]
 
 * Role: Developer
 * Responsibilities: Data
