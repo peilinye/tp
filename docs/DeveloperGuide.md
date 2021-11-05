@@ -196,33 +196,28 @@ The behaviour of the search mechanism is illustrated by the following sequence d
 #### Implementation
 
 The list mechanism is facilitated by `LogicManager`. It extends `Logic` and its invocation is via the `AddressBookParser`.
+It implements the following key operations.
 
 * `AddressBookParser#parseCommand()` — Interprets the command the user inputs to invoke the `ListCommand`.
-* `ListCommand#execute()` — Filters the list of rooms based on whether they are vacant or occupied and shows the relevant type to user.
+* `ListCommand#execute()` — Executes the relevant `ListCommand`.
+* `Model#updateFilteredRoomList()` — Filters the list of rooms based on their vacancy status and updates the internal list of rooms to be displayed by the UI.
 
 This operation is exposed in the `Model` interface as `Model#updateFilteredRoomList()`.
 
-Given below is an example usage scenario and how the list mechanism behaves at each step.
+The following sequence diagram shows the interactions between objects of the Logic component for the list vacant room mechanism.
 
-Step 1. User lists the rooms based on the desired vacancy status.
+![Interactions Inside the Logic Component for the `list rooms vacant` Command](images/ListRoomsByVacancySequenceDiagram.png)
 
-![ListOccupied](images/ListOccupied.png)
-![ListVacant](images/ListVacant.png)
-
-Step 2. Hit Enter.
-
-![ListOccupiedResult](images/ListOccupiedResult.png)
-![ListVacantResult](images/ListVacantResult.png)
-
+The `list rooms occupied` command works the same way, except a `RoomIsOccupiedPredicate` is passed as argument when calling `Model#updateFilteredRoomList()`.
 The rooms of the specified vacancy status will appear in the room list.
 
 #### Design considerations:
 
 **Aspect: How list room occupied / vacant executes:**
 
-* The valid string will create a predicate object for `Model#updateFilteredRoomList()` to filter the rooms based on.
-    * Pros: Consistency - similar implementation as command to list all rooms and list all guests.
-    * Cons: Current implementation does not best adhere to OOP principles like inheritance. No new classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
+* The `ParserUtil` checks that the `ListRoomArg` is valid (either "occupied" or "vacant" and not any other arguments), and the `ListCommandParser` creates a predicate object for `Model#updateFilteredRoomList()` to filter the rooms based on.
+    * Pros: Consistency - similar implementation as the command to list all rooms, list all guests and list all records.
+    * Cons: This implementation does not fully adhere to OOP principles like inheritance. No new command classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
 
 ### Uniqueness of Guests
 
@@ -245,23 +240,23 @@ This section describes how past residencies are stored such that it can be displ
 
 The past residencies are read from the same json data file as the other components in the `AddressBook`, through the `JsonAdaptedResidencyBook` class.
 
-They are stored in a `ResidencyBook`, similar to the one storing current residencies.
-![Relationship of AddressBook and ResidencyBook](images/AddressBookSubset.png)
 
-This `ResidencyBook` only calls upon `ResidencyBook#register(Residency)` but not `ResidencyBook#remove(Residency)` to prevent editing
-of the records stored.
+Past residencies can be searched through the use of the `record` command, where any number of keywords can be entered and any record matching all the keywords are displayed to the user.
 
-It is exposed in `ModelManager#getFilteredRecordList()`, `ModelManager#updateFilteredRecordList()`, `
-LogicManager#getFilteredRecordList()` where the contents are stored in a `FilteredList` for display in the UI.
+Given below is an example of the search function for all the past residencies of room 001.
+
+![Sequence Diagram of record command](images/RecordCommandSequenceDiagram.png)
+
 
 #### Design considerations:
 
-* Possible location of storage of past residencies.
-    * Second file.
+* Possible location of storage of past residencies in a second file.
     * Pros: Keeping past residency storage separate from the main data storage minimises any mixup in the storing of information.
     * Cons: This requires the file to store its own set of persons and rooms and because the residency keeps minimal information in order to minimise
       space required for the storage file, it results in redundancy when storing the same information across 2 files. Changes also have to be written twice.
 
+* AND vs OR for searching records
+    * In contrast to the search for guest showing results matching any of keywords given, searching records shows results matching all of the keywords. This is to allow for more targeted search such as filtering both date and room at the same time to only show records of a particular room at a particular time. This increases the utility of the function in terms of contact tracing.
 * Consistency
     * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
       in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.

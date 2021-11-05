@@ -33,17 +33,17 @@
             </HBox>
 
 
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <VBox spacing="5" alignment="CENTER_LEFT">
                 <Label styleClass="cell_room_sub_label">Check In: </Label>
                 <Label fx:id="in" text="\$in" styleClass="cell_occupancy_label_checkin" />
 
                 <Label styleClass="cell_room_sub_label">Check Out: </Label>
                 <Label fx:id="out" text="\$out" styleClass="cell_occupancy_label_checkout" />
-            </HBox>
+            </VBox>
 
 
             <HBox>
-                <FlowPane fx:id="personInfo" />
+                <FlowPane fx:id="personInfo" prefWrapLength="350"/>
                 <minWidth>
 
                     <Region fx:constant="USE_PREF_SIZE" />

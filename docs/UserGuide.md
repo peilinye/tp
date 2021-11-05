@@ -30,7 +30,7 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
    * **`addroom`**`5 t/typeA` : Adds 5 rooms of type A to the room list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nric/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
 
    * **`checkin`**`005 g/1` : Checks in the 1st guest into the 5th room.
 
@@ -54,10 +54,10 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Quarantine` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Quarantine`, `t/SeafoodAllergy` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -84,14 +84,14 @@ Format: `help`
 
 Adds a guest into Trace2Gather.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/NRIC [t/TAG]…​`
 
 Acceptable format for keywords:<br/>
 1. Names: No special characters, but spaces are allowed.
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
-5. Nric: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
+5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
 6. Tags: No whitespaces within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -99,12 +99,12 @@ A guest can have any number of tags (including 0).
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Two guests who are considered identical have identical Nrics.
+Two guests who have identical IDs are considered identical.
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nric/S98765432G`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison nric/S98765431G p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432G`
+* `add n/Betsy Crowe t/Quarantine e/betsycrowe@example.com a/Crowe Lane id/S98765431G p/1234567 t/SeafoodAllergy`
 
 ### Listing all guests : `list guests`
 
@@ -129,7 +129,7 @@ Acceptable format for keywords:
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
-5. Nric: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
+5. ID: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
 6. Tags: No whitespaces within a tag.
 
 
@@ -167,7 +167,7 @@ Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 
 * Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the end of the list of rooms.
 * The specified number of rooms **must be a positive integer** 1, 2, 3, …​
-* A maximum of 999 rooms are allowed.
+* The full list of rooms will be shown after rooms have been added.
 * Note: There should be no whitespace within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -189,7 +189,8 @@ Checks in a group of guests into a room.
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A room can have more than one guest.
+1. A room can have more than one guest.<br/>
+2. If you cannot check in guests to a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise use the command `list rooms` and `list guests` to show all rooms and guests.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -252,7 +253,8 @@ Format: `list records`
 
 ### Locating specific records: `record`
 
-Shows the records that match the keywords provided (**not** case-sensitive, at least 1).<br/>
+Shows the records that match all the keywords provided (i.e. `AND` search) (**not** case-sensitive, at least 1).<br/>
+
 
 Format: `record KEYWORD_ONE... `
 
@@ -267,8 +269,8 @@ Example: <br/>
 `record Alex` shows the residencies Alex had in the past.<br/>
 `record 001` shows the residencies Room 001 had in the past.<br/>
 `record Alex 001` shows the residencies that involve Alex staying in Room 001 in the past.<br/>
-`record Alex Bernice` shows the residencies Alex and Bernice had in the past.<br/>
-`record 2021-10-31` shows the past residences that include the specified date.
+`record Alex Bernice` shows the residencies Alex and Bernice had together in the past.<br/>
+`record 2021-10-31` shows the past residences that include the specified date (both checkin and checkout included).
 
 ## Database / Storage
 

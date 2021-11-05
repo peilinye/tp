@@ -67,7 +67,7 @@ class JsonAdaptedRoom {
         for (JsonAdaptedTag tag : tags) {
             roomTags.add(tag.toModelType());
         }
-        //insert validity checks and exception handling
+        //TODO: insert validity checks and exception handling
         final RoomNumber modelRoomNumber = new RoomNumber(roomNumber);
         final Vacancy modelVacancy = Vacancy.of(isVacant);
         final Set<Person> modelGuests = roomGuests;

@@ -115,6 +115,6 @@ class JsonAdaptedPerson {
         final Nric modelNric = Nric.of(nric);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelNric, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelNric, modelTags);
     }
 }

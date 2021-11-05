@@ -11,7 +11,7 @@ import seedu.address.model.person.exceptions.InvalidNricException;
 public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "NRICs must not be an empty string, or null.";
+            "IDs must not be empty or only whitespace characters";
     public static final String NOT_APPLICABLE_TO_PERSON = "NOT APPLICABLE";
     public final String value;
 
