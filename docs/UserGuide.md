@@ -70,7 +70,7 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
 </div>
 
-### Viewing help : `help`
+#### Viewing help : `help`
 
 Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
 
@@ -78,9 +78,9 @@ Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t
 
 Format: `help`
 
-## Guest
+### Guest
 
-### Adding a guest: `add`
+#### Adding a guest: `add`
 
 Adds a guest into Trace2Gather.
 
@@ -106,13 +106,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432G`
 * `add n/Betsy Crowe t/Quarantine e/betsycrowe@example.com a/Crowe Lane id/S98765431G p/1234567 t/SeafoodAllergy`
 
-### Listing all guests : `list guests`
+#### Listing all guests : `list guests`
 
 Shows a list of all guests in Trace2Gather.
 
 Format: `list guests`
 
-### Editing a guest : `edit`
+#### Editing a guest : `edit`
 
 Edits an existing guest in Trace2Gather.
 
@@ -137,7 +137,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd guest to be `Betsy Crower` and clears all existing tags.
 
-### Locating guests by name: `guest`
+#### Locating guests by name: `guest`
 
 Find guests whose names contain any of the given keywords.
 
@@ -157,9 +157,9 @@ Examples:
   ![guestsearch](images/Guestalexdavid2.png)
   
 
-## Room
+### Room
 
-### Adding rooms : `addroom`
+#### Adding rooms : `addroom`
 
 Adds the specified number of rooms with the specified tag(s).
 
@@ -182,7 +182,7 @@ Examples:
 * `addroom 5 t/typeA`
 * `addroom 10 t/typeB t/reserved`
 
-### Checking into a room : `checkin`
+#### Checking into a room : `checkin`
 
 Checks in a group of guests into a room. 
 
@@ -205,7 +205,7 @@ Examples:
 * `checkin 5 g/1`
 * `checkin 3 g/2 g/3 g/6` ![checkin3](images/Checkin3.png)
 
-### Checking out of a room : `checkout`
+#### Checking out of a room : `checkout`
 
 Checks out a group of guests from a room.
 
@@ -216,7 +216,7 @@ The room index refers to the index number shown in the displayed room list.
 Example:
 * `checkout 4` ![checkout4](images/Checkout4.png)
 
-### Locating a specific room : `room`
+#### Locating a specific room : `room`
 
 Shows a list of rooms that match the room numbers provided.
 
@@ -225,33 +225,33 @@ Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 Example:
 * `room 001 002` ![room001002](images/Room001002.png)
 
-### Listing all rooms : `list rooms`
+#### Listing all rooms : `list rooms`
 
 Shows a list of all rooms in Trace2Gather.
 
 Format: `list rooms`
 
-### Listing all occupied rooms : `list rooms occupied`
+#### Listing all occupied rooms : `list rooms occupied`
 
 Shows a list of all rooms that are occupied in Trace2Gather.
 
 Format: `list rooms occupied`
 
-### Listing all vacant rooms : `list rooms vacant`
+#### Listing all vacant rooms : `list rooms vacant`
 
 Shows a list of all rooms that are vacant in Trace2Gather.
 
 Format: `list rooms vacant`
 
-## Records
+### Records
 
-### Listing all records : `list records`
+#### Listing all records : `list records`
 
 Shows a list of past residencies in Trace2Gather.
 
 Format: `list records`
 
-### Locating specific records: `record`
+#### Locating specific records: `record`
 
 Shows the records that match all the keywords provided (i.e. `AND` search) (**not** case-sensitive, at least 1).<br/>
 
@@ -272,9 +272,9 @@ Example: <br/>
 `record Alex Bernice` shows the residencies Alex and Bernice had together in the past.<br/>
 `record 2021-10-31` shows the past residences that include the specified date (both checkin and checkout included).
 
-## Database / Storage
+### Database / Storage
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from Trace2Gather.
 
@@ -284,17 +284,17 @@ Format: `clear`
 Using this command will clear your JSON file, which means that all your room and guest objects will be erased.
 </div>
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Saving the data
 
 Trace2Gather data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 Trace2Gather data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -302,7 +302,7 @@ Trace2Gather data are saved as a JSON file `[JAR file location]/data/addressbook
 If your changes to the data file makes its format invalid, Trace2Gather will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+#### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
