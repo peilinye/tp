@@ -10,8 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "IDs must not be empty or only whitespace characters";
-    public static final String NOT_APPLICABLE_TO_PERSON = "NOT APPLICABLE";
+            "IDs must contain a non-whitespace character, and have a length of less than 50";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -27,15 +26,6 @@ public class Nric {
      */
     public Nric(String ic) {
         this.value = ic;
-    }
-
-    // TODO remove default Nric constructor
-    /**
-     * Default constructor for Nric object; used if person for some reason does not
-     * have an Nric number; usually a foreigner.
-     */
-    protected Nric() {
-        this.value = NOT_APPLICABLE_TO_PERSON;
     }
 
     /**

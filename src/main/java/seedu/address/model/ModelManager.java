@@ -22,6 +22,7 @@ import seedu.address.model.room.Room;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    public static Model modelInstance;
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
@@ -242,6 +243,14 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    public static void setInstance(Model model) {
+        modelInstance = model;
+    }
+
+    public static Model getInstance() {
+        return modelInstance;
     }
 
 }

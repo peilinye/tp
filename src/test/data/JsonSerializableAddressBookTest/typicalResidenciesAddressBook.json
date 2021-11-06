@@ -23,8 +23,7 @@
   } ],
   "rooms" : [ {
     "roomNumber" : "001",
-    "isVacant" : true,
-    "guests" : [ ],
+    "isVacant" : false,
     "tags" : [ "normal" ]
   } ],
   "residencyBook" : {
