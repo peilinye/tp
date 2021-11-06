@@ -219,6 +219,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// util methods
 
+    /**
+     * Returns true if the vacancy status of all rooms match their recorded statuses in the residency book.
+     */
     public boolean isValid() {
         for (Room room : rooms) {
             if (residencyBook.getResidency(room).isEmpty() != room.isVacant()) {

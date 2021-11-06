@@ -10,18 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
 
 public class TypicalRooms {
-    // TODO delete commented out code
-    /*
-    public static final Person ALICE = TypicalPersons.ALICE;
-    public static final Person BENSON = TypicalPersons.BENSON;
-    public static final Person CHARLIE = TypicalPersons.CHARLIE;
-
-    public static final Person[] GUESTS = new Person[]{ALICE, BENSON, CHARLIE};
-    */
     public static final Room ROOM_ONE = new RoomBuilder().withNumber(VALID_NAME_ROOM_ONE)
             .withVacancy(VALID_VACANCY_ROOM_ONE).build();
 

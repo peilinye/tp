@@ -22,7 +22,7 @@ import seedu.address.model.room.Room;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    public static Model modelInstance;
+    private static Model modelInstance;
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;

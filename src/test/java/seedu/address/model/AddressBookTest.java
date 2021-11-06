@@ -136,21 +136,21 @@ public class AddressBookTest {
 
     @Test
     public void register_validResidency_registersCorrectly() {
-        Residency residency = new Residency(ROOM_ONE, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, null);
+        Residency residency = new Residency(ROOM_TWO, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, null);
         addressBook.register(residency);
         assertEquals(addressBook.getResidencyBook(), TypicalResidencyBook.getTypicalAddressBook().getResidencyBook());
     }
 
     @Test
     public void register_invalidResidencyWithDuplicateRooms_throwsDuplicateRoomRegException() {
-        Residency invalidResidency = new Residency(ROOM_ONE, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, null);
+        Residency invalidResidency = new Residency(ROOM_TWO, PERSON_LIST_ONE, CHECK_IN_TIME_ONE, null);
         addressBook.setResidencies(getTypicalResidencyBook());
         assertThrows(DuplicateRoomRegException.class, () -> addressBook.register(invalidResidency));
     }
 
     @Test
     public void register_invalidResidencyWithDuplicatePersons_throwsDuplicatePersonRegException() {
-        Residency invalidResidency = new Residency(ROOM_TWO, PERSON_LIST_ONE);
+        Residency invalidResidency = new Residency(ROOM_ONE, PERSON_LIST_ONE);
         addressBook.setResidencies(getTypicalResidencyBook());
         assertThrows(DuplicatePersonRegException.class, () -> addressBook.register(invalidResidency));
     }
