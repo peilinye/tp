@@ -12,7 +12,10 @@ title: Developer Guide
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+* Welcome to the developer's guide for Trace2Gather! This guide is meant for developers who may want to contribute to our code base, or use our codebase to build their own project.
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -52,9 +55,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `guest Alex`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagramForDG.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -98,9 +101,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("guest Alex")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `guest Alex` Command](images/FindGuestSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -132,11 +135,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -172,19 +170,17 @@ The search mechanism is facilitated by `LogicManager`. It extends `Logic` and it
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
-Given below is an example usage scenario and how the search mechanism behaves at each step.
+Given below is an example usage scenario:
 
-Step 1. User searches for the data entry desired.
+1. User searches for the data entry desired. In this case, the user's input is "guest Alex"
 
-![SearchGuest](images/SearchGuest.png)
-![SearchRoom](images/SearchRoom.png)
+2. Hit Enter.
 
-Step 2. Hit Enter.
+3. The Rooms / Guests that have matching names will appear in their respective lists.
 
-![SearchGuestResult](images/SearchGuestResult.png)
-![SearchRoomResult](images/SearchRoomResult.png)
+The behaviour of the search mechanism is illustrated by the following sequence diagram.
 
-The Rooms / Guests that have matching names will appear in their respective lists.
+![Interactions Inside the Logic Component for the `guest Alex` Command](images/FindGuestSequenceDiagram.png)
 
 #### Design considerations:
 
@@ -223,7 +219,7 @@ The rooms of the specified vacancy status will appear in the room list.
     * Pros: Consistency - similar implementation as the command to list all rooms, list all guests and list all records.
     * Cons: This implementation does not fully adhere to OOP principles like inheritance. No new command classes such as `ListVacantRoomCommand` and `ListOccupiedRoomCommand`.
 
-### Uniqueness of Guests [coming soon]
+### Uniqueness of Guests
 
 #### Implementation
 
@@ -244,23 +240,23 @@ This section describes how past residencies are stored such that it can be displ
 
 The past residencies are read from the same json data file as the other components in the `AddressBook`, through the `JsonAdaptedResidencyBook` class.
 
-They are stored in a `ResidencyBook`, similar to the one storing current residencies.
-![Relationship of AddressBook and ResidencyBook](images/AddressBookSubset.png)
 
-This `ResidencyBook` only calls upon `ResidencyBook#register(Residency)` but not `ResidencyBook#remove(Residency)` to prevent editing
-of the records stored.
+Past residencies can be searched through the use of the `record` command, where any number of keywords can be entered and any record matching all the keywords are displayed to the user.
 
-It is exposed in `ModelManager#getFilteredRecordList()`, `ModelManager#updateFilteredRecordList()`, `
-LogicManager#getFilteredRecordList()` where the contents are stored in a `FilteredList` for display in the UI.
+Given below is an example of the search function for all the past residencies of room 001.
+
+![Sequence Diagram of record command](images/RecordCommandSequenceDiagram.png)
+
 
 #### Design considerations:
 
-* Possible location of storage of past residencies.
-    * Second file.
+* Possible location of storage of past residencies in a second file.
     * Pros: Keeping past residency storage separate from the main data storage minimises any mixup in the storing of information.
     * Cons: This requires the file to store its own set of persons and rooms and because the residency keeps minimal information in order to minimise
       space required for the storage file, it results in redundancy when storing the same information across 2 files. Changes also have to be written twice.
 
+* AND vs OR for searching records
+    * In contrast to the search for guest showing results matching any of keywords given, searching records shows results matching all of the keywords. This is to allow for more targeted search such as filtering both date and room at the same time to only show records of a particular room at a particular time. This increases the utility of the function in terms of contact tracing.
 * Consistency
     * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
       in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.
@@ -355,31 +351,139 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
 
-### Deleting a person
+1. Adding a person while all persons are being shown
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: List all persons using the `list guests` command. Multiple persons in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432G`<br>
+      Expected: A new person object is added to the list of guests, with the name John Doe, and the person's details as described by the test case input.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `add n/Wilburrito`<br>
+      Expected: No person is added. This is to be expected as the mandatory fields for `add` are not fulfilled. An error message should appear with the correct command format that one should be following.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect add commands to try: `add`, `add wilburrito`<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Editing a Person object
+    1. List all persons using the `list guests` command. Multiple persons in the list.
+   
+    2. Test case: `edit 1 n/Wilburrito`<br>
+       Expected: The first person in the list of guests will have their name edited to `Wilburrito`, with a success message reiterating the edited details of the person.
+   
+    3. Test case: `edit 2 n/Wilburger id/S9999999X`<br>
+       Expected: The first second person in the list of guests will have their name edited to `Wilburger` as well as their id edited to `S9999999X`.
+   
+    4. Test case: `edit 0 n/Wilburroni`<br>
+       Expected: No guests in the list will be edited, and an error will appear saying `Invalid Command Format!` due to the index being invalid.
+   
+    5. Other incorrect edit commands to try: `edit`, `edit x` where `x` is an index that is larger than the largest index of the guest list.<br>
+       Expected: No guests in the list will be edited, and an error will appear saying `Invalid Command Format!`.
+   
+3. Checking in a Person object
+    1. Prerequisites:
+       1. List all Person objects using the `list guests` command. Multiple persons in the list.
+       2. List all the Room objects using the `list rooms` room. Multiple rooms in the list.
+       
+    2. Test case: `checkin 001 g/1`<br>
+       Expected: The first person in the list of guests gets checked into Room 001, with the success message: `Room Checked In: 001`.
+   
+    3. Test case: `checkin 002 g/2 g/3`<br>
+       Expected: The second and third person in the list of guests gets checked into Room 002, with the success message: `Room Checked In: 002`.
+   
+    4. Test case: `checkin 000 g/4 g/5`<br>
+       Expected: The fourth and fifth person in the list of guests **does not** get checked into Room 000, because Room 000 does not exist, as it is an invalid room number.
+   
+    5. Other incorrect checkin commands to try: `checkin`, `checkin 1000 g/1`, `checkin g/1`<br>
+       Expected: Similar to previous.
+    
+4. Checking out a Person object
+    1. Prerequisites:
+       1. List all Person objects using the `list guests` command. Multiple persons in the list.
+       2. List all the Room objects using the `list rooms` room. Multiple rooms in the list.
+       3. Make sure that at least 1 guest is checked into any Room 001.
+    2. Test case: `checkout 001`<br>
+       Expected: The person in Room 001 will be checked out with the message `Room Checked Out: 001` being shown. The room's occupancy status should change from `Occupied` to `Vacant`.
+    3. Test case: `checkout 1000`<br>
+       Expected: An error saying `The room index provided is invalid. Index should be the one that is displayed in the Room panels below`.
+    4. Other incorrect commands to try: `checkout`, `checkout x`, where `x` is an index greater than the largest index in the current Room list.<br>
+       Expected: For `checkout`, an error `Invalid command format!` will be shown. For `checkout x`, There will be the same error as described in 6iii.
+
+   
+6. Searching for guests
+    1. List all persons using the `list guests` command. Multiple persons in the list. Make sure that there is a guest named `Wilburrito` and a guest named `Bernice` by either editing an existing guest or adding a new one, and also that there is no guest named `zzzzzzzz`. Make sure to do this before testing each of the test cases below.
+   
+    2. Test case: `guest wilburrito`<br>
+       Expected: The list will show any matches to the name `wilburrito`. If you followed step 4i, this will return at least 1 guest in the guest list.
+   
+    3. Test case: `guest wilburrito bernice`<br>
+       Expected: The list will show any matches to the name `wilburrito` and `bernice`. If you followed step 4i, this will return at least 2 guests in the guest list.
+   
+    4. Test case: `guest zzzzzzzz`<br>
+       Expected: The list will show any matches to the name `zzzzzzzz`. If you followed step 4i, this will return 0 guests in the guest list.
+   
+    5. Incorrect commands to try: `guest`.
+   
+7. Adding rooms
+    1. List all rooms using the `list rooms` command. Multiple rooms in the list, not exceeding 900 rooms. 
+    2. Test case: `addroom 1 t/luxury`<br>
+       Expected: A room will be added to the end of the Room list, and it will appear with the tag `luxury`.
+    3. Test case: `addroom 3 t/special`<br>
+       Expected: 3 rooms wll be added to the end of the Room list, and they will appear with the tag `special`.
+    4. Test case: `addroom 1000 t/shouldnotwork`<br>
+       Expected: No rooms will be added and an error will be shown, saying `Adding 1000 or more room(s) would exceed the maximum 999 rooms allowed`.
+    5. Other incorrect commands to try: `addroom`, `addroom 1`, `addroom x` where `x` will cause the number of rooms to exceed 1000.
+       Expected: `addroom`, `addroom 1` will cause an error to be shown, saying `Invalid command format`. `addroom x` will cause the same error to be shown as described by 5iv.
+
+8. Searching for rooms by room number
+    1. List all rooms using the `list rooms` command. Multiple rooms in the list (at least 2 but not more than 900). Make sure to use this command each time before trying a new test case.
+    2. Test case: `room 001`<br>
+       Expected: The room list should now only show `001`.
+    3. Test case: `room 001 002`<br>
+       Expected: The room list should now only show `001` and `002`.
+    4. Test case: `room 901`<br>
+       Expected: The room list should show no rooms, as there were only 900 rooms in the initial room list.
+    5. Test case: `room 1000` <br>
+       Expected: An error `Invalid command format!` will be shown and the specified room will not appear as it is not possible for it to exist.
+    6. Other invalid commands to try: `room`, `room 000`.
+       Expected: An error `Invalid command format!` will be shown. Depending on the command input, a brief description of why the command is invalid may be provided.
+   
+9. Listing all rooms
+    1. Test case: `list rooms`<br>
+       Expected: All rooms are displayed in the Rooms panel.
+   
+10. Listing all occupied rooms
+    1. Test case: `list rooms occupied`<br>
+       Expected: All occupied rooms are displayed in the Rooms panel.
+    
+11. Listing all vacant rooms
+    1. Test case: `list rooms vacant`<br>
+       Expected: All vacant rooms are displayed in the Rooms panel.
+    
+12. Listing all records
+    1. Test case: `list records`<br>
+    Expected: All past records are displayed in the History panel, sorted from most recent record at the top.
+    
+13. Searching for records
+    1. List all records using the `list records` command. Multiple records in the list (at least 2). Make sure to use this command each time before trying a new test case. 
+    2. Test case: `record Alex`<br>      
+       Expected: All records with the keyword `Alex` are displayed in the History panel.  
+    3. Test case: `record 001`<br>
+       Expected: All records with the keyword `001` are displayed in the History panel
+    4. Test case: `record 2021-11-01`<br>
+       Expected: All records with the date 2021-11-01(both checkin and checkout) are displayed in the History panel.
+    5. Test case: `record Alex 001`<br>
+       Expected: ALl records with both keywords `Alex` and `001` are displayed in the History panel.
+    6. Invalid command to try: `record`.
+       Expected: An error `Invalid command format!` will be shown.
 
 ### Saving data
 

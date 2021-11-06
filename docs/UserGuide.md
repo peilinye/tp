@@ -67,7 +67,8 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+* If you have a smaller screen, please use the application in full screen mode, by clicking the square icon at the top right-hand corner of the window.
+* For devices with smaller screens, some information about guests, rooms, or residencies may be cut off with an ellipses.
 </div>
 
 #### Viewing help : `help`
@@ -167,7 +168,7 @@ Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 
 * Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the end of the list of rooms.
 * The specified number of rooms **must be a positive integer** 1, 2, 3, …​
-* A maximum of 999 rooms are allowed.
+* The full list of rooms will be shown after rooms have been added.
 * Note: There should be no whitespace within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
