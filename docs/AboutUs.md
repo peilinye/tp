@@ -23,7 +23,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/darrenhoon.png" width="200px">
 
 [[github](https://github.com/darrenhoon)]
-[[portfolio](team/darren.md)]
+[[portfolio](team/darrenhoon.md)]
 
 * Role: Developer
 * Responsibilities: DevOps, UI
