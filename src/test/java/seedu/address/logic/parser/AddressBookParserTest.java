@@ -103,6 +103,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
+    /*
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
@@ -110,6 +111,7 @@ public class AddressBookParserTest {
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
+    */
 
     @Test
     public void parseCommand_findRoom() throws Exception {

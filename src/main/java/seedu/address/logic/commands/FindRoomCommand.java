@@ -17,7 +17,7 @@ public class FindRoomCommand extends Command {
             + "Room numbers should be 3 digits.\n"
             + "Example: " + COMMAND_WORD + " 001 002";
     public static final String MESSAGE_INVALID_ROOM_NUMBER = "One or more room numbers given are invalid."
-            + " Room numbers should be numeric and between 1 - 999 inclusive.";
+            + " Room numbers should be a 3 digit number.";
 
     private final RoomNumberContainsKeywordsPredicate predicate;
 
