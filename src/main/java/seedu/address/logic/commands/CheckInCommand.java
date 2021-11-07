@@ -21,8 +21,8 @@ public class CheckInCommand extends Command {
     public static final String COMMAND_WORD = "checkin";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Checks in people to a room "
-            + "using their index numbers used in the last person listing.\n"
+            + ": Checks in guests to a room "
+            + "using their index numbers used in the displayed guest list.\n"
             + "Parameters: INDEX_ROOM (must be a positive integer) "
             + "g/ [GUEST_INDEX] (can be used multiple times)\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -83,11 +83,12 @@ public class CheckInCommand extends Command {
             throw new CommandException(MESSAGE_NO_GUESTS);
         }
 
-        Room editedRoom = new Room(roomToEdit.getRoomNumber(), Vacancy.OCCUPIED, guests, roomToEdit.getTags());
+        Room editedRoom = new Room(roomToEdit.getRoomNumber(), Vacancy.OCCUPIED, roomToEdit.getTags());
 
         model.setRoom(roomToEdit, editedRoom);
         model.register(editedRoom, guests);
         model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
+        model.updateFilteredRecordList(Model.PREDICATE_SHOW_ALL_RECORDS);
         return new CommandResult(String.format(MESSAGE_CHECKIN_SUCCESS, editedRoom));
     }
 

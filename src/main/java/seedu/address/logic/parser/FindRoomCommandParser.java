@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import java.util.Arrays;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.room.RoomNumberContainsKeywordsPredicate;
@@ -28,6 +29,16 @@ public class FindRoomCommandParser implements Parser<FindRoomCommand> {
         }
 
         String[] roomNumberKeywords = trimmedArgs.split("\\s+");
+
+        // checking validity of input
+        int numOfKeywords = roomNumberKeywords.length;
+        for (int i = 0; i < numOfKeywords; i++) {
+            String keyword = roomNumberKeywords[i];
+            if (!StringUtil.isNonZeroUnsignedInteger(keyword) || keyword.length() != 3) {
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
+            }
+        }
 
         return new FindRoomCommand(new RoomNumberContainsKeywordsPredicate(Arrays.asList(roomNumberKeywords)));
     }

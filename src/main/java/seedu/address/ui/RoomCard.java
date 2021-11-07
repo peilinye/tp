@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import javafx.fxml.FXML;
@@ -8,7 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
+import seedu.address.model.residency.Residency;
 import seedu.address.model.room.Room;
 
 
@@ -48,7 +52,7 @@ public class RoomCard extends UiPart<Region> {
     private FlowPane guests;
 
     /**
-     * Creates a {@code RoomCode} with the given {@code Room} and index to display.
+     * Creates a {@code RoomCard} with the given {@code Room} and index to display.
      */
     public RoomCard(Room room, int displayedIndex) {
         super(FXML);
@@ -66,7 +70,11 @@ public class RoomCard extends UiPart<Region> {
             vacancy.setStyle("-fx-text-fill: #f51d50 !important; -fx-font-style: italic !important;");
         }
 
-        Set<Person> allGuests = room.getGuests();
+        Set<Person> allGuests = new HashSet<>();
+        Optional<Residency> residency = ModelManager.getInstance().getResidency(room);
+        if (residency.isPresent()) {
+            allGuests.addAll(residency.get().getGuests());
+        }
         allGuests.stream().map(person -> person.getName().toString())
                 .forEach(nameString -> guests.getChildren().add(new Label(nameString)));
     }

@@ -20,6 +20,8 @@ import seedu.address.model.room.RoomList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
+    public static final String MESSAGE_INVALID_ADDRESS_BOOK =
+            "The address book has a mismatch between a room's vacancy status and it's residency.";
 
     private final UniquePersonList persons;
     private final RoomList rooms;
@@ -137,20 +139,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
-        //TODO: might need to update this if we want UI to display people in the room, and their names updated too
-        for (Room room: rooms) {
-            if (room.isVacant()) {
-                continue;
-            } else {
-                if (room.getGuests().contains(target)) {
-                    Room editedRoom = room.replaceGuest(target, editedPerson);
-                    setRoom(room, editedRoom);
-                } else {
-                    continue;
-                }
-            }
-        }
         persons.setPerson(target, editedPerson);
         residencyBook.edit(target, editedPerson);
         recordsBook.edit(target, editedPerson);
@@ -230,6 +218,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// util methods
+
+    /**
+     * Returns true if the vacancy status of all rooms match their recorded statuses in the residency book.
+     */
+    public boolean isValid() {
+        for (Room room : rooms) {
+            if (residencyBook.getResidency(room).isEmpty() != room.isVacant()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     public String toString() {

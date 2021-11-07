@@ -17,7 +17,9 @@ Given below are my contributions to the project.
    * Persons were initially identified by an `Id` field, which was regenerated every time Trace2Gather is opened.
    * Changed the `Id` field to an `Nric` field instead, which guarantees uniqueness and may eliminate bugs.
    * Edited the storage such that the `Nric` of a person is stored in 
-* Edited logic for prevention of duplicate person objects
+3. Edited logic for prevention of duplicate person objects
+   * Change the way duplications are handled. Instead of being handled by comparing the names of Person objects, Trace2Gather now does it by using its Nric field.
+   * This allows for Person objects to have the same name, which is more realistic as compared to disallowing duplicate names.
 
 * **Code contributed**:
   [RepoSense link]()
@@ -25,8 +27,11 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Adapted user guide to suit our project.
+        * Fixed example usage of code, changed the tone of language used to be more engaging.
+        * Fixed most of the UG bugs from the PE-D.
     * Developer Guide:
         * Adapted UML diagrams to suit our project.
         * Adapted developer guide to suit our project.
+        * Fixed any DG bugs that may have come up from changing the implementation of the AB3 code to suit Trace2Gather.
     * Miscellaneous
         * Adapted documentation to remove traces of AB3.

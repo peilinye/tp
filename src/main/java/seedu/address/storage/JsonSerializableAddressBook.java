@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-//import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.Residency;
 import seedu.address.model.residency.ResidencyBook;
@@ -76,6 +75,10 @@ class JsonSerializableAddressBook {
         addPersonsAndRooms(addressBook);
         addResidencies(addressBook);
 
+        if (!addressBook.isValid()) {
+            throw new IllegalValueException(AddressBook.MESSAGE_INVALID_ADDRESS_BOOK);
+        }
+
         return addressBook;
     }
 
@@ -108,10 +111,4 @@ class JsonSerializableAddressBook {
             addressBook.record(residency);
         }
     }
-
-    /*
-    private void setId() {
-        Id.setNextId(idCounter);
-    }
-    */
 }

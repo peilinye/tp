@@ -8,7 +8,7 @@ public class RoomNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Room numbers should only contain numbers, and it must be 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String VALIDATION_REGEX = "\\d{3}";
     public final String value;
 
     /**

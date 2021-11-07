@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Person;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
 import seedu.address.model.room.Vacancy;
@@ -20,7 +19,6 @@ public class RoomBuilder {
 
     private RoomNumber number;
     private Vacancy vacancy;
-    private Set<Person> guests;
     private Set<Tag> tags;
 
     /**
@@ -29,7 +27,6 @@ public class RoomBuilder {
     public RoomBuilder() {
         number = new RoomNumber(DEFAULT_ROOM_NUMBER);
         vacancy = DEFAULT_VACANCY;
-        guests = new HashSet<>();
         tags = DEFAULT_TAGS;
     }
 
@@ -39,7 +36,6 @@ public class RoomBuilder {
     public RoomBuilder(Room roomToCopy) {
         number = roomToCopy.getRoomNumber();
         vacancy = roomToCopy.getVacancy();
-        guests = roomToCopy.getGuests();
         tags = roomToCopy.getTags();
     }
 
@@ -61,16 +57,6 @@ public class RoomBuilder {
     }
 
     /**
-     * Sets the {@code Guests} of the {@code Room} that we are building.
-     */
-    public RoomBuilder withGuests(Person[] guests) {
-        Set<Person> editedSet = new HashSet<>();
-        editedSet.addAll(Arrays.asList(guests.clone()));
-        this.guests = editedSet;
-        return this;
-    }
-
-    /**
      * Sets the {@code Tags} of the {@code Room} that we are building.
      */
     public RoomBuilder withTags(Tag[] tags) {
@@ -81,7 +67,7 @@ public class RoomBuilder {
     }
 
     public Room build() {
-        return new Room(number, vacancy, guests, tags);
+        return new Room(number, vacancy, tags);
     }
 
 }

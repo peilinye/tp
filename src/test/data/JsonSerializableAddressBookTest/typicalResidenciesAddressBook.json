@@ -24,14 +24,17 @@
   "rooms" : [ {
     "roomNumber" : "001",
     "isVacant" : true,
-    "guests" : [ ],
+    "tags" : [ "normal" ]
+  }, {
+    "roomNumber" : "002",
+    "isVacant" : false,
     "tags" : [ "normal" ]
   } ],
   "residencyBook" : {
     "residencies" : [ {
-      "roomNumber" : "001",
-      "checkInTime" : "2021-10-16T13:56:43.151757900",
-      "checkOutTime" : "2021-10-16T13:57:07.728702200",
+      "roomNumber" : "002",
+      "checkInTime" : "2021-10-31T12:00",
+      "checkOutTime" : null,
       "guestNRICs" : [ "S98765432A", "S98765432B", "test10" ]
     } ]
   },

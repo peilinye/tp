@@ -52,6 +52,7 @@ public class JsonAdaptedResidencyBook {
 
         ResidencyBook residencyBook = new ResidencyBook(allowDuplicates);
 
+        // TODO throw correct error for duplicate residency (check for bugs)
         Map<Nric, Person> nricPersonMap = new HashMap<>();
         Map<RoomNumber, Room> roomNumberRoomMap = new HashMap<>();
 

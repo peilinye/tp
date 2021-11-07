@@ -250,7 +250,7 @@ public class AddRoomCommandTest {
 
         @Override
         public void updateFilteredRoomList(Predicate<Room> predicate) {
-            throw new AssertionError("This method should not be called.");
+            requireNonNull(predicate);
         }
 
         @Override

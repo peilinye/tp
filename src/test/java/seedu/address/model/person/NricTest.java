@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.InvalidNricException;
 import seedu.address.model.room.RoomNumber;
 
 public class NricTest {
@@ -14,14 +13,25 @@ public class NricTest {
     @Test
     public void constructor_invalidNric_throwsInvalidIdException() {
         //should throw an error since NRICs should not be empty strings
-        assertThrows(InvalidNricException.class, () -> Nric.of(""));
+        assertThrows(IllegalArgumentException.class, () -> Nric.of(""));
     }
 
 
     @Test
     public void isValidId() {
+        // null Nric
         assertThrows(NullPointerException.class, () -> Nric.isValidNric(null));
+
+        // invalid Nric
+        assertFalse(Nric.isValidNric("")); // empty string
+        assertFalse(Nric.isValidNric(" ")); // spaces only
+        assertFalse(Nric.isValidNric(
+                "012345678901234567890123456789012345678901234567890")); // more than 50 characters
+
+        // valid Nric
         assertTrue(Nric.isValidNric("hello"));
+        assertTrue(Nric.isValidNric("-")); // one char
+        assertTrue(Nric.isValidNric("01234567890123456789012345678901234567890123456789")); // 50 characters
     }
 
     @Test
