@@ -34,7 +34,7 @@ public class FindRoomCommandParser implements Parser<FindRoomCommand> {
         int numOfKeywords = roomNumberKeywords.length;
         for (int i = 0; i < numOfKeywords; i++) {
             String keyword = roomNumberKeywords[i];
-            if (!StringUtil.isNonZeroUnsignedInteger(keyword) || keyword.length() > 3) {
+            if (!StringUtil.isNonZeroUnsignedInteger(keyword) || keyword.length() != 3) {
                 throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                         FindRoomCommand.MESSAGE_INVALID_ROOM_NUMBER));
             }
