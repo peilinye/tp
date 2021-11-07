@@ -48,6 +48,7 @@ Given below are my contributions to the project.
 #### Misc
 * Provided boilerplate code for team to start work in first week of team project
 * Added Room, RoomNumber, Vacancy objects
+* Bug fix where guests in rooms were not being updated on the successful call of an EditCommand
 
 
 ## Documentation

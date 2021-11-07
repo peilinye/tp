@@ -209,6 +209,7 @@ public class ModelManager implements Model {
         filteredRooms.setPredicate(predicate);
     }
 
+    @Override
     public void updateOccupant(Person before, Person after) {
         for (Room r: filteredRooms) {
             Optional<Residency> res = getResidency(r);
