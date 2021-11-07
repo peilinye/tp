@@ -64,19 +64,24 @@ public class RoomCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        if (room.getVacancy().toString().equals("Vacant")) {
-            vacancy.setStyle("-fx-text-fill: #1be3b2 !important;");
-        } else {
-            vacancy.setStyle("-fx-text-fill: #f51d50 !important; -fx-font-style: italic !important;");
-        }
 
         Set<Person> allGuests = new HashSet<>();
         Optional<Residency> residency = ModelManager.getInstance().getResidency(room);
         if (residency.isPresent()) {
             allGuests.addAll(residency.get().getGuests());
+            allGuests.stream().map(person -> person.getName().toString())
+                    .forEach(nameString -> {
+                        System.out.println("INSIDE OF ALL GUESTS NOW");
+                        System.out.println(nameString);
+                        guests.getChildren().add(new Label(nameString));
+                    });
         }
-        allGuests.stream().map(person -> person.getName().toString())
-                .forEach(nameString -> guests.getChildren().add(new Label(nameString)));
+
+        if (room.getVacancy().toString().equals("Vacant")) {
+            vacancy.setStyle("-fx-text-fill: #1be3b2 !important;");
+        } else {
+            vacancy.setStyle("-fx-text-fill: #f51d50 !important; -fx-font-style: italic !important;");
+        }
     }
 
     @Override
