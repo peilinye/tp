@@ -89,6 +89,9 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+        } catch (NullPointerException e) {
+            logger.warning("Invalid information in the file. Will be starting with and empty AddressBook");
+            initialData = new AddressBook();
         }
 
         return new ModelManager(initialData, userPrefs);
