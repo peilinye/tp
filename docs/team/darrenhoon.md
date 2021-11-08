@@ -42,15 +42,13 @@ Given below are my contributions to the project.
 * Implemented [Use Cases Page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UseCases.html)
 * Amended UML Diagrams
 
-### Team-based Tasks Contributions
-1. Providing boilerplate code for team to start work in first week of team project
-2. Maintaining issues tracker
-3. Necessary general code enhancements e.g., 
-   1. Work related to renaming the product
-   2. Designing and making our product icon
-   3. Morphing the product into a different product
-4. Releasing v1.4 (trial) of product
-5. Testing some new features that were not covered by others
+### Team-Based Tasks Contributions
+1. Main bug finder and user tester for application, reporting bugs to the team to be fixed.
+2. Maintaining issues tracker.
+3. Designing and making our product icon.
+4. Releasing v1.4 (trial) of product.
+5. Testing some new features that were not covered by others.
+6. Providing boilerplate code for team to start work in first week of team project.
 
 ### Review / Mentoring Contributions
 1. Coordinated with the team frequently and kept track of each other's progress.
