@@ -54,11 +54,6 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        /*
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-        */
-
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -70,11 +65,6 @@ public class AddressBookParser {
 
         case FindRecordCommand.COMMAND_WORD:
             return new FindRecordCommandParser().parse(arguments);
-
-        /*
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-        */
 
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);

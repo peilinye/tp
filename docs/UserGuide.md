@@ -4,15 +4,15 @@ title: User Guide
 ---
 
 Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). 
-Our application aims to complement existing contact tracing efforts whilst also helping you to manage your hotel guests fast.
+Our application aims to complement existing contact tracing efforts, while also helping you to manage your hotel guests fast.
 <br><br>
-The purpose of this user guide is to help you explore all the features Trace2Gather has to offer and to provide clarity on how each feature can be used in our application.
+The purpose of this user guide is to help you explore Trace2Gather's many features, and how to use them.
 <br><br>
-If you require assistance on how to use this guide, please feel free to visit the [Navigation Guide](#navigation-guide) for more information.
+If you require assistance using this guide, feel free to visit the [Navigation Guide](#navigation-guide) for more information.
 
 <div style="page-break-after: always;"></div>
 
-# Table of Contents
+<span style="font-size:32px; font-weight:bold;">Table Of Contents</span>
 * Table of Contents
   {:toc}
 
@@ -20,18 +20,18 @@ If you require assistance on how to use this guide, please feel free to visit th
 
 ## Navigation Guide
 
-Before we guide you to using our application's features, please visit the [Quick Start](#quick-start) section to ensure our application can run on your device.
+Before we guide you through our application's features, please visit the [Quick Start](#quick-start) section to ensure our application can run on your device.
 <br><br>
-After you are done setting up, head on down to the [Features](#features) section to explore the multiple features our application has to offer. Each sub-section contains steps that you can follow along to ensure the features run on your device.
+After you are done setting up, check out the [Features](#features) section to explore the various features our application offers, and how to use them.
 <br><br>
-If you would like to have a quick overview of all the commands available, please head on over to the [Command Summary](#command-summary) section to find a brief summary for all the commands.
+If you would like a quick overview of all available commands, check out the [Command Summary](#command-summary).
 <br><br>
-If you have any queries, please feel free to head over to the [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq) section to see if your query is there.
+If you have any questions, they may be answered in the [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq) section.
 
 <div style="page-break-after: always;"></div>
 
 ## Quick Start
-This section aims to provide you with the steps required to get our application running on your device. Below are the steps to set up your device to be able to run our application:
+This section will help you get our application running on your device, step by step.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -64,10 +64,9 @@ This section aims to provide you with the steps required to get our application 
 <div style="page-break-after: always;"></div>
 
 ## Features
-This section aims to showcase all of our application's features to you.
-We have further divided this section into sub-sections that encompass the features related to that section to make it easier for you to try out all features related to each component.
-<br><br>
-Furthermore, we have included formats and examples for each feature in case you are unclear on how the feature should be used.
+This section showcases all our application's features.
+Each feature has its own sub-section, with formats and examples for clarity.
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -110,7 +109,7 @@ Format: `help`
 
 #### Adding a guest: `add`
 
-Adds a guest into Trace2Gather.
+Adds a guest to Trace2Gather.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/NRIC [t/TAG]…​`
 
@@ -367,7 +366,7 @@ If your changes to the JSON file causes the data within the file to be invalid, 
 <div style="page-break-after: always;"></div>
 
 ## Frequently Asked Questions (FAQ)
-We understand that many of you might have questions regarding our application. Below are some questions others have asked before and hopefully they answer your queries!
+We understand that you might have questions regarding our application. Below are some common questions we have been asked.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.

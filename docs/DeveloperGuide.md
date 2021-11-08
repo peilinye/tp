@@ -238,6 +238,30 @@ The mechanism guaranteeing the uniqueness of Guests is facilitated by the `Nric`
 * An `AddCommand` that wants to add a `Person` with an `Nric` that another existing `Person` already will be considered an invalid command.
     * Uniqueness  —  This mechanism will help to prevent the adding of duplicate `Person` objects.
     
+### Encapsulation of Hotel Stays
+
+#### Implementation
+
+The stay of guests in a room for a period of time is encapsulated in the `Residency` class, and `Residency` objects are created and handled by the `ResidencyBook` class. Creation of `Residency` objects is invoked via `CheckInCommand`.
+
+
+#### Design considerations:
+
+**Aspect: The Immutability of Person and Room objects**
+* Due to the immutability of these objects, it is difficult to have them store references to each other.
+  The creation of the `Residency` association class was thus necessary, and also allows additional information about stays to be stored, such as dates and times of check in and check out, among other possible future features.
+
+**Aspect: Storing References to Person and Room objects**
+* Due to `Residency` objects needing to store references to `Person` and `Room` objects, an identification system for the latter two classes had to be created to facilitate JSON storage of the actual references.
+  Otherwise, the JSON would only store copies of the `Person` and `Room` objects, which would mean that editing a `Person`'s details via the edit command would not affect the `Person` copy in the `Residency`.
+  
+**Aspect: Further Expansion to Store Past Records**
+* For current hotel stays, each room can only have one set of guests checked in at any given time, and likewise, any guest should only be checked into one room at a time.
+  It thus follows that the `ResidencyBook` class should ensure that each Person and Room object can only be referenced in one Residency at any given time.
+  <br><br>
+  However, the `ResidencyBook` should have the ability to accommodate the Past Records Feature mentioned below, which will involve multiple `Residency` objects referencing the same room.
+  Hence, `ResidencyBook` has a boolean parameter in its constructor for allowing duplicates.
+
 ### Past Records Feature
 
 This section describes how past residencies are stored such that it can be displayed/searched for contact tracing.
@@ -549,15 +573,16 @@ In this project, we experienced challenges when implementing our backend, fronte
 <br><br>
 In the backend, we had to build on the existing implementation and introduced our own data structures to prevent cyclic-dependencies.
 <br><br>
-On the frontend, we had to match the specifications as best as possible whilst also ensuring that our new features not only worked well but also stylistically was coherent to our product.
+On the frontend, we had to match the specifications as much as possible whilst also ensuring that our new features not only worked well but also stylistically was coherent to our product.
 <br><br>
 In the documentation, we had to edit many of the diagrams and their accompanying explanations to account for the changes in our application as compared to the original AB3.
 <br><br>
 #### Backend
-The naive implementation would have been for Room objects to contain a set of guests and once a room is checked out, all of the room's information is moved into a list containing all historical records.
-However, an issue arising from this implementation is that editing each guest's information, such as their name, would not result in that change being reflected in neither the Room nor the historical record.
+The naive implementation would have been for Room objects to contain a set of guests (Persons), and once a room is checked out, all the room's information is moved into a list containing all historical records.
+The Person objects would also contain the Room that they are checked into.
+However, Person objects are immutable in AB3, and Room objects were made immutable to match. This would make it difficult for both objects to store references to each other, especially since Person objects can be edited frequently.
 <br><br>
-Our solution was to create a Residency class that stores both the pointer to the Room and pointers to the guests. This way, when a guest is edited, we use the guest's information to retrieve the
+Our solution was to create an association class, the Residency class, that stores pointers to both the Room and guests. This way, when a guest is edited, we use the guest's information to retrieve the
 Residency object that is keeping track of all the rooms that has this same guest inside and all the historical records that have this same guest inside and update the guest to reflect the edited guest's information.
 <br><br>
 #### Frontend
