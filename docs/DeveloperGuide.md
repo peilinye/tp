@@ -526,12 +526,17 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with corrupted data files
 
     1. Locate the data saved for Trace2Gather in the JSON file `[JAR file location]/data/trace2gather.json`.
+
     2. Open the file and remove some braces to invalidate the data format of the json file.
+
     3. Re-run the application.
+
     4. Expected: Trace2gather runs, showing a GUI with no data. Upon a command that writes to the data file such as adding a room or guest, the old invalid data file is flushed out and replaced by the new one.
 
 2. Dealing with missing data file
    
     1. Remove the data file saved for Trace2Gather in the directory `[JAR file location]/data`.
+
     2. Re-run the application.
+
     3. Expected: Trace2gather creates a sample data file and runs, showing the GUI with the sample data.
