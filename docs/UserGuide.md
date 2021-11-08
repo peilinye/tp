@@ -17,9 +17,6 @@ If you require assistance using this guide, feel free to visit the [Navigation G
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
-
-
 <div style="page-break-after: always;"></div>
 
 ## Navigation Guide
