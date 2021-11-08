@@ -46,7 +46,7 @@ This section will help you get our application running on your device, step by s
 4. Double-click the file to start the application. The GUI below should appear in a few seconds, and will look like the screenshot below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box (shown in the screenshot below) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box (shown in the screenshot below) and press Enter to execute it. For example, typing **`list guests`** and pressing Enter will show the UI below.<br>
    ![CommandBox](images/NavGuideCommandBoxImage.png)
    Some example commands you can try are the following:
 
@@ -56,7 +56,7 @@ This section will help you get our application running on your device, step by s
 
    * **`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H`** : Adds a contact named `John Doe` to the Trace2Gather.
 
-   * **`checkin 005 g/1`**: Checks in the 1st guest into the 5th room.
+   * **`checkin 5 g/1`**: Checks in the 1st guest into the 5th room in the room list.
 
    * **`clear`** : Deletes all rooms, guests and past records.
 
@@ -189,7 +189,7 @@ Examples:
 
 The image below is an example of how part of the application interface may look when the command `guest alex david` is executed.
 ![guestsearch](images/Guestalexdavid1.png)
-![guestsearch](images/GuestAlexDavid2.png)
+![guestsearch](images/Guestalexdavid2.png)
 
   
 
@@ -262,7 +262,7 @@ The image below is an example of how part of the application interface looks whe
 
 #### Locating a specific room : `room`
 
-Shows a list of rooms that match the room numbers provided. 
+Shows a list of rooms that match the room numbers provided. Room numbers should have 3 digits.
 
 Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 
