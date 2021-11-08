@@ -56,8 +56,9 @@ This section aims to provide you with the steps required to get our application 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-
-This section aims to showcase to you all the features our application has to offer.
+This section aims to showcase all of our application's features to you.
+We have further divided this section into sub-sections that encompass the features related to that section to make it easier for you to try out all features related to each component.
+<br><br>
 Furthermore, we have included formats and examples for each feature in case you are unclear on how the feature should be used.
 
 <div markdown="block" class="alert alert-info">
