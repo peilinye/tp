@@ -4,11 +4,11 @@ title: User Guide
 ---
 
 Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). 
-Our application aims to complement existing contact tracing efforts whilst also helping you to manage your hotel guests fast.
+Our application aims to complement existing contact tracing efforts, while also helping you to manage your hotel guests fast.
 <br><br>
-The purpose of this user guide is to help you explore all the features Trace2Gather has to offer and to provide clarity on how each feature can be used in our application.
+The purpose of this user guide is to help you explore Trace2Gather's many features, and how to use them.
 <br><br>
-If you require assistance on how to use this guide, please feel free to visit the [Navigation Guide](#navigation-guide) for more information.
+If you require assistance using this guide, feel free to visit the [Navigation Guide](#navigation-guide) for more information.
 
 * Table of Contents
 {:toc}
@@ -19,15 +19,15 @@ If you require assistance on how to use this guide, please feel free to visit th
 
 Before we guide you through our application's features, please visit the [Quick Start](#quick-start) section to ensure our application can run on your device.
 <br><br>
-After you are done setting up, check out the [Features](#features) section to explore the various features our application has to offer. Each subsection contains steps you can follow, to ensure the features run on your device.
+After you are done setting up, check out the [Features](#features) section to explore the various features our application offers, and how to use them.
 <br><br>
-If you would like to have a quick overview of all available commands, head down to the [Command Summary](#command-summary).
+If you would like a quick overview of all available commands, check out the [Command Summary](#command-summary).
 <br><br>
-If you have any queries, they may be answered in the [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq) section.
+If you have any questions, they may be answered in the [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq) section.
 
 
 ## Quick Start
-This section will help you get our application running on your device, step by step. Below are the device set-up instructions:
+This section will help you get our application running on your device, step by step.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
