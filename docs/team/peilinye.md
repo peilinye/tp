@@ -23,23 +23,22 @@ Given below are my contributions to the project.
     * Justification: This feature improves the product significantly by providing a way for users to add more rooms with additional information of the rooms.
     * Highlights: This feature affected the current implementation of the `room` object as there was an additional attribute of tags. The implementation for storing and loading information from JSON files had to be updated. Support for parsing the new command had to be added as well.
 
-
 * **Enhancements to existing features:**
   * Added UI components necessary for displaying the list of rooms, such as `RoomCard` and `RoomListPanel`.
   * Added Tags as an attribute of rooms to represent different types of rooms or any optional additional information of the rooms.
   * Added validity checking of input for the `room` command to search for specific rooms, so an error message will be shown when user input is invalid.
   
-
 * **Documentation:**
   * User Guide:
     * Added documentation for the features `list rooms vacant` and `list rooms occupied`.
     * Added documentation for the `addroom` feature.
     * Ensure overall formatting of user guide is shown correctly. [#133](https://github.com/AY2122S1-CS2103T-T13-3/tp/pull/133)
     * Added the screenshots for the following commands: `guest`, `checkin`, `checkout`, `room`.
+    * Updated command summary table.
   * Developer Guide:
     * Added use cases, user stories.
-    * Added the part on listing rooms by vacancy feature under the implementation section, including the sequence diagram.
-    * Added manual testing instructions for dealing with missing or corrupted data files.
+    * Added the part on listing rooms by vacancy feature under the implementation section, including the sequence diagram. [#189](https://github.com/AY2122S1-CS2103T-T13-3/tp/pull/189/files)
+    * Added manual testing instructions for dealing with missing or corrupted data files. [#206](https://github.com/AY2122S1-CS2103T-T13-3/tp/pull/206/files)
     * Added acknowledgements to the AB3 project.
 
 * **Testing:**
@@ -50,8 +49,13 @@ Given below are my contributions to the project.
     * `ListCommandParserTest`, `ListCommandTest` 
   * Model:
     * `RoomBuilder`
-  
+
+* **Team-Based tasks:**
+  * Updated User Guide based on peer feedback.
+  * Ensured overall formatting of User Guide and Developer Guide was correct.
+  * Added user stories to Developer Guide.
+  * Maintained issue tracker alongside teammates.
 
 * **Community:**
   * PRs reviewed (with non-trivial review comments): [#215](https://github.com/nus-cs2103-AY2122S1/ip/pull/215), [#32](https://github.com/nus-cs2103-AY2122S1/ip/pull/183)
-
+  * Reported bugs of another team during PE-D
