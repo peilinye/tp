@@ -41,6 +41,7 @@ Given below are my contributions to the project.
 ### DG Contributions
 * Implemented [Use Cases Page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UseCases.html)
 * Amended UML Diagrams
+* Added "Appendix: Effort" section
 
 ### Team-Based Tasks Contributions
 1. Main bug finder and user tester for application, reporting bugs to the team to be fixed.

@@ -158,11 +158,6 @@ public interface Model {
     void updateFilteredRoomList(Predicate<Room> predicate);
 
     /**
-     * Updates the rooms that contains this occupant, if any.
-     */
-    void updateOccupant(Person before, Person after);
-
-    /**
      * Updates the filter of the filtered record list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
