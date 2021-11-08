@@ -12,7 +12,7 @@ If you require assistance using this guide, feel free to visit the [Navigation G
 
 <div style="page-break-after: always;"></div>
 
-# Table of Contents
+<span style="font-size:32px; font-weight:bold;">Table Of Contents</span>
 * Table of Contents
   {:toc}
 
