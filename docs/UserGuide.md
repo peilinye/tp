@@ -362,7 +362,7 @@ We understand that many of you might have questions regarding our application. B
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
 
-**Q**: Why does my edit/checkin/checkout command not work?
+**Q**: Why does my edit/checkin/checkout command not work?<br>
 **A**: The indices required by these commands are the ones from the numbered list seen in the GUI. You can try using one or more of the `list` commands to show all available data and make sure you have the correct indices. 
 
 
