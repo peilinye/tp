@@ -17,6 +17,7 @@ Given below are my contributions to the project.
 * **Contributions to the UG**: 
     * Added documentation for listing rooms as well as records 
     * Details for the search method for records 
+    * Keep several images in the UG updated with changes to the UI.
     * Updated several other commands in accordance to feedback from peers. <br><br>
 * **Contributions to the DG**: 
     * Updated several UML diagrams as well

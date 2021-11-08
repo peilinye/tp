@@ -86,7 +86,9 @@ Furthermore, we have included formats and examples for each feature in case you 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
 * If you have a smaller screen, please use the application in full screen mode, by clicking the square icon at the top right-hand corner of the window.
+
 * For devices with smaller screens, some information about guests, rooms, or residencies may be cut off with an ellipses.
 </div>
 
