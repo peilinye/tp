@@ -278,7 +278,7 @@ Shows the records that match all the keywords provided (i.e. `AND` search) (**no
 
 Format: `record KEYWORD_ONE... `
 
-Keywords include: dates of stay, names, and room numbers.<br/>
+Keywords include: All possible fields (name, id, dates of stay, etc...)<br/>
 
 Acceptable format for keywords:<br/>
 1. Dates of stay: YYYY-MM-DD.
@@ -322,10 +322,6 @@ Trace2Gather data are saved as a JSON file `[JAR file location]/data/trace2gathe
 If your changes to the data file makes its format or data invalid, Trace2Gather will discard all data and start with an empty data file at the next run.
 </div>
 
-#### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Frequently Asked Questions (FAQ)
@@ -340,7 +336,7 @@ We understand that many of you might have questions regarding our application. B
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nric/NRIC [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
 **Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/typeA`
 **Clear** | `clear`
 **Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
