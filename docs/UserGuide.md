@@ -43,11 +43,11 @@ This section aims to provide you with the steps required to get our application 
 
    * **`list guests`** : Lists all guests.
 
-   * **`addroom`**`5 t/typeA` : Adds 5 rooms of type A to the room list.
+   * **`addroom 5 t/typeA`** : Adds 5 rooms of type A to the room list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
+   * **`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H`** : Adds a contact named `John Doe` to the Trace2Gather.
 
-   * **`checkin`**`005 g/1` : Checks in the 1st guest into the 5th room.
+   * **`checkin 005 g/1`**: Checks in the 1st guest into the 5th room.
 
    * **`clear`** : Deletes all rooms, guests and past records.
 
