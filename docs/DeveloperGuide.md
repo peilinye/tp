@@ -238,7 +238,7 @@ The mechanism guaranteeing the uniqueness of Guests is facilitated by the `Nric`
 * An `AddCommand` that wants to add a `Person` with an `Nric` that another existing `Person` already will be considered an invalid command.
     * Uniqueness  —  This mechanism will help to prevent the adding of duplicate `Person` objects.
     
-### Encapsulation of Hotel Stays
+### Encapsulation of Hotel Stays (The Residency System)
 
 #### Implementation
 
