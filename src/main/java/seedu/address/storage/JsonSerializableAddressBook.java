@@ -26,6 +26,9 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_ROOM = "Rooms list contains duplicate room(s).";
 
+    public static final String MESSAGE_ROOM_ORDER_ERROR = "Rooms list contains room numbers "
+            + "which are not in consecutive order.";
+
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
@@ -90,10 +93,18 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
-        for (JsonAdaptedRoom jsonAdaptedRoom : rooms) {
-            Room room = jsonAdaptedRoom.toModelType();
+        for (int i = 0; i < rooms.size(); i++) {
+            Room room = rooms.get(i).toModelType();
             if (addressBook.hasRoom(room)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ROOM);
+            }
+            if (i < rooms.size() - 1) {
+                Room nextRoom = rooms.get(i + 1).toModelType();
+                int roomNum = Integer.parseInt(room.toString());
+                int nextRoomNum = Integer.parseInt(nextRoom.toString());
+                if (nextRoomNum - roomNum != 1) {
+                    throw new IllegalValueException(MESSAGE_ROOM_ORDER_ERROR);
+                }
             }
             addressBook.addRoom(room);
         }

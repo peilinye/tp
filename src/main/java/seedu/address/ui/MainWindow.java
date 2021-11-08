@@ -200,6 +200,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
+            roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
