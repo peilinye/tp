@@ -174,7 +174,7 @@ Examples:
 * `guest John` returns `john` and `John Doe`
 * `guest alex david` returns `Alex Yeoh`, `David Li`<br>
   ![guestsearch](images/Guestalexdavid1.png)
-  ![guestsearch](images/Guestalexdavid2.png)
+  ![guestsearch](images/GuestAlexDavid2.png)
   
 
 ### Rooms
