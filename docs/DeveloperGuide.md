@@ -9,11 +9,13 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project was based on the [_AddressBook Level-3_](https://se-education.org/addressbook-level3/) project created by the SE-EDU initiative.
+<br> Libraries used: [_JavaFX_](https://openjfx.io/), [_Jackson_](https://github.com/FasterXML/jackson), [_JUnit5_](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
-* Welcome to the developer's guide for Trace2Gather! This guide is meant for developers who may want to contribute to our code base, or use our codebase to build their own project.
+Welcome to the developer's guide for Trace2Gather! Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+<br> This guide is meant for developers who may want to contribute to our code base, or use our codebase to build their own project.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
@@ -23,6 +25,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+
+This section shows the various high level components that make up the application, how they interact with one another, and their lower level implementation.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -281,6 +285,7 @@ Given below is an example of the search function for all the past residencies of
 
 * hotel receptionist
 * has a need to manage a significant number of guests and rooms
+* needs a solution for contact tracing within their hotel
 * prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -307,7 +312,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user who has to track past records of guests | perform queries on past data | check records of past guests and details of their stay                 |
 | `* *`    | user                                       | add rooms with specified tags  | keep track of different types of rooms in my hotel                     |
 
-*{More to be added}*
 
 ### Use Cases
 
@@ -487,8 +491,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Locate the data saved for Trace2Gather in the JSON file `[JAR file location]/data/trace2gather.json`.
+    2. Open the file and remove some braces to invalidate the data format of the json file.
+    3. Re-run the application.
+    4. Expected: Trace2gather runs, showing a GUI with no data. Upon a command that writes to the data file such as adding a room or guest, the old invalid data file is flushed out and replaced by the new one.
 
-1. _{ more test cases …​ }_
+2. Dealing with missing data file
+   
+    1. Remove the data file saved for Trace2Gather in the directory `[JAR file location]/data`.
+    2. Re-run the application.
+    3. Expected: Trace2gather creates a sample data file and runs, showing the GUI with the sample data.
