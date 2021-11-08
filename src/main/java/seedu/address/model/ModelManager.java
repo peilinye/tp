@@ -209,22 +209,6 @@ public class ModelManager implements Model {
         filteredRooms.setPredicate(predicate);
     }
 
-    @Override
-    public void updateOccupant(Person before, Person after) {
-        for (Room r: filteredRooms) {
-            Optional<Residency> res = getResidency(r);
-            if (res.isPresent()) {
-                Set<Person> guests = res.get().getGuests();
-                if (guests.contains(before)) {
-                    guests.remove(before);
-                    guests.add(after);
-                }
-            }
-        }
-        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
-        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
-
-    }
 
     //=========== Filtered Record List Accessors =============================================================
     /**
