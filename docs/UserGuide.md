@@ -219,7 +219,7 @@ However, you cannot check in the same guest to multiple rooms.
 
 
 
-The indexes refer to the index numbers shown in the displayed guest/room list.
+The indices refer to the index numbers shown in the numbered guest/room list.
 
 Examples:
 * `checkin 5 g/1`
@@ -322,9 +322,6 @@ Trace2Gather data are saved as a JSON file `[JAR file location]/data/trace2gathe
 If your changes to the data file makes its format or data invalid, Trace2Gather will discard all data and start with an empty data file at the next run.
 </div>
 
-#### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -333,6 +330,10 @@ We understand that many of you might have questions regarding our application. B
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
+
+**Q**: Why does my edit/checkin/checkout command not work?
+**A**: The indices required by these commands are the ones from the numbered list seen in the GUI. You can try using one or more of the `list` commands to show all available data and make sure you have the correct indices. 
+
 
 --------------------------------------------------------------------------------------------------------------------
 
