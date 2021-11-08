@@ -73,7 +73,7 @@ Furthermore, we have included formats and examples for each feature in case you 
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Quarantine` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/Quarantine` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Quarantine`, `t/SeafoodAllergy` etc.
@@ -92,7 +92,7 @@ Furthermore, we have included formats and examples for each feature in case you 
 
 #### Viewing help : `help`
 
-Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
+Shows a message explaining how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
 
 ![help message](images/helpMessage.png)
 
@@ -106,7 +106,7 @@ Adds a guest into Trace2Gather.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/NRIC [t/TAG]…​`
 
-Acceptable format for keywords:<br/>
+Acceptable formats for keywords:<br/>
 1. Names: No special characters, but spaces are allowed.
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
@@ -140,11 +140,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the guest will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the guest will be removed i.e. adding of tags is not cumulative.
 * You can remove all the guest’s tags by typing `t/` without
   specifying any tags after it.
 
-Acceptable format for keywords:
+Acceptable formats for keywords:
 1. Names: No special characters, but spaces are allowed.
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
@@ -163,7 +163,7 @@ Find guests whose names contain any of the given keywords.
 
 Format: `guest KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -280,7 +280,7 @@ Format: `record KEYWORD_ONE... `
 
 Keywords include: All possible fields (name, id, dates of stay, etc...)<br/>
 
-Acceptable format for keywords:<br/>
+Acceptable formats for keywords:<br/>
 1. Dates of stay: YYYY-MM-DD.
 2. Names: No special characters, but spaces are allowed.
 3. Room Numbers: must be in its 3-digit format, e.g. 001, 233, 999.<br/>
@@ -326,7 +326,7 @@ If your changes to the data file makes its format or data invalid, Trace2Gather 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Frequently Asked Questions (FAQ)
-We understand that many of you might have questions regarding our application. Below are some of the questions others have asked before and hopefully they answer your queries!
+We understand that many of you might have questions regarding our application. Below are some questions others have asked before and hopefully they answer your queries!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.

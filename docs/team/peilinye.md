@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Peilin's Project Portfolio Page
+title: Ye Pei Lin's Project Portfolio Page
 ---
 
 # Project: Trace2Gather
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
     * Added documentation for the `addroom` feature.
     * Ensure overall formatting of user guide is shown correctly. [#133](https://github.com/AY2122S1-CS2103T-T13-3/tp/pull/133)
     * Added the screenshots for the following commands: `guest`, `checkin`, `checkout`, `room`.
-    * Updated command summary table.
+    * Updated the command summary table.
   * Developer Guide:
     * Added use cases, user stories.
     * Added the part on listing rooms by vacancy feature under the implementation section, including the sequence diagram. [#189](https://github.com/AY2122S1-CS2103T-T13-3/tp/pull/189/files)

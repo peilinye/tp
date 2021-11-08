@@ -66,7 +66,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -103,7 +103,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("guest Alex")` API call.
 
@@ -254,12 +254,12 @@ Given below is an example of the search function for all the past residencies of
 #### Design considerations:
 
 * Possible location of storage of past residencies in a second file.
-    * Pros: Keeping past residency storage separate from the main data storage minimises any mixup in the storing of information.
+    * Pros: Keeping past residency storage separate from the main data storage minimises any mix up in the storing of information.
     * Cons: This requires the file to store its own set of persons and rooms and because the residency keeps minimal information in order to minimise
       space required for the storage file, it results in redundancy when storing the same information across 2 files. Changes also have to be written twice.
 
 * AND vs OR for searching records
-    * In contrast to the search for guest showing results matching any of keywords given, searching records shows results matching all of the keywords. This is to allow for more targeted search such as filtering both date and room at the same time to only show records of a particular room at a particular time. This increases the utility of the function in terms of contact tracing.
+    * In contrast to the search for guest showing results matching any of keywords given, searching records shows results matching all keywords. This is to allow for more targeted search such as filtering both date and room at the same time to only show records of a particular room at a particular time. This increases the utility of the function in terms of contact tracing.
 * Consistency
     * The `ResidencyBook` of past records in `AddressBook` mirrors the storage of guests, rooms and current residencies. A `FilteredList`
       in `ModelManager` to represent the records also helps maintain the consistency and readability of the code.
@@ -337,7 +337,7 @@ Refer to [_Use Cases_](UseCases.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -473,7 +473,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The room list should show no rooms, as there were only 900 rooms in the initial room list.
     
     5. Test case: `room 1000` <br>
-       Expected: An error `Invalid command format!` will be shown and the specified room will not appear as it is not possible for it to exist.
+       Expected: An error `Invalid command format!` will be shown, and the specified room will not appear as it is not possible for it to exist.
     
     6. Other invalid commands to try: `room`, `room 000`.
        Expected: An error `Invalid command format!` will be shown. Depending on the command input, a brief description of why the command is invalid may be provided.
@@ -539,3 +539,36 @@ testers are expected to do more *exploratory* testing.
     2. Re-run the application.
 
     3. Expected: Trace2gather creates a sample data file and runs, showing the GUI with the sample data.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+#### Summary
+In this project, we experienced challenges when implementing our backend, frontend, editing documentation, and fixing bugs.
+<br><br>
+In the backend, we had to build on the existing implementation and introduced our own data structures to prevent cyclic-dependencies.
+<br><br>
+On the frontend, we had to match the specifications as best as possible whilst also ensuring that our new features not only worked well but also stylistically was coherent to our product.
+<br><br>
+In the documentation, we had to edit many of the diagrams and their accompanying explanations to account for the changes in our application as compared to the original AB3.
+<br><br>
+#### Backend
+The naive implementation would have been for Room objects to contain a set of guests and once a room is checked out, all of the room's information is moved into a list containing all historical records.
+However, an issue arising from this implementation is that editing each guest's information, such as their name, would not result in that change being reflected in neither the Room nor the historical record.
+<br><br>
+Our solution was to create a Residency class that stores both the pointer to the Room and pointers to the guests. This way, when a guest is edited, we use the guest's information to retrieve the
+Residency object that is keeping track of all the rooms that has this same guest inside and all the historical records that have this same guest inside and update the guest to reflect the edited guest's information.
+<br><br>
+#### Frontend
+While we reused many of the original AB3's code extensively, our project was harder due to having 3 different lists as compared to the AB3 which originally only had 1 list.
+This was compounded by the fact that we had dependencies between these 3 entities, and we had to make sure that the updates in the backend are reflected in the frontend.
+<br><br>
+We also made an effort to ensure that stylistically, the new additions were different from the original AB3 but still helped to fit into the overall style of the project.
+<br><br>
+#### Documentation
+As our implementation included new data structures and new commands to interact with those data structures, we had to modify the documentation extensively to reflect these new changes.
+This included creating new diagrams and adding new explanations for our features.
+<br><br>
+Furthermore, our application also removed some commands from the original AB3, most notably the delete command.
+Since this command was used as an example along with its accompanying sequence diagram, we had to modify that entire section and replace the sequence diagram too.
