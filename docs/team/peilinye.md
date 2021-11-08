@@ -39,7 +39,8 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added use cases, user stories.
     * Added the part on listing rooms by vacancy feature under the implementation section, including the sequence diagram.
-
+    * Added manual testing instructions for dealing with missing or corrupted data files.
+    * Added acknowledgements to the AB3 project.
 
 * **Testing:**
   * Logic:

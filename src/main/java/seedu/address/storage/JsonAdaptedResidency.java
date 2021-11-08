@@ -25,6 +25,8 @@ class JsonAdaptedResidency {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Residency's %s field is missing!";
     public static final String MESSAGE_DATETIME_CONSTRAINTS_FORMAT = "Residency's %s format is incorrect.";
+    public static final String MESSAGE_CHECKOUT_BEFORE_CHECKIN =
+            "Residency's checkout time is before its checkin time!";
 
     private final String roomNumber;
     private final String[] guestNrics;
@@ -98,6 +100,10 @@ class JsonAdaptedResidency {
             checkOut = checkOutTime != null ? LocalDateTime.parse(checkOutTime) : null;
         } catch (DateTimeParseException e) {
             throw new IllegalValueException(String.format(MESSAGE_DATETIME_CONSTRAINTS_FORMAT, "check out time"));
+        }
+
+        if (checkOut != null && checkIn.isAfter(checkOut)) {
+            throw new IllegalValueException(MESSAGE_CHECKOUT_BEFORE_CHECKIN);
         }
 
         return new Residency(room, guests, checkIn, checkOut);
