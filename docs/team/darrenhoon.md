@@ -56,7 +56,10 @@ Given below are my contributions to the project.
 5. Testing some new features that were not covered by others
 
 ### Review / Mentoring contributions
-1. Coordinated with team for
+1. Coordinated with the team frequently and kept track of each other's progress.
+2. Assisted in solving problems raised by the team when developing the product.
+3. Reviewed Pull Requests and assisted in adding test cases to ensure that code coverage is not significantly reduced.
+4. Assisted in debugging issues raised by the team or others.
 
 ### Contributions beyond the project team
 * PRs reviewed (with non-trivial review comments): [\#144](https://github.com/nus-cs2103-AY2122S1/ip/pull/144), [\#486](https://github.com/nus-cs2103-AY2122S1/ip/pull/486), [\#173](https://github.com/nus-cs2103-AY2122S1/ip/pull/173)

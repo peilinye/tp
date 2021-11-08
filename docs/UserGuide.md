@@ -3,28 +3,41 @@ layout: page
 title: User Guide
 ---
 
-Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Trace2Gather can get your hotel management tasks done faster than traditional GUI apps.
-<br>
-This user guide is designed to provide documentation for any user of Trace2Gather, as all users will have access to the features documented here.
+Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, Trace2Gather can get your hotel management tasks done faster than traditional GUI applications.
+<br><br>
+This user guide is designed to guide you and explore all the features Trace2Gather has to offer. Please visit the Navigation Guide to learn more.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Navigation Guide
+
+Before we can guide you to using our application's features, please visit the [Quick Start](#Quick Start) section to ensure our application can run on your device.
+<br><br>
+After you are done setting up, head on down to the [Features](#features) section to expore the multiple features our application has to offer. Each subsection contains steps that you can follow along to ensure the feature runs on your device.
+<br><br>
+If you would like to have a quick overview of all the commands available, please head on over to the [Command Summary](#Command Summary) section to find a brief summary for all commands.
+<br><br>
+If you have any queries, please feel free to head over to the <b>Frequently Asked Questions (FAQ)</b> section to see if your query is there.
+
+
+## Quick Start
+This section aims to provide you with the steps required to get our application running on your device. Below are the steps to set up your device to be able to run our application:
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `trace2gather.jar` from [here](https://https://github.com/AY2122S1-CS2103T-T13-3/tp/releases).
+2. Download the latest `trace2gather.jar` from [here](https://https://github.com/AY2122S1-CS2103T-T13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Trace2Gather.
+3. Copy the file to the folder you want to use as the _home folder_ for Trace2Gather.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the application. The GUI below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try are the following:
 
    * **`list guests`** : Lists all guests.
 
@@ -38,11 +51,15 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+This section aims to showcase all of our application's features to you.
+We have further divided this section into sub-sections that encompass the features related to that section to make it easier for you to try out all features related to each component.
+<br><br>
+Furthermore, we have included formats and examples for each feature in case you are unclear on how the feature should be used.
 
 <div markdown="block" class="alert alert-info">
 
@@ -62,7 +79,7 @@ This user guide is designed to provide documentation for any user of Trace2Gathe
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, yet it is specified multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -309,14 +326,15 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## Frequently Asked Questions (FAQ)
+We understand that many of you might have questions regarding our application. Below are some of the questions others have asked before and hopefully they answer your queries!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
