@@ -17,9 +17,9 @@ If you require assistance on how to use this guide, please feel free to visit th
 
 ## Navigation Guide
 
-Before we can guide you to using our application's features, please visit the [Quick Start](#Quick Start) section to ensure our application can run on your device.
+Before we guide you to using our application's features, please visit the [Quick Start](#Quick Start) section to ensure our application can run on your device.
 <br><br>
-After you are done setting up, head on down to the [Features](#features) section to expore the multiple features our application has to offer. Each subsection contains steps that you can follow along to ensure the feature runs on your device.
+After you are done setting up, head on down to the [Features](#features) section to explore the multiple features our application has to offer. Each subsection contains steps that you can follow along to ensure the features run on your device.
 <br><br>
 If you would like to have a quick overview of all the commands available, please head on over to the [Command Summary](#Command Summary) section to find a brief summary for all commands.
 <br><br>
@@ -98,7 +98,7 @@ Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t
 
 Format: `help`
 
-### Guest
+### Guests
 
 #### Adding a guest: `add`
 
@@ -177,7 +177,7 @@ Examples:
   ![guestsearch](images/Guestalexdavid2.png)
   
 
-### Room
+### Rooms
 
 #### Adding rooms : `addroom`
 
