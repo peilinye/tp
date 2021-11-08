@@ -32,6 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_NRIC + "S9876543A"
             + PREFIX_TAG + "SeafoodAllergy";
 
     public static final String MESSAGE_SUCCESS = "New guest added: %1$s";

@@ -15,7 +15,9 @@ public class ResidencyContainsKeywordsPredicate implements Predicate<Residency> 
 
     @Override
     public boolean test(Residency residency) {
-        return keywords.stream().allMatch(keyword -> residency.toString().contains(keyword));
+        return keywords.stream()
+                .map(keyword -> keyword.toLowerCase())
+                .allMatch(keyword -> residency.toString().toLowerCase().contains(keyword));
     }
 
     @Override

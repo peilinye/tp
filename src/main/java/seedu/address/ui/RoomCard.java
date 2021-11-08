@@ -71,8 +71,6 @@ public class RoomCard extends UiPart<Region> {
             allGuests.addAll(residency.get().getGuests());
             allGuests.stream().map(person -> person.getName().toString())
                     .forEach(nameString -> {
-                        System.out.println("INSIDE OF ALL GUESTS NOW");
-                        System.out.println(nameString);
                         guests.getChildren().add(new Label(nameString));
                     });
         }

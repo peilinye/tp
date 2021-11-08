@@ -297,7 +297,7 @@ Trace2Gather data are saved in the hard disk automatically after any command tha
 
 #### Editing the data file
 
-Trace2Gather data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Trace2Gather data are saved as a JSON file `[JAR file location]/data/trace2gather.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format or data invalid, Trace2Gather will discard all data and start with an empty data file at the next run.
