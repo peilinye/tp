@@ -76,7 +76,7 @@ Furthermore, we have included formats and examples for each feature in case you 
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/Quarantine` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Quarantine`, `t/SeafoodAllergy` etc.
+  e.g. `[t/TAG]…​` can be used as (i.e. 0 times), `t/Quarantine`, `t/SeafoodAllergy` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -113,7 +113,7 @@ Acceptable formats for keywords:<br/>
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
-5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
+5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. It must not be an empty string, and it must be no longer than 50 characters. Case-insensitive.
 6. Tags: No whitespaces within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -130,7 +130,9 @@ Examples:
 
 #### Listing all guests : `list guests`
 
-Shows a list of all guests in Trace2Gather.
+Shows a list of all guests in Trace2Gather. If you were searching for a guest earlier using the `guest` command, using `list guests` will yield you the full list of guests, and will be displayed in the `Guests` panel. This is illustrated in the screenshot below, after the execution of the `list guests` command.<br/>
+
+![listguests](images/ListGuestsAfter.png)
 
 Format: `list guests`
 
@@ -138,7 +140,7 @@ Format: `list guests`
 
 Edits an existing guest in Trace2Gather.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…​`
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -175,8 +177,11 @@ Format: `guest KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `guest John` returns `john` and `John Doe`
 * `guest alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![guestsearch](images/Guestalexdavid1.png)
-  ![guestsearch](images/GuestAlexDavid2.png)
+
+The image below is an example of how part of the application interface may look when the command `guest alex david` is executed.
+![guestsearch](images/Guestalexdavid1.png)
+![guestsearch](images/GuestAlexDavid2.png)
+
   
 
 ### Rooms
@@ -210,22 +215,27 @@ Checks in a group of guests into a room.
 
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br/>
 1. A room can have more than one guest.<br/>
 2. If you cannot check in guests to a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise use the command `list rooms` and `list guests` to show all rooms and guests.
+3. You can also use the room number itself to check in. If you are unsure of what this means, refer to the third example below.
 </div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-However, you cannot check in the same guest to multiple rooms.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br/>
+1. However, you cannot check in the same guest to multiple rooms. <br/>
+2. Advanced users can edit the JSON such that a guest can be checked in and checked out at the same time, but this is not the intended use of the application.
 </div>
-
-
 
 The indices refer to the index numbers shown in the numbered guest/room list.
 
 Examples:
 * `checkin 5 g/1`
 * `checkin 3 g/2 g/3 g/6` ![checkin3](images/Checkin3.png)
+* `checkin 001 g/1`
+* `checkin 3 g/2 g/3 g/6` 
+
+The image below is an example of how part of the application interface may look when the command `checkin 3 g/2 g/3 g/6` is executed.
+![checkin3](images/Checkin3.png)
 
 #### Checking out of a room : `checkout`
 
@@ -235,33 +245,50 @@ Format: `checkout ROOM_INDEX`
 
 The room index refers to the index number shown in the displayed room list.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+You can also use the room number itself to check out. If you are unsure of what this means, refer to the second example below.
+</div>
+
 Example:
 * `checkout 4` ![checkout4](images/Checkout4.png)
+* `checkout 004`
+* `checkout 4` 
+
+The image below is an example of how part of the application interface would look when the command `checkout 4` is executed.
+![checkout4](images/Checkout4.png)
+
 
 #### Locating a specific room : `room`
 
-Shows a list of rooms that match the room numbers provided.
+Shows a list of rooms that match the room numbers provided. 
 
 Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 
 Example:
-* `room 001 002` ![room001002](images/Room001002.png)
+* `room 001 002` 
+
+The image below is an example of how part of the application interface may look when the command `room 001 002` is executed.
+![room001002](images/Room001002.png)
 
 #### Listing all rooms : `list rooms`
 
-Shows a list of all rooms in Trace2Gather.
+Shows a list of all rooms in Trace2Gather. If you were searching for a room earlier using the `room` command, using `list rooms` will yield you the full list of rooms, and will be displayed in the `Rooms` panel. This is illustrated in the screenshot below, after the execution of the `list rooms` command.<br/>
+
+![ListRoomsCommand](images/ListRooms.png)
 
 Format: `list rooms`
 
 #### Listing all occupied rooms : `list rooms occupied`
 
-Shows a list of all rooms that are occupied in Trace2Gather.
+Shows a list of all rooms that are occupied in Trace2Gather. The image below illustrates a possible example of what you could see after executing the command. Only room 002 was occupied, so `list rooms occupied` returns only room 002, leaving out the rest of the vacant rooms.
 
 Format: `list rooms occupied`
 
 #### Listing all vacant rooms : `list rooms vacant`
 
-Shows a list of all rooms that are vacant in Trace2Gather.
+Shows a list of all rooms that are vacant in Trace2Gather. The image below illustrates a possible example of what you could see after executing the command. Room 002 was occupied, so `list rooms vacant` does not display room 002, but displays all other vacant rooms.
+
+![ListRoomsVacantCommand](images/ListRoomsVacant.png)
 
 Format: `list rooms vacant`
 
@@ -269,7 +296,9 @@ Format: `list rooms vacant`
 
 #### Listing all records : `list records`
 
-Shows a list of past residencies in Trace2Gather.
+Shows a list of past residencies in Trace2Gather. If you were searching for a record earlier using the `record` command, using `list records` will yield you the full list of records, and will be displayed in the `History` panel. This is illustrated in the screenshot below, after the execution of the `list records` command.<br/>
+
+![ListRecordsCommand](images/ListRecords.png)
 
 Format: `list records`
 
@@ -348,7 +377,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
 **Checkout** | `checkout ROOM_INDEX`<br> e.g., `checkout 4`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
 **Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
 **List** | `list guests`, `list records`, `list rooms`, `list rooms occupied`, `list rooms vacant`
