@@ -238,6 +238,30 @@ The mechanism guaranteeing the uniqueness of Guests is facilitated by the `Nric`
 * An `AddCommand` that wants to add a `Person` with an `Nric` that another existing `Person` already will be considered an invalid command.
     * Uniqueness  —  This mechanism will help to prevent the adding of duplicate `Person` objects.
     
+### Encapsulation of Hotel Stays
+
+#### Implementation
+
+The stay of guests in a room for a period of time is encapsulated in the `Residency` class, and `Residency` objects are created and handled by the `ResidencyBook` class. Creation of `Residency` objects is invoked via `CheckInCommand`.
+
+
+#### Design considerations:
+
+**Aspect: The Immutability of Person and Room objects**
+* Due to the immutability of these objects, it is difficult to have them store references to each other.
+  The creation of the `Residency` association class was thus necessary, and also allows additional information about stays to be stored, such as dates and times of check in and check out, among other possible future features.
+
+**Aspect: Storing References to Person and Room objects**
+* Due to `Residency` objects needing to store references to `Person` and `Room` objects, an identification system for the latter two classes had to be created to facilitate JSON storage of the actual references.
+  Otherwise, the JSON would only store copies of the `Person` and `Room` objects, which would mean that editing a `Person`'s details via the edit command would not affect the `Person` copy in the `Residency`.
+  
+**Aspect: Further Expansion to Store Past Records**
+* For current hotel stays, each room can only have one set of guests checked in at any given time, and likewise, any guest should only be checked into one room at a time.
+  It thus follows that the `ResidencyBook` class should ensure that each Person and Room object can only be referenced in one Residency at any given time.
+  <br><br>
+  However, the `ResidencyBook` should have the ability to accommodate the Past Records Feature mentioned below, which will involve multiple `Residency` objects referencing the same room.
+  Hence, `ResidencyBook` has a boolean parameter in its constructor for allowing duplicates.
+
 ### Past Records Feature
 
 This section describes how past residencies are stored such that it can be displayed/searched for contact tracing.
