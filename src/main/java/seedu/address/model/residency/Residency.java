@@ -100,6 +100,10 @@ public class Residency {
         return Optional.ofNullable(this.checkOutTime);
     }
 
+    public boolean isCheckedIn() {
+        return checkOutTime == null;
+    }
+
     @Override
     public String toString() {
         String message = String.format("Room [%s], Guests [%s], CheckInTime [%s], CheckOutTime [%s]",

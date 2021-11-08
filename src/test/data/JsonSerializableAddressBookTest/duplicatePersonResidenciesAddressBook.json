@@ -36,12 +36,12 @@
     "residencies" : [ {
       "roomNumber" : "001",
       "checkInTime" : "2021-10-16T13:56:43.151757900",
-      "checkOutTime" : "2021-10-16T13:57:07.728702200",
+      "checkOutTime" : null,
       "guestNRICs" : [ "S98765432N", "S98765432M", "S98765432L" ]
     }, {
       "roomNumber" : "002",
       "checkInTime" : "2021-10-16T13:56:43.151757900",
-      "checkOutTime" : "2021-10-16T13:57:07.728702200",
+      "checkOutTime" : null,
       "guestNRICs" : [ "S98765432N", "S98765432M", "S98765432L" ]
     } ]
   },

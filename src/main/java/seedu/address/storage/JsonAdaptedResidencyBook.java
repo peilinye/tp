@@ -23,6 +23,8 @@ import seedu.address.model.room.RoomNumber;
  */
 public class JsonAdaptedResidencyBook {
 
+    public static final String MESSAGE_INVALID_CHECKOUT_TIME = "Residency has invalid checkout time";
+
     private final List<JsonAdaptedResidency> residencies = new ArrayList<>();
 
     /**
@@ -66,6 +68,11 @@ public class JsonAdaptedResidencyBook {
 
         for (JsonAdaptedResidency jsonAdaptedResidency : residencies) {
             Residency residency = jsonAdaptedResidency.toModelType(nricPersonMap, roomNumberRoomMap);
+            // If residency is checked in and this is the records book,
+            // or is checked out and this is the residency book
+            if (residency.isCheckedIn() == allowDuplicates) {
+                throw new IllegalValueException(MESSAGE_INVALID_CHECKOUT_TIME);
+            }
             residencyBook.register(residency);
         }
 
