@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -10,7 +12,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "IDs must contain a non-whitespace character, and have a length of less than 50";
+            "IDs must have a length of less than 50";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -68,7 +70,7 @@ public class Nric {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Nric
-                && ((Nric) other).value.equals(this.value));
+                && ((Nric) other).value.toLowerCase().equals(this.value.toLowerCase()));
     }
 
     @Override

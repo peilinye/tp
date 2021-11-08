@@ -278,7 +278,7 @@ Shows the records that match all the keywords provided (i.e. `AND` search) (**no
 
 Format: `record KEYWORD_ONE... `
 
-Keywords include: dates of stay, names, and room numbers.<br/>
+Keywords include: All possible fields (name, id, dates of stay, etc...)<br/>
 
 Acceptable format for keywords:<br/>
 1. Dates of stay: YYYY-MM-DD.
