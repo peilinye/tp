@@ -14,18 +14,18 @@ Given below are my contributions to the project.
     * What it does: Allows the user to view past residencies for contact tracing and search for relevant residencies by person, room number etc...
     * Justification: This feature improves the product significantly because it helps our users retrieve information quickly for contact tracing purposes.
     * Highlights: The search commands allows for users to enter multiple keywords and only displays results that match all the keywords. The design of this search differs from the one for searching guests, because we want to enable users to do more precise searches for records to minimise delays in contact tracing. The implementation also required changes to other commands to ensure that the data displayed is updated accordingly. <br><br>
-* **Contributions to the UG**: 
-    * Added documentation for listing rooms as well as records 
-    * Details for the search method for records 
+* **Contributions to the UG**:
+    * Added documentation for listing rooms as well as records
+    * Details for the search method for records
     * Keep several images in the UG updated with changes to the UI.
     * Updated several other commands in accordance to feedback from peers. <br><br>
-* **Contributions to the DG**: 
+* **Contributions to the DG**:
     * Updated several UML diagrams as well
     * Implementation details for the past records feature
     * Updated parts of Instructions for Manual Testing
 
 <div style="page-break-after: always;"></div>
-    
+
 * **Contributions to team-based tasks**:
     * Managed releases v1.2 to v1.3 (final)
     * Managed several weekly team tasks such as product demo for v1.2 and v1.3 alongside teammates.

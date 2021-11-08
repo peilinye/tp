@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). 
+Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI).
 Our application aims to complement existing contact tracing efforts, while also helping you to manage your hotel guests fast.
 <br><br>
 The purpose of this user guide is to help you explore Trace2Gather's many features, and how to use them.
@@ -16,9 +16,6 @@ If you require assistance using this guide, feel free to visit the [Navigation G
 
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
 
 <div style="page-break-after: always;"></div>
 
@@ -46,7 +43,7 @@ This section will help you get our application running on your device, step by s
 4. Double-click the file to start the application. The GUI below should appear in a few seconds, and will look like the screenshot below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box (shown in the screenshot below) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box (shown in the screenshot below) and press Enter to execute it. For example, typing **`list guests`** and pressing Enter will show the UI below.<br>
    ![CommandBox](images/NavGuideCommandBoxImage.png)
    Some example commands you can try are the following:
 
@@ -56,13 +53,13 @@ This section will help you get our application running on your device, step by s
 
    * **`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H`** : Adds a contact named `John Doe` to the Trace2Gather.
 
-   * **`checkin 005 g/1`**: Checks in the 1st guest into the 5th room.
+   * **`checkin 5 g/1`**: Checks in the 1st guest into the 5th room in the room list.
 
    * **`clear`** : Deletes all rooms, guests and past records.
 
    * **`exit`** : Exits the app.
-    
-    
+
+
 6. Refer to the [Features](#features) section below for details of each command.
 
 <div style="page-break-after: always;"></div>
@@ -179,7 +176,7 @@ Format: `guest KEYWORD [MORE_KEYWORDS]`
 * Guests matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
     Only full words will be matched, e.g. `Han` will not match `Hans`.
 </div>
 
@@ -189,9 +186,9 @@ Examples:
 
 The image below is an example of how part of the application interface may look when the command `guest alex david` is executed.
 ![guestsearch](images/Guestalexdavid1.png)
-![guestsearch](images/GuestAlexDavid2.png)
+![guestsearch](images/Guestalexdavid2.png)
 
-  
+
 
 ### Rooms
 
@@ -220,7 +217,7 @@ Examples:
 
 #### Checking into a room : `checkin`
 
-Checks in a group of guests into a room. 
+Checks in a group of guests into a room.
 
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
@@ -254,7 +251,7 @@ The room index refers to the index number shown in the displayed room list.
 
 Example:
 * `checkout 5`
-* `checkout 7` 
+* `checkout 7`
 
 The image below is an example of how part of the application interface looks when the command `checkout 4` is executed.
 ![checkout4](images/Checkout4.png)
@@ -262,12 +259,12 @@ The image below is an example of how part of the application interface looks whe
 
 #### Locating a specific room : `room`
 
-Shows a list of rooms that match the room numbers provided. 
+Shows a list of rooms that match the room numbers provided. Room numbers should have 3 digits.
 
 Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 
 Example:
-* `room 005 010` 
+* `room 005 010`
 * `room 003`
 
 The image below is an example of how part of the application interface looks when the command `room 001 002` is executed.
@@ -376,7 +373,7 @@ We understand that you might have questions regarding our application. Below are
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
 
 **Q**: Why does my edit/checkin/checkout command not work?<br>
-**A**: The indices required by these commands are the ones from the numbered list seen in the GUI. You can try using one or more of the `list` commands to show all available data and make sure you have the correct indices. 
+**A**: The indices required by these commands are the ones from the numbered list seen in the GUI. You can try using one or more of the `list` commands to show all available data and make sure you have the correct indices.
 
 <div style="page-break-after: always;"></div>
 
