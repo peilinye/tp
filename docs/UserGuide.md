@@ -13,8 +13,12 @@ If you require assistance using this guide, feel free to visit the [Navigation G
 <div style="page-break-after: always;"></div>
 
 <span style="font-size:32px; font-weight:bold;">Table Of Contents</span>
+
 * Table of Contents
-  {:toc}
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 <div style="page-break-after: always;"></div>
 
@@ -223,8 +227,6 @@ Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
 1. A room can have more than one guest.<br/>
 2. If you cannot check guests into a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise, use the command `list rooms` and `list guests` to show all rooms and guests.<br/>
-3. You can also use the room number itself to check in. If you are unsure of what this means, refer to the last example below.
-
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br/>
@@ -236,7 +238,7 @@ The indices refer to the index numbers shown in the numbered guest/room list.
 
 Examples:
 * `checkin 5 g/1`
-* `checkin 001 g/1`
+* `checkin 1 g/2`
 
 The image below is an example of how part of the application interface looks when the command `checkin 3 g/2 g/3 g/6` is executed.
 ![checkin3](images/Checkin3.png)
@@ -249,12 +251,9 @@ Format: `checkout ROOM_INDEX`
 
 The room index refers to the index number shown in the displayed room list.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
-You can also use the room number itself to check out. If you are unsure of what this means, refer to the first example below.
-</div>
 
 Example:
-* `checkout 004`
+* `checkout 5`
 * `checkout 7` 
 
 The image below is an example of how part of the application interface looks when the command `checkout 4` is executed.
