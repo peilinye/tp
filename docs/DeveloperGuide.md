@@ -549,15 +549,16 @@ In this project, we experienced challenges when implementing our backend, fronte
 <br><br>
 In the backend, we had to build on the existing implementation and introduced our own data structures to prevent cyclic-dependencies.
 <br><br>
-On the frontend, we had to match the specifications as best as possible whilst also ensuring that our new features not only worked well but also stylistically was coherent to our product.
+On the frontend, we had to match the specifications as much as possible whilst also ensuring that our new features not only worked well but also stylistically was coherent to our product.
 <br><br>
 In the documentation, we had to edit many of the diagrams and their accompanying explanations to account for the changes in our application as compared to the original AB3.
 <br><br>
 #### Backend
-The naive implementation would have been for Room objects to contain a set of guests and once a room is checked out, all of the room's information is moved into a list containing all historical records.
-However, an issue arising from this implementation is that editing each guest's information, such as their name, would not result in that change being reflected in neither the Room nor the historical record.
+The naive implementation would have been for Room objects to contain a set of guests (Persons), and once a room is checked out, all the room's information is moved into a list containing all historical records.
+The Person objects would also contain the Room that they are checked into.
+However, Person objects are immutable in AB3, and Room objects were made immutable to match. This would make it difficult for both objects to store references to each other, especially since Person objects can be edited frequently.
 <br><br>
-Our solution was to create a Residency class that stores both the pointer to the Room and pointers to the guests. This way, when a guest is edited, we use the guest's information to retrieve the
+Our solution was to create an association class, the Residency class, that stores pointers to both the Room and guests. This way, when a guest is edited, we use the guest's information to retrieve the
 Residency object that is keeping track of all the rooms that has this same guest inside and all the historical records that have this same guest inside and update the guest to reflect the edited guest's information.
 <br><br>
 #### Frontend
