@@ -8,7 +8,7 @@ Our application aims to complement existing contact tracing efforts whilst also 
 <br><br>
 The purpose of this user guide is to help you explore all the features Trace2Gather has to offer and to provide clarity on how each feature can be used in our application.
 <br><br>
-If you require assistance on how to use this guide, please feel free to visit the [Navigation Guide](#Navigation Guide) for more information.
+If you require assistance on how to use this guide, please feel free to visit the [Navigation Guide](#navigation-guide) for more information.
 
 * Table of Contents
 {:toc}
@@ -17,13 +17,13 @@ If you require assistance on how to use this guide, please feel free to visit th
 
 ## Navigation Guide
 
-Before we guide you to using our application's features, please visit the [Quick Start](#Quick Start) section to ensure our application can run on your device.
+Before we guide you to using our application's features, please visit the [Quick Start](#quick-start) section to ensure our application can run on your device.
 <br><br>
 After you are done setting up, head on down to the [Features](#features) section to explore the multiple features our application has to offer. Each subsection contains steps that you can follow along to ensure the features run on your device.
 <br><br>
-If you would like to have a quick overview of all the commands available, please head on over to the [Command Summary](#Command Summary) section to find a brief summary for all commands.
+If you would like to have a quick overview of all the commands available, please head on over to the [Command Summary](#command-summary) section to find a brief summary for all commands.
 <br><br>
-If you have any queries, please feel free to head over to the <b>Frequently Asked Questions (FAQ)</b> section to see if your query is there.
+If you have any queries, please feel free to head over to the [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq) section to see if your query is there.
 
 
 ## Quick Start
