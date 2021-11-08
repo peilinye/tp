@@ -22,7 +22,10 @@ Given below are my contributions to the project.
 * **Contributions to the DG**: 
     * Updated several UML diagrams as well
     * Implementation details for the past records feature
-    * Updated parts of Instructions for Manual Testing <br><br>
+    * Updated parts of Instructions for Manual Testing
+
+<div style="page-break-after: always;"></div>
+    
 * **Contributions to team-based tasks**:
     * Managed releases v1.2 to v1.3 (final)
     * Managed several weekly team tasks such as product demo for v1.2 and v1.3 alongside teammates.
