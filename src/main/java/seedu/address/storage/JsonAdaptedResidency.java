@@ -102,7 +102,7 @@ class JsonAdaptedResidency {
             throw new IllegalValueException(String.format(MESSAGE_DATETIME_CONSTRAINTS_FORMAT, "check out time"));
         }
 
-        if (checkIn.isAfter(checkOut)) {
+        if (checkOut != null && checkIn.isAfter(checkOut)) {
             throw new IllegalValueException(MESSAGE_CHECKOUT_BEFORE_CHECKIN);
         }
 
