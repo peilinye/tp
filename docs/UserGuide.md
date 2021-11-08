@@ -43,11 +43,11 @@ This section aims to provide you with the steps required to get our application 
 
    * **`list guests`** : Lists all guests.
 
-   * **`addroom`**`5 t/typeA` : Adds 5 rooms of type A to the room list.
+   * **`addroom 5 t/typeA`** : Adds 5 rooms of type A to the room list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
+   * **`add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H`** : Adds a contact named `John Doe` to the Trace2Gather.
 
-   * **`checkin`**`005 g/1` : Checks in the 1st guest into the 5th room.
+   * **`checkin 005 g/1`**: Checks in the 1st guest into the 5th room.
 
    * **`clear`** : Deletes all rooms, guests and past records.
 
@@ -180,7 +180,8 @@ Examples:
 
 The image below is an example of how part of the application interface may look when the command `guest alex david` is executed.
 ![guestsearch](images/Guestalexdavid1.png)
-![guestsearch](images/Guestalexdavid2.png)
+![guestsearch](images/GuestAlexDavid2.png)
+
   
 
 ### Rooms
@@ -225,8 +226,7 @@ Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 2. Advanced users can edit the JSON such that a guest can be checked in and checked out at the same time, but this is not the intended use of the application.
 </div>
 
-
-The indexes refer to the index numbers shown in the displayed guest/room list. 
+The indices refer to the index numbers shown in the numbered guest/room list.
 
 Examples:
 * `checkin 5 g/1`
@@ -353,6 +353,7 @@ Trace2Gather data are saved as a JSON file `[JAR file location]/data/trace2gathe
 If your changes to the data file makes its format or data invalid, Trace2Gather will discard all data and start with an empty data file at the next run.
 </div>
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Frequently Asked Questions (FAQ)
@@ -360,6 +361,10 @@ We understand that many of you might have questions regarding our application. B
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
+
+**Q**: Why does my edit/checkin/checkout command not work?
+**A**: The indices required by these commands are the ones from the numbered list seen in the GUI. You can try using one or more of the `list` commands to show all available data and make sure you have the correct indices. 
+
 
 --------------------------------------------------------------------------------------------------------------------
 

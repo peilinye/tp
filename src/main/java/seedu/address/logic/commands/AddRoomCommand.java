@@ -29,7 +29,7 @@ public class AddRoomCommand extends Command {
     public static final String MESSAGE_SUCCESS = "%1$s new rooms of type %2$s added.";
     public static final String MESSAGE_EXCEEDED_MAX_NUMBER_OF_ROOMS =
             "Adding %1$s more room(s) would exceed the maximum 999 rooms allowed.";
-    public static final String MESSAGE_INVALID_INTEGER = "The number of rooms to add should be a positive integer";
+    public static final String MESSAGE_INVALID_INTEGER = "Invalid number of rooms entered.";
 
     private final int number;
     private final Set<Tag> tags = new HashSet<>();
