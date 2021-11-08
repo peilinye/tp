@@ -10,18 +10,21 @@ The purpose of this user guide is to help you explore all the features Trace2Gat
 <br><br>
 If you require assistance on how to use this guide, please feel free to visit the [Navigation Guide](#navigation-guide) for more information.
 
-* Table of Contents
-{:toc}
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+# Table of Contents
+* Table of Contents
+  {:toc}
+
+<div style="page-break-after: always;"></div>
 
 ## Navigation Guide
 
 Before we guide you to using our application's features, please visit the [Quick Start](#quick-start) section to ensure our application can run on your device.
 <br><br>
-After you are done setting up, head on down to the [Features](#features) section to explore the multiple features our application has to offer. Each subsection contains steps that you can follow along to ensure the features run on your device.
+After you are done setting up, head on down to the [Features](#features) section to explore the multiple features our application has to offer. Each sub-section contains steps that you can follow along to ensure the features run on your device.
 <br><br>
-If you would like to have a quick overview of all the commands available, please head on over to the [Command Summary](#command-summary) section to find a brief summary for all commands.
+If you would like to have a quick overview of all the commands available, please head on over to the [Command Summary](#command-summary) section to find a brief summary for all the commands.
 <br><br>
 If you have any queries, please feel free to head over to the [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq) section to see if your query is there.
 
@@ -35,24 +38,26 @@ This section aims to provide you with the steps required to get our application 
 
 3. Copy the file to the folder you want to use as the _home folder_ for Trace2Gather.
 
-4. Double-click the file to start the application. The GUI below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the application. The GUI below should appear in a few seconds, and will look like the screenshot below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box (shown in the screenshot below) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
+   ![CommandBox](images/NavGuideCommandBoxImage.png)
    Some example commands you can try are the following:
 
    * **`list guests`** : Lists all guests.
 
    * **`addroom`**`5 t/typeA` : Adds 5 rooms of type A to the room list.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H` : Adds a contact named `John Doe` to the Trace2Gather.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432H` : Adds a contact named `John Doe` to Trace2Gather.
 
    * **`checkin`**`005 g/1` : Checks in the 1st guest into the 5th room.
 
    * **`clear`** : Deletes all rooms, guests and past records.
 
    * **`exit`** : Exits the app.
-
+    
+    
 6. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -70,22 +75,22 @@ Furthermore, we have included formats and examples for each feature in case you 
 * All commands are in lower case, e.g. add, record, guest, addroom, etc.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  For example: in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/Quarantine` or as `n/John Doe`.
+  For example: `n/NAME [t/TAG]` can be used as `n/John Doe t/Quarantine` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as (i.e. 0 times), `t/Quarantine`, `t/SeafoodAllergy` etc.
+  For example: `[t/TAG]…​` can be used as `t/Quarantine`, `t/SeafoodAllergy`, etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  For example: if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, yet it is specified multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  For example: if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  For example: if the command specifies `help 123`, it will be interpreted as `help`.
 
 * If you have a smaller screen, please use the application in full screen mode, by clicking the square icon at the top right-hand corner of the window.
 
@@ -109,19 +114,16 @@ Adds a guest into Trace2Gather.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/NRIC [t/TAG]…​`
 
 Acceptable format for keywords:<br/>
-1. Names: No special characters, but spaces are allowed.
+1. Names: No special characters, but spaces are allowed. No longer than 50 characters.
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
-5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. It must not be an empty string, and it must be no longer than 50 characters. Case-insensitive.
+5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. It must not be an empty string, and it must be no longer than 50 characters. It is case-insensitive.
 6. Tags: No whitespaces within a tag.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A guest can have any number of tags (including 0).
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Two guests who have identical IDs are considered identical.
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
+1. A guest can have any number of tags (including 0). <br/>
+2. Two guests who have identical IDs are considered identical.
 </div>
 
 Examples:
@@ -130,7 +132,7 @@ Examples:
 
 #### Listing all guests : `list guests`
 
-Shows a list of all guests in Trace2Gather. If you were searching for a guest earlier using the `guest` command, using `list guests` will yield you the full list of guests, and will be displayed in the `Guests` panel. This is illustrated in the screenshot below, after the execution of the `list guests` command.<br/>
+Shows a list of all guests in Trace2Gather. If you are searching for a guest earlier using the `guest` command, using `list guests` will yield you the full list of guests, and will be displayed in the `Guests` panel. This is illustrated in the screenshot below, after the execution of the `list guests` command.<br/>
 
 ![listguests](images/ListGuestsAfter.png)
 
@@ -144,16 +146,16 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…�
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the guest will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the guest will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the guest’s tags by typing `t/` without
   specifying any tags after it.
 
 Acceptable format for keywords:
-1. Names: No special characters, but spaces are allowed.
+1. Names: No special characters, but spaces are allowed. No longer than 50 characters.
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
-5. ID: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and no limit on the length.
+5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. Must not be an empty string, and there is a 50-character limit on the length.
 6. Tags: No whitespaces within a tag.
 
 
@@ -170,13 +172,17 @@ Format: `guest KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* 
 * Guests matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
+    Only full words will be matched, e.g. `Han` will not match `Hans`.
+</div>
+
 Examples:
 * `guest John` returns `john` and `John Doe`
-* `guest alex david` returns `Alex Yeoh`, `David Li`<br>
+* `guest alex david` returns `Alex Yeoh`, `David Li`<br/>
   ![guestsearch](images/Guestalexdavid1.png)
   ![guestsearch](images/Guestalexdavid2.png)
   
@@ -212,14 +218,14 @@ Checks in a group of guests into a room.
 
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br/>
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
 1. A room can have more than one guest.<br/>
-2. If you cannot check in guests to a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise use the command `list rooms` and `list guests` to show all rooms and guests.
+2. If you cannot check guests into a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise, use the command `list rooms` and `list guests` to show all rooms and guests.
 3. You can also use the room number itself to check in. If you are unsure of what this means, refer to the last example below.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br/>
-1. However, you cannot check in the same guest to multiple rooms. <br/>
+1. You cannot check in the same guest to multiple rooms. <br/>
 2. Advanced users can edit the JSON such that a guest can be checked in and checked out at the same time, but this is not the intended use of the application.
 </div>
 
@@ -290,7 +296,7 @@ Format: `list records`
 
 #### Locating specific records: `record`
 
-Shows the records that match all the keywords provided (i.e. `AND` search) (**not** case-sensitive, at least 1).<br/>
+Shows the records that match all the keywords provided. **Not** case-sensitive, and at least 1 keyword must be entered.<br/>
 
 
 Format: `record KEYWORD_ONE... `
