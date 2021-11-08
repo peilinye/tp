@@ -99,7 +99,7 @@ Furthermore, we have included formats and examples for each feature in case you 
 
 #### Viewing help : `help`
 
-Shows a message explaning how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
+Shows a message explaining how to access the [help page](https://ay2122s1-cs2103t-t13-3.github.io/tp/UserGuide.html).
 
 ![help message](images/helpMessage.png)
 
@@ -113,8 +113,13 @@ Adds a guest into Trace2Gather.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/NRIC [t/TAG]…​`
 
+<<<<<<< HEAD
 Acceptable format for keywords:<br/>
 1. Names: No special characters, but spaces are allowed. No longer than 50 characters.
+=======
+Acceptable formats for keywords:<br/>
+1. Names: No special characters, but spaces are allowed.
+>>>>>>> bdc56add3e6949194ab218f5bec177324f3d4546
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
@@ -146,12 +151,21 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…�
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+<<<<<<< HEAD
 * When editing tags, the existing tags of the guest will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the guest’s tags by typing `t/` without
   specifying any tags after it.
 
 Acceptable format for keywords:
 1. Names: No special characters, but spaces are allowed. No longer than 50 characters.
+=======
+* When editing tags, the existing tags of the guest will be removed i.e. adding of tags is not cumulative.
+* You can remove all the guest’s tags by typing `t/` without
+  specifying any tags after it.
+
+Acceptable formats for keywords:
+1. Names: No special characters, but spaces are allowed.
+>>>>>>> bdc56add3e6949194ab218f5bec177324f3d4546
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
@@ -169,7 +183,7 @@ Find guests whose names contain any of the given keywords.
 
 Format: `guest KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * 
@@ -182,9 +196,17 @@ Format: `guest KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `guest John` returns `john` and `John Doe`
+<<<<<<< HEAD
 * `guest alex david` returns `Alex Yeoh`, `David Li`<br/>
   ![guestsearch](images/Guestalexdavid1.png)
   ![guestsearch](images/Guestalexdavid2.png)
+=======
+* `guest alex david` returns `Alex Yeoh`, `David Li`<br>
+
+The image below is an example of how part of the application interface may look when the command `guest alex david` is executed.
+![guestsearch](images/Guestalexdavid1.png)
+![guestsearch](images/Guestalexdavid2.png)
+>>>>>>> bdc56add3e6949194ab218f5bec177324f3d4546
   
 
 ### Rooms
@@ -220,8 +242,13 @@ Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
 1. A room can have more than one guest.<br/>
+<<<<<<< HEAD
 2. If you cannot check guests into a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise, use the command `list rooms` and `list guests` to show all rooms and guests.
 3. You can also use the room number itself to check in. If you are unsure of what this means, refer to the last example below.
+=======
+2. If you cannot check in guests to a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise use the command `list rooms` and `list guests` to show all rooms and guests.
+3. You can also use the room number itself to check in. If you are unsure of what this means, refer to the third example below.
+>>>>>>> bdc56add3e6949194ab218f5bec177324f3d4546
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br/>
@@ -236,6 +263,10 @@ Examples:
 * `checkin 5 g/1`
 * `checkin 3 g/2 g/3 g/6` ![checkin3](images/Checkin3.png)
 * `checkin 001 g/1`
+* `checkin 3 g/2 g/3 g/6` 
+
+The image below is an example of how part of the application interface may look when the command `checkin 3 g/2 g/3 g/6` is executed.
+![checkin3](images/Checkin3.png)
 
 #### Checking out of a room : `checkout`
 
@@ -246,12 +277,17 @@ Format: `checkout ROOM_INDEX`
 The room index refers to the index number shown in the displayed room list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
-You can also use the room number itself to check out. If you are unsure of what this means, refer to the last example below.
+You can also use the room number itself to check out. If you are unsure of what this means, refer to the second example below.
 </div>
 
 Example:
 * `checkout 4` ![checkout4](images/Checkout4.png)
 * `checkout 004`
+* `checkout 4` 
+
+The image below is an example of how part of the application interface would look when the command `checkout 4` is executed.
+![checkout4](images/Checkout4.png)
+
 
 #### Locating a specific room : `room`
 
@@ -260,7 +296,10 @@ Shows a list of rooms that match the room numbers provided.
 Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 
 Example:
-* `room 001 002` ![room001002](images/Room001002.png)
+* `room 001 002` 
+
+The image below is an example of how part of the application interface may look when the command `room 001 002` is executed.
+![room001002](images/Room001002.png)
 
 #### Listing all rooms : `list rooms`
 
@@ -303,7 +342,7 @@ Format: `record KEYWORD_ONE... `
 
 Keywords include: All possible fields (name, id, dates of stay, etc...)<br/>
 
-Acceptable format for keywords:<br/>
+Acceptable formats for keywords:<br/>
 1. Dates of stay: YYYY-MM-DD.
 2. Names: No special characters, but spaces are allowed.
 3. Room Numbers: must be in its 3-digit format, e.g. 001, 233, 999.<br/>
@@ -348,7 +387,7 @@ If your changes to the data file makes its format or data invalid, Trace2Gather 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Frequently Asked Questions (FAQ)
-We understand that many of you might have questions regarding our application. Below are some of the questions others have asked before and hopefully they answer your queries!
+We understand that many of you might have questions regarding our application. Below are some questions others have asked before and hopefully they answer your queries!
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
