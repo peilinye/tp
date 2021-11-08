@@ -20,7 +20,7 @@ Given below are my contributions to the project.
     * **Justification**: This feature is indispensable for managing hotels.
     * **Highlights**: Conceived, designed and built the entire Residency system as a solution to problems posed by this feature. This system is a foundation for many new features to be built upon. See below for details.
     * **Credits**: Original AB3 team, Darren for the Room system and many misc. fixes and tests.
-<br><br>    
+<br><br>
 * **Residency System (Design and Implementation)**
   * The Residency system is responsible for storing the details of the stay of guests in a room. It is easy to work with, simple to expand upon, and relatively compatible with existing architecture.
   * I designed the system to solve many problems otherwise inherent in the architecture. It decouples and serves as a mediator between the Room and Person systems, and is fast, reliable and easy to store.
@@ -30,13 +30,13 @@ Given below are my contributions to the project.
 <br><br>
 * Rewrote `Vacancy` class, greatly simplifying it and vanquishing bugs
 <br><br>
-* Misc. functionality      
+* Misc. functionality
 
 ### UG Contributions
 * Re-writes to simplify language:
   * Introduction
   * Navigation Guide
-  * Section introductions  
+  * Section introductions
 * Documentation for `checkin` and `checkout`
 * Proof-reading, grammar improvements
 
@@ -50,4 +50,3 @@ Given below are my contributions to the project.
   * `JsonAdaptedResidency`
   * Added `TypicalAddressBook`
   * Misc. other tests, fixes and functionality
-    

@@ -30,7 +30,7 @@ Given below are my contributions to the project.
       <br>Displaying the residencies on the frontend via a list affords the user with the choice to interact with the existing database either via the GUI application or via direct JSON accesses. Being able to access it from the GUI along with the commands we added to filter residencies help users to identify residencies of interest at a much faster rate.
     * <b>Highlights</b>: These enhancements enabled us to visually check if our system is registering the changes based on the commands we type and the colour coding enables a clear distinction and focus of each room and its internal details from another.
     * <b>Credit</b>: Original AB3 team for making the code structure highly extensible and their FlowPane's styling in the CSS, [coolors](https://coolors.co/) to help with the colour coordination.
-    
+
 
 ### UG Contributions
 * Introduction in each section

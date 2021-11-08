@@ -27,7 +27,7 @@ Given below are my contributions to the project.
   * Added UI components necessary for displaying the list of rooms, such as `RoomCard` and `RoomListPanel`.
   * Added Tags as an attribute of rooms to represent different types of rooms or any optional additional information of the rooms.
   * Added validity checking of input for the `room` command to search for specific rooms, so an error message will be shown when user input is invalid.
-  
+
 * **Documentation:**
   * User Guide:
     * Added documentation for the features `list rooms vacant` and `list rooms occupied`.
@@ -46,7 +46,7 @@ Given below are my contributions to the project.
     * `AddressBookParserTest`: `AddRoomCommand`
     * `AddRoomCommandParserTest`, `AddRoomCommandTest`
     * `FindRoomCommandParserTest`
-    * `ListCommandParserTest`, `ListCommandTest` 
+    * `ListCommandParserTest`, `ListCommandTest`
   * Model:
     * `RoomBuilder`
 
