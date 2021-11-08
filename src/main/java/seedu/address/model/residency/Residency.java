@@ -107,7 +107,7 @@ public class Residency {
     @Override
     public String toString() {
         String message = String.format("Room [%s], Guests [%s], CheckInTime [%s], CheckOutTime [%s]",
-                room, guests, checkInTime, checkOutTime);
+                room, guests, checkInTime.truncatedTo(ChronoUnit.DAYS), checkOutTime.truncatedTo(ChronoUnit.DAYS));
         return message;
     }
 

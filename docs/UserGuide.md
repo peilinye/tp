@@ -28,6 +28,7 @@ If you would like to have a quick overview of all the commands available, please
 <br><br>
 If you have any queries, please feel free to head over to the [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq) section to see if your query is there.
 
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 This section aims to provide you with the steps required to get our application running on your device. Below are the steps to set up your device to be able to run our application:
@@ -60,7 +61,7 @@ This section aims to provide you with the steps required to get our application 
     
 6. Refer to the [Features](#features) section below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 This section aims to showcase all of our application's features to you.
@@ -113,13 +114,8 @@ Adds a guest into Trace2Gather.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/NRIC [t/TAG]…​`
 
-<<<<<<< HEAD
 Acceptable format for keywords:<br/>
 1. Names: No special characters, but spaces are allowed. No longer than 50 characters.
-=======
-Acceptable formats for keywords:<br/>
-1. Names: No special characters, but spaces are allowed.
->>>>>>> bdc56add3e6949194ab218f5bec177324f3d4546
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
@@ -137,7 +133,7 @@ Examples:
 
 #### Listing all guests : `list guests`
 
-Shows a list of all guests in Trace2Gather. If you are searching for a guest earlier using the `guest` command, using `list guests` will yield you the full list of guests, and will be displayed in the `Guests` panel. This is illustrated in the screenshot below, after the execution of the `list guests` command.<br/>
+Shows a list of all guests in Trace2Gather. If you were searching for a guest earlier using the `guest` command, using `list guests` would yield you the full list of guests, and it would be displayed in the `Guests` panel. This is illustrated in the screenshot below after the execution of the `list guests` command.<br/>
 
 ![listguests](images/ListGuestsAfter.png)
 
@@ -151,21 +147,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…�
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-<<<<<<< HEAD
 * When editing tags, the existing tags of the guest will be removed, i.e. adding of tags is not cumulative.
 * You can remove all the guest’s tags by typing `t/` without
   specifying any tags after it.
 
 Acceptable format for keywords:
 1. Names: No special characters, but spaces are allowed. No longer than 50 characters.
-=======
-* When editing tags, the existing tags of the guest will be removed i.e. adding of tags is not cumulative.
-* You can remove all the guest’s tags by typing `t/` without
-  specifying any tags after it.
-
-Acceptable formats for keywords:
-1. Names: No special characters, but spaces are allowed.
->>>>>>> bdc56add3e6949194ab218f5bec177324f3d4546
 2. Phone Number: Digits only, and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
 4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
@@ -184,9 +171,8 @@ Find guests whose names contain any of the given keywords.
 Format: `guest KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* 
 * Guests matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
@@ -196,17 +182,11 @@ Format: `guest KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `guest John` returns `john` and `John Doe`
-<<<<<<< HEAD
-* `guest alex david` returns `Alex Yeoh`, `David Li`<br/>
-  ![guestsearch](images/Guestalexdavid1.png)
-  ![guestsearch](images/Guestalexdavid2.png)
-=======
 * `guest alex david` returns `Alex Yeoh`, `David Li`<br>
 
 The image below is an example of how part of the application interface may look when the command `guest alex david` is executed.
 ![guestsearch](images/Guestalexdavid1.png)
 ![guestsearch](images/Guestalexdavid2.png)
->>>>>>> bdc56add3e6949194ab218f5bec177324f3d4546
   
 
 ### Rooms
@@ -242,13 +222,9 @@ Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
 1. A room can have more than one guest.<br/>
-<<<<<<< HEAD
-2. If you cannot check guests into a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise, use the command `list rooms` and `list guests` to show all rooms and guests.
+2. If you cannot check guests into a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise, use the command `list rooms` and `list guests` to show all rooms and guests.<br/>
 3. You can also use the room number itself to check in. If you are unsure of what this means, refer to the last example below.
-=======
-2. If you cannot check in guests to a room, check that the room index and guest index(es) are the ones you can see on the panels. Otherwise use the command `list rooms` and `list guests` to show all rooms and guests.
-3. You can also use the room number itself to check in. If you are unsure of what this means, refer to the third example below.
->>>>>>> bdc56add3e6949194ab218f5bec177324f3d4546
+
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br/>
@@ -261,11 +237,9 @@ The indexes refer to the index numbers shown in the displayed guest/room list.
 
 Examples:
 * `checkin 5 g/1`
-* `checkin 3 g/2 g/3 g/6` ![checkin3](images/Checkin3.png)
 * `checkin 001 g/1`
-* `checkin 3 g/2 g/3 g/6` 
 
-The image below is an example of how part of the application interface may look when the command `checkin 3 g/2 g/3 g/6` is executed.
+The image below is an example of how part of the application interface looks when the command `checkin 3 g/2 g/3 g/6` is executed.
 ![checkin3](images/Checkin3.png)
 
 #### Checking out of a room : `checkout`
@@ -277,15 +251,14 @@ Format: `checkout ROOM_INDEX`
 The room index refers to the index number shown in the displayed room list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
-You can also use the room number itself to check out. If you are unsure of what this means, refer to the second example below.
+You can also use the room number itself to check out. If you are unsure of what this means, refer to the first example below.
 </div>
 
 Example:
-* `checkout 4` ![checkout4](images/Checkout4.png)
 * `checkout 004`
-* `checkout 4` 
+* `checkout 7` 
 
-The image below is an example of how part of the application interface would look when the command `checkout 4` is executed.
+The image below is an example of how part of the application interface looks when the command `checkout 4` is executed.
 ![checkout4](images/Checkout4.png)
 
 
@@ -296,14 +269,15 @@ Shows a list of rooms that match the room numbers provided.
 Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 
 Example:
-* `room 001 002` 
+* `room 005 010` 
+* `room 003`
 
-The image below is an example of how part of the application interface may look when the command `room 001 002` is executed.
+The image below is an example of how part of the application interface looks when the command `room 001 002` is executed.
 ![room001002](images/Room001002.png)
 
 #### Listing all rooms : `list rooms`
 
-Shows a list of all rooms in Trace2Gather. If you were searching for a room earlier using the `room` command, using `list rooms` will yield you the full list of rooms, and will be displayed in the `Rooms` panel. This is illustrated in the screenshot below, after the execution of the `list rooms` command.<br/>
+Shows the list of all rooms in Trace2Gather. If you were searching for a room using the `room` command earlier, using `list rooms` would yield you the full list of rooms, and it would be displayed in the `Rooms` panel. This is illustrated in the screenshot below after the execution of the `list rooms` command.<br/>
 
 ![ListRoomsCommand](images/ListRooms.png)
 
@@ -311,13 +285,16 @@ Format: `list rooms`
 
 #### Listing all occupied rooms : `list rooms occupied`
 
-Shows a list of all rooms that are occupied in Trace2Gather. The image below illustrates a possible example of what you could see after executing the command. Only room 002 was occupied, so `list rooms occupied` returns only room 002, leaving out the rest of the vacant rooms.
+Shows the list of all rooms that are occupied in Trace2Gather. The image below illustrates a possible example of what you could see after executing the command. Only Room 002 was occupied, so `list rooms occupied` returns only Room 002, leaving out the rest of the vacant rooms.
+
+![ListRoomsOccupiedCommand](images/ListRoomsOccupied.png)
+
 
 Format: `list rooms occupied`
 
 #### Listing all vacant rooms : `list rooms vacant`
 
-Shows a list of all rooms that are vacant in Trace2Gather. The image below illustrates a possible example of what you could see after executing the command. Room 002 was occupied, so `list rooms vacant` does not display room 002, but displays all other vacant rooms.
+Shows the list of all rooms that are vacant in Trace2Gather. The image below illustrates a possible example of what you could see after executing the command. Room 002 was occupied, so `list rooms vacant` does not display Room 002, but displays all other vacant rooms.
 
 ![ListRoomsVacantCommand](images/ListRoomsVacant.png)
 
@@ -327,7 +304,7 @@ Format: `list rooms vacant`
 
 #### Listing all records : `list records`
 
-Shows a list of past residencies in Trace2Gather. If you were searching for a record earlier using the `record` command, using `list records` will yield you the full list of records, and will be displayed in the `History` panel. This is illustrated in the screenshot below, after the execution of the `list records` command.<br/>
+Shows the list of past residencies in Trace2Gather. If you were searching for a record earlier using the `record` command, using `list records` would yield you the full list of records, and it would be displayed in the `History` panel. This is illustrated in the screenshot below after the execution of the `list records` command.<br/>
 
 ![ListRecordsCommand](images/ListRecords.png)
 
@@ -335,12 +312,20 @@ Format: `list records`
 
 #### Locating specific records: `record`
 
-Shows the records that match all the keywords provided. **Not** case-sensitive, and at least 1 keyword must be entered.<br/>
+Shows the records that match all the keywords provided. Case-insensitive, and at least 1 keyword must be entered.<br/>
 
+Format: `record KEYWORD [MORE KEYWORDS]... `
 
-Format: `record KEYWORD_ONE... `
-
-Keywords include: All possible fields (name, id, dates of stay, etc...)<br/>
+The following fields are what you can use to search for a record:
+1. Guest Name
+2. Guest Id
+3. Guest Phone Number
+4. Guest Address
+5. Guest Email
+6. Guest Tags
+7. Room Number
+8. Checkin Time
+9. Checkout Time
 
 Acceptable formats for keywords:<br/>
 1. Dates of stay: YYYY-MM-DD.
@@ -374,17 +359,17 @@ Format: `exit`
 
 #### Saving the data
 
-Trace2Gather data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Trace2Gather data is saved in the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
 
 #### Editing the data file
 
-Trace2Gather data are saved as a JSON file `[JAR file location]/data/trace2gather.json`. Advanced users are welcome to update data directly by editing that data file.
+Trace2Gather data is saved as a JSON file `[JAR file location]/data/trace2gather.json`. Advanced users are welcome to update the data directly by editing the JSON file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format or data invalid, Trace2Gather will discard all data and start with an empty data file at the next run.
+If your changes to the JSON file causes the data within the file to be invalid, Trace2Gather will discard all the data in the JSON file and start with an empty data file at the next run.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Frequently Asked Questions (FAQ)
 We understand that many of you might have questions regarding our application. Below are some questions others have asked before and hopefully they answer your queries!
@@ -392,7 +377,7 @@ We understand that many of you might have questions regarding our application. B
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
