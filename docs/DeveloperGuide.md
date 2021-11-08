@@ -244,7 +244,6 @@ This section describes how past residencies are stored such that it can be displ
 
 The past residencies are read from the same json data file as the other components in the `AddressBook`, through the `JsonAdaptedResidencyBook` class.
 
-
 Past residencies can be searched through the use of the `record` command, where any number of keywords can be entered and any record matching all the keywords are displayed to the user.
 
 Given below is an example of the search function for all the past residencies of room 001.
