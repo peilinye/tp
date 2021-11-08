@@ -337,7 +337,7 @@ Refer to [_Use Cases_](UseCases.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -539,3 +539,36 @@ testers are expected to do more *exploratory* testing.
     2. Re-run the application.
 
     3. Expected: Trace2gather creates a sample data file and runs, showing the GUI with the sample data.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+#### Summary
+In this project, we experienced challenges when implementing our backend, frontend, editing documentation, and fixing bugs.
+<br><br>
+In backend, we had to build on the existing implementation and introduced our own data structures to prevent cyclic-dependencies.
+<br><br>
+On the frontend, we had to match the specifications as best as possible whilst also ensuring that our new features not only worked well but also stylistically was coherent to our product.
+<br><br>
+In documentation, we had to edit many of the diagrams and their accompanying explanations to account for the changes in our application as compared to the original AB3.
+<br><br>
+#### Backend
+The naive implementation would have been for Room objects to contain a set of guests and once a room is checked out, all of the room's information is moved into a list containing all historical records.
+However, an issue arising from this implementation is that editing each guest's information, such as their name, would not result in that change being reflected in neither the Room nor the historical record.
+<br><br>
+Our solution was to create a Residency class that stores both the pointer to the Room and pointers to the guests. This way, when a guest is edited, we use the guest's information to retrieve the
+Residency object that is keeping track of all the rooms that has this same guest inside and all the historical records that have this same guest inside and update the guest to reflect the edited guest's information.
+<br><br>
+#### Frontend
+While we reused many of the original AB3's code extensively, our project was harder due to having 3 different lists as compared to the AB3 which originally only had 1 list.
+This was compounded by the fact that we had dependencies between these 3 entities, and we had to make sure that the updates in the backend are reflected in the frontend.
+<br><br>
+We also made an effort to ensure that stylistically, the new additions were different from the original AB3 but still helped to fit into the overall style of the project.
+<br><br>
+#### Documentation
+As our implementation included new data structures and new commands to interact with those data structures, we had to modify the documentation extensively to reflect these new changes.
+This included creating new diagrams and adding new explanations for our features.
+<br><br>
+Furthermore, our application also removed some commands from the original AB3, most notably the delete command.
+Since this command was used as an example along with its accompanying sequence diagram, we had to modify that entire section and replace the sequence diagram too.
