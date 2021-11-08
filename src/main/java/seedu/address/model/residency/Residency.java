@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.residency.exceptions.AlreadyCheckedOutException;
+import seedu.address.model.residency.exceptions.CheckOutBeforeCheckInException;
 import seedu.address.model.room.Room;
 
 /**
@@ -89,7 +90,11 @@ public class Residency {
         if (checkOutTime != null) {
             throw new AlreadyCheckedOutException();
         }
-        checkOutTime = LocalDateTime.now();
+        LocalDateTime currentTime = LocalDateTime.now();
+        if (currentTime.isBefore(checkInTime)) {
+            throw new CheckOutBeforeCheckInException();
+        }
+        checkOutTime = currentTime;
     }
 
     public LocalDateTime getCheckInTime() {
