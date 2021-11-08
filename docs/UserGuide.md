@@ -4,9 +4,11 @@ title: User Guide
 ---
 
 Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, Trace2Gather can get your hotel management tasks done faster than traditional GUI applications.
+Our application aims to complement existing contact tracing efforts whilst also helping you to manage your hotel guests fast.
 <br><br>
-This user guide is designed to guide you and explore all the features Trace2Gather has to offer. Please visit the Navigation Guide to learn more.
+The purpose of this user guide is to help you explore all the features Trace2Gather has to offer and to provide clarity on how each feature can be used in our application.
+<br><br>
+If you require assistance on how to use this guide, please feel free to visit the [Navigation Guide](#Navigation Guide) for more information.
 
 * Table of Contents
 {:toc}
