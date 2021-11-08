@@ -173,8 +173,10 @@ Format: `guest KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `guest John` returns `john` and `John Doe`
 * `guest alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![guestsearch](images/Guestalexdavid1.png)
-  ![guestsearch](images/Guestalexdavid2.png)
+
+The image below is an example of how part of the application interface may look when the command `guest alex david` is executed.
+![guestsearch](images/Guestalexdavid1.png)
+![guestsearch](images/Guestalexdavid2.png)
   
 
 ### Rooms
@@ -223,7 +225,10 @@ The indexes refer to the index numbers shown in the displayed guest/room list.
 
 Examples:
 * `checkin 5 g/1`
-* `checkin 3 g/2 g/3 g/6` ![checkin3](images/Checkin3.png)
+* `checkin 3 g/2 g/3 g/6` 
+
+The image below is an example of how part of the application interface may look when the command `checkin 3 g/2 g/3 g/6` is executed.
+![checkin3](images/Checkin3.png)
 
 #### Checking out of a room : `checkout`
 
@@ -234,7 +239,10 @@ Format: `checkout ROOM_INDEX`
 The room index refers to the index number shown in the displayed room list.
 
 Example:
-* `checkout 4` ![checkout4](images/Checkout4.png)
+* `checkout 4` 
+
+The image below is an example of how part of the application interface would look when the command `checkout 4` is executed.
+![checkout4](images/Checkout4.png)
 
 #### Locating a specific room : `room`
 
@@ -243,7 +251,10 @@ Shows a list of rooms that match the room numbers provided.
 Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 
 Example:
-* `room 001 002` ![room001002](images/Room001002.png)
+* `room 001 002` 
+
+The image below is an example of how part of the application interface may look when the command `room 001 002` is executed.
+![room001002](images/Room001002.png)
 
 #### Listing all rooms : `list rooms`
 
