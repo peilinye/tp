@@ -14,7 +14,7 @@ This project was based on the [_AddressBook Level-3_](https://se-education.org/a
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
-Welcome to the developer's guide for Trace2Gather! Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+Welcome to the developer's guide for Trace2Gather! Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 <br> This guide is meant for developers who may want to contribute to our code base, or use our codebase to build their own project.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -194,7 +194,7 @@ The behaviour of the search mechanism is illustrated by the following sequence d
     * Pros: Consistent implementation - similar to the other commands.
     * Cons: Increased need for good file system and extensive application of Object-Oriented Principles required.
 
-    
+
 ### Listing rooms by vacancy feature
 
 #### Implementation
@@ -237,8 +237,8 @@ The mechanism guaranteeing the uniqueness of Guests is facilitated by the `Nric`
 
 * An `AddCommand` that wants to add a `Person` with an `Nric` that another existing `Person` already will be considered an invalid command.
     * Uniqueness  —  This mechanism will help to prevent the adding of duplicate `Person` objects.
-    
-### Encapsulation of Hotel Stays
+
+### Encapsulation of Hotel Stays (The Residency System)
 
 #### Implementation
 
@@ -254,7 +254,7 @@ The stay of guests in a room for a period of time is encapsulated in the `Reside
 **Aspect: Storing References to Person and Room objects**
 * Due to `Residency` objects needing to store references to `Person` and `Room` objects, an identification system for the latter two classes had to be created to facilitate JSON storage of the actual references.
   Otherwise, the JSON would only store copies of the `Person` and `Room` objects, which would mean that editing a `Person`'s details via the edit command would not affect the `Person` copy in the `Residency`.
-  
+
 **Aspect: Further Expansion to Store Past Records**
 * For current hotel stays, each room can only have one set of guests checked in at any given time, and likewise, any guest should only be checked into one room at a time.
   It thus follows that the `ResidencyBook` class should ensure that each Person and Room object can only be referenced in one Residency at any given time.
@@ -421,126 +421,126 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites:
        1. List all Person objects using the `list guests` command. Multiple guests in the list.
        2. List all the Room objects using the `list rooms` room. Multiple rooms in the list.
-       
+ 
     2. Test case: `checkin 001 g/1`<br>
        Expected: The first person in the list of guests gets checked into Room 001, with the success message: `Room Checked In: 001`.
-   
+
     3. Test case: `checkin 002 g/2 g/3`<br>
        Expected: The second and third person in the list of guests gets checked into Room 002, with the success message: `Room Checked In: 002`.
-   
+
     4. Test case: `checkin 000 g/4 g/5`<br>
        Expected: The fourth and fifth person in the list of guests **does not** get checked into Room 000, because Room 000 does not exist, as it is an invalid room number.
-   
+
     5. Other incorrect checkin commands to try: `checkin`, `checkin 1000 g/1`, `checkin g/1`<br>
        Expected: Similar to previous.
 
 4. Checking out a guests from a room
-   
+
     1. Prerequisites:
        1. List all Person objects using the `list guests` command. Multiple guests in the list.
        2. List all the Room objects using the `list rooms` room. Multiple rooms in the list.
        3. Make sure that at least 1 guest is checked into any Room 001.
-    
+
     2. Test case: `checkout 001`<br>
        Expected: The guest in Room 001 will be checked out with the message `Room Checked Out: 001` being shown. The room's occupancy status should change from `Occupied` to `Vacant`.
-    
+
     3. Test case: `checkout 1000`<br>
        Expected: An error saying `The room index provided is invalid. Index should be the one that is displayed in the Room panels below`.
-    
+
     4. Other incorrect commands to try: `checkout`, `checkout x`, where `x` is an index greater than the largest index in the current Room list.<br>
        Expected: For `checkout`, an error `Invalid command format!` will be shown. For `checkout x`, There will be the same error as described in 6iii.
 
 5. Searching for guests
-   
+
     1. List all guests using the `list guests` command. Multiple guests in the list. Make sure that there is a guest named `Wilburrito` and a guest named `Bernice` by either editing an existing guest or adding a new one, and also that there is no guest named `zzzzzzzz`. Make sure to do this before testing each of the test cases below.
-   
+
     2. Test case: `guest wilburrito`<br>
        Expected: The list will show any matches to the name `wilburrito`. If you followed step 4i, this will return at least 1 guest in the guest list.
-   
+
     3. Test case: `guest wilburrito bernice`<br>
        Expected: The list will show any matches to the name `wilburrito` and `bernice`. If you followed step 4i, this will return at least 2 guests in the guest list.
-   
+
     4. Test case: `guest zzzzzzzz`<br>
        Expected: The list will show any matches to the name `zzzzzzzz`. If you followed step 4i, this will return 0 guests in the guest list.
-   
+
     5. Incorrect commands to try: `guest`.
-    
+
 ### Rooms
 
 1. Adding rooms
-   
+
     1. List all rooms using the `list rooms` command. Multiple rooms in the list, not exceeding 900 rooms. 
-    
+
     2. Test case: `addroom 1 t/luxury`<br>
        Expected: A room will be added to the end of the Room list, and it will appear with the tag `luxury`.
-    
+
     3. Test case: `addroom 3 t/special`<br>
        Expected: 3 rooms wll be added to the end of the Room list, and they will appear with the tag `special`.
-    
+
     4. Test case: `addroom 1000 t/shouldnotwork`<br>
        Expected: No rooms will be added, and an error will be shown, saying `Adding 1000 more room(s) would exceed the maximum 999 rooms allowed`.
-    
+
     5. Other incorrect commands to try: `addroom`, `addroom 1`, `addroom x` where `x` will cause the number of rooms to exceed 1000.
        Expected: `addroom`, `addroom 1` will cause an error to be shown, saying `Invalid command format`. `addroom x` will cause the same error to be shown as described by 5iv.
 
 2. Searching for rooms by room number
-    
+
     1. List all rooms using the `list rooms` command. Multiple rooms in the list (at least 2 but not more than 900). Make sure to use this command each time before trying a new test case.
-    
+
     2. Test case: `room 001`<br>
        Expected: The room list should now only show `001`.
-    
+
     3. Test case: `room 001 002`<br>
        Expected: The room list should now only show `001` and `002`.
-    
+
     4. Test case: `room 901`<br>
        Expected: The room list should show no rooms, as there were only 900 rooms in the initial room list.
-    
+
     5. Test case: `room 1000` <br>
        Expected: An error `Invalid command format!` will be shown, and the specified room will not appear as it is not possible for it to exist.
-    
+
     6. Other invalid commands to try: `room`, `room 000`.
        Expected: An error `Invalid command format!` will be shown. Depending on the command input, a brief description of why the command is invalid may be provided.
-   
+
 3. Listing all rooms
-    
+
     1. Test case: `list rooms`<br>
        Expected: All rooms are displayed in the Rooms panel.
-   
+
 4. Listing all occupied rooms
-   
+
     1. Test case: `list rooms occupied`<br>
        Expected: All occupied rooms are displayed in the Rooms panel.
-    
+
 5. Listing all vacant rooms
-    
+
     1. Test case: `list rooms vacant`<br>
        Expected: All vacant rooms are displayed in the Rooms panel.
 
 ### Records
 
 1. Listing all records
-    
+
     1. Test case: `list records`<br>
     Expected: All past records are displayed in the History panel, sorted from most recent record at the top.
 
 
 2. Searching for records
-    
+
     1. List all records using the `list records` command. Multiple records in the list (at least 2). Make sure to use this command each time before trying a new test case. 
-    
+
     2. Test case: `record Alex`<br>      
        Expected: All records with the keyword `Alex` are displayed in the History panel.  
-    
+
     3. Test case: `record 001`<br>
        Expected: All records with the keyword `001` are displayed in the History panel
-    
+
     4. Test case: `record 2021-11-01`<br>
        Expected: All records with the date 2021-11-01(both checkin and checkout) are displayed in the History panel.
-    
+
     5. Test case: `record Alex 001`<br>
        Expected: ALl records with both keywords `Alex` and `001` are displayed in the History panel.
-    
+
     6. Invalid command to try: `record`.
        Expected: An error `Invalid command format!` will be shown.
 
@@ -557,7 +557,7 @@ testers are expected to do more *exploratory* testing.
     4. Expected: Trace2gather runs, showing a GUI with no data. Upon a command that writes to the data file such as adding a room or guest, the old invalid data file is flushed out and replaced by the new one.
 
 2. Dealing with missing data file
-   
+
     1. Remove the data file saved for Trace2Gather in the directory `[JAR file location]/data`.
 
     2. Re-run the application.
