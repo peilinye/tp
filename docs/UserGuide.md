@@ -112,7 +112,7 @@ Format: `help`
 
 Adds a guest to Trace2Gather.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/NRIC [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​`
 
 Acceptable format for keywords:<br/>
 1. Names: No special characters, but spaces are allowed. No longer than 50 characters.
