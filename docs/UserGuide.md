@@ -12,7 +12,7 @@ If you require assistance using this guide, feel free to visit the [Navigation G
 
 <div style="page-break-after: always;"></div>
 
-<span style="font-size:32px; font-weight:bold;">Table Of Contents</span>
+<span style="font-size:32px; font-weight:500;"><br>Table Of Contents</span>
 
 * Table of Contents
 {:toc}
@@ -382,7 +382,7 @@ We understand that you might have questions regarding our application. Below are
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nric/S9943233F t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 id/S9943233F t/friend t/colleague`
 **Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/typeA`
 **Clear** | `clear`
 **Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
