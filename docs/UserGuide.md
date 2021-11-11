@@ -183,8 +183,8 @@ Find guests whose names contain any of the given keywords.
 
 Format: `guest KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will return you `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* The search is case-insensitive. For example, `hans` will return you `Hans`.
+* The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
 * Guests matching at least one keyword will be returned (i.e. `OR` search).
   For example, `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
@@ -361,7 +361,7 @@ The following fields are what you can use to search for a record:
 Acceptable formats for keywords:<br/>
 1. Dates of stay: YYYY-MM-DD.
 2. Names: No special characters, but spaces are allowed.
-3. Room Numbers: must be in its 3-digit format, e.g. 001, 233, 999.<br/>
+3. Room Numbers: must be in its 3-digit format. For example, 001, 233, 999.<br/>
 
 Example: <br/>
 `record Alex` shows the residencies Alex had in the past.<br/>
@@ -430,15 +430,15 @@ We understand that you might have questions regarding our application. Below are
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 id/S9943233F t/friend t/colleague`
-**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/typeA`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​` <br> Example: `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 id/S9943233F t/friend t/colleague`
+**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> Example: `addroom 5 t/typeA`
 **Clear** | `clear`
-**Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
-**Checkout** | `checkout ROOM_INDEX`<br> e.g., `checkout 4`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> Example: `checkin 5 g/1`
+**Checkout** | `checkout ROOM_INDEX`<br> Example: `checkout 4`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
-**Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
+**Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> Example: `guest James Jake`
 **List** | `list guests`, `list records`, `list rooms`, `list rooms occupied`, `list rooms vacant`
 **Help** | `help`
-**Record** | `record KEYWORD_ONE...`<br> e.g., `record Alex`, `record 001`
-**Room** | `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`<br> e.g., `room 001 002`
+**Record** | `record KEYWORD_ONE...`<br> Example: `record Alex`, `record 001`
+**Room** | `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`<br> Example: `room 001 002`
