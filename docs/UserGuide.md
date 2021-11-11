@@ -3,12 +3,12 @@ layout: page
 title: User Guide
 ---
 
-Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI).
+Welcome to the Trace2Gather User Guide. Trace2Gather is a **desktop app for managing hotel rooms and guests, optimised for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI).
 Our application aims to complement existing contact tracing efforts, while also helping you to manage your hotel guests fast.
 <br><br>
-The purpose of this user guide is to help you explore Trace2Gather's many features, and how to use them.
+The purpose of this user guide is to help you explore Trace2Gather's many features and how to use them.
 <br><br>
-If you require assistance using this guide, feel free to visit the [Navigation Guide](#navigation-guide) for more information.
+If you require assistance using this guide, please feel free to visit the [Navigation Guide](#navigation-guide) for more information.
 
 <div style="page-break-after: always;"></div>
 
@@ -36,11 +36,11 @@ This section will help you get our application running on your device, step by s
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `trace2gather.jar` from [here](https://https://github.com/AY2122S1-CS2103T-T13-3/tp/releases).
+2. Download the latest `trace2gather.jar` from [here](https://github.com/AY2122S1-CS2103T-T13-3/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for Trace2Gather.
 
-4. Double-click the file to start the application. The GUI below should appear in a few seconds, and will look like the screenshot below. Note how the app contains some sample data.<br>
+4. Double-click the file to start the application. The GUI below should appear in a few seconds, and will look like the screenshot below. Do note that the application contains some sample data for your convenience. <br>
    ![Ui](images/Ui.png)
 
 5. Type a command in the command box (shown in the screenshot below) and press Enter to execute it. For example, typing **`list guests`** and pressing Enter will show the UI below.<br>
@@ -73,30 +73,34 @@ Each feature has its own sub-section, with formats and examples for clarity.
 
 **:information_source: Notes about the command format:**<br>
 
-* All commands are in lower case, e.g. add, record, guest, addroom, etc.
+* All commands are in lower case, <br>
+  For example, commands are used as `add`, `record`, `guest`, `addroom`, etc.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  For example: in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  For example, in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   For example: `n/NAME [t/TAG]` can be used as `n/John Doe t/Quarantine` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  For example: `[t/TAG]…​` can be used as `t/Quarantine`, `t/SeafoodAllergy`, etc.
+* Items with `…`​ indicates that there can be additional parameters of the same type.<br>
+  For example: `[t/TAG]…​` can be used as `t/Quarantine t/SeafoodAllergy` or just `t/Quarantine`.
 
 * Parameters can be in any order.<br>
-  For example: if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  For example, if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, yet it is specified multiple times, only the last occurrence of the parameter will be taken.<br>
-  For example: if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  For example, if you specify `p/11111111 p/22222222`, only `p/22222222` will be used.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
-  For example: if the command specifies `help 123`, it will be interpreted as `help`.
+  For example, if the command specifies `help 123`, it will be interpreted as `help`.
 
-* If you have a smaller screen, please use the application in full screen mode, by clicking the square icon at the top right-hand corner of the window.
+* If you have a small screen, please use the application in full screen mode by clicking on the square icon at the top right-hand corner of the window.
 
 * For devices with smaller screens, some information about guests, rooms, or residencies may be cut off with an ellipses.
 </div>
+
+
+<div style="page-break-after: always;"></div>
 
 #### Viewing help : `help`
 
@@ -116,20 +120,23 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​`
 
 Acceptable format for keywords:<br/>
 1. Names: No special characters, but spaces are allowed. No longer than 50 characters.
-2. Phone Number: Digits only, and at least 3 digits long.
+2. Phone Number: Digits only and at least 3 digits long.
 3. Email: Must follow the format of xxx@yyy.zzz. <br/>
-4. Address: Special characters like `#` are allowed for address purposes, must not be blank.
-5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. It must not be an empty string, and it must be no longer than 50 characters. It is case-insensitive.
+4. Address: Special characters such as `#` are allowed. Field must not be blank.
+5. Id: Accommodates for international guests who may have longer identification numbers and/or special characters. It must not be empty and it must be no longer than 50 characters. It is case-insensitive.
 6. Tags: No whitespaces within a tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:** <br/>
-1. A guest can have any number of tags (including 0). <br/>
+1. A guest can have any number of tags (including no tags at all). <br/>
 2. Two guests who have identical IDs are considered identical.
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/S98765432G`
 * `add n/Betsy Crowe t/Quarantine e/betsycrowe@example.com a/Crowe Lane id/S98765431G p/1234567 t/SeafoodAllergy`
+
+
+<div style="page-break-after: always;"></div>
 
 #### Listing all guests : `list guests`
 
@@ -139,6 +146,9 @@ Shows a list of all guests in Trace2Gather. If you were searching for a guest ea
 
 Format: `list guests`
 
+
+<div style="page-break-after: always;"></div>
+
 #### Editing a guest : `edit`
 
 Edits an existing guest in Trace2Gather.
@@ -147,7 +157,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…�
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the guest will be removed, i.e. adding of tags is not cumulative.
+* When editing tags, the existing tags of the guest will be removed, That is, the addition of tags is not cumulative.
 * You can remove all the guest’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -164,20 +174,23 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st guest to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd guest to be `Betsy Crower` and clears all existing tags.
 
+
+<div style="page-break-after: always;"></div>
+
 #### Locating guests by name: `guest`
 
 Find guests whose names contain any of the given keywords.
 
 Format: `guest KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* The search is case-insensitive. For example, `hans` will return you `Hans`.
+* The order of the keywords does not matter. For example, `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
 * Guests matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  For example, `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-    Only full words will be matched, e.g. `Han` will not match `Hans`.
+    Only full words will be matched, For example, searching `Han` will not return you `Hans`.
 </div>
 
 Examples:
@@ -189,6 +202,7 @@ The image below is an example of how part of the application interface may look 
 ![guestsearch](images/Guestalexdavid2.png)
 
 
+<div style="page-break-after: always;"></div>
 
 ### Rooms
 
@@ -198,8 +212,8 @@ Adds the specified number of rooms with the specified tag(s).
 
 Format: `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`
 
-* Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the end of the list of rooms.
-* The specified number of rooms **must be a positive integer** 1, 2, 3, …​
+* Adds the specified `NUMBER_OF_ROOMS` of type `tag` to the list of rooms.
+* The specified number of rooms **must be a positive integer**. That is, 1, 2, 3, …​
 * The full list of rooms will be shown after rooms have been added.
 * Note: There should be no whitespace within a tag.
 
@@ -215,9 +229,12 @@ Examples:
 * `addroom 5 t/typeA`
 * `addroom 10 t/typeB t/reserved`
 
+
+<div style="page-break-after: always;"></div>
+
 #### Checking into a room : `checkin`
 
-Checks in a group of guests into a room.
+Checks in guest(s) into a room.
 
 Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 
@@ -227,8 +244,8 @@ Format: `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br/>
-1. You cannot check in the same guest to multiple rooms. <br/>
-2. Advanced users can edit the JSON such that a guest can be checked in and checked out at the same time, but this is not the intended use of the application.
+1. You cannot check in the same guest into multiple rooms. <br/>
+2. Advanced users can edit the JSON file directly such that a guest can be checked in and checked out at the same time. This is not the intended use of the application.
 </div>
 
 The indices refer to the index numbers shown in the numbered guest/room list.
@@ -240,14 +257,16 @@ Examples:
 The image below is an example of how part of the application interface looks when the command `checkin 3 g/2 g/3 g/6` is executed.
 ![checkin3](images/Checkin3.png)
 
+
+<div style="page-break-after: always;"></div>
+
 #### Checking out of a room : `checkout`
 
-Checks out a group of guests from a room.
+Checks out the guest(s) from a room.
 
 Format: `checkout ROOM_INDEX`
 
 The room index refers to the index number shown in the displayed room list.
-
 
 Example:
 * `checkout 5`
@@ -257,9 +276,11 @@ The image below is an example of how part of the application interface looks whe
 ![checkout4](images/Checkout4.png)
 
 
+<div style="page-break-after: always;"></div>
+
 #### Locating a specific room : `room`
 
-Shows a list of rooms that match the room numbers provided. Room numbers should have 3 digits.
+Shows a list of rooms that match the room number(s) provided. Room numbers should have 3 digits.
 
 Format: `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`
 
@@ -270,6 +291,9 @@ Example:
 The image below is an example of how part of the application interface looks when the command `room 001 002` is executed.
 ![room001002](images/Room001002.png)
 
+
+<div style="page-break-after: always;"></div>
+
 #### Listing all rooms : `list rooms`
 
 Shows the list of all rooms in Trace2Gather. If you were searching for a room using the `room` command earlier, using `list rooms` would yield you the full list of rooms, and it would be displayed in the `Rooms` panel. This is illustrated in the screenshot below after the execution of the `list rooms` command.<br/>
@@ -277,6 +301,9 @@ Shows the list of all rooms in Trace2Gather. If you were searching for a room us
 ![ListRoomsCommand](images/ListRooms.png)
 
 Format: `list rooms`
+
+
+<div style="page-break-after: always;"></div>
 
 #### Listing all occupied rooms : `list rooms occupied`
 
@@ -287,6 +314,9 @@ Shows the list of all rooms that are occupied in Trace2Gather. The image below i
 
 Format: `list rooms occupied`
 
+
+<div style="page-break-after: always;"></div>
+
 #### Listing all vacant rooms : `list rooms vacant`
 
 Shows the list of all rooms that are vacant in Trace2Gather. The image below illustrates a possible example of what you could see after executing the command. Room 002 was occupied, so `list rooms vacant` does not display Room 002, but displays all other vacant rooms.
@@ -294,6 +324,9 @@ Shows the list of all rooms that are vacant in Trace2Gather. The image below ill
 ![ListRoomsVacantCommand](images/ListRoomsVacant.png)
 
 Format: `list rooms vacant`
+
+
+<div style="page-break-after: always;"></div>
 
 ### Records
 
@@ -304,6 +337,9 @@ Shows the list of past residencies in Trace2Gather. If you were searching for a 
 ![ListRecordsCommand](images/ListRecords.png)
 
 Format: `list records`
+
+
+<div style="page-break-after: always;"></div>
 
 #### Locating specific records: `record`
 
@@ -325,7 +361,7 @@ The following fields are what you can use to search for a record:
 Acceptable formats for keywords:<br/>
 1. Dates of stay: YYYY-MM-DD.
 2. Names: No special characters, but spaces are allowed.
-3. Room Numbers: must be in its 3-digit format, e.g. 001, 233, 999.<br/>
+3. Room Numbers: must be in its 3-digit format. For example, 001, 233, 999.<br/>
 
 Example: <br/>
 `record Alex` shows the residencies Alex had in the past.<br/>
@@ -333,6 +369,9 @@ Example: <br/>
 `record Alex 001` shows the residencies that involve Alex staying in Room 001 in the past.<br/>
 `record Alex Bernice` shows the residencies Alex and Bernice had together in the past.<br/>
 `record 2021-10-31` shows the past residences that include the specified date (both checkin and checkout included).
+
+
+<div style="page-break-after: always;"></div>
 
 ### Database / Storage
 
@@ -372,25 +411,34 @@ We understand that you might have questions regarding our application. Below are
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trace2Gather home folder.
 
-**Q**: Why does my edit/checkin/checkout command not work?<br>
+**Q**: Why does my edit / checkin / checkout command not work?<br>
 **A**: The indices required by these commands are the ones from the numbered list seen in the GUI. You can try using one or more of the `list` commands to show all available data and make sure you have the correct indices.
 
-<div style="page-break-after: always;"></div>
+**Q**: Why does our application's logo look very similar to TraceTogether's logo? <br>
+**A**: Our application's purpose was driven with the intention to complement TraceTogether and thus we decided to be faithful to the logo used. The difference in colour scheme is a nod to the contributors who made AB3, the original source code we based our application off from, as AB3's logo was brown in colour.
 
+**Q**: How do I know if my application is not responding? <br>
+**A**: Please try to use your computer's task manager, such as Window's Task Manager, to check that the application is running.
+
+**Q**: I would like to use your application's codebase to develop my product. Is that alright with you? <br>
+**A**: Yes, please feel free to use our code base! Just remember that our application was built off AB3's code base found [here](https://github.com/nus-cs2103-AY2122S1/tp). Thus, please do remember to acknowledge the developers behind the code base.
+
+
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 id/S9943233F t/friend t/colleague`
-**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> e.g., `addroom 5 t/typeA`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS id/ID [t/TAG]…​` <br> Example: `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 id/S9943233F t/friend t/colleague`
+**Addroom** | `addroom NUMBER_OF_ROOMS t/tag [t/tag]...`<br> Example: `addroom 5 t/typeA`
 **Clear** | `clear`
-**Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> e.g., `checkin 5 g/1`
-**Checkout** | `checkout ROOM_INDEX`<br> e.g., `checkout 4`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Checkin** | `checkin ROOM_INDEX g/GUEST_INDEX [g/GUEST_INDEX]...`<br> Example: `checkin 5 g/1`
+**Checkout** | `checkout ROOM_INDEX`<br> Example: `checkout 4`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [id/ID] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`
 **Exit** | `exit`
-**Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> e.g., `guest James Jake`
+**Guest** | `guest KEYWORD [MORE_KEYWORDS]`<br> Example: `guest James Jake`
 **List** | `list guests`, `list records`, `list rooms`, `list rooms occupied`, `list rooms vacant`
 **Help** | `help`
-**Record** | `record KEYWORD_ONE...`<br> e.g., `record Alex`, `record 001`
-**Room** | `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`<br> e.g., `room 001 002`
+**Record** | `record KEYWORD_ONE...`<br> Example: `record Alex`, `record 001`
+**Room** | `room ROOM_NUMBER [MORE_ROOM_NUMBERS]`<br> Example: `room 001 002`
