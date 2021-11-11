@@ -198,8 +198,8 @@ Examples:
 * `guest alex david` returns `Alex Yeoh`, `David Li`<br>
 
 The image below is an example of how part of the application interface may look when the command `guest alex david` is executed.
-![guestsearch](images/Guestalexdavid1.png)
-![guestsearch](images/Guestalexdavid2.png)
+
+![guestsearch](images/Guestalexdavid2.jpg)
 
 
 <div style="page-break-after: always;"></div>
